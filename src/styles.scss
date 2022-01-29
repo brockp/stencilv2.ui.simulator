@@ -1,8 +1,14 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+* {
+  @apply font-quicksand;
+}
+  .form-control {
+    @apply rounded-full text-sm;
+  }
 @layer components {
+
   .edit-button,
   .save-button,
   .cancel-button {
@@ -21,6 +27,7 @@
     .preview-component {
       display: block;
       transition: 0.3s;
+      @apply my-2;
       &:hover {
         cursor: move;
         transform: scale(1.1);

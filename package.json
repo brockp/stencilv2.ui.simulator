@@ -20,6 +20,7 @@
     "@angular/router": "~13.1.0",
     "@ngneat/edit-in-place": "^1.6.1",
     "@ngneat/tailwind": "^7.0.3",
+    "@tailwindcss/forms": "^0.4.0",
     "ng2-dragula": "^2.1.1",
     "rxjs": "~7.4.0",
     "tailwindcss": "^3.0.18",

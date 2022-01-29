@@ -19,7 +19,11 @@ module.exports = {
       backgroundColor: {
         ctdark: "#261E45",
       },
+      colors: {
+        ctdark: "#261E45",
+        ctlight: "#3958FF",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
