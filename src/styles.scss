@@ -4,11 +4,10 @@
 * {
   @apply font-quicksand;
 }
-  .form-control {
-    @apply rounded-full text-sm;
-  }
+.form-control {
+  @apply rounded-full text-sm;
+}
 @layer components {
-
   .edit-button,
   .save-button,
   .cancel-button {
@@ -43,7 +42,10 @@
       }
       &:hover {
         cursor: move;
-        .edit-button, .edit-section {
+        .edit-button {
+          display: flex;
+        }
+        .edit-section {
           display: block;
           @apply flex justify-start items-center gap-2 border-t border-white border-opacity-50 pt-2 mt-2;
         }
@@ -52,7 +54,8 @@
     .preview-component {
       display: none;
     }
-    .edit-button, .edit-section {
+    .edit-button,
+    .edit-section {
       display: none;
     }
   }

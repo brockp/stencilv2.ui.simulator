@@ -12,21 +12,16 @@
       <editable>
         <ng-template viewMode>
 
-            <img
-              class="w-full my-8"
-              src="../../../assets/{{ signUpGraphic.image }}.svg"
-              alt=""
-            />
+            <button class="flex justify-center items-center bg-ctlight text-slate-50 px-6 py-3 rounded-sm my-4">{{basicButton.button}}</button>
 
         </ng-template>
         <ng-template editMode>
           <div class="form-group">
-            <code>Change to sign-up-graphic-two</code>
             <input
               class="form-control"
-              placeholder="Sign Up Image"
+              placeholder="Button Text"
               type="text"
-              formControlName="image"
+              formControlName="button"
             />
           </div>
         </ng-template>
@@ -49,4 +44,4 @@
   </aside>
 </section>
 
-<section class="preview-component">Sign Up Graphic <Header></Header></section>
+<section class="preview-component">Basic Button<Header></Header></section>

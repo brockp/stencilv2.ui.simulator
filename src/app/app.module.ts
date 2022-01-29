@@ -14,9 +14,10 @@ import { MobileHeaderComponent } from './components/mobile-header/mobile-header.
 import { SignupGraphicComponent } from './components/signup-graphic/signup-graphic.component';
 import { SignupListItemOneComponent } from './components/signup-list-item-one/signup-list-item-one.component';
 import { SignupListItemTwoComponent } from './components/signup-list-item-two/signup-list-item-two.component';
+import { BasicButtonComponent } from './components/basic-button/basic-button.component';
 
 @NgModule({
-  declarations: [AppComponent, EditButtonComponent, SaveButtonComponent, CancelButtonComponent, MobileHeaderComponent, SignupGraphicComponent, SignupListItemOneComponent, SignupListItemTwoComponent],
+  declarations: [AppComponent, EditButtonComponent, SaveButtonComponent, CancelButtonComponent, MobileHeaderComponent, SignupGraphicComponent, SignupListItemOneComponent, SignupListItemTwoComponent, BasicButtonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
