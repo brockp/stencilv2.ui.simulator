@@ -1,6 +1,8 @@
 # Stencil v2 UI Simulator
 
-<img style="max-width: 50%; padding-left:25%;" src="stencil-ui-sim-logo.png">
+<div style="display: flex; justify-content: center; margin: 20px 0px;">
+<img style="max-width: 125px; max-height: 125px;" src="stencil-ui-sim-logo.png">
+</div>
 
 Welcome to the Stencil v2 UI Simulator. This app is to simulate data-driven UI components that are part of the approved Suzy design system.
 
