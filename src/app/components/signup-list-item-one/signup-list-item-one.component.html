@@ -5,22 +5,34 @@
   (cancel)="cancelGroupedEdition()"
   class="true-component"
 >
+  <aside class="edit-section">
+    <app-edit-button
+      class="edit-button"
+      *ngIf="mode === 'view'"
+    ></app-edit-button>
+    <app-save-button
+      class="save-button"
+      *ngIf="mode === 'edit'"
+    ></app-save-button>
+    <app-cancel-button
+      class="cancel-button"
+      *ngIf="mode === 'edit'"
+    ></app-cancel-button>
+  </aside>
   <form [formGroup]="groupedForm">
-
-
     <article>
       <editable>
         <ng-template viewMode>
-
-            <section class="flex justify-center items-center space-x-2 my-4">
-              <img
-                class="w-6"
-                src="../../../assets/icons/{{ signUpListItem.icon }}.svg"
-                alt=""
-              />
-              <div class="font-quicksand dark:text-white text-gray-500">{{signUpListItem.text}}</div>
-            </section>
-
+          <section class="flex justify-center items-center space-x-2 my-4">
+            <img
+              class="w-6"
+              src="../../../assets/icons/{{ signUpListItem.icon }}.svg"
+              alt=""
+            />
+            <div class="font-quicksand dark:text-white text-gray-500">
+              {{ signUpListItem.text }}
+            </div>
+          </section>
         </ng-template>
         <ng-template editMode>
           <div class="form-group">
@@ -41,20 +53,6 @@
       </editable>
     </article>
   </form>
-  <aside class="edit-section">
-    <app-edit-button
-      class="edit-button"
-      *ngIf="mode === 'view'"
-    ></app-edit-button>
-    <app-save-button
-      class="save-button"
-      *ngIf="mode === 'edit'"
-    ></app-save-button>
-    <app-cancel-button
-      class="cancel-button"
-      *ngIf="mode === 'edit'"
-    ></app-cancel-button>
-  </aside>
 </section>
 
 <section class="preview-component">Sign Up List Item <Header></Header></section>

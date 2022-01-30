@@ -1,0 +1,66 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "dragula";
+@import "edit-in-place";
+
+// Global base ONLY
+@layer base {
+  * {
+    @apply font-quicksand;
+  }
+}
+
+// Shared component styles ONLY
+@layer components {
+  .main-header {
+    @apply fixed top-0 left-0 z-20 flex items-center justify-between w-full h-10 pl-5 mt-0 transition-all duration-500 ease-in-out bg-gradient-to-r from-ctdark via-ctlight to-ctdark;
+  }
+  .logo-container {
+    @apply flex justify-start gap-2 items-center text-base font-bold;
+    .logo {
+      @apply h-6 w-6;
+    }
+    .logo-text {
+      @apply text-slate-50 font-quicksand;
+    }
+  }
+  .viewport-selection-container {
+    @apply absolute z-10 flex items-center justify-center w-full h-full;
+    .viewport-inner {
+      @apply flex items-center px-2 text-xs text-white uppercase;
+    }
+    .viewport-icon {
+      @apply px-2 py-1 mx-1 rounded cursor-pointer bg-white bg-opacity-10;
+    }
+  }
+
+  .main-content-container {
+    @apply flex items-stretch w-full h-full min-h-screen px-5 pb-5 2xl:px-0 justify-center;
+    
+  }
+
+  .sidebar-container {
+      @apply fixed top-0 left-0 items-stretch justify-center h-full min-h-screen p-3 pr-6 transition duration-500 transform  z-10 ease-out;
+    }
+
+  .viewport-canvas {
+    @apply transition-all ease-out duration-150 flex items-stretch w-full h-full min-h-screen px-5 pb-5 2xl:px-0 justify-center;
+    .viewport-inner-canvas {
+      @apply mt-12 container max-w-screen-xl  mx-auto border-2 dark:bg-ctdark bg-slate-50 rounded-lg bg-none border-gray-200 z-0;
+    }
+  }
+
+  .docs-button-container {
+    @apply relative z-20 flex justify-end;
+    .docs-button {
+      @apply flex items-center w-auto h-10 px-3 text-xs font-medium text-slate-50 bg-ctdark;
+    }
+  }
+  .form-control {
+    @apply rounded-full text-sm;
+  }
+  .form-group {
+    @apply flex flex-col space-y-3 justify-around items-center my-3;
+  }
+}

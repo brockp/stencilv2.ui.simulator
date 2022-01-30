@@ -5,22 +5,36 @@
   (cancel)="cancelGroupedEdition()"
   class="true-component"
 >
+  <aside class="edit-section">
+    <app-edit-button
+      class="edit-button"
+      *ngIf="mode === 'view'"
+    ></app-edit-button>
+    <app-save-button
+      class="save-button"
+      *ngIf="mode === 'edit'"
+    ></app-save-button>
+    <app-cancel-button
+      class="cancel-button"
+      *ngIf="mode === 'edit'"
+    ></app-cancel-button>
+  </aside>
   <form [formGroup]="groupedForm" class="grid grid-cols-3 py-6">
     <div></div>
     <article>
       <editable>
         <ng-template viewMode>
-          <div class="flex justify-center items-center"><img src="../../../assets/crowdtap-logo.svg" alt="" /></div>
+          <div class="flex justify-center items-center">
+            <img src="../../../assets/crowdtap-logo.svg" alt="" />
+          </div>
         </ng-template>
-        <ng-template editMode> Nope </ng-template>
+        <ng-template editMode>   </ng-template>
       </editable>
     </article>
     <article class="flex justify-end items-center mr-2">
       <editable>
         <ng-template viewMode>
-          <button
-            class="reward-pill-button"
-          >
+          <button class="reward-pill-button">
             <img
               class="w-4"
               src="../../../assets/icons/{{ rewardPill.rewardIcon }}.svg"
@@ -48,20 +62,7 @@
       </editable>
     </article>
   </form>
-  <aside class="edit-section">
-    <app-edit-button
-      class="edit-button"
-      *ngIf="mode === 'view'"
-    ></app-edit-button>
-    <app-save-button
-      class="save-button"
-      *ngIf="mode === 'edit'"
-    ></app-save-button>
-    <app-cancel-button
-      class="cancel-button"
-      *ngIf="mode === 'edit'"
-    ></app-cancel-button>
-  </aside>
 </section>
 
-<section class="preview-component">App Header<Header></Header></section>
+<!-- Preview & Disabled Drag ONLY -->
+<section class="preview-component">App Header</section>

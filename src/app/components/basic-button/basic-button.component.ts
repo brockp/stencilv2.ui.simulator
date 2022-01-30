@@ -18,6 +18,7 @@ export class BasicButtonComponent implements OnInit {
   public basicButton = {
     button: 'Sign Up Now',
   };
+  luu = false
 
   constructor() {}
 
@@ -41,5 +42,8 @@ export class BasicButtonComponent implements OnInit {
 
   handleModeChange(mode: 'view' | 'edit'): void {
     this.mode = mode;
+    if(mode = 'edit') {
+      this.luu = true;
+    }
   }
 }

@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
-  AbstractControl,
-  FormArray,
   FormControl,
   FormGroup,
 } from '@angular/forms';
@@ -10,7 +8,8 @@ import {
   selector: 'app-mobile-header',
   templateUrl: './mobile-header.component.html',
   styleUrls: ['./mobile-header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MobileHeaderComponent implements OnInit {
   // multiple form
@@ -18,10 +17,9 @@ export class MobileHeaderComponent implements OnInit {
   public groupedForm!: FormGroup;
   public rewardPill = {
     rewardCount: '1000',
-    rewardIcon: 'coin-icon'
+    rewardIcon: 'coin-icon',
   };
-
-  constructor() {}
+  noDrag!: false;
 
   ngOnInit(): void {
     this.initGroupedForm();
@@ -30,7 +28,7 @@ export class MobileHeaderComponent implements OnInit {
   initGroupedForm(): void {
     this.groupedForm = new FormGroup({
       name: new FormControl(this.rewardPill.rewardCount),
-      icon: new FormControl(this.rewardPill.rewardIcon)
+      icon: new FormControl(this.rewardPill.rewardIcon),
     });
   }
 

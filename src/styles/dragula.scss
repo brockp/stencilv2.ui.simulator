@@ -1,0 +1,81 @@
+
+/* in-flight clone */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  pointer-events: none;
+  transition: 0.3s;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+  left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+
+.preview-container {
+  @apply mt-12 relative z-40 flex flex-col w-full h-auto p-4 text-sm font-bold tracking-tight text-slate-50 bg-ctdark rounded-lg shadow-xl;
+    .true-component {
+      display: none;
+    }
+    .preview-component {
+      @apply block bg-white bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
+      transition: 0.3s;
+      &:hover {
+        cursor: move;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .drop-container {
+    @apply flex flex-col w-full h-full text-base font-bold text-gray-500;
+    .true-component {
+      display: block;
+      transition: 0.3s;
+      &:hover {
+        transform: scale(1.01);
+        @apply rounded-md shadow-xl shadow-black z-50 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-200;
+      }
+      .edit-section {
+        /* display: none; */
+        visibility: hidden;
+      }
+      &:hover {
+        cursor: move;
+        .edit-button {
+          display: flex;
+        }
+        .edit-section {
+          visibility: visible;
+          @apply flex justify-center items-center gap-2 pt-2 my-2;
+        }
+      }
+    }
+    .preview-component {
+      display: none;
+    }
+    .disabled-compoenent {
+      @apply block text-gray-500 bg-none border-2 border-dashed border-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
+    }
+    .edit-button,
+    .edit-section {
+      display: none;
+    }
+  }

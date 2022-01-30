@@ -1,33 +1,35 @@
 <main [ngClass]="{'dark': darkMode}">
+
   <header
-    class="fixed top-0 left-0 z-20 flex items-center justify-between w-full h-10 pl-5 mt-0 transition-all duration-500 ease-in-out bg-gradient-to-r from-ctdark via-ctlight to-ctdark">
+    class="main-header">
     <div class="relative z-20">
-      <div class="flex justify-start gap-2 items-center text-base font-bold">
-        <img class="h-6 w-6" src="../assets/stencil-logo.svg" alt="">
-        <div class="text-slate-50 font-quicksand">Stencil UI Simulator (Proof of Concept)</div>
+      <div class="logo-container">
+        <img class="logo" src="../assets/stencil-logo.svg" alt="">
+        <div class="logo-text">Stencil UI Simulator (Proof of Concept)</div>
       </div>
     </div>
   
-    <div class="absolute z-10 flex items-center justify-center w-full h-full">
-      <div class="flex items-center px-2 text-xs text-white uppercase font-weight:semibold">
+    <div class="viewport-selection-container">
+      <div class="viewport-inner">
         <span class="mr-3 text-blue-200">Viewport: </span>
-        <span (click)="mediumViewPort()" class="px-2 py-1 mx-1 rounded cursor-pointer bg-white bg-opacity-10">Apple</span>
-        <span (click)="largeViewPort()" class="px-2 py-1 mx-1 rounded cursor-pointer bg-white bg-opacity-10">Android</span>
-        <span (click)="desktopViewPort()" class="px-2 py-1 mx-1 rounded cursor-pointer bg-white bg-opacity-10">HTML 5</span>
-        <span (click)="changeUxTheme()" class="px-2 py-1 mx-1 rounded cursor-pointer bg-white bg-opacity-10">Change UX Theme</span>
+        <span (click)="mediumViewPort()" class="viewport-icon">Apple</span>
+        <span (click)="largeViewPort()" class="viewport-icon">Android</span>
+        <span (click)="desktopViewPort()" class="viewport-icon">HTML 5</span>
+        <span (click)="changeUxTheme()" class="viewport-icon">Change UX Theme</span>
       </div>
     </div>
   
-    <div class="relative z-20 flex justify-end">
-      <a href="#" class="flex items-center w-auto h-10 px-3 text-xs font-medium text-slate-50 bg-ctdark">
+    <div class="docs-button-container">
+      <a href="#" class="docs-button">
         Documentation (Coming Soon)
       </a>
     </div>
   </header>
-  <div class="flex items-stretch w-full h-full min-h-screen px-5 pb-5 2xl:px-0 pt-15 justify-center">
   
-  <section class="fixed top-0 left-0 items-stretch justify-center h-full min-h-screen p-3 pr-6 transition duration-500 transform pt-15  z-10 ease-out">
-    <div class="preview-container mt-12 relative z-40 flex flex-col w-full h-auto p-4 text-sm font-bold tracking-tight text-slate-50 bg-ctdark rounded-lg shadow-xl" dragula="COMPONENTS">
+  <div class="main-content-container">
+  
+  <section class="sidebar-container">
+    <div class="preview-container" dragula="COMPONENTS">
     <app-mobile-header></app-mobile-header>
     <app-signup-graphic></app-signup-graphic>
     <app-signup-list-item-one></app-signup-list-item-one>
@@ -36,14 +38,14 @@
     </div>
   </section>
   
-  <section [ngClass]="{'max-w-Android': large, 'max-w-iPhone': medium, 'max-w-screen-xl': desktop
-  }" class="transition-all ease-out duration-150 flex items-stretch w-full h-full min-h-screen px-5 pb-5 2xl:px-0 pt-15 justify-center">
-    <div class="mt-12 container max-w-screen-xl  mx-auto border-2 dark:bg-ctdark bg-slate-50 rounded-lg bg-none h-100 border-gray-200 z-0">
-      <div class="drop-container flex flex-col w-full h-full text-base font-bold text-gray-500" dragula="COMPONENTS">
+  <section [ngClass]="{'max-w-Android': large, 'max-w-iPhone': medium, 'max-w-screen-xl': desktop}" class="viewport-canvas">
+    <div class="viewport-inner-canvas">
+      <div class="drop-container" dragula="COMPONENTS">
         <!-- Components get dropped here -->
       </div>
     </div>
   </section>
+
   </div>
 </main>
 <router-outlet></router-outlet>

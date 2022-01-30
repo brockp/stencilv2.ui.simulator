@@ -17,7 +17,17 @@ import { SignupListItemTwoComponent } from './components/signup-list-item-two/si
 import { BasicButtonComponent } from './components/basic-button/basic-button.component';
 
 @NgModule({
-  declarations: [AppComponent, EditButtonComponent, SaveButtonComponent, CancelButtonComponent, MobileHeaderComponent, SignupGraphicComponent, SignupListItemOneComponent, SignupListItemTwoComponent, BasicButtonComponent],
+  declarations: [
+    AppComponent,
+    EditButtonComponent,
+    SaveButtonComponent,
+    CancelButtonComponent,
+    MobileHeaderComponent,
+    SignupGraphicComponent,
+    SignupListItemOneComponent,
+    SignupListItemTwoComponent,
+    BasicButtonComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

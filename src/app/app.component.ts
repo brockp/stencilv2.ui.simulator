@@ -1,10 +1,4 @@
-import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +9,11 @@ export class AppComponent {
   title = 'stencil-ui-simulator';
   large = false;
   medium = true;
+  mediumRotated = false;
   desktop = false;
   darkMode = true;
 
-
-
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 
 
   largeViewPort(): void {
@@ -38,6 +28,10 @@ export class AppComponent {
     this.desktop = false;
   }
 
+  mediumViewPortRotated(): void {
+    this.mediumRotated = !this.mediumRotated;
+  }
+
   desktopViewPort(): void {
     this.large = false;
     this.medium = false;
@@ -47,6 +41,4 @@ export class AppComponent {
   changeUxTheme(): void {
     this.darkMode = !this.darkMode;
   }
-
-
 }

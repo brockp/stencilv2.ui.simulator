@@ -8,9 +8,13 @@ module.exports = {
     content: ["./src/**/*.{html,ts}"],
   },
   theme: {
+    backdropFilter: {
+      none: "none",
+      blur: "blur(20px)",
+    },
     extend: {
       maxWidth: {
-        iPhone: "414px",
+        iPhone: "390px",
         Android: "411px",
       },
       fontFamily: {
