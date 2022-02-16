@@ -1,0 +1,22 @@
+<main [formGroup]="parent">
+  <section formArrayName="stock">
+    <div *ngFor="let item of stocks; let i = index">
+      <!-- Dynamic formGroupName, just telling Angular to associate this formGroupName with the index(i) of the array above. -->
+      <div [formGroupName]="i">
+        <div>
+          {{ item.value.product_id }}
+        </div>
+
+        <input
+          type="number"
+          step="10"
+          min="10"
+          max="1000"
+          formControlName="quantity"
+        />
+
+        <button (click)="onRemove(item, i)" type="button">Remove</button>
+      </div>
+    </div>
+  </section>
+</main>

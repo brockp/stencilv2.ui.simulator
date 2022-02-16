@@ -1,0 +1,92 @@
+<main [formGroup]="parent" class="form-group">
+  <!-- Button Text -->
+  <section>
+    <h2 class="edit-section-title">
+      Selected Text:
+    </h2>
+    <input
+      class="form-control"
+      placeholder="Button Text"
+      type="text"
+      formControlName="button"/>
+  </section>
+
+  <!-- Button Width -->
+  <section>
+    <h2 class="edit-section-title">
+      Width:
+    </h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('width', width.full)">
+        Full
+      </button>
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('width', width.half)">
+        50%
+      </button>
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('width', width.auto)">
+        Auto
+      </button>
+    </div>
+  </section>
+
+  <!-- Border Radius -->
+  <section>
+    <h2 class="edit-section-title">
+      Border Radius:
+    </h2>
+
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('borderRadius', radius.roundedFull)">
+        <div class="full"></div>
+        Full
+      </button>
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('borderRadius', radius.roundedLarge)">
+        <div class="large"></div>
+        Large
+      </button>
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('borderRadius', radius.roundedSmall)">
+        <div class="small"></div>
+        Small
+      </button>
+    </div>
+  </section>
+
+  <!-- Background Color -->
+  <section>
+    <h2 class="edit-section-title">
+      Background Color:
+    </h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        class="color-button primary-blue"
+        (click)="setBgColor('bgColor', bg.primaryBlue)">
+        #3589F9
+      </button>
+      <button
+        class="color-button purple-black"
+        (click)="setBgColor('bgColor', bg.purpleBlack)">
+        #1A152E
+      </button>
+      <button
+        class="color-button lighter-blue"
+        (click)="setBgColor('bgColor', bg.ligherBlue)">
+        #62B4FF
+      </button>
+    </div>
+  </section>
+</main>

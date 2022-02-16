@@ -1,0 +1,29 @@
+<form [formGroup]="slideThree">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="edit-section-title border-none">
+      Slide 3:
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <label for="headline" class="flex flex-col justify-start items-start">
+      <span class="text-xs font-medium-light">Headline</span>
+      <input
+        class="rounded-full my-2 text-base"
+        placeholder="Enter Headline"
+        type="text"
+        formControlName="headlineSlideThree"/>
+        <span class="text-xs font-medium-light">Description</span>
+        <textarea
+        class="rounded-lg my-2 w-full text-base"
+        placeholder="Enter Description"
+        type="text"
+        formControlName="descriptionSlideThree">
+      </textarea>
+
+      <span class="text-xs font-medium-light">Slide Image</span>
+      <section class="flex justify-start items-center gap-3">
+        <img src="../../assets/complete-your-profile.svg" alt="Sign Up" (click)="setSlideImage('slideThreeImage', 'https://cdna.iconscout.com/production/img/3d.167d6cb.png')">
+      </section>
+    </label>
+</mat-expansion-panel>
+</form>

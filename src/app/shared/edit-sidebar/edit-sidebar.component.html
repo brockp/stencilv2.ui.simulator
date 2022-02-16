@@ -1,0 +1,29 @@
+<div class="animate__animated animate__fadeInRight animate__faster fixed top-0 right-0 z-50 flex h-screen w-96 origin-center items-center justify-end overflow-auto">
+	<div class=" pt-10 h-screen w-11/12 rounded-sm bg-white text-left shadow-lg">
+		<section class="max-h-max w-full bg-ctdark p-4 text-white">
+			<img src="../../../../../assets/crowdtap-logo.svg" alt="Crowdtap Logo" />
+			Design System
+		</section>
+		<div class="mb-4 px-4">
+			<ng-content></ng-content>
+		</div>
+
+		<div class="false mt-10 flex justify-center border-t border-gray-300 py-4 px-4">
+			<button
+				class="grouped-form-submit-button bg-ctdark hover:bg-ctlight"
+				type="button"
+				editableGroupSave
+			>
+				Save
+			</button>
+			<button
+				class="grouped-form-submit-button bg-red-500 hover:bg-red-600"
+				type="button"
+				editableGroupCancel
+				(click)="toggleSidebar()"
+			>
+				Cancel
+			</button>
+		</div>
+	</div>
+</div>;

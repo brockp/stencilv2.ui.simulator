@@ -8,7 +8,6 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
   pointer-events: none;
-  transition: 0.3s;
 }
 /* high-performance display:none; helper */
 .gu-hide {
@@ -38,6 +37,7 @@
       @apply block bg-white bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
       transition: 0.3s;
       &:hover {
+      @apply bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg;
         cursor: move;
         transform: scale(1.1);
       }
@@ -47,24 +47,21 @@
   .drop-container {
     @apply flex flex-col w-full h-full text-base font-bold text-gray-500;
     .true-component {
-      display: block;
-      transition: 0.3s;
-      &:hover {
-        transform: scale(1.01);
-        @apply rounded-md shadow-xl shadow-black z-50 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-200;
-      }
+      transition: 0.2s;
       .edit-section {
         /* display: none; */
         visibility: hidden;
       }
       &:hover {
         cursor: move;
+        transform: scale(1.002);
+        @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg ease-in-out;
         .edit-button {
           display: flex;
         }
         .edit-section {
           visibility: visible;
-          @apply flex justify-center items-center gap-2 pt-2 my-2;
+          @apply flex justify-center items-center gap-2 pt-2 my-2 z-50 origin-center transition-all ease-in-out duration-75;
         }
       }
     }

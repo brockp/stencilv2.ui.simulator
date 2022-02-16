@@ -1,0 +1,20 @@
+<main [formGroup]="parent" class="form-group">
+
+<!-- Slide 1 -->
+<app-edit-slide-one 
+[child]="parent" 
+(imageChanged)="changeSlideOneImage($event)">
+</app-edit-slide-one>
+
+<!-- Slide 2 -->
+<app-edit-slide-two 
+[slideTwo]="parent" 
+(slideImageTwoChanged)="changeSlideTwoImage($event)">
+</app-edit-slide-two>
+
+<!-- Slide 3 -->
+<app-edit-slide-three 
+[slideThree]="parent" 
+(slideImageThreeChanged)="changeSlideThreeImage($event)">
+</app-edit-slide-three>
+</main>

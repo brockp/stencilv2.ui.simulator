@@ -1,0 +1,16 @@
+.slide {
+  @apply grid grid-flow-col text-center transition-all ease-in-out h-full content-between;
+  grid-template-rows: 1fr 250px 50px;
+}
+
+.slide:hover {
+  transform: scale(1.025);
+}
+
+.active-dot {
+  @apply rounded-full w-2.5 h-2.5 bg-ctlight;
+}
+
+.inactive-dot {
+  @apply rounded-full w-2 h-2 bg-gray-500;
+}

@@ -1,0 +1,39 @@
+<section
+  editableGroup
+  (save)="updateGroupedEdition()"
+  (cancel)="cancelGroupedEdition()"
+>
+  <form [formGroup]="groupedForm">
+    <article class="flex justify-center items-center true-component">
+      <app-edit-button
+        class="absolute top-2 right-1"
+        (click)="toggleDisplay()">
+      </app-edit-button>
+
+
+          <button
+            class="flex justify-center items-center text-slate-50 px-6 py-3 my-4"
+            [class]="[basicButton.bgColor, basicButton.borderRadius, basicButton.width]"
+            #button>
+            {{ basicButton.text }}
+          </button>
+
+    </article>
+   
+    <app-edit-sidebar *ngIf="sbs.isShow">
+      <app-button-form
+        [parent]="groupedForm"
+        (widthChanged)="changeWidth($event)"
+        (radiusChanged)="changeBorderRadius($event)"
+        (bgColorChanged)="changeBgColor($event)"
+      ></app-button-form>
+
+      <pre class="bg-gray-900 text-xs p-4 rounded-md shadow-inner">{{
+        this.basicButton | json
+      }}</pre>
+    </app-edit-sidebar>
+ 
+  </form>
+</section>
+
+<section class="preview-component">Basic Button</section>
