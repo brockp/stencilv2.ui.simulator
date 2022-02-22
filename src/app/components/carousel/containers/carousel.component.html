@@ -14,14 +14,18 @@
 
 				<div class="slide" *ngIf="i === currentSlide" >
 					
-					<section>
+					<section  dragula="CAROUSEL">
 						<img
 							[src]="slide.src"
 							class="w-full h-96"
 						/>
 					</section>
-					<section>
+
+					<section  dragula="CAROUSEL">
 						<h2 class="text-white font-bold text-xl my-4">{{slide.headline}}</h2>
+					</section>
+
+					<section  dragula="CAROUSEL">
 						<p class="text-white text-center font-bold text-sm mb-4 mx-4">{{slide.description}}</p>
 					</section>
 					
@@ -49,6 +53,8 @@
 	<!-- end carousel -->
 </div>
 
+
+
 <app-edit-sidebar *ngIf="sbs.editCarousel">
       <app-carousel-form
         [parent]="groupedForm"
@@ -57,8 +63,10 @@
 				(slideThreeImageChanged)="changeSlideThreeImage($event)"
       ></app-carousel-form>
 
+
+			
       <!-- JSON Output -->
-<mat-expansion-panel>
+	<mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title class="edit-section-title border-none">
         JSON
@@ -71,7 +79,7 @@
         this.slides | json
       }}</pre>
   </mat-expansion-panel>
-    </app-edit-sidebar>
+</app-edit-sidebar>
 </section>
 
 	<section class="preview-component">Carousel</section>

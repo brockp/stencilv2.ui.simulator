@@ -1,6 +1,6 @@
 .slide {
-  @apply grid grid-flow-col text-center transition-all ease-in-out h-full content-between;
-  grid-template-rows: 1fr 250px 50px;
+  @apply grid grid-flow-col text-center h-full content-between;
+  grid-template-rows: 1fr 75px 175px 50px;
 }
 
 .slide:hover {

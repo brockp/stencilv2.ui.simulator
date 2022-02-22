@@ -1,0 +1,35 @@
+<section
+  editableGroup
+  (save)="updateGroupedEdition()"
+  (cancel)="cancelGroupedEdition()"
+>
+<form [formGroup]="groupedForm">
+
+<main class="true-component">
+  <app-edit-button
+      class="absolute top-2 right-1 z-50"
+      (click)="toggleDisplay()">
+  </app-edit-button>
+
+  <div id="lego"></div>
+</main>
+
+<app-edit-sidebar *ngIf="sbs.editLottie">
+  <app-edit-lottie [parent]="groupedForm"></app-edit-lottie>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="edit-section-title border-none">
+              JSON
+            </mat-panel-title>
+            <mat-panel-description>
+              View configuration
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          
+        </mat-expansion-panel>
+      </app-edit-sidebar>
+</form>
+</section>
+
+<section class="preview-component">Lottie</section>

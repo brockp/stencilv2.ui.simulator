@@ -6,13 +6,13 @@
   <form [formGroup]="groupedForm">
     <article class="flex justify-center items-center true-component">
       <app-edit-button
-        class="absolute top-2 right-1"
+        class="absolute top-2 right-1 z-50"
         (click)="toggleDisplay()">
       </app-edit-button>
 
 
           <button
-            class="flex justify-center items-center text-slate-50 px-6 py-3 my-4"
+            class="flex justify-center items-center text-slate-50 font-quicksand font-bold px-6 py-3 my-4"
             [class]="[basicButton.bgColor, basicButton.borderRadius, basicButton.width]"
             #button>
             {{ basicButton.text }}

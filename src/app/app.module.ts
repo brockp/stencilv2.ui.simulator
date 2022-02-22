@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { LottieWebParser } from "lottie-web-parser";
 // Library Modules
 import { DragulaModule } from "ng2-dragula";
 import { EditableModule } from "@ngneat/edit-in-place";
@@ -15,7 +15,7 @@ import { AppComponent } from "./app.component";
 import { EditButtonComponent } from "./shared/edit-button/edit-button.component";
 import { SaveButtonComponent } from "./shared/save-button/save-button.component";
 import { CancelButtonComponent } from "./shared/cancel-button/cancel-button.component";
-import { MobileHeaderComponent } from "./components/mobile-header/mobile-header.component";
+import { MobileHeaderComponent } from "./components/mobile-header/containers/mobile-header.component";
 import { SignupGraphicComponent } from "./components/signup-graphic/signup-graphic.component";
 import { SignupListItemOneComponent } from "./components/signup-list-item-one/signup-list-item-one.component";
 import { SignupListItemTwoComponent } from "./components/signup-list-item-two/signup-list-item-two.component";
@@ -32,6 +32,12 @@ import { CarouselFormComponent } from "./components/carousel/edit-component/caro
 import { EditSlideOneComponent } from "./components/carousel/edit-component/edit-slide-one/edit-slide-one.component";
 import { EditSlideTwoComponent } from "./components/carousel/edit-component/edit-slide-two/edit-slide-two.component";
 import { EditSlideThreeComponent } from "./components/carousel/edit-component/edit-slide-three/edit-slide-three.component";
+
+import { LottieTestComponent } from "./components/lottie-test/containers/lottie-test.component";
+import { EditMobileHeaderComponent } from "./components/mobile-header/edit-component/edit-mobile-header/edit-mobile-header.component";
+import { EditLottieComponent } from "./components/lottie-test/edit-component/edit-lottie/edit-lottie.component";
+import { CrowdtapGridComponent } from "./components/crowdtap-grid/containers/crowdtap-grid.component";
+import { EditCrowdtapGridComponent } from "./components/crowdtap-grid/edit-component/edit-crowdtap-grid/edit-crowdtap-grid.component";
 
 @NgModule({
 	declarations: [
@@ -51,7 +57,12 @@ import { EditSlideThreeComponent } from "./components/carousel/edit-component/ed
 		CarouselFormComponent,
 		EditSlideOneComponent,
 		EditSlideTwoComponent,
-		EditSlideThreeComponent
+		EditSlideThreeComponent,
+		LottieTestComponent,
+		EditMobileHeaderComponent,
+		EditLottieComponent,
+		CrowdtapGridComponent,
+		EditCrowdtapGridComponent
 	],
 	imports: [
 		BrowserModule,

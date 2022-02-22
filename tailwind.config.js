@@ -2,10 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
 	darkMode: "class",
-	content: [],
-	purge: {
-		content: ["./src/**/*.{html,ts}"]
-	},
+	content: ["./src/**/*.{html,ts}"],
 	theme: {
 		backdropFilter: {
 			none: "none",
@@ -33,7 +30,9 @@ module.exports = {
 				ctlight: "#3958FF",
 				primaryblue: "#3589F9",
 				purpleblack: "#1A152E",
-				lighterblue: "#62B4FF"
+				lighterblue: "#62B4FF",
+				yellowpill: "#FEEC4B",
+				secondarydark: "#141414"
 			},
 			boxShadow: {
 				"3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)"

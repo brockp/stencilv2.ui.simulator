@@ -21,8 +21,16 @@
         </textarea>
   
         <span class="text-xs font-medium-light">Slide Image</span>
-        <section class="flex justify-start items-center gap-3">
-          <img src="../../assets/complete-your-profile.svg" alt="Sign Up" (click)="setSlideImage('slideOneImage', 'https://cdna.iconscout.com/production/img/illustration.d05a848.svg')">
+        <section class="image-selection flex justify-start items-center gap-3 flex-wrap">
+          <img src="../../assets/complete-your-profile.svg" (click)="setSlideImage('slideOneImage', '../../assets/complete-your-profile.svg')">
+          <img src="../../assets/sitting-blocks.svg" (click)="setSlideImage('slideOneImage', '../../assets/sitting-blocks.svg')">
+          <img src="../../assets/block-tap.svg" (click)="setSlideImage('slideOneImage', '../../assets/block-tap.svg')">
+          <img src="../../assets/girl-laying.svg" (click)="setSlideImage('slideOneImage', '../../assets/girl-laying.svg')">
+          <img src="../../assets/girl-clicking.svg" (click)="setSlideImage('slideOneImage', '../../assets/girl-clicking.svg')">
+          <img src="../../assets/girl-sitting.svg" (click)="setSlideImage('slideOneImage', '../../assets/girl-sitting.svg')">
+          <img src="../../assets/question.svg" (click)="setSlideImage('slideOneImage', '../../assets/question.svg')">
+          <img src="../../assets/icons/coin-count.svg" (click)="setSlideImage('slideOneImage', '../../assets/icons/coin-count.svg')">
+          <img src="../../assets/refer-a-friend.svg" (click)="setSlideImage('slideOneImage', '../../assets/refer-a-friend.svg')">
         </section>
       </label>
   </mat-expansion-panel>

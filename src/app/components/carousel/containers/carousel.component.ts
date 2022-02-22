@@ -1,17 +1,11 @@
-import {
-	Component,
-	ElementRef,
-	OnInit,
-	Renderer2,
-	ViewChild
-} from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { DragulaService } from "ng2-dragula";
 import { trigger, transition, useAnimation } from "@angular/animations";
 
 import { groupedForm } from "src/app/shared/models/edit-in-place.interface";
 import { Carousel } from "../models/carousel.interface";
 import { fadeIn, fadeOut } from "../carousel.animations";
-import { ToggleSidebarService } from "src/app/shared/services/toggle-sidebar.service";
 import { SidenavService } from "src/app/shared/services/sidenav.service";
 
 @Component({
@@ -54,17 +48,21 @@ export class CarouselComponent implements OnInit {
 		}
 	];
 
-	constructor(private renderer: Renderer2, public sbs: SidenavService) {}
+	constructor(
+		private ds: DragulaService,
+		private renderer: Renderer2,
+		public sbs: SidenavService
+	) {
+		ds.createGroup("CAROUSEL", {});
+	}
 
 	ngOnInit() {
 		this.inactive = true;
 		this.initGroupedForm();
-		console.log(this.slides);
 	}
 
 	toggleDisplay() {
 		this.sbs.openCarouselEdit();
-		// this.isShow = !this.isShow;
 	}
 
 	initGroupedForm(): void {

@@ -21,12 +21,16 @@ export class AppContainerComponent implements OnInit {
 	mediumRotated = false;
 	desktop = false;
 	darkMode = true;
-
-	constructor(private ds: DragulaService) {
+	div = "div";
+	constructor(private ds: DragulaService, public sbs: SidenavService) {
 		ds.createGroup("COMPONENTS", {});
 	}
 
 	ngOnInit(): void {}
+
+	toggleDisplay() {
+		this.sbs.toggle();
+	}
 
 	largeViewPort(): void {
 		this.large = true;

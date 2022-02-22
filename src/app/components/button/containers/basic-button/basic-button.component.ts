@@ -1,10 +1,8 @@
 import {
 	Component,
 	ElementRef,
-	Input,
 	OnInit,
 	Renderer2,
-	TemplateRef,
 	ViewChild
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
@@ -12,9 +10,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { basicButton } from "../../models/basic-button.interface";
 import { groupedForm } from "src/app/shared/models/edit-in-place.interface";
 import { mode } from "src/app/shared/constants/edit-in-place.constants";
-import { ToggleSidebarService } from "src/app/shared/services/toggle-sidebar.service";
 import { SidenavService } from "src/app/shared/services/sidenav.service";
-import { MatSidenav } from "@angular/material/sidenav";
 
 @Component({
 	selector: "app-basic-button",

@@ -8,22 +8,23 @@
 			<ng-content></ng-content>
 		</div>
 
-		<div class="false mt-10 flex justify-center border-t border-gray-300 py-4 px-4">
-			<button
-				class="grouped-form-submit-button bg-ctdark hover:bg-ctlight"
-				type="button"
-				editableGroupSave
-			>
-				Save
-			</button>
-			<button
-				class="grouped-form-submit-button bg-red-500 hover:bg-red-600"
-				type="button"
-				editableGroupCancel
-				(click)="toggleSidebar()"
-			>
-				Cancel
-			</button>
-		</div>
+
+			<div class="false mt-10 flex justify-center border-t border-gray-300 py-4 px-4">
+				<button
+					class="grouped-form-submit-button bg-ctdark hover:bg-ctlight"
+					type="button"
+					editableGroupSave
+				>
+					Save
+				</button>
+				<button
+					class="grouped-form-submit-button bg-red-500 hover:bg-red-600"
+					type="button"
+					editableGroupCancel
+					(click)="toggleSidebar()"
+				>
+					Cancel
+				</button>
+			</div>
 	</div>
 </div>;

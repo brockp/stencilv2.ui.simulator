@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ToggleSidebarService } from './toggle-sidebar.service';
+import { LottieTestService } from './lottie-test.service';
 
-describe('ToggleSidebarService', () => {
-  let service: ToggleSidebarService;
+describe('LottieTestService', () => {
+  let service: LottieTestService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ToggleSidebarService);
+    service = TestBed.inject(LottieTestService);
   });
 
   it('should be created', () => {

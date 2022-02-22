@@ -1,0 +1,5 @@
+.icon-selection {
+  img {
+    @apply w-8 h-8 cursor-pointer transition-all ease-in-out hover:scale-125;
+  }
+}

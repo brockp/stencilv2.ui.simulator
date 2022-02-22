@@ -1,0 +1,62 @@
+<section
+  editableGroup
+  (save)="updateGroupedEdition()"
+  (cancel)="cancelGroupedEdition()"
+>
+ 
+    <form [formGroup]="groupedForm">
+    <section class="true-component">
+      <app-edit-button
+                class="absolute top-2 right-1"
+                (click)="toggleDisplay()">
+            </app-edit-button>
+      <div class="grid grid-cols-3 justify-center py-6">
+
+           <span></span>
+            
+            <div class="flex justify-center items-center">
+              <img src="../../../assets/crowdtap-logo.svg" />
+            </div>
+    
+            <div class="flex justify-end place-content-end">
+              <button 
+                class="reward-pill-button"
+                [class]="[rewardPill.bgColor, rewardPill.textColor]">
+                <img
+                  class="w-5"
+                  [src]="rewardPill.src"
+                />
+                {{ rewardPill.rewardCount }}
+              </button>
+            </div>
+
+      </div>
+      </section>
+      <app-edit-sidebar *ngIf="sbs.editMobileHeader">
+        <app-edit-mobile-header 
+          [parent]="groupedForm" 
+          (bgColorChanged)="changeBgColor($event)"
+          (iconChanged)="changeIconImage($event)"
+          (textColorChanged)="changeTextColor($event)">
+        </app-edit-mobile-header>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="edit-section-title border-none">
+              JSON
+            </mat-panel-title>
+            <mat-panel-description>
+              View configuration
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <pre class="bg-gray-900 text-white text-xs p-4 rounded-md shadow-inner overflow-x-hidden overflow-y-auto whitespace-pre-wrap">{{
+        this.rewardPill | json
+      }}</pre>
+        </mat-expansion-panel>
+      </app-edit-sidebar>
+    </form>
+  
+</section>
+
+<!-- Preview & Disabled Drag ONLY -->
+<section class="preview-component">App Header</section>

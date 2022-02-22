@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from "@angular/core";
 import { SidenavService } from "../services/sidenav.service";
-import { ToggleSidebarService } from "../services/toggle-sidebar.service";
 
 @Component({
 	selector: "app-edit-sidebar",

@@ -8,7 +8,12 @@ export const TAILWIND = {
 		red: "bg-red-500",
 		primaryBlue: "bg-primaryblue",
 		purpleBlack: "bg-purpleblack",
-		ligherBlue: "bg-lighterblue"
+		ligherBlue: "bg-lighterblue",
+		secondaryDark: "bg-secondarydark"
+	},
+	textColor: {
+		white: "text-white",
+		black: "text-black"
 	},
 	width: {
 		full: "w-full",

@@ -1,0 +1,56 @@
+<section
+  editableGroup
+  (save)="updateGroupedEdition()"
+  (cancel)="cancelGroupedEdition()"
+>
+<form [formGroup]="groupedForm">
+    <section class="true-component my-10">
+      <div class="flex flex-wrap gap-3 items-center content-center justify-center">
+        <app-edit-button
+            class="absolute top-2 right-1"
+            (click)="toggleDisplay()">
+        </app-edit-button>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColor"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorTwo"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorThree"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorFour"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorFive"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorSix"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorSeven"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorEight"></div>
+        <div class="w-28 h-28 rounded-lg transition-all ease-in-out hover:scale-110" [class]="tile.bgColorNine"></div>
+      </div>
+    </section>
+
+  <app-edit-sidebar *ngIf="sbs.editTiles">
+    <app-edit-crowdtap-grid
+    [parent]="groupedForm"
+    (bgColorChanged)="changeBgColor($event)"
+    (bgColorChangedTwo)="changeBgColorTwo($event)"
+    (bgColorChangedThree)="changeBgColorThree($event)"
+    (bgColorChangedFour)="changeBgColorFour($event)"
+    (bgColorChangedFive)="changeBgColorFive($event)"
+    (bgColorChangedSix)="changeBgColorSix($event)"
+    (bgColorChangedSeven)="changeBgColorSeven($event)"
+    (bgColorChangedEight)="changeBgColorEight($event)"
+    (bgColorChangedNine)="changeBgColorNine($event)"
+    >
+
+    </app-edit-crowdtap-grid>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="edit-section-title border-none">
+              JSON
+            </mat-panel-title>
+            <mat-panel-description>
+              View configuration
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <pre class="bg-gray-900 text-white text-xs p-4 rounded-md shadow-inner overflow-x-hidden overflow-y-auto whitespace-pre-wrap">{{ this.tile | json}}</pre>
+        </mat-expansion-panel>
+      </app-edit-sidebar>
+  </form>
+  </section>
+
+  <div class="preview-component">Tile Grid</div>
