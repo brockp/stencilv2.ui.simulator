@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  imgHost: 'http://localhost:4200/assets/',
+  imgHost: 'https://app-biotic-design-eastus-demo.azurewebsites.net/assets/',
 };
