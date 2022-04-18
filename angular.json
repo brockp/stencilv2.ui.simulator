@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "stencil-ui-simulator": {
+    "stencil.ui.simulator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,23 +17,17 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-                "dragula"
-            ],
-            "outputPath": "dist/stencil-ui-simulator",
+            "allowedCommonJsDependencies": ["dragula"],
+            "outputPath": "dist/stencil.ui.simulator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles/styles.scss"
@@ -45,8 +39,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "3mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -75,15 +69,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "proxyConfig": "src/proxy.conf.json"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "stencil-ui-simulator:build:production"
+              "browserTarget": "stencil.ui.simulator:build:production"
             },
             "development": {
-              "browserTarget": "stencil-ui-simulator:build:development"
+              "browserTarget": "stencil.ui.simulator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "stencil-ui-simulator:build"
+            "browserTarget": "stencil.ui.simulator:build"
           }
         },
         "test": {
@@ -102,13 +93,10 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           }
@@ -116,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "stencil-ui-simulator"
+  "defaultProject": "stencil.ui.simulator"
 }

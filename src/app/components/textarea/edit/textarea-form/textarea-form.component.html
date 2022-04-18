@@ -1,0 +1,40 @@
+<main [formGroup]="parent">
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Component Version:</h2>
+    <input
+      class="form-control"
+      placeholder="Component version"
+      type="text"
+      formControlName="version"
+    />
+  </section>
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Label:</h2>
+    <input
+      class="form-control"
+      placeholder="Label Text"
+      type="text"
+      formControlName="label"
+    />
+  </section>
+
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Placeholder:</h2>
+    <input
+      class="form-control"
+      placeholder="Placeholder Text"
+      type="text"
+      formControlName="placeholder"
+    />
+  </section>
+
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Appearance:</h2>
+    <input
+      class="form-control"
+      placeholder="fill, legacy, standard, outline"
+      type="text"
+      formControlName="appearance"
+    />
+  </section>
+</main>

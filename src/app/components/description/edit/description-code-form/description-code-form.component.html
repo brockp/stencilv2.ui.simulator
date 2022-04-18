@@ -1,0 +1,95 @@
+<h2 class="edit-section-title mt-4">Edit configuration code directly:</h2>
+<form [formGroup]="parent">
+  <code class="code-box">
+    <section>
+      <label for="icon">Version: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        placeholder="set initial value"
+        formControlName="Version"
+      />
+    </section>
+
+    <section>
+      <label for="icon">Text: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        placeholder="set initial value"
+        formControlName="Text"
+        [value]="text"
+      />
+    </section>
+
+    <section>
+      <label for="icon">TextColor: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        placeholder="set initial value"
+        formControlName="TextColor"
+        [value]="text"
+      />
+    </section>
+
+    <section formGroupName="Padding">
+      <pre>Padding: </pre>
+
+      <section>
+        <label for="top">top: </label>
+        <input
+          class="code-form-control"
+          type="number"
+          placeholder="set initial value"
+          formControlName="top"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="right">right: </label>
+        <input
+          class="code-form-control"
+          type="number"
+          placeholder="set initial value"
+          formControlName="right"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="bottom">bottom: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="bottom"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="left">left: </label>
+        <input
+          class="code-form-control"
+          type="number"
+          placeholder="set initial value"
+          formControlName="left"
+          [value]="text"
+        />
+      </section>
+    </section>
+
+    <section>
+      <label for="icon">BackgroundColor: </label>
+      <input
+        class="code-form-control"
+        type="number"
+        placeholder="set initial value"
+        formControlName="BackgroundColor"
+        [value]="text"
+      />
+    </section>
+  </code>
+</form>

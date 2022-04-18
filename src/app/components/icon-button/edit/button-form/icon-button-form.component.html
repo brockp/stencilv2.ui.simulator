@@ -1,0 +1,469 @@
+<main [formGroup]="parent" class="form-group">
+  <!-- Version Text -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Component Version:</h2>
+    <input
+      class="form-control"
+      placeholder="Set Initial Value"
+      type="text"
+      formControlName="Version"
+    />
+  </section>
+
+  <!-- Command Name Text -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Command Name:</h2>
+    <input
+      class="form-control"
+      placeholder="Set Initial Value"
+      type="text"
+      formControlName="CommandName"
+    />
+  </section>
+
+  <!-- Command Parameter -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Command Parameter:</h2>
+    <input
+      class="form-control"
+      placeholder="Set Initial Value"
+      type="text"
+      formControlName="CommandParameter"
+    />
+  </section>
+
+  <!-- Left icon section -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Button Icon (Material Icons):</h2>
+    <section
+      class="flex flex-start justify-between items-center gap-3 flex-wrap"
+    >
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', '')">
+        None
+      </button>
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'keyboard_arrow_right')"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'keyboard_arrow_left')"
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'keyboard_arrow_down')"
+      >
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'keyboard_arrow_up')"
+      >
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'search')">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'home')">
+        <mat-icon>home</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'account_circle')"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'settings')">
+        <mat-icon>settings</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'done')">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'info')">
+        <mat-icon>info</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'delete')">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'check_circle')"
+      >
+        <mat-icon>check_circle</mat-icon>
+      </button>
+
+      <button
+        class="mat-icon-edit-view"
+        (click)="setIcon('Icon', 'shopping_cart')"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'favorite')">
+        <mat-icon>favorite</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'logout')">
+        <mat-icon>logout</mat-icon>
+      </button>
+
+      <button class="mat-icon-edit-view" (click)="setIcon('Icon', 'login')">
+        <mat-icon>login</mat-icon>
+      </button>
+    </section>
+  </section>
+
+  <!-- Button Text -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Selected Text:</h2>
+    <input
+      class="form-control"
+      placeholder="Set Initial Value"
+      type="text"
+      formControlName="Text"
+    />
+  </section>
+
+  <!-- Text Color -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Text Color:</h2>
+    <div
+      class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
+    >
+      <button
+        class="color-button bg-white border border-gray-400 text-black"
+        (click)="setTextColor('TextColor', '#ffffff')"
+      >
+        #ffffff
+      </button>
+
+      <button
+        class="color-button bg-ct-light-primary text-purpleblack"
+        (click)="setTextColor('TextColor', '#fafafa')"
+      >
+        #fafafa
+      </button>
+
+      <button
+        class="color-button bg-ct-light-secondary text-purpleblack"
+        (click)="setTextColor('TextColor', '#e5e5e5')"
+      >
+        #e5e5e5
+      </button>
+
+      <button
+        class="color-button bg-ct-light-accent-one text-purpleblack"
+        (click)="setTextColor('TextColor', '#cecece')"
+      >
+        #cecece
+      </button>
+
+      <button
+        class="color-button bg-ct-light-accent-two text-purpleblack"
+        (click)="setTextColor('TextColor', '#dbdade')"
+      >
+        #dbdade
+      </button>
+
+      <button
+        class="color-button bg-ct-light-icon text-white"
+        (click)="setTextColor('TextColor', '#1a152e')"
+      >
+        #1a152e
+      </button>
+
+      <button
+        class="color-button bg-ct-dark-blue text-white"
+        (click)="setTextColor('TextColor', '#1e6fdb')"
+      >
+        #1e6fdb
+      </button>
+
+      <button
+        class="color-button bg-ct-blue text-white"
+        (click)="setTextColor('TextColor', '#3580f0')"
+      >
+        #3580f0
+      </button>
+
+      <button
+        class="color-button bg-ct-light-blue text-white"
+        (click)="setTextColor('TextColor', '#62b4ff')"
+      >
+        #62b4ff
+      </button>
+
+      <button
+        class="color-button bg-ct-dark-purple text-white"
+        (click)="setTextColor('TextColor', '#654cff')"
+      >
+        #654cff
+      </button>
+
+      <button
+        class="color-button bg-ct-yellow text-black"
+        (click)="setTextColor('TextColor', '#feec4b')"
+      >
+        #feec4b
+      </button>
+
+      <button
+        class="color-button bg-ct-emerald text-white"
+        (click)="setTextColor('TextColor', '#19a9a5')"
+      >
+        #19a9a5
+      </button>
+    </div>
+  </section>
+
+  <!-- Button Width -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Width:</h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('Width', '100')"
+      >
+        Full
+      </button>
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('Width', '50')"
+      >
+        50%
+      </button>
+      <button
+        class="text-gray-700 text-sm font-light hover:text-ctlight"
+        (click)="setWidth('Width', 'auto')"
+      >
+        Auto
+      </button>
+    </div>
+  </section>
+
+  <!-- Border Radius -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Border Radius:</h2>
+
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('CornerRadius', '9999')"
+      >
+        <div class="full"></div>
+        Full
+      </button>
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('CornerRadius', '8')"
+      >
+        <div class="large"></div>
+        Large
+      </button>
+      <button
+        role="tab"
+        class="radius-edit-button"
+        (click)="setRadius('CornerRadius', '2')"
+      >
+        <div class="small"></div>
+        Small
+      </button>
+    </div>
+  </section>
+
+  <!-- Background Color -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Background Color:</h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        class="color-button primary-blue"
+        (click)="setBgColor('BackgroundColor', '#3589f9')"
+      >
+        #3589F9
+      </button>
+      <button
+        class="color-button purple-black"
+        (click)="setBgColor('BackgroundColor', '#1a152e')"
+      >
+        #1A152E
+      </button>
+      <button
+        class="color-button lighter-blue"
+        (click)="setBgColor('BackgroundColor', '#62b4ff')"
+      >
+        #62B4FF
+      </button>
+    </div>
+  </section>
+
+  <!-- Padding -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Padding:</h2>
+    <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="top"
+        >
+          T:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="top"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          R:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="right"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="bottom"
+        >
+          B:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="bottom"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="left"
+        >
+          L:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="number"
+          formControlName="left"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Margin -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Margin:</h2>
+    <div class="grid grid-cols-4 gap-3" formGroupName="Margin">
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="top"
+        >
+          T:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="top"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          R:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="right"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="bottom"
+        >
+          B:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="text"
+          formControlName="bottom"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="left"
+        >
+          L:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set Initial Value"
+          type="number"
+          formControlName="left"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Margin Y Selection -->
+  <!-- <section class="edit-section">
+    <h2 class="edit-section-title">Margin Y-Axis Adjustments:</h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        role="tab"
+        class="text-sm text-ctdark hover:text-ctlight transition-all hover:scale-105"
+        (click)="setMarginY('marginY', marginY.small)"
+      >
+        Small
+      </button>
+      <button
+        role="tab"
+        class="text-sm text-ctdark hover:text-ctlight transition-all hover:scale-105"
+        (click)="setMarginY('marginY', marginY.base)"
+      >
+        Base
+      </button>
+      <button
+        role="tab"
+        class="text-sm text-ctdark hover:text-ctlight transition-all hover:scale-105"
+        (click)="setMarginY('marginY', marginY.large)"
+      >
+        Large
+      </button>
+    </div>
+  </section> -->
+</main>

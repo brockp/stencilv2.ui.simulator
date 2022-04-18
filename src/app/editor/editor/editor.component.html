@@ -1,0 +1,201 @@
+<mat-sidenav-container class="main-content-container dark">
+  <mat-sidenav class="main-sidenav" opened="true" mode="side" #snav>
+    <mat-nav-list class="preview-container">
+      <!---->
+      <div
+        class="flex justify-start items-center gap-x-3 pl-4 border-b border-gray-300"
+      >
+        <img
+          class="w-6 h-6"
+          src="../../../assets/stencil-logo.svg"
+          alt="Stencil Logo"
+        />
+        <button mat-button (click)="accordion.openAll()">
+          <mat-icon>expand</mat-icon>
+        </button>
+        <button mat-button (click)="accordion.closeAll()">
+          <mat-icon>unfold_less</mat-icon>
+        </button>
+      </div>
+      <mat-accordion multi>
+        <mat-expansion-panel class="border-l-4 border-ctdark">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>Base Elements</h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>arrow_down</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <section dragula="COMPONENTS">
+            <app-headline></app-headline>
+            <app-description></app-description>
+            <app-sign-up-graphic></app-sign-up-graphic>
+            <app-icon-button></app-icon-button>
+            <app-primary-button></app-primary-button>
+            <app-header></app-header>
+            <app-text-input></app-text-input>
+            <app-spacer></app-spacer>
+            <app-carousel></app-carousel>
+            <!-- <app-carousel></app-carousel>
+            <app-paragraph></app-paragraph>
+            <app-link></app-link>
+            <app-textarea></app-textarea> -->
+            <hr size="1" />
+          </section>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="border-l-4 border-ctdark">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>Curated Components</h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>arrow_down</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <section dragula="COMPONENTS">
+            <!-- Put curated components here -->
+            <hr size="1" />
+          </section>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="border-l-4 border-ctdark">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>VisualConfig Options</h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>arrow_down</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <p class="p-0 mb-3 font-quicksand text-sm italic text-gray-400">
+            Set the overall vertical VisualConfig for the screen.
+          </p>
+
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <section (click)="basicLayout()" class="vertical-options-item">
+                <img
+                  src="../../../assets/icons/normal-layout-icon.svg"
+                  class="w-8 h-8"
+                />
+                <div class="font-quicksand font-semibold text-sm capitalize">
+                  Normal
+                </div>
+              </section>
+            </mat-list-item>
+            <mat-list-item role="listitem"
+              ><section
+                (click)="noFooterLayout()"
+                class="vertical-options-item"
+              >
+                <img
+                  src="../../../assets/icons/no-footer-layout-icon.svg"
+                  class="w-8 h-8"
+                />
+                <div class="font-quicksand font-semibold text-sm capitalize">
+                  No Footer
+                </div>
+              </section>
+            </mat-list-item>
+            <mat-list-item role="listitem"
+              ><section
+                (click)="noHeaderLayout()"
+                class="vertical-options-item"
+              >
+                <img
+                  src="../../../assets/icons/no-header-layout-icon.svg"
+                  class="w-8 h-8"
+                />
+                <div class="font-quicksand font-semibold text-sm capitalize">
+                  No Header
+                </div>
+              </section>
+            </mat-list-item>
+
+            <mat-list-item role="listitem"
+              ><span (click)="verticalLayout()" class="vertical-options-item">
+                <img
+                  src="../../../assets/icons/no-rows-layout-icon.svg"
+                  class="w-8 h-8"
+                />
+                <div class="font-quicksand font-semibold text-sm capitalize">
+                  No Rows
+                </div>
+              </span>
+            </mat-list-item>
+            <mat-list-item> </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="content-container">
+      <div class="flex justify-start items-center gap-x-3 p-4">
+        <span (click)="snav.toggle()" class="viewport-icon">
+          <mat-icon>menu</mat-icon>
+        </span>
+        <span (click)="setiPhone11()" class="viewport-icon">
+          <img
+            class="viewport-icon"
+            src="../../../assets/iphonex.svg"
+            alt="iPhone Icon"
+          />
+        </span>
+        <span (click)="setAndroid()" class="viewport-icon">
+          <img
+            class="viewport-icon"
+            src="../../../assets/android.svg"
+            alt="Android Phone Icon"
+          />
+        </span>
+        <span (click)="desktopViewPort()" class="viewport-icon">
+          <img
+            class="viewport-icon"
+            src="../../../assets/web-browser.svg"
+            alt="Web Browser Icon"
+          />
+        </span>
+      </div>
+
+      <section
+        [ngClass]="{
+          'max-w-Android': vps.android,
+          'max-w-iPhone13': vps.iPhone12,
+          'max-w-iPhone11': vps.iPhone11,
+          'max-w-screen-xl': vps.desktop,
+          'main-height': [vps.android, vps.iPhone11, vps.iPhone12, vps.desktop]
+        }"
+        class="viewport-canvas"
+      >
+        <div
+          class="viewport-inner-canvas drop-container"
+          [ngClass]="{
+            'basic-layout': los.basic,
+            'no-footer': los.noFooter,
+            'no-header': los.noHeader,
+            'vertical-layout': los.vertical
+          }"
+        >
+          <div
+            class="flex justify-start flex-col border-red-300 border-b-2"
+            dragula="COMPONENTS"
+          ></div>
+          <div
+            class="flex justify-start flex-col border-red-300 border-b-2"
+            dragula="COMPONENTS"
+          ></div>
+          <div
+            class="flex justify-end flex-col pb-4 border-red-300"
+            dragula="COMPONENTS"
+          ></div>
+        </div>
+      </section>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

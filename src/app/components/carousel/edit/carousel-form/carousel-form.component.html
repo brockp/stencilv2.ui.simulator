@@ -1,0 +1,888 @@
+<main [formGroup]="parent">
+  <!-- Version -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Carousel Version:</h2>
+    <input
+      class="form-control"
+      placeholder="Set component version"
+      type="text"
+      formControlName="Version"
+    />
+  </section>
+
+  <mat-accordion multi>
+    <!-- Section 1 -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-ctdark text-xl font-semibold">
+          Section 1</mat-panel-title
+        >
+        <mat-panel-description>
+          <mat-icon>arrow_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Form content -->
+      <section formGroupName="SectionOne">
+        <!-- Graphic -->
+        <section class="edit-section">
+          <h1 class="text-xl mb-2">Image Component</h1>
+          <h2 class="edit-section-title">Image Source:</h2>
+          <section
+            class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+          >
+            <button (click)="setGraphic('Source', 'girl-laying.svg')">
+              <img src="../../../../../assets/girl-laying.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'girl-sitting.svg')">
+              <img src="../../../../../assets/girl-sitting.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'question.svg')">
+              <img src="../../../../../assets/question.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'refer-a-friend.svg')">
+              <img src="../../../../../assets/refer-a-friend.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'signup-graphic-one.svg')">
+              <img src="../../../../../assets/signup-graphic-one.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'signup-graphic-two.svg')">
+              <img src="../../../../../assets/signup-graphic-two.svg" />
+            </button>
+
+            <button (click)="setGraphic('Source', 'sitting-blocks.svg')">
+              <img src="../../../../../assets/sitting-blocks.svg" />
+            </button>
+          </section>
+        </section>
+
+        <!-- h1 -->
+        <section formGroupName="h1">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Headline Component</h1>
+            <h2 class="edit-section-title">Headline Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Headline Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+
+          <!-- Text Color -->
+          <section class="edit-section">
+            <h2 class="edit-section-title">Text Color:</h2>
+            <div
+              class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
+            >
+              <button
+                class="color-button bg-white border border-gray-400 text-black"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#ffffff')
+                "
+              >
+                #ffffff
+              </button>
+
+              <button
+                class="color-button bg-ct-light-primary text-purpleblack"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#fafafa')
+                "
+              >
+                #fafafa
+              </button>
+
+              <button
+                class="color-button bg-ct-light-secondary text-purpleblack"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#e5e5e5')
+                "
+              >
+                #e5e5e5
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-one text-purpleblack"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#cecece')
+                "
+              >
+                #cecece
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-two text-purpleblack"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#dbdade')
+                "
+              >
+                #dbdade
+              </button>
+
+              <button
+                class="color-button bg-ct-light-icon text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#1a152e')
+                "
+              >
+                #1a152e
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-blue text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#1e6fdb')
+                "
+              >
+                #1e6fdb
+              </button>
+
+              <button
+                class="color-button bg-ct-blue text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#3580f0')
+                "
+              >
+                #3580f0
+              </button>
+
+              <button
+                class="color-button bg-ct-light-blue text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#62b4ff')
+                "
+              >
+                #62b4ff
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-purple text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#654cff')
+                "
+              >
+                #654cff
+              </button>
+
+              <button
+                class="color-button bg-ct-yellow text-black"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#feec4b')
+                "
+              >
+                #feec4b
+              </button>
+
+              <button
+                class="color-button bg-ct-emerald text-white"
+                (click)="
+                  setTextColor('SectionOne', 'h1', 'TextColor', '#19a9a5')
+                "
+              >
+                #19a9a5
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <!-- h2 -->
+        <section formGroupName="h2">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Description Component</h1>
+            <h2 class="edit-section-title">Description Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Description Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+        </section>
+      </section>
+    </mat-expansion-panel>
+
+    <!-- Section 2 -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-ctdark text-xl font-semibold">
+          Section 2</mat-panel-title
+        >
+        <mat-panel-description>
+          <mat-icon>arrow_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Form content -->
+      <section formGroupName="SectionTwo">
+        <!-- Graphic -->
+        <section class="edit-section">
+          <h1 class="text-xl mb-2">Image Component</h1>
+          <h2 class="edit-section-title">Image Source:</h2>
+          <section
+            class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+          >
+            <button (click)="setSectionTwoGraphic('Source', 'girl-laying.svg')">
+              <img src="../../../../../assets/girl-laying.svg" />
+            </button>
+
+            <button
+              (click)="setSectionTwoGraphic('Source', 'girl-sitting.svg')"
+            >
+              <img src="../../../../../assets/girl-sitting.svg" />
+            </button>
+
+            <button (click)="setSectionTwoGraphic('Source', 'question.svg')">
+              <img src="../../../../../assets/question.svg" />
+            </button>
+
+            <button
+              (click)="setSectionTwoGraphic('Source', 'refer-a-friend.svg')"
+            >
+              <img src="../../../../../assets/refer-a-friend.svg" />
+            </button>
+
+            <button
+              (click)="setSectionTwoGraphic('Source', 'signup-graphic-one.svg')"
+            >
+              <img src="../../../../../assets/signup-graphic-one.svg" />
+            </button>
+
+            <button
+              (click)="setSectionTwoGraphic('Source', 'signup-graphic-two.svg')"
+            >
+              <img src="../../../../../assets/signup-graphic-two.svg" />
+            </button>
+
+            <button
+              (click)="setSectionTwoGraphic('Source', 'sitting-blocks.svg')"
+            >
+              <img src="../../../../../assets/sitting-blocks.svg" />
+            </button>
+          </section>
+        </section>
+
+        <!-- h1 -->
+        <section formGroupName="h1">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Headline Component</h1>
+            <h2 class="edit-section-title">Headline Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Headline Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+
+          <!-- Text Color -->
+          <section class="edit-section">
+            <h2 class="edit-section-title">Text Color:</h2>
+            <div
+              class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
+            >
+              <button
+                class="color-button bg-white border border-gray-400 text-black"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#ffffff'
+                  )
+                "
+              >
+                #ffffff
+              </button>
+
+              <button
+                class="color-button bg-ct-light-primary text-purpleblack"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#fafafa'
+                  )
+                "
+              >
+                #fafafa
+              </button>
+
+              <button
+                class="color-button bg-ct-light-secondary text-purpleblack"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#e5e5e5'
+                  )
+                "
+              >
+                #e5e5e5
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-one text-purpleblack"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#cecece'
+                  )
+                "
+              >
+                #cecece
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-two text-purpleblack"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#dbdade'
+                  )
+                "
+              >
+                #dbdade
+              </button>
+
+              <button
+                class="color-button bg-ct-light-icon text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#1a152e'
+                  )
+                "
+              >
+                #1a152e
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-blue text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#1e6fdb'
+                  )
+                "
+              >
+                #1e6fdb
+              </button>
+
+              <button
+                class="color-button bg-ct-blue text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#3580f0'
+                  )
+                "
+              >
+                #3580f0
+              </button>
+
+              <button
+                class="color-button bg-ct-light-blue text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#62b4ff'
+                  )
+                "
+              >
+                #62b4ff
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-purple text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#654cff'
+                  )
+                "
+              >
+                #654cff
+              </button>
+
+              <button
+                class="color-button bg-ct-yellow text-black"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#feec4b'
+                  )
+                "
+              >
+                #feec4b
+              </button>
+
+              <button
+                class="color-button bg-ct-emerald text-white"
+                (click)="
+                  setSectionTwoTextColor(
+                    'SectionTwo',
+                    'h1',
+                    'TextColor',
+                    '#19a9a5'
+                  )
+                "
+              >
+                #19a9a5
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <!-- h2 -->
+        <section formGroupName="h2">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Description Component</h1>
+            <h2 class="edit-section-title">Description Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Description Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+        </section>
+      </section>
+    </mat-expansion-panel>
+
+    <!-- Section 3 -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-ctdark text-xl font-semibold">
+          Section 3</mat-panel-title
+        >
+        <mat-panel-description>
+          <mat-icon>arrow_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Form content -->
+      <section formGroupName="SectionThree">
+        <!-- Graphic -->
+        <section class="edit-section">
+          <h1 class="text-xl mb-2">Image Component</h1>
+          <h2 class="edit-section-title">Image Source:</h2>
+          <section
+            class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+          >
+            <button
+              (click)="setSectionThreeGraphic('Source', 'girl-laying.svg')"
+            >
+              <img src="../../../../../assets/girl-laying.svg" />
+            </button>
+
+            <button
+              (click)="setSectionThreeGraphic('Source', 'girl-sitting.svg')"
+            >
+              <img src="../../../../../assets/girl-sitting.svg" />
+            </button>
+
+            <button (click)="setSectionThreeGraphic('Source', 'question.svg')">
+              <img src="../../../../../assets/question.svg" />
+            </button>
+
+            <button
+              (click)="setSectionThreeGraphic('Source', 'refer-a-friend.svg')"
+            >
+              <img src="../../../../../assets/refer-a-friend.svg" />
+            </button>
+
+            <button
+              (click)="
+                setSectionThreeGraphic('Source', 'signup-graphic-one.svg')
+              "
+            >
+              <img src="../../../../../assets/signup-graphic-one.svg" />
+            </button>
+
+            <button
+              (click)="
+                setSectionThreeGraphic('Source', 'signup-graphic-two.svg')
+              "
+            >
+              <img src="../../../../../assets/signup-graphic-two.svg" />
+            </button>
+
+            <button
+              (click)="setSectionThreeGraphic('Source', 'sitting-blocks.svg')"
+            >
+              <img src="../../../../../assets/sitting-blocks.svg" />
+            </button>
+          </section>
+        </section>
+
+        <!-- h1 -->
+        <section formGroupName="h1">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Headline Component</h1>
+            <h2 class="edit-section-title">Headline Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Headline Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+
+          <!-- Text Color -->
+          <section class="edit-section">
+            <h2 class="edit-section-title">Text Color:</h2>
+            <div
+              class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
+            >
+              <button
+                class="color-button bg-white border border-gray-400 text-black"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#ffffff'
+                  )
+                "
+              >
+                #ffffff
+              </button>
+
+              <button
+                class="color-button bg-ct-light-primary text-purpleblack"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#fafafa'
+                  )
+                "
+              >
+                #fafafa
+              </button>
+
+              <button
+                class="color-button bg-ct-light-secondary text-purpleblack"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#e5e5e5'
+                  )
+                "
+              >
+                #e5e5e5
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-one text-purpleblack"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#cecece'
+                  )
+                "
+              >
+                #cecece
+              </button>
+
+              <button
+                class="color-button bg-ct-light-accent-two text-purpleblack"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#dbdade'
+                  )
+                "
+              >
+                #dbdade
+              </button>
+
+              <button
+                class="color-button bg-ct-light-icon text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#1a152e'
+                  )
+                "
+              >
+                #1a152e
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-blue text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#1e6fdb'
+                  )
+                "
+              >
+                #1e6fdb
+              </button>
+
+              <button
+                class="color-button bg-ct-blue text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#3580f0'
+                  )
+                "
+              >
+                #3580f0
+              </button>
+
+              <button
+                class="color-button bg-ct-light-blue text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#62b4ff'
+                  )
+                "
+              >
+                #62b4ff
+              </button>
+
+              <button
+                class="color-button bg-ct-dark-purple text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#654cff'
+                  )
+                "
+              >
+                #654cff
+              </button>
+
+              <button
+                class="color-button bg-ct-yellow text-black"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#feec4b'
+                  )
+                "
+              >
+                #feec4b
+              </button>
+
+              <button
+                class="color-button bg-ct-emerald text-white"
+                (click)="
+                  setSectionThreeTextColor(
+                    'SectionThree',
+                    'h1',
+                    'TextColor',
+                    '#19a9a5'
+                  )
+                "
+              >
+                #19a9a5
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <!-- h2 -->
+        <section formGroupName="h2">
+          <section class="edit-section">
+            <h1 class="text-xl mb-2">Description Component</h1>
+            <h2 class="edit-section-title">Description Version:</h2>
+            <input
+              class="form-control"
+              placeholder="Set component version"
+              type="text"
+              formControlName="Version"
+            />
+          </section>
+
+          <section class="edit-section">
+            <h2 class="edit-section-title">Description Text:</h2>
+            <textarea
+              class="textarea-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="Text"
+              rows="3"
+              cols="33"
+            ></textarea>
+          </section>
+        </section>
+      </section>
+    </mat-expansion-panel>
+
+    <!-- Section Nav -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-ctdark text-xl font-semibold">
+          Nav Section</mat-panel-title
+        >
+        <mat-panel-description>
+          <mat-icon>arrow_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Nav -->
+      <section formGroupName="Nav">
+        <section class="edit-section">
+          <h2 class="edit-section-title">Set Footer Version:</h2>
+          <input
+            class="form-control"
+            placeholder="Set component version"
+            type="text"
+            formControlName="Version"
+          />
+        </section>
+
+        <section class="edit-section">
+          <h2 class="edit-section-title">Initial Left Nav:</h2>
+          <span class="text-xs italic text-gray-400 mb-2"
+            >Sets left navigation string on first, or, the most left-bouind
+            slide.</span
+          >
+          <input
+            class="form-control"
+            placeholder="Set initial value"
+            type="text"
+            formControlName="LeftNav"
+          />
+          <span class="pt-2 text-sm font-semibold">Interaction Command</span>
+          <input
+            class="form-control"
+            placeholder="Set initial value"
+            type="text"
+            formControlName="LeftNavInitialCommand"
+          />
+        </section>
+
+        <div class="grid grid-cols-2 gap-x-2">
+          <section class="edit-section">
+            <h2 class="edit-section-title">Set Left Nav:</h2>
+
+            <input
+              class="form-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="LeftNavAlt"
+            />
+          </section>
+          <section class="edit-section">
+            <h2 class="edit-section-title">Set Right Nav:</h2>
+            <input
+              class="form-control"
+              placeholder="Set initial value"
+              type="text"
+              formControlName="RightNav"
+            />
+          </section>
+        </div>
+      </section>
+    </mat-expansion-panel>
+  </mat-accordion>
+</main>

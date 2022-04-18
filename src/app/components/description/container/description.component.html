@@ -1,0 +1,52 @@
+<!-- Editable wrapper -->
+<section class="w-full true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+    <button (click)="createDescrition()">Create</button>
+  </div>
+
+  <!-- Actual component -->
+  <div
+    class="description-grid"
+    *ngIf="description"
+    [ngStyle]="{ 'background-color': description.BackgroundColor }"
+  >
+    <h2
+      class="my-2 text-base font-bold"
+      [ngStyle]="styleObject()"
+      *ngIf="description"
+    >
+      {{ description.Text }}
+    </h2>
+  </div>
+
+  <!-- Edit form -->
+  <form
+    [formGroup]="descriptionForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="ess.descriptionEdit"
+  >
+    <app-editor-sidebar>
+      <app-description-form
+        [parent]="descriptionForm"
+        (textColorChanged)="changeTextColor($event)"
+        (bgColorChanged)="changeBgColor($event)"
+        (paddingChanged)="changePadding($event)"
+        edit-form
+      ></app-description-form>
+
+      <app-description-code-form
+        [parent]="descriptionForm"
+        edit-config-code
+      ></app-description-code-form>
+    </app-editor-sidebar>
+  </form>
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

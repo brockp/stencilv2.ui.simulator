@@ -1,0 +1,47 @@
+<!-- Editable wrapper -->
+<section class="w-full true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <mat-form-field
+    class="w-full px-8 text-white"
+    [appearance]="slimEntry.Borderless"
+  >
+    <mat-label class="text-white">{{ slimEntry.FieldName }}</mat-label>
+    <input
+      [type]="slimEntry.Type"
+      matInput
+      [placeholder]="slimEntry.Placeholder"
+      [required]="slimEntry.IsRequired"
+    />
+  </mat-form-field>
+
+  <!-- Edit form -->
+  <form
+    [formGroup]="slimEntryForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="ess.textInputEdit"
+  >
+    <app-editor-sidebar>
+      <app-text-input-form
+        [parent]="slimEntryForm"
+        edit-form
+      ></app-text-input-form>
+
+      <app-text-input-code-form
+        [parent]="slimEntryForm"
+        edit-config-code
+      ></app-text-input-code-form>
+    </app-editor-sidebar>
+  </form>
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

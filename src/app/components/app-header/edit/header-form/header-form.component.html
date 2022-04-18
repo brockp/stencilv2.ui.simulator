@@ -1,0 +1,265 @@
+<form [formGroup]="parent">
+  <!-- Version -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">
+      <span>Set Component Version:</span>
+    </h2>
+    <input
+      class="form-control"
+      placeholder="Enter initial value"
+      type="text"
+      formControlName="Version"
+    />
+  </section>
+
+  <!-- ViewConfig FormGroup -->
+  <section>
+    <h1 class="text-ctdark text-xl">Set Layout Options:</h1>
+    <!-- ViewConfig Type -->
+    <div class="grid grid-cols-2 gap-x-2 mt-3">
+      <section>
+        <h2 class="edit-section-title">
+          <span>ViewConfig Type:</span>
+        </h2>
+        <input
+          class="form-control"
+          placeholder="Enter initial value"
+          type="text"
+          formControlName="type"
+        />
+      </section>
+      <!-- ViewConfig Height -->
+      <section>
+        <h2 class="edit-section-title">
+          <span>ViewConfig Height:</span>
+        </h2>
+        <input
+          class="form-control"
+          placeholder="Enter initial value"
+          type="text"
+          formControlName="height"
+        />
+      </section>
+    </div>
+
+    <div class="grid grid-cols-2 gap-x-2 mt-3">
+      <!-- Column1Config -->
+      <section formGroupName="Column1Config">
+        <h2 class="edit-section-title">
+          <span>Column 1 Layout Options:</span>
+        </h2>
+        <input
+          class="form-control"
+          placeholder="Enter initial value"
+          type="text"
+          formControlName="HorizontalOptions"
+        />
+      </section>
+      <!-- Column2Config -->
+      <section formGroupName="Column2Config">
+        <h2 class="edit-section-title">
+          <span>Column 2 Layout Options:</span>
+        </h2>
+        <input
+          class="form-control"
+          placeholder="Enter initial value"
+          type="text"
+          formControlName="HorizontalOptions"
+        />
+      </section>
+    </div>
+
+    <!-- Padding -->
+    <section class="mt-3">
+      <h2 class="edit-section-title">Set Padding:</h2>
+      <div class="grid grid-cols-4 gap-3" formGroupName="padding">
+        <div class="flex gap-x-2 justify-start items-center">
+          <label
+            class="text-ctdark text-quicksand text-xs font-semibold"
+            for="top"
+          >
+            T:
+          </label>
+          <input
+            class="form-control w-full overflow-hidden"
+            placeholder="Set padding top value"
+            type="text"
+            formControlName="top"
+          />
+        </div>
+        <div class="flex gap-x-2 justify-start items-center">
+          <label
+            class="text-ctdark text-quicksand text-xs font-semibold"
+            for="right"
+          >
+            R:
+          </label>
+          <input
+            class="form-control w-full overflow-hidden"
+            placeholder="Set padding right value"
+            type="text"
+            formControlName="right"
+          />
+        </div>
+        <div class="flex gap-x-2 justify-start items-center">
+          <label
+            class="text-ctdark text-quicksand text-xs font-semibold"
+            for="bottom"
+          >
+            B:
+          </label>
+          <input
+            class="form-control w-full overflow-hidden"
+            placeholder="Set padding bottom value"
+            type="text"
+            formControlName="bottom"
+          />
+        </div>
+        <div class="flex gap-x-2 justify-start items-center">
+          <label
+            class="text-ctdark text-quicksand text-xs font-semibold"
+            for="left"
+          >
+            L:
+          </label>
+          <input
+            class="form-control w-full overflow-hidden"
+            placeholder="Set padding left value"
+            type="number"
+            formControlName="left"
+          />
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- End ViewConfig FormGroup -->
+
+  <section class="mt-4">
+    <h1 class="text-ctdark text-xl">Set Column Preferences:</h1>
+
+    <!-- Left Icon -->
+    <section class="mt-3">
+      <h2 class="edit-section-title">
+        <span>Left Column Icon:</span>
+      </h2>
+      <div class="grid grid-cols-8 gap-1">
+        <div class="icon-selection" (click)="setIcon('leftIcon', '')">None</div>
+        <mat-icon class="icon-selection" (click)="setIcon('leftIcon', 'apple')">
+          apple
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setIcon('leftIcon', 'chevron_left')"
+        >
+          chevron_left
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setIcon('leftIcon', 'chevron_right')"
+        >
+          chevron_right
+        </mat-icon>
+        <mat-icon class="icon-selection" (click)="setIcon('leftIcon', 'login')">
+          login
+        </mat-icon>
+        <mat-icon class="icon-selection" (click)="setIcon('leftIcon', 'sync')">
+          sync
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setIcon('leftIcon', 'replay')"
+        >
+          replay
+        </mat-icon>
+      </div>
+    </section>
+
+    <!-- Right Icon -->
+    <section class="mt-3">
+      <h2 class="edit-section-title">
+        <span>Right Column Icon:</span>
+      </h2>
+      <div class="grid grid-cols-8 gap-1">
+        <div class="icon-selection" (click)="setRightIcon('rightIcon', '')">
+          None
+        </div>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'apple')"
+        >
+          apple
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'chevron_left')"
+        >
+          chevron_left
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'chevron_right')"
+        >
+          chevron_right
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'login')"
+        >
+          login
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'sync')"
+        >
+          sync
+        </mat-icon>
+        <mat-icon
+          class="icon-selection"
+          (click)="setRightIcon('rightIcon', 'replay')"
+        >
+          replay
+        </mat-icon>
+      </div>
+    </section>
+
+    <!-- Logo -->
+    <section class="mt-3 mb-5">
+      <h2 class="edit-section-title">
+        <span>Middle Column Logo:</span>
+      </h2>
+      <p class="text-xs italic text-ctdark my-3">
+        (TriColumnView MUST be active in layout options section)
+      </p>
+      <div class="grid grid-cols-3 gap-2">
+        <div
+          class="icon-selection bg-ctdark p-2 rounded-lg flex justify-center items-center"
+          (click)="setLogo('logo', 'crowdtap-logo-icon.svg')"
+        >
+          <img
+            src="'../../../../../assets/crowdtap-logo-icon.svg"
+            class="w-8 h-8"
+            alt="Crowdtap logo icon"
+          />
+        </div>
+        <div
+          class="icon-selection bg-ctdark p-2 rounded-lg flex justify-center items-center"
+          (click)="setLogo('logo', 'crowdtap-logo-white.svg')"
+        >
+          <img
+            src="'../../../../../assets/crowdtap-logo-white.svg"
+            alt="Crowdtap logo white"
+          />
+        </div>
+        <div
+          class="icon-selection bg-ctdark p-2 rounded-lg flex justify-center items-center"
+          (click)="setLogo('logo', 'crowdtap-logo-mark.svg')"
+        >
+          <img
+            src="'../../../../../assets/crowdtap-logo-mark.svg"
+            alt="Crowdtap logo mark"
+          />
+        </div>
+      </div>
+    </section>
+  </section>
+</form>

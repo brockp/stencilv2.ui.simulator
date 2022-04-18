@@ -1,0 +1,23 @@
+<section
+  class="absolute right-5 top-5 h-edit-sidebar w-96 bg-white animate__animated animate__fadeInRight animate__faster p-5 rounded-2xl shadow-lg"
+>
+  <ng-container class="h-full overflow-x-hidden overflow-y-auto">
+    <div class="relative h-full overflow-y-auto pb-20">
+      <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Edit Component">
+          <ng-content select="[edit-form]"></ng-content>
+        </mat-tab>
+        <mat-tab label="Edit Config Code">
+          <ng-content select="[edit-config-code]"></ng-content>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div class="form-submit-wrapper z-50">
+      <section class="form-submit-section">
+        <app-save-button></app-save-button>
+        <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
+      </section>
+    </div>
+  </ng-container>
+</section>

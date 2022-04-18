@@ -1,0 +1,88 @@
+<h2 class="edit-section-title">Edit configuration code directly:</h2>
+<form [formGroup]="parent">
+  <code class="code-box">
+    <section>
+      <label for="icon">Version: </label>
+      <input class="code-form-control" type="text" formControlName="Version" />
+    </section>
+    <section>
+      <label for="icon">Source: </label>
+      <input class="code-form-control" type="text" formControlName="Source" />
+    </section>
+    <section>
+      <label for="icon">Width: </label>
+      <input class="code-form-control" type="text" formControlName="Width" />
+    </section>
+    <section>
+      <label for="icon">Height: </label>
+      <input class="code-form-control" type="text" formControlName="Height" />
+    </section>
+    <section>
+      <label for="icon">MinWidth: </label>
+      <input class="code-form-control" type="text" formControlName="MinWidth" />
+    </section>
+    <section>
+      <label for="icon">MinHeight: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        formControlName="MinHeight"
+      />
+    </section>
+    <section>
+      <label for="icon">BackgroundColor: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        formControlName="BackgroundColor"
+      />
+    </section>
+    <section formGroupName="Padding">
+      <pre>Padding: </pre>
+
+      <section>
+        <label for="top">top: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="top"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="right">right: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="right"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="bottom">bottom: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="bottom"
+          [value]="text"
+        />
+      </section>
+
+      <section>
+        <label for="left">left: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="left"
+          [value]="text"
+        />
+      </section>
+    </section>
+  </code>
+</form>

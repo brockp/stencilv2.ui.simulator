@@ -1,0 +1,200 @@
+<main [formGroup]="parent">
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Component Version:</h2>
+    <input
+      class="form-control"
+      placeholder="Set initial value"
+      type="text"
+      formControlName="Version"
+    />
+  </section>
+
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Sign Up Graphic:</h2>
+    <section
+      class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+    >
+      <button (click)="setGraphic('Source', 'girl-laying.svg')">
+        <img src="../../../../../assets/girl-laying.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'girl-sitting.svg')">
+        <img src="../../../../../assets/girl-sitting.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'question.svg')">
+        <img src="../../../../../assets/question.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'refer-a-friend.svg')">
+        <img src="../../../../../assets/refer-a-friend.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'signup-graphic-one.svg')">
+        <img src="../../../../../assets/signup-graphic-one.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'signup-graphic-two.svg')">
+        <img src="../../../../../assets/signup-graphic-two.svg" />
+      </button>
+
+      <button (click)="setGraphic('Source', 'sitting-blocks.svg')">
+        <img src="../../../../../assets/sitting-blocks.svg" />
+      </button>
+    </section>
+  </section>
+
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Image Width & Height (%):</h2>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          Width:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set initial value"
+          type="text"
+          formControlName="Width"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          Height:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set initial value"
+          type="text"
+          formControlName="Height"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Image Min-Width & Min-Height (REM):</h2>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          Min-Width:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set initial value"
+          type="text"
+          formControlName="MinWidth"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          Min-Height:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set initial value"
+          type="text"
+          formControlName="MinHeight"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Background Color -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Background Color:</h2>
+    <div class="flex justify-between items-center gap-x-10">
+      <button
+        class="color-button bg-transparent border border-gray-400 text-gray-400"
+        (click)="setBgColor('BackgroundColor', '')"
+      >
+        None
+      </button>
+      <button
+        class="color-button primary-blue"
+        (click)="setBgColor('BackgroundColor', '#3589F9')"
+      >
+        #3589F9
+      </button>
+    </div>
+  </section>
+
+  <!-- Padding -->
+  <section class="edit-section">
+    <h2 class="edit-section-title">Set Padding:</h2>
+    <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="top"
+        >
+          T:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set padding top value"
+          type="text"
+          formControlName="top"
+          [value]="paddingTop"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="right"
+        >
+          R:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set padding right value"
+          type="text"
+          formControlName="right"
+          [value]="paddingRight"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="bottom"
+        >
+          B:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set padding bottom value"
+          type="text"
+          formControlName="bottom"
+          [value]="paddingBottom"
+        />
+      </div>
+      <div class="flex gap-x-2 justify-start items-center">
+        <label
+          class="text-ctdark text-quicksand text-xs font-semibold"
+          for="left"
+        >
+          L:
+        </label>
+        <input
+          class="form-control w-full overflow-hidden"
+          placeholder="Set padding left value"
+          type="number"
+          formControlName="left"
+          [value]="paddingLeft"
+        />
+      </div>
+    </div>
+  </section>
+</main>

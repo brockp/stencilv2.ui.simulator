@@ -1,0 +1,144 @@
+.viewport-canvas {
+  @apply transition-all ease-out duration-150 flex items-stretch w-full min-h-full mx-auto justify-center;
+  .viewport-inner-canvas {
+    @apply container max-w-full grid grid-cols-1 mx-auto shadow-md dark:bg-ctdark bg-slate-50 rounded-lg bg-none z-0 overflow-hidden text-white;
+  }
+}
+.basic-layout {
+  grid-template-rows: 10% 1fr 10%;
+}
+.no-footer {
+  grid-template-rows: 10% 1fr;
+}
+.no-header {
+  grid-template-rows: 1fr 10%;
+}
+.vertical-layout {
+  grid-template-rows: 1fr;
+}
+.survey-layout {
+  grid-template-rows: 41% 1fr;
+}
+
+.viewport-icon {
+  @apply w-8 h-8 flex justify-center items-center transition ease-in-out duration-100 hover:cursor-pointer hover:scale-110;
+}
+
+.preview-container {
+  .true-component {
+    display: none;
+  }
+  .preview-component {
+    @apply block bg-white bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
+    .preview-placeholder {
+      @apply w-auto h-full p-2 border-gray-400 border-2 border-dashed rounded-full text-center text-xs leading-3 text-gray-400 font-bold uppercase transition-all ease-in-out;
+      &:hover {
+        @apply border-ctlight text-ctlight bg-opacity-60 backdrop-filter backdrop-blur-lg;
+        cursor: move;
+      }
+    }
+  }
+  .dragging-component {
+    display: none;
+    img {
+      display: none;
+    }
+  }
+}
+
+.drop-container {
+  .true-component,
+  .controls {
+    visibility: visible;
+    @apply transition duration-75;
+    .edit-button {
+      display: none;
+    }
+    &:hover {
+      @apply bg-white bg-opacity-30 shadow-lg rounded-lg;
+      .edit-button {
+        @apply grid relative cursor-pointer;
+      }
+    }
+  }
+  .preview-component {
+    display: none;
+  }
+  .dragging-component {
+    display: none;
+  }
+}
+
+.edit-section {
+  @apply my-5;
+}
+
+.edit-section-title {
+  @apply text-sm font-bold font-quicksand border-b border-gray-300 mb-2 text-ctdark;
+}
+
+.icon-selection {
+  @apply text-black hover:cursor-pointer transition-all duration-75 hover:scale-105;
+}
+
+.color-button {
+  @apply transition-all ease-in-out hover:scale-105 flex items-center justify-center w-full h-8 border-2 border-transparent rounded-full p-2 text-xs font-light cursor-pointer;
+}
+
+.primary-blue {
+  @apply bg-primaryblue hover:shadow-lg;
+}
+
+.secondary-dark {
+  @apply bg-secondarydark hover:shadow-lg;
+}
+
+.purple-black {
+  @apply bg-purpleblack hover:shadow-lg;
+}
+
+.lighter-blue {
+  @apply bg-lighterblue hover:shadow-lg;
+}
+
+.grouped-form-submit-button {
+  @apply w-full rounded-full px-3 py-1 m-2 text-white font-semibold;
+}
+
+.form-submit-wrapper {
+  @apply fixed bottom-0 left-0 w-full bg-white shadow-md rounded-br-lg rounded-bl-lg;
+}
+
+.form-submit-section {
+  @apply flex justify-around border-t border-gray-300 py-4 px-4;
+}
+
+.radius-edit-button {
+  @apply transition-all ease-in-out hover:scale-105 flex justify-start items-center gap-x-1 text-sm font-light hover:text-ctlight;
+  .full {
+    @apply w-6 h-3 mr-2 border-2 border-gray-400 hover:border-ctlight rounded-full;
+  }
+  .large {
+    @apply w-6 h-3 mr-2 border-2 border-gray-400 hover:border-ctlight rounded;
+  }
+  .small {
+    @apply w-6 h-3 mr-2 border-2 border-gray-400 hover:border-ctlight rounded-sm;
+  }
+}
+
+.white-edit-elements {
+  @apply bg-ctdark px-3 py-1 rounded-full;
+  img {
+    @apply w-20;
+  }
+}
+
+.image-gallery {
+  img {
+    @apply w-10 h-10;
+  }
+}
+
+.vertical-options-item {
+  @apply font-quicksand text-base flex justify-center items-center gap-x-1;
+}

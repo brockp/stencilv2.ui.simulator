@@ -1,14 +1,31 @@
-
 /* in-flight clone */
 .gu-mirror {
   position: fixed !important;
   margin: 0 !important;
   z-index: 9999 !important;
-  opacity: 0.1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
-  filter: alpha(opacity=10);
+  left: 200px;
+  opacity: 40;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
   pointer-events: none;
 }
+.gu-mirror .preview-component,
+.gu-mirror .true-component {
+  display: none !important;
+  pointer-events: none;
+}
+
+.gu-mirror .dragging-preview {
+  display: none !important;
+  width: 100% !important;
+  pointer-events: none;
+}
+
+/* .gu-mirror .sidebar {
+  display: none !important;
+  pointer-events: none;
+} */
+
 /* high-performance display:none; helper */
 .gu-hide {
   left: -9999px !important;
@@ -25,55 +42,4 @@
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
-  
 }
-
-
-.preview-container {
-  @apply mt-12 relative z-40 flex flex-col w-full h-auto p-4 text-sm font-bold tracking-tight text-slate-50 bg-ctdark rounded-lg shadow-xl;
-    .true-component {
-      display: none;
-    }
-    .preview-component {
-      @apply block bg-white bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
-      transition: 0.3s;
-      &:hover {
-      @apply bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg;
-        cursor: move;
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  .drop-container {
-    @apply flex flex-col w-full h-full text-base font-bold text-gray-500;
-    .true-component {
-      transition: 0.2s;
-      .edit-section {
-        /* display: none; */
-        visibility: hidden;
-      }
-      &:hover {
-        cursor: move;
-        transform: scale(1.002);
-        @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg ease-in-out;
-        .edit-button {
-          display: flex;
-        }
-        .edit-section {
-          visibility: visible;
-          @apply flex justify-center items-center gap-2 pt-2 my-2 z-50 origin-center transition-all ease-in-out duration-75;
-        }
-      }
-    }
-    .preview-component {
-      display: none;
-    }
-    .disabled-compoenent {
-      @apply block text-gray-500 bg-none border-2 border-dashed border-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
-    }
-    .edit-button,
-    .edit-section {
-      display: none;
-    }
-  }

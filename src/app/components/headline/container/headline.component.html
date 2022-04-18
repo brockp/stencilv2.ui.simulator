@@ -1,0 +1,53 @@
+<!-- Editable wrapper -->
+<main class="w-full true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <section>
+    <div
+      class="headline-grid"
+      *ngIf="headline"
+      [ngStyle]="{ 'background-color': headline.BackgroundColor }"
+    >
+      <h1
+        class="text-2xl font-bold tracking-wide leading-10"
+        [ngStyle]="styleObject()"
+        *ngIf="headline"
+      >
+        {{ headline.Text }}
+      </h1>
+    </div>
+  </section>
+
+  <!-- Edit form -->
+  <form
+    [formGroup]="headlineForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="ess.headlineEdit"
+  >
+    <app-editor-sidebar>
+      <app-headline-form
+        [parent]="headlineForm"
+        (textColorChanged)="changeTextColor($event)"
+        (bgColorChanged)="changeBgColor($event)"
+        (paddingChanged)="changePadding($event)"
+        edit-form
+      ></app-headline-form>
+
+      <app-headline-code-form
+        [parent]="headlineForm"
+        edit-config-code
+      ></app-headline-code-form>
+    </app-editor-sidebar>
+  </form>
+</main>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

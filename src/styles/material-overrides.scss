@@ -1,3 +1,22 @@
+.main-content-container {
+  @apply w-full h-screen;
+}
+
+.main-sidenav {
+  @apply w-64 rounded-2xl;
+}
+
+.mat-drawer-side {
+  @apply border-none shadow-lg;
+}
+
+.mat-toolbar-single-row {
+  @apply max-h-10 bg-gradient-to-r from-ctdark to-ctlight bg-opacity-80 shadow-sm backdrop-filter backdrop-blur-lg ease-in-out;
+  .mat-icon {
+    @apply text-white;
+  }
+}
+
 .mat-expansion-panel {
   box-shadow: none !important;
   .mat-expansion-panel-header {
@@ -5,13 +24,39 @@
   }
 }
 
-.example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+.mat-accordian {
+  border-radius: none !important;
 }
 
-.example-sidenav {
-  padding: 20px;
+.mat-icon-edit-view {
+  @apply text-gray-700 text-sm font-light hover:text-ctlight;
+}
+
+.mat-input-element {
+  caret-color: white !important;
+  color: white !important;
+}
+
+.mat-form-field-label {
+  color: white !important;
+}
+
+.mat-form-field-underline {
+  background-color: white !important;
+}
+
+.mat-form-field-ripple {
+  background-color: white !important;
+}
+
+.mat-form-field-label-wrapper {
+  color: white !important;
+}
+
+.mat-form-field {
+  @apply font-quicksand;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 14px 16px !important;
 }

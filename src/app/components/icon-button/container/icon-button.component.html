@@ -1,0 +1,42 @@
+<!-- Editable wrapper -->
+<section class="true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <div class="icon-button-grid">
+    <button class="icon-button" [ngStyle]="iconButtonStyle()">
+      <mat-icon>{{ iconButton.Icon }}</mat-icon>
+      {{ iconButton.Text }}
+    </button>
+  </div>
+
+  <!-- Edit form -->
+  <form [formGroup]="iconButtonAltForm" (ngSubmit)="onSubmit()">
+    <app-editor-sidebar class="sidebar" *ngIf="ess.iconButtonOnly">
+      <app-icon-button-form
+        [parent]="iconButtonAltForm"
+        (textColorChanged)="changeTextColor($event)"
+        (iconChanged)="changeIcon($event)"
+        (radiusChanged)="changeBorderRadius($event)"
+        (bgColorChanged)="changeBgColor($event)"
+        (widthChanged)="changeWidth($event)"
+        edit-form
+      ></app-icon-button-form>
+
+      <app-icon-button-code-form
+        [parent]="iconButtonAltForm"
+        edit-config-code
+      ></app-icon-button-code-form>
+    </app-editor-sidebar>
+  </form>
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

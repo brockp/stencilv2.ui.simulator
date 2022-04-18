@@ -1,0 +1,34 @@
+<!-- Editable wrapper -->
+<section class="w-full true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copyJSON()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <section [ngStyle]="styleObject()">&nbsp;</section>
+
+  <!-- Edit form -->
+  <form [formGroup]="spacerForm" (ngSubmit)="onSubmit()" *ngIf="ess.spacerEdit">
+    <app-editor-sidebar>
+      <router-outlet name="side"></router-outlet>
+      <app-spacer-form
+        [parent]="spacerForm"
+        (bgColorChanged)="changeBgColor($event)"
+        edit-form
+      ></app-spacer-form>
+      <app-spacer-code-form
+        [parent]="spacerForm"
+        edit-config-code
+      ></app-spacer-code-form>
+    </app-editor-sidebar>
+  </form>
+  <!-- </ng-container> -->
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

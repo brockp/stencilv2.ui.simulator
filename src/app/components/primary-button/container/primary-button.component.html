@@ -1,0 +1,41 @@
+<!-- Editable wrapper -->
+<section class="true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <div class="icon-button-grid">
+    <button class="icon-button" [ngStyle]="iconButtonStyle()">
+      {{ primaryButton.Text }}
+    </button>
+  </div>
+
+  <!-- Edit form -->
+  <form [formGroup]="primaryButtonForm" (ngSubmit)="onSubmit()">
+    <app-editor-sidebar class="sidebar" *ngIf="ess.primaryButtonEdit">
+      <app-primary-button-form
+        [parent]="primaryButtonForm"
+        (textColorChanged)="changeTextColor($event)"
+        (iconChanged)="changeIcon($event)"
+        (radiusChanged)="changeBorderRadius($event)"
+        (bgColorChanged)="changeBgColor($event)"
+        (widthChanged)="changeWidth($event)"
+        edit-form
+      ></app-primary-button-form>
+
+      <app-primary-button-code-form
+        [parent]="primaryButtonForm"
+        edit-config-code
+      ></app-primary-button-code-form>
+    </app-editor-sidebar>
+  </form>
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

@@ -1,0 +1,106 @@
+<h2 class="edit-section-title mt-4">Edit configuration code directly:</h2>
+<form [formGroup]="parent">
+  <code class="code-box">
+    <section>
+      <label for="icon">version: </label>
+      <input class="code-form-control" type="text" formControlName="Version" />
+    </section>
+
+    <section>
+      <label for="icon">viewType: </label>
+      <input class="code-form-control" type="text" formControlName="type" />
+    </section>
+
+    <section>
+      <label for="icon">viewHeight: </label>
+      <input class="code-form-control" type="text" formControlName="height" />
+    </section>
+
+    <section formGroupName="padding">
+      <pre>Padding: </pre>
+
+      <section>
+        <label for="top">top: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="top"
+        />
+      </section>
+
+      <section>
+        <label for="right">right: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="right"
+        />
+      </section>
+
+      <section>
+        <label for="bottom">bottom: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="bottom"
+        />
+      </section>
+
+      <section>
+        <label for="left">left: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          placeholder="set initial value"
+          formControlName="left"
+        />
+      </section>
+    </section>
+
+    <section formGroupName="Column1Config">
+      <pre>Column1Config:</pre>
+      <section>
+        <label for="icon">LayoutOptions: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          formControlName="HorizontalOptions"
+        />
+      </section>
+    </section>
+
+    <section formGroupName="Column2Config">
+      <pre>Column2Config: </pre>
+      <section>
+        <label for="icon">LayoutOptions: </label>
+        <input
+          class="code-form-control"
+          type="text"
+          formControlName="HorizontalOptions"
+        />
+      </section>
+    </section>
+
+    <section>
+      <label for="icon">leftIcon: </label>
+      <input class="code-form-control" type="text" formControlName="leftIcon" />
+    </section>
+
+    <section>
+      <label for="icon">logo: </label>
+      <input class="code-form-control" type="text" formControlName="logo" />
+    </section>
+
+    <section>
+      <label for="icon">rightIcon: </label>
+      <input
+        class="code-form-control"
+        type="text"
+        formControlName="rightIcon"
+      />
+    </section>
+  </code>
+</form>

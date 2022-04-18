@@ -1,0 +1,50 @@
+<!-- Editable wrapper -->
+<section class="w-full true-component">
+  <!-- Edit button -->
+  <div class="flex justify-start items-center">
+    <app-edit-button (click)="edit()"></app-edit-button>
+    <app-copy-button (click)="copy()"></app-copy-button>
+    <app-version-button (click)="loadVersion(2)"></app-version-button>
+  </div>
+
+  <!-- Actual component -->
+  <div
+    *ngIf="signUpGraphic"
+    [ngStyle]="{ 'background-color': signUpGraphic.BackgroundColor }"
+  >
+    <img
+      class="mx-auto"
+      [src]="imgHost + signUpGraphic.Source"
+      [ngStyle]="styleObject()"
+      *ngIf="signUpGraphic"
+      alt="Graphic"
+    />
+  </div>
+
+  <!-- Edit form -->
+  <form
+    [formGroup]="signUpGraphicForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="ess.showSignUpGraphicSidebar"
+  >
+    <app-editor-sidebar>
+      <app-sign-up-graphic-form
+        [parent]="signUpGraphicForm"
+        (graphicChanged)="changeGraphic($event)"
+        (bgColorChanged)="changeBgColor($event)"
+        (paddingChanged)="changePadding($event)"
+        edit-form
+      ></app-sign-up-graphic-form>
+
+      <app-sign-up-graphic-code-form
+        [parent]="signUpGraphicForm"
+        edit-config-code
+      ></app-sign-up-graphic-code-form>
+    </app-editor-sidebar>
+  </form>
+</section>
+
+<!-- Preview -->
+<comp-preview>{{ preview }}</comp-preview>
+<!-- In flight -->
+<comp-dragging></comp-dragging>

@@ -1,13 +1,5 @@
-.edit-btn {
-transition: 0.2s;
-  svg {
-    stroke: #3958FF;
-  }
+.edit-button {
   &:hover {
-  transform: scale(1.08);
-  animate: ease-in-out;
-  svg {
-    stroke: #FFBD2E;
-  }
+    @apply text-white;
   }
 }
