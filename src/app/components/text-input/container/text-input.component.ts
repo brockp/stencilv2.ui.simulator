@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
@@ -11,7 +11,7 @@ import { TextInputService } from '@app/components/text-input/service/text-input.
 })
 export class TextInputComponent implements OnInit {
   preview = 'SlimEntry';
-  id!: number;
+  @Input() id!: number;
   luu!: any;
   public slimEntry: SlimEntry = {
     id: this.luu,
@@ -57,7 +57,7 @@ export class TextInputComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = 1;
+    this.id = this.id;
 
     // Get the component config from JSON
     this.ses.getSlimEntry(this.id).subscribe((data: any) => {
@@ -65,8 +65,6 @@ export class TextInputComponent implements OnInit {
       console.log('Slim Entry: ', this.slimEntry);
       this.setInitialValues();
     });
-
-    this.luu = this.slimEntry.id;
   }
 
   copy() {
@@ -137,7 +135,7 @@ export class TextInputComponent implements OnInit {
     ])!.value;
 
     this.ses
-      .updateSlimEntry(this.slimEntry.id, this.slimEntryForm.value)
+      .updateSlimEntry(this.id, this.slimEntryForm.value)
       .subscribe((res) => {
         console.log('SlimEntry Updated!');
         this.closeSidebar();

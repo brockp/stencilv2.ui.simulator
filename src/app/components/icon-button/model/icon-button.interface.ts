@@ -1,5 +1,4 @@
 export interface iconButton {
-  id: number;
   Version: string;
   Width: string;
   CornerRadius: string;

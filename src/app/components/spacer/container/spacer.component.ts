@@ -12,7 +12,7 @@ import { Spacer } from '@app/components/spacer/container/spacer';
 })
 export class SpacerComponent implements OnInit {
   preview = 'Spacer';
-  id!: number;
+  @Input() id!: number;
   luu!: any;
 
   public spacer: Spacer = {
@@ -36,7 +36,7 @@ export class SpacerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = 1;
+    this.id = this.id;
 
     this.ss.getSpacerConfig(this.id).subscribe((data: any) => {
       this.spacer = data;
@@ -90,7 +90,7 @@ export class SpacerComponent implements OnInit {
     this.spacer.BackgroundColor = this.spacerForm.get('BackgroundColor')!.value;
 
     this.ss
-      .updateSpacerConfig(this.spacer.id, this.spacerForm.value)
+      .updateSpacerConfig(this.id, this.spacerForm.value)
       .subscribe((res) => {
         console.log('Spacer updated!');
         this.closeSidebar();

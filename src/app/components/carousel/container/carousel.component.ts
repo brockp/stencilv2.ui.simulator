@@ -445,7 +445,7 @@ export class CarouselComponent implements OnInit {
 
     // Update the server JSON with new values
     this.cs
-      .updateCarouselConfig(this.carousel.id, this.carouselForm.value)
+      .updateCarouselConfig(1, this.carouselForm.value)
       .subscribe((res) => {
         console.log('updated');
         // Close edit sidebar

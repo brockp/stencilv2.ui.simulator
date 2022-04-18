@@ -35,7 +35,7 @@ export class ImageService {
   updateImageConfig(id: number, image: any): Observable<any> {
     const call = this.http
       .post<any>(
-        this.apiURL + IMAGE + 1,
+        this.apiURL + IMAGE + id,
         JSON.stringify(image),
         this.httpOptions
       )

@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { HeadlineService } from '@app/components/headline/service/headline.service';
@@ -12,7 +12,7 @@ import { Headline } from '@app/components/headline/model/headline.interface';
 export class HeadlineComponent implements OnInit {
   preview = 'Headline';
   public headline!: Headline;
-  id!: number;
+  @Input() id!: number;
   // Set initial formGroups
   headlineForm = this.fb.group({
     Version: '',
@@ -30,12 +30,11 @@ export class HeadlineComponent implements OnInit {
   constructor(
     public ess: EditSidebarService,
     private fb: FormBuilder,
-    public hs: HeadlineService,
-    private renderer: Renderer2
+    public hs: HeadlineService
   ) {}
 
   ngOnInit(): void {
-    this.id = 1;
+    this.id = this.id;
 
     // Get the component config from JSON
     this.hs.getHeadlineConfig(this.id).subscribe((data: any) => {
@@ -135,7 +134,7 @@ export class HeadlineComponent implements OnInit {
 
     // Update the server JSON with new values
     this.hs
-      .updateHeadlineConfig(this.headline.id, this.headlineForm.value)
+      .updateHeadlineConfig(this.id, this.headlineForm.value)
       .subscribe(() => {
         console.log('Headline updated!');
         // Close edit sidebar

@@ -43,7 +43,7 @@ export class HeadlineService {
     const secret = { secret: 'SuziesPrivateEyes' };
     const item = JSON.stringify(headline);
     const payload = this.http
-      .post<any>(this.apiURL + H1 + 1, item)
+      .post<any>(this.apiURL + H1 + id, item)
       .pipe(catchError(this.errorHandler));
 
     return payload;

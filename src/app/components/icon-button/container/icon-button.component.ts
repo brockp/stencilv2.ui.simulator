@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
@@ -12,9 +12,8 @@ import { iconButton } from '@app/components/icon-button/model/icon-button.interf
 export class IconButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   preview = 'Icon Button';
-  id!: number;
+  @Input() id!: number;
   public iconButton: iconButton = {
-    id: this.id,
     Version: '',
     Width: '',
     CornerRadius: '',
@@ -69,7 +68,7 @@ export class IconButtonComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.id = 1;
+    this.id = this.id;
     // Get the component config from JSON
     this.ibs.getIconButton(this.id).subscribe((data: any) => {
       this.iconButton = data;
@@ -218,9 +217,9 @@ export class IconButtonComponent implements OnInit {
     ])?.value;
 
     this.ibs
-      .updateIconButton(this.iconButton.id, this.iconButtonAltForm.value)
+      .updateIconButton(this.id, this.iconButtonAltForm.value)
       .subscribe((res) => {
-        console.log('Primary Button Updated!');
+        console.log('Icon Button Updated!');
         this.closeSidebar();
       });
   }

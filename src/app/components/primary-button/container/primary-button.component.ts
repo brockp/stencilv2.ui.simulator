@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { primaryButton } from '@app/components/primary-button/model/primary-button.interface';
@@ -12,7 +12,7 @@ import { PrimaryButtonService } from '@app/components/primary-button/service/pri
 export class PrimaryButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   preview = 'Primary Button';
-  id!: number;
+  @Input() id!: number;
   public primaryButton: primaryButton = {
     id: null,
     Version: '',
@@ -67,7 +67,7 @@ export class PrimaryButtonComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.id = 1;
+    this.id = this.id;
 
     // Get the component config from JSON
     this.ibs.getPrimaryButton(this.id).subscribe((data: any) => {
@@ -210,7 +210,7 @@ export class PrimaryButtonComponent implements OnInit {
     ])?.value;
 
     this.ibs
-      .updatePrimaryButton(this.primaryButton.id, this.primaryButtonForm.value)
+      .updatePrimaryButton(this.id, this.primaryButtonForm.value)
       .subscribe((res) => {
         console.log('Primary Button Updated!');
       });

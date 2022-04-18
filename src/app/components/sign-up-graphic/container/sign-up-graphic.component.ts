@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-graphic.interface';
@@ -13,9 +13,9 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./sign-up-graphic.component.scss'],
 })
 export class SignUpGraphicComponent implements OnInit {
-  preview = 'Sign Up Graphic';
+  preview = 'Image';
   imgHost = environment.imgHost;
-  id!: number;
+  @Input() id!: number;
   public signUpGraphic!: SignUpGraphic;
 
   signUpGraphicForm = this.fb.group({
@@ -43,7 +43,7 @@ export class SignUpGraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = 1;
+    this.id = this.id;
 
     this.is.getImageConfig(this.id).subscribe((data: any) => {
       this.signUpGraphic = data;
@@ -149,7 +149,7 @@ export class SignUpGraphicComponent implements OnInit {
     ])!.value;
 
     this.is
-      .updateImageConfig(this.signUpGraphic.id, this.signUpGraphicForm.value)
+      .updateImageConfig(this.id, this.signUpGraphicForm.value)
       .subscribe((res) => {
         console.log('Image updated!');
         this.closeSidebar();

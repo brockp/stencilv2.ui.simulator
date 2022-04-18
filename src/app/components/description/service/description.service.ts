@@ -36,7 +36,7 @@ export class DescriptionService {
   updateDescriptionConfig(id: number, description: any): any {
     const call = this.http
       .post<any>(
-        this.apiURL + H2 + 1,
+        this.apiURL + H2 + id,
         JSON.stringify(description),
         this.httpOptions
       )

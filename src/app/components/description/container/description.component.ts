@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { DescriptionService } from '@app/components/description/service/description.service';
@@ -11,7 +11,7 @@ import { Description } from '@app/components/description/model/description.inter
 })
 export class DescriptionComponent implements OnInit {
   preview = 'Description';
-  id!: number;
+  @Input() id!: number;
   luu: number = 1;
   public description!: Description;
 
@@ -36,11 +36,11 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     // Make dynamic
-    this.id = 1;
+    this.id = this.id;
 
     this.ds.getDescriptioneConfig(this.id).subscribe((data: any) => {
       this.description = data;
-      console.log('Description: ', this.description);
+      console.log('Description: ', this.id);
       this.setInitialValues();
     });
   }
@@ -145,9 +145,9 @@ export class DescriptionComponent implements OnInit {
     ])!.value;
 
     this.ds
-      .updateDescriptionConfig(this.description.id, this.descriptionForm.value)
+      .updateDescriptionConfig(this.id, this.descriptionForm.value)
       .subscribe(() => {
-        console.log('Description updated!');
+        console.log(this.id);
       });
 
     this.closeSidebar();
