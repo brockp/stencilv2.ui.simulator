@@ -21,8 +21,6 @@ import { AppHeaderModule } from '@app/components/app-header/app-header.module';
 import { CarouselModule } from '@app/components/carousel/carousel.module';
 import { DescriptionModule } from '@app/components/description/description.module';
 import { IconButtonModule } from '@app/components/icon-button/icon-button.module';
-import { InputModule } from '@app/components/input/input.module';
-import { LinkModule } from '@app/components/link/link.module';
 import { ParagraphModule } from '@app/components/paragraph/paragraph.module';
 import { PrimaryButtonModule } from '@app/components/primary-button/primary-button.module';
 import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
@@ -35,7 +33,6 @@ import { SharedModule } from '@app/shared/shared.module';
 
 // testing
 import { MaterialModule } from '@app/shared/material.module';
-
 @NgModule({
   declarations: [EditorComponent],
   imports: [
@@ -50,8 +47,6 @@ import { MaterialModule } from '@app/shared/material.module';
     CarouselModule,
     DescriptionModule,
     IconButtonModule,
-    InputModule,
-    LinkModule,
     ParagraphModule,
     PrimaryButtonModule,
     SignUpGraphicModule,

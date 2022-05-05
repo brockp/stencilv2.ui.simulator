@@ -13,11 +13,6 @@
       </mat-tab-group>
     </div>
 
-    <div class="form-submit-wrapper z-50">
-      <section class="form-submit-section">
-        <app-save-button></app-save-button>
-        <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
-      </section>
-    </div>
+    <ng-content select="[save-component]"></ng-content>
   </ng-container>
 </section>

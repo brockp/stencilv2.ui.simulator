@@ -46,6 +46,12 @@ export class HeadlineService {
       .post<any>(this.apiURL + H1 + id, item)
       .pipe(catchError(this.errorHandler));
 
+    this.toasty.show('Saved Component to api' + H1 + id, {
+      theme: 'snackbar',
+      icon: '🤘',
+      position: 'bottom-center',
+    });
+
     return payload;
   }
 

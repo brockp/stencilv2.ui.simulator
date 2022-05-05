@@ -29,7 +29,58 @@
           </mat-expansion-panel-header>
 
           <section dragula="COMPONENTS">
-            <app-headline [id]="1"></app-headline>
+            <!-- ADD SELECTORS HERE -->
+            <app-headline-selector
+              [parent]="form"
+              [headlines]="headlines"
+              (added)="addHeadline($event)"
+            ></app-headline-selector>
+            <br /><br />
+
+            <app-description-selector
+              [parent]="form"
+              [descriptions]="descriptions"
+              (descriptionAdded)="addDescription($event)"
+            ></app-description-selector>
+
+            <app-graphic-selector
+              [parent]="form"
+              [graphics]="graphics"
+              (graphicAdded)="addGraphic($event)"
+            >
+            </app-graphic-selector>
+            <br /><br />
+
+            <app-primary-button-selector
+              [parent]="form"
+              [buttons]="buttons"
+              (buttonAdded)="addButton($event)"
+            >
+            </app-primary-button-selector>
+
+            <app-icon-button-selector
+              [parent]="form"
+              [buttons]="iconButtons"
+              (iconButtonAdded)="addIconButton($event)"
+            >
+            </app-icon-button-selector>
+            <br /><br /><br />
+
+            <app-text-input-selector
+              [parent]="form"
+              [slimEntries]="slimEntries"
+              (slimEntryAdded)="addSlimEntry($event)"
+            >
+            </app-text-input-selector>
+            <br /><br />
+
+            <app-spacer-selector
+              [parent]="form"
+              [spacers]="slimEntries"
+              (spacerAdded)="addSpacer($event)"
+            ></app-spacer-selector>
+
+            <!-- <app-headline [id]="1"></app-headline>
             <app-headline [id]="2"></app-headline>
             <app-description [id]="1"></app-description>
             <app-description [id]="2"></app-description>
@@ -44,11 +95,8 @@
             <app-text-input [id]="2"></app-text-input>
             <app-spacer [id]="1"></app-spacer>
             <app-spacer [id]="2"></app-spacer>
-            <app-carousel></app-carousel>
-            <!-- <app-carousel></app-carousel>
-            <app-paragraph></app-paragraph>
-            <app-link></app-link>
-            <app-textarea></app-textarea> -->
+            <app-carousel></app-carousel> -->
+
             <hr size="1" />
           </section>
         </mat-expansion-panel>
@@ -64,7 +112,7 @@
           </mat-expansion-panel-header>
 
           <section dragula="COMPONENTS">
-            <!-- Put curated components here -->
+            <!-- ADD SELECTORS HERE -->
             <hr size="1" />
           </section>
         </mat-expansion-panel>
@@ -141,68 +189,91 @@
       </mat-accordion>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <main class="content-container">
-      <div class="flex justify-start items-center gap-x-3 p-4">
-        <span (click)="snav.toggle()" class="viewport-icon">
-          <mat-icon>menu</mat-icon>
-        </span>
-        <span (click)="setiPhone11()" class="viewport-icon">
-          <img
-            class="viewport-icon"
-            src="../../../assets/iphonex.svg"
-            alt="iPhone Icon"
-          />
-        </span>
-        <span (click)="setAndroid()" class="viewport-icon">
-          <img
-            class="viewport-icon"
-            src="../../../assets/android.svg"
-            alt="Android Phone Icon"
-          />
-        </span>
-        <span (click)="desktopViewPort()" class="viewport-icon">
-          <img
-            class="viewport-icon"
-            src="../../../assets/web-browser.svg"
-            alt="Web Browser Icon"
-          />
-        </span>
-      </div>
 
-      <section
-        [ngClass]="{
-          'max-w-Android': vps.android,
-          'max-w-iPhone13': vps.iPhone12,
-          'max-w-iPhone11': vps.iPhone11,
-          'max-w-screen-xl': vps.desktop,
-          'main-height': [vps.android, vps.iPhone11, vps.iPhone12, vps.desktop]
-        }"
-        class="viewport-canvas"
-      >
-        <div
-          class="viewport-inner-canvas drop-container"
+  <mat-sidenav-content>
+    <section [formGroup]="form" (ngSubmit)="onSubmit()">
+      <main class="content-container">
+        <div class="flex justify-start items-center gap-x-3 p-4">
+          <span (click)="snav.toggle()" class="viewport-icon">
+            <mat-icon>menu</mat-icon>
+          </span>
+          <span (click)="setiPhone11()" class="viewport-icon">
+            <img
+              class="viewport-icon"
+              src="../../../assets/iphonex.svg"
+              alt="iPhone Icon"
+            />
+          </span>
+          <span (click)="setAndroid()" class="viewport-icon">
+            <img
+              class="viewport-icon"
+              src="../../../assets/android.svg"
+              alt="Android Phone Icon"
+            />
+          </span>
+          <span (click)="desktopViewPort()" class="viewport-icon">
+            <img
+              class="viewport-icon"
+              src="../../../assets/web-browser.svg"
+              alt="Web Browser Icon"
+            />
+          </span>
+        </div>
+
+        <section
           [ngClass]="{
-            'basic-layout': los.basic,
-            'no-footer': los.noFooter,
-            'no-header': los.noHeader,
-            'vertical-layout': los.vertical
+            'max-w-Android': vps.android,
+            'max-w-iPhone13': vps.iPhone12,
+            'max-w-iPhone11': vps.iPhone11,
+            'max-w-screen-xl': vps.desktop,
+            'main-height': [
+              vps.android,
+              vps.iPhone11,
+              vps.iPhone12,
+              vps.desktop
+            ]
           }"
+          class="viewport-canvas"
         >
           <div
-            class="flex justify-start flex-col border-red-300 border-b-2"
-            dragula="COMPONENTS"
-          ></div>
-          <div
-            class="flex justify-start flex-col border-red-300 border-b-2"
-            dragula="COMPONENTS"
-          ></div>
-          <div
-            class="flex justify-end flex-col pb-4 border-red-300"
-            dragula="COMPONENTS"
-          ></div>
-        </div>
-      </section>
-    </main>
+            class="viewport-inner-canvas drop-container"
+            [ngClass]="{
+              'basic-layout': los.basic,
+              'no-footer': los.noFooter,
+              'no-header': los.noHeader,
+              'vertical-layout': los.vertical
+            }"
+          >
+            <div
+              class="flex justify-start flex-col border-red-300 border-b-2"
+              dragula="COMPONENTS"
+            ></div>
+            <div
+              class="flex justify-start flex-col border-red-300 border-b-2"
+              dragula="COMPONENTS"
+            >
+              <app-headline [parent]="form"></app-headline>
+              <app-sign-up-graphic [parent]="form"></app-sign-up-graphic>
+              <app-primary-button [parent]="form"></app-primary-button>
+              <app-icon-button [parent]="form"></app-icon-button>
+              <app-text-input [parent]="form"></app-text-input>
+              <app-spacer [parent]="form"></app-spacer>
+              <!-- ADD CHILD COMPONENT HERE THAT WILL GET ADDED TO THE FORMARRAY -->
+            </div>
+            <div
+              class="flex justify-end flex-col pb-4 border-red-300"
+              dragula="COMPONENTS"
+            ></div>
+
+            <button
+              class="text-white bg-blue-500 rounded-full px-2 py-1"
+              (click)="onSubmit()"
+            >
+              Send Configuration
+            </button>
+          </div>
+        </section>
+      </main>
+    </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

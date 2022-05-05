@@ -7,11 +7,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { SpacerComponent } from './container/spacer.component';
-import { SpacerFormComponent } from './edit/spacer-form/spacer-form.component';
-import { SpacerCodeFormComponent } from './edit/spacer-code-form/spacer-code-form.component';
+
+import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.component';
 
 @NgModule({
-  declarations: [SpacerComponent, SpacerFormComponent, SpacerCodeFormComponent],
+  declarations: [SpacerComponent, SpacerSelectorComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -19,6 +19,6 @@ import { SpacerCodeFormComponent } from './edit/spacer-code-form/spacer-code-for
     RouterModule,
     EditorRoutingModule,
   ],
-  exports: [SpacerComponent],
+  exports: [SpacerComponent, SpacerSelectorComponent],
 })
 export class SpacerModule {}

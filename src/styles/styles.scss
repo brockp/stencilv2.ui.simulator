@@ -7,6 +7,14 @@
 @import "animate.css";
 @import "variables";
 
+.headline-font {
+  @apply text-2xl;
+}
+
+.description-font {
+  @apply text-base;
+}
+
 *,
 body {
   @apply font-quicksand;

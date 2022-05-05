@@ -1,5 +1,13 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
@@ -13,152 +21,47 @@ export class IconButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   preview = 'Icon Button';
   @Input() id!: number;
-  public iconButton: iconButton = {
-    Version: '',
-    Width: '',
-    CornerRadius: '',
-    Text: '',
-    TextColor: '',
-    BackgroundColor: '',
-    CommandName: '',
-    CommandParameter: '',
-    Icon: '',
-    Padding: {
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    },
-    Margin: {
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    },
-  };
+  iconButton!: iconButton;
 
-  constructor(
-    public ess: EditSidebarService,
-    private fb: FormBuilder,
-    public ibs: IconButtonService
-  ) {}
+  @Input()
+  payload!: FormGroup;
 
-  iconButtonAltForm = this.fb.group({
-    Version: '',
-    Width: '',
-    CornerRadius: '',
-    Text: '',
-    TextColor: '',
-    BackgroundColor: '',
-    CommandName: '',
-    CommandParameter: '',
-    Icon: '',
-    Padding: this.fb.group({
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    }),
-    Margin: this.fb.group({
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    }),
-  });
+  @Input()
+  parent!: FormGroup;
 
-  ngOnInit(): void {
-    this.id = this.id;
-    // Get the component config from JSON
-    this.ibs.getIconButton(this.id).subscribe((data: any) => {
-      this.iconButton = data;
-      console.log(this.iconButton);
-      this.setInitialValues();
-    });
+  @Output()
+  versionChanged = new EventEmitter();
+
+  @Output()
+  textColorChanged = new EventEmitter();
+
+  @Output()
+  backgroundColorChanged = new EventEmitter();
+
+  @Output()
+  borderRadiusChanged = new EventEmitter();
+
+  @Output()
+  widthChanged = new EventEmitter();
+
+  @Output()
+  iconChanged = new EventEmitter();
+
+  get iconButtons(): any {
+    return (this.parent.get('iconButtonConfig') as FormArray).controls;
   }
 
-  copy() {
-    this.ibs.copy(this.iconButton);
+  constructor(public ess: EditSidebarService, public ibs: IconButtonService) {}
+
+  ngOnInit(): void {}
+
+  copy(i: number) {
+    const index = this.iconButtons.at(i).value;
+    console.log(index);
+    this.ibs.copy(index);
   }
 
-  setInitialValues(): void {
-    this.iconButtonAltForm.setValue({
-      Version: this.iconButton.Version,
-      Width: this.iconButton.Width,
-      CornerRadius: this.iconButton.CornerRadius,
-      Text: this.iconButton.Text,
-      TextColor: this.iconButton.TextColor,
-      BackgroundColor: this.iconButton.BackgroundColor,
-      CommandName: this.iconButton.CommandName,
-      CommandParameter: this.iconButton.CommandParameter,
-      Icon: this.iconButton.Icon,
-      Padding: {
-        top: this.iconButton.Padding.top,
-        right: this.iconButton.Padding.right,
-        bottom: this.iconButton.Padding.bottom,
-        left: this.iconButton.Padding.left,
-      },
-      Margin: {
-        top: this.iconButton.Margin.top,
-        right: this.iconButton.Margin.right,
-        bottom: this.iconButton.Margin.bottom,
-        left: this.iconButton.Margin.left,
-      },
-    });
-  }
-
-  // Style object for ngStyle
-  iconButtonStyle(): Object {
-    return {
-      color: this.iconButton.TextColor,
-      'background-color': this.iconButton.BackgroundColor,
-      width: this.iconButton.Width + '%',
-      'border-radius': this.iconButton.CornerRadius + 'px',
-      'padding-top': this.iconButton.Padding.top + 'px',
-      'padding-right': this.iconButton.Padding.right + 'px',
-      'padding-bottom': this.iconButton.Padding.bottom + 'px',
-      'padding-left': this.iconButton.Padding.left + 'px',
-      'margin-top': this.iconButton.Margin.top + 'px',
-      'margin-right': this.iconButton.Margin.right + 'px',
-      'margin-bottom': this.iconButton.Margin.bottom + 'px',
-      'margin-left': this.iconButton.Margin.left + 'px',
-    };
-  }
-
-  loadVersion(versionData: any): void {
-    this.ibs.findIconButton(versionData).subscribe((data: any) => {
-      this.iconButton = data;
-      this.setInitialValues();
-    });
-  }
-
-  // changeMarginY(marginYData: any): void {
-  //   this.renderer.data, (this.iconButton.marginY = marginYData);
-  //   this.iconButton.marginY = marginYData;
-  // }
-
-  // Event from child form
-  changeTextColor(textColorData: any): void {
-    textColorData = this.iconButtonAltForm.get('TextColor')!.value;
-  }
-
-  changeBorderRadius(radiusData: any): void {
-    radiusData = this.iconButtonAltForm.get('CornerRadius')!.value;
-  }
-
-  changeBgColor(bgColorData: any): void {
-    bgColorData = this.iconButtonAltForm.get('BackgroundColor')!.value;
-  }
-
-  changeWidth(buttonWidthData: any): void {
-    buttonWidthData = this.iconButtonAltForm.get('Width')!.value;
-  }
-
-  changeIcon(data: any): void {
-    data = this.iconButtonAltForm.get('icon')?.setValue(data);
-  }
-
-  edit(): void {
+  edit(i: number): void {
     this.ess.showIconButtonEdit();
   }
 
@@ -166,61 +69,89 @@ export class IconButtonComponent implements OnInit {
     this.ess.hideHomeEdit();
   }
 
-  onSubmit(): void {
-    this.iconButton.Version = this.iconButtonAltForm.get('Version')?.value;
-    this.iconButton.Text = this.iconButtonAltForm.get('Text')?.value;
-    this.iconButton.TextColor = this.iconButtonAltForm.get('TextColor')?.value;
-    this.iconButton.Icon = this.iconButtonAltForm.get('Icon')?.value;
-    // this.iconButton.marginY = this.iconButtonAltForm.get('marginY')?.value;
-    this.iconButton.CornerRadius =
-      this.iconButtonAltForm.get('CornerRadius')?.value;
-    this.iconButton.BackgroundColor =
-      this.iconButtonAltForm.get('BackgroundColor')?.value;
-    this.iconButton.Width = this.iconButtonAltForm.get('Width')?.value;
-    this.iconButton.CommandName =
-      this.iconButtonAltForm.get('CommandName')?.value;
-    this.iconButton.CommandParameter =
-      this.iconButtonAltForm.get('CommandParameter')?.value;
-    this.iconButton.Padding.top = this.iconButtonAltForm.get([
-      'Padding',
-      'top',
-    ])?.value;
-    this.iconButton.Padding.right = this.iconButtonAltForm.get([
-      'Padding',
-      'right',
-    ])?.value;
-    this.iconButton.Padding.bottom = this.iconButtonAltForm.get([
-      'Padding',
-      'bottom',
-    ])?.value;
-    this.iconButton.Padding.left = this.iconButtonAltForm.get([
-      'Padding',
-      'left',
-    ])?.value;
-
-    //Margin
-    this.iconButton.Margin.top = this.iconButtonAltForm.get([
-      'Margin',
-      'top',
-    ])?.value;
-    this.iconButton.Margin.right = this.iconButtonAltForm.get([
-      'Margin',
-      'right',
-    ])?.value;
-    this.iconButton.Margin.bottom = this.iconButtonAltForm.get([
-      'Margin',
-      'bottom',
-    ])?.value;
-    this.iconButton.Margin.left = this.iconButtonAltForm.get([
-      'Margin',
-      'left',
-    ])?.value;
-
-    this.ibs
-      .updateIconButton(this.id, this.iconButtonAltForm.value)
-      .subscribe((res) => {
-        console.log('Icon Button Updated!');
-        this.closeSidebar();
+  loadVersion(version: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.ibs.findIconButton(version).subscribe((data: any) => {
+      console.log(data);
+      this.iconButton = data;
+      index.patchValue({
+        id: null,
+        Version: this.iconButton.Version,
+        Width: this.iconButton.Width,
+        CornerRadius: this.iconButton.CornerRadius,
+        Text: this.iconButton.Text,
+        TextColor: this.iconButton.TextColor,
+        CommandName: this.iconButton.CommandName,
+        CommandParameter: this.iconButton.CommandParameter,
+        BackgroundColor: this.iconButton.BackgroundColor,
+        Icon: this.iconButton.Icon,
+        Padding: {
+          top: this.iconButton.Padding.top,
+          right: this.iconButton.Padding.right,
+          bottom: this.iconButton.Padding.bottom,
+          left: this.iconButton.Padding.left,
+        },
+        Margin: {
+          top: this.iconButton.Margin.top,
+          right: this.iconButton.Margin.right,
+          bottom: this.iconButton.Margin.bottom,
+          left: this.iconButton.Margin.left,
+        },
       });
+    });
+    this.versionChanged.emit(index);
+  }
+
+  // Event from child form
+  changeTextColor(color: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      TextColor: color,
+    });
+  }
+
+  changeBorderRadius(radius: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.borderRadiusChanged.emit(index);
+    this.borderRadiusChanged.emit(radius);
+    index.patchValue({
+      CornerRadius: radius,
+    });
+  }
+
+  changeBgColor(color: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      BackgroundColor: color,
+    });
+  }
+
+  changeWidth(width: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.widthChanged.emit(index);
+    this.widthChanged.emit(width);
+    index.patchValue({
+      Width: width,
+    });
+  }
+
+  changeIcon(icon: any, i: number): void {
+    const index = this.iconButtons.at(i);
+    this.iconChanged.emit(index);
+    this.iconChanged.emit(icon);
+    index.patchValue({
+      Icon: icon,
+    });
+  }
+
+  saveComponent(i: number) {
+    const index = this.iconButtons.at(i);
+    console.log(i);
+    this.ibs.updateIconButton(i, index.value).subscribe(() => {});
+    this.closeSidebar();
   }
 }

@@ -106,7 +106,7 @@ export class EditSidebarService {
     );
   }
 
-  public showHeadlineEdit() {
+  public showHeadlineEdit(i: number) {
     return (
       (this.headlineEdit = true),
       (this.showSignUpGraphicSidebar = false),

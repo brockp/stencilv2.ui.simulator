@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { SpacerService } from '@app/components/spacer/service/spacer.service';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -12,66 +12,35 @@ import { Spacer } from '@app/components/spacer/container/spacer';
 })
 export class SpacerComponent implements OnInit {
   preview = 'Spacer';
-  @Input() id!: number;
-  luu!: any;
+  spacer!: Spacer;
 
-  public spacer: Spacer = {
-    id: this.luu,
-    Version: '',
-    Height: '',
-    BackgroundColor: '',
-  };
+  @Input()
+  payload!: FormGroup;
 
-  spacerForm = this.fb.group({
-    Version: '',
-    Height: '',
-    BackgroundColor: '',
-  });
+  @Input()
+  parent!: FormGroup;
 
-  constructor(
-    public ess: EditSidebarService,
-    public ss: SpacerService,
-    private fb: FormBuilder,
-    private toast: HotToastService
-  ) {}
+  @Output()
+  versionChanged = new EventEmitter();
 
-  ngOnInit() {
-    this.id = this.id;
+  @Output()
+  backgroundColorChanged = new EventEmitter();
 
-    this.ss.getSpacerConfig(this.id).subscribe((data: any) => {
-      this.spacer = data;
-      console.log(this.spacer);
-      this.setInitialValues();
-    });
+  get spacers(): any {
+    return (this.parent.get('spacerConfig') as FormArray).controls;
   }
 
-  setInitialValues() {
-    this.spacerForm.setValue({
-      Version: this.spacer.Version,
-      Height: this.spacer.Height,
-      BackgroundColor: this.spacer.BackgroundColor,
-    });
+  constructor(public ess: EditSidebarService, public ss: SpacerService) {}
+
+  ngOnInit() {}
+
+  copy(i: number) {
+    const index = this.spacers.at(i).value;
+    console.log(index);
+    this.ss.copy(index);
   }
 
-  loadVersion(versionData: any): void {
-    this.ss.findSpacerConfig(versionData).subscribe((data: any) => {
-      this.spacer = data;
-      this.setInitialValues();
-    });
-  }
-
-  copyJSON() {
-    this.ss.copy(this.spacer);
-  }
-
-  styleObject(): Object {
-    return {
-      height: this.spacer.Height + 'px',
-      'background-color': this.spacer.BackgroundColor,
-    };
-  }
-
-  edit(): void {
+  edit(i: number): void {
     this.ess.showSpacerEdit();
   }
 
@@ -79,23 +48,33 @@ export class SpacerComponent implements OnInit {
     this.ess.hideHomeEdit();
   }
 
-  // Event from child form
-  changeBgColor(bgColorData: any): void {
-    bgColorData = this.spacerForm.get('BackgroundColor')!.value;
+  loadVersion(version: any, i: number): void {
+    const index = this.spacers.at(i);
+    this.ss.findSpacerConfig(version).subscribe((data: any) => {
+      console.log(data);
+      this.spacer = data;
+      index.patchValue({
+        Version: this.spacer.Version,
+        Height: this.spacer.Height,
+        BackgroundColor: this.spacer.BackgroundColor,
+      });
+    });
+    this.versionChanged.emit(index);
   }
 
-  onSubmit(): void {
-    this.spacer.Version = this.spacerForm.get('Version')!.value;
-    this.spacer.Height = this.spacerForm.get('Height')!.value;
-    this.spacer.BackgroundColor = this.spacerForm.get('BackgroundColor')!.value;
+  changeBgColor(color: any, i: number): void {
+    const index = this.spacers.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      BackgroundColor: color,
+    });
+  }
 
-    this.ss
-      .updateSpacerConfig(this.id, this.spacerForm.value)
-      .subscribe((res) => {
-        console.log('Spacer updated!');
-        this.closeSidebar();
-      });
-
-    console.log('Spacer Context: ', this.spacer);
+  saveComponent(i: number) {
+    const index = this.spacers.at(i);
+    console.log(i);
+    this.ss.updateSpacerConfig(i, index.value).subscribe(() => {});
+    this.closeSidebar();
   }
 }

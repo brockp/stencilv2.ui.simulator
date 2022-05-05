@@ -1,8 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
+
 import { DragulaService } from 'ng2-dragula';
 import { ViewportService } from '@app/services/viewport/viewport.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
+import { EditorService } from '@app/services/editor/editor.service';
+
+import { Headline } from '@app/components/headline/model/headline.interface';
+import { Description } from '@app/components/description/model/description.interface';
+import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-graphic.interface';
+import { primaryButton } from '@app/components/primary-button/model/primary-button.interface';
+import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
+import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
 
 @Component({
   selector: 'app-editor',
@@ -10,21 +20,171 @@ import { LayoutOptionsService } from '@app/services/layout-options/layout-option
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  fontSize!: boolean;
+  descriptionFontSize!: boolean;
+  luu: boolean = false;
+  poo: boolean = false;
+
   @ViewChild(MatAccordion) accordion!: MatAccordion;
+  headlines: Headline[] = [];
+  headline!: Headline;
+
+  descriptions: Description[] = [];
+  description!: Description;
+
+  graphics: SignUpGraphic[] = [];
+  graphic!: SignUpGraphic;
+
+  buttons: primaryButton[] = [];
+  button!: primaryButton;
+
+  iconButtons: iconButton[] = [];
+  iconButton!: iconButton;
+
+  slimEntries: SlimEntry[] = [];
+  slimEntry!: SlimEntry;
+
+  // PRIMARY form for entire editor
+  form = this.fb.group({
+    headlineSelector: this.es.createHeadline({}),
+    descriptionSelector: this.es.createDescription({}),
+    graphicSelector: this.es.createGraphic({}),
+    graphicConfig: this.fb.array([]),
+    buttonSelector: this.es.createButton({}),
+    buttonConfig: this.fb.array([]),
+    iconButtonSelector: this.es.createIconButton({}),
+    iconButtonConfig: this.fb.array([]),
+    slimEntrySelector: this.es.createSlimEntry({}),
+    slimEntryConfig: this.fb.array([]),
+    spacerSelector: this.es.createSpacer({}),
+    spacerConfig: this.fb.array([]),
+    payload: this.fb.group({
+      visualConfig: this.fb.array([]),
+      viewConfig: this.fb.array([]),
+    }),
+  });
 
   constructor(
     public vps: ViewportService,
     private dragulaService: DragulaService,
-    public los: LayoutOptionsService
+    public los: LayoutOptionsService,
+    private es: EditorService,
+    private fb: FormBuilder
   ) {
     this.dragulaService.createGroup('COMPONENTS', {
       invalid: (handle) => handle!.className === 'sidebar',
-      revertOnSpill: true,
+      removeOnSpill: true,
     });
   }
 
   ngOnInit(): void {}
 
+  // viewConfig getter to access FormArray in simple type-safe way.
+  get viewConfig() {
+    return this.form.controls['payload'].get('viewConfig') as FormArray;
+  }
+
+  get visualConfig() {
+    return this.form.controls['payload'].get('visualConfig') as FormArray;
+  }
+
+  get graphicConfig() {
+    return this.form.get('graphicConfig') as FormArray;
+  }
+
+  get buttonConfig() {
+    return this.form.get('buttonConfig') as FormArray;
+  }
+
+  get iconButtonConfig() {
+    return this.form.get('iconButtonConfig') as FormArray;
+  }
+
+  get slimEntryConfig() {
+    return this.form.get('slimEntryConfig') as FormArray;
+  }
+
+  get spacerConfig() {
+    return this.form.get('spacerConfig') as FormArray;
+  }
+
+  // Pushes the dynamically created FormGroup to the FormArray
+  addHeadline(headline: any): any {
+    this.viewConfig.push(this.es.createHeadline(headline));
+    // Debug only
+    console.log(headline);
+    console.log(Object.keys(headline));
+  }
+
+  addDescription(description: any): any {
+    this.viewConfig.push(this.es.createDescription(description));
+
+    console.log(this.form.value);
+  }
+
+  addGraphic(graphic: any): any {
+    this.graphicConfig.push(this.es.createGraphic(graphic));
+
+    console.log(this.form.value);
+  }
+
+  addButton(button: any): any {
+    this.buttonConfig.push(this.es.createButton(button));
+
+    console.log(this.form.value);
+  }
+
+  addIconButton(button: any): any {
+    this.iconButtonConfig.push(this.es.createIconButton(button));
+  }
+
+  addSlimEntry(input: any): any {
+    this.slimEntryConfig.push(this.es.createSlimEntry(input));
+  }
+
+  addSpacer(spacer: any): any {
+    this.spacerConfig.push(this.es.createSpacer(spacer));
+  }
+
+  // Removes the headline from the FormArray
+  deleteHeadline(headlineIndex: number) {
+    this.viewConfig.removeAt(headlineIndex);
+  }
+
+  // GET a new version of the component from the API
+  changeVersion(version: any): void {
+    this.form.updateValueAndValidity();
+  }
+
+  // Event from child form
+  changeTextColor(color: any): void {
+    this.form.updateValueAndValidity();
+  }
+
+  // Event from child form
+  changeBackgroundColor(bgColor: any): void {
+    this.form.updateValueAndValidity();
+  }
+
+  // FINAL submit of full data set to Stencil
+  onSubmit(): void {
+    let final = this.visualConfig.controls.concat(
+      this.viewConfig.value,
+      this.graphicConfig.value,
+      this.buttonConfig.value,
+      this.iconButtonConfig.value,
+      this.slimEntryConfig.value,
+      this.spacerConfig.value
+    );
+
+    console.log(final);
+
+    this.es.sendConfig(final).subscribe(() => {});
+  }
+
+  ////////////////////////////////////////////////////
+  // Utility functions to support viewport adjustments
+  ////////////////////////////////////////////////////
   basicLayout(): void {
     this.los.basicLayoutOptions();
   }

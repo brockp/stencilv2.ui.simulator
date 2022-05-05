@@ -17,6 +17,8 @@ export const CAROUSEL: string = '/carousel/';
 export const SLIMENTRY: string = '/slimEntry/';
 export const SPACER: string = '/spacer/';
 
+export const FINAL: string = '/final/';
+
 // Crowtap Color Palette
 export const white: string = '#ffffff';
 

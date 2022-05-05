@@ -7,15 +7,10 @@ import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { PrimaryButtonComponent } from '@app/components/primary-button/container/primary-button.component';
-import { PrimaryButtonCodeFormComponent } from '@app/components/primary-button/edit/primary-button-code-form/primary-button-code-form.component';
-import { PrimaryButtonFormComponent } from '@app/components/primary-button/edit/button-form/primary-button-form.component';
+import { PrimaryButtonSelectorComponent } from './primary-button-selector/primary-button-selector.component';
 
 @NgModule({
-  declarations: [
-    PrimaryButtonComponent,
-    PrimaryButtonCodeFormComponent,
-    PrimaryButtonFormComponent,
-  ],
+  declarations: [PrimaryButtonComponent, PrimaryButtonSelectorComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -23,6 +18,6 @@ import { PrimaryButtonFormComponent } from '@app/components/primary-button/edit/
     SharedModule,
     MaterialModule,
   ],
-  exports: [PrimaryButtonComponent],
+  exports: [PrimaryButtonComponent, PrimaryButtonSelectorComponent],
 })
 export class PrimaryButtonModule {}

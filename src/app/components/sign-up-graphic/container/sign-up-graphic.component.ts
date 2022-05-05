@@ -1,5 +1,12 @@
-import { Component, Input, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+} from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-graphic.interface';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
@@ -16,23 +23,27 @@ export class SignUpGraphicComponent implements OnInit {
   preview = 'Image';
   imgHost = environment.imgHost;
   @Input() id!: number;
-  public signUpGraphic!: SignUpGraphic;
+  signUpGraphic!: SignUpGraphic;
 
-  signUpGraphicForm = this.fb.group({
-    Version: '',
-    Source: '',
-    Width: '',
-    Height: '',
-    MinWidth: '',
-    MinHeight: '',
-    BackgroundColor: '',
-    Padding: this.fb.group({
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    }),
-  });
+  @Input()
+  payload!: FormGroup;
+
+  @Input()
+  parent!: FormGroup;
+
+  @Output()
+  versionChanged = new EventEmitter();
+
+  @Output()
+  imageChanged = new EventEmitter();
+
+  @Output()
+  backgroundColorChanged = new EventEmitter();
+
+  // GET viewConfig FormArray and assign to 'descriptions' for use in *ngFor in template
+  get graphics(): any {
+    return (this.parent.get('graphicConfig') as FormArray).controls;
+  }
 
   constructor(
     public ess: EditSidebarService,
@@ -42,36 +53,12 @@ export class SignUpGraphicComponent implements OnInit {
     private toast: HotToastService
   ) {}
 
-  ngOnInit(): void {
-    this.id = this.id;
+  ngOnInit(): void {}
 
-    this.is.getImageConfig(this.id).subscribe((data: any) => {
-      this.signUpGraphic = data;
-      console.log(this.signUpGraphic);
-      this.setInitialValues();
-    });
-  }
-
-  copy() {
-    this.is.copy(this.signUpGraphic);
-  }
-
-  setInitialValues() {
-    this.signUpGraphicForm.setValue({
-      Version: this.signUpGraphic.Version,
-      Source: this.signUpGraphic.Source,
-      Width: this.signUpGraphic.Width,
-      Height: this.signUpGraphic.Height,
-      MinWidth: this.signUpGraphic.MinWidth,
-      MinHeight: this.signUpGraphic.MinHeight,
-      BackgroundColor: this.signUpGraphic.BackgroundColor,
-      Padding: {
-        top: this.signUpGraphic.Padding.top,
-        right: this.signUpGraphic.Padding.right,
-        bottom: this.signUpGraphic.Padding.bottom,
-        left: this.signUpGraphic.Padding.left,
-      },
-    });
+  copy(i: number) {
+    const index = this.graphics.at(i).value;
+    console.log(index);
+    this.is.copy(index);
   }
 
   // Style object for ngStyle
@@ -88,7 +75,7 @@ export class SignUpGraphicComponent implements OnInit {
     };
   }
 
-  edit(): void {
+  edit(i: number): void {
     this.ess.showSignUpGraphicEdit();
   }
 
@@ -96,65 +83,103 @@ export class SignUpGraphicComponent implements OnInit {
     this.ess.hideHomeEdit();
   }
 
-  loadVersion(versionData: any): void {
-    this.is.findImageConfig(versionData).subscribe((data: any) => {
+  loadVersion(version: any, i: number): void {
+    const index = this.graphics.at(i);
+    this.is.findImageConfig(version).subscribe((data: any) => {
+      console.log(data);
       this.signUpGraphic = data;
-      this.setInitialValues();
+      index.patchValue({
+        Version: this.signUpGraphic.Version,
+        Source: this.signUpGraphic.Source,
+        Width: this.signUpGraphic.Width,
+        Height: this.signUpGraphic.Height,
+        MinWidth: this.signUpGraphic.MinWidth,
+        MinHeight: this.signUpGraphic.MinHeight,
+        BackgroundColor: this.signUpGraphic.BackgroundColor,
+        Padding: {
+          top: this.signUpGraphic.Padding.top,
+          right: this.signUpGraphic.Padding.right,
+          bottom: this.signUpGraphic.Padding.bottom,
+          left: this.signUpGraphic.Padding.left,
+        },
+      });
+    });
+    this.versionChanged.emit(index);
+  }
+
+  changeGraphic(source: any, i: number): void {
+    // this.renderer.data, (this.signUpGraphic.Source = data);
+    // this.signUpGraphic.Source = data;
+    // this.parent.get('Source')?.setValue(data);
+
+    const index = this.graphics.at(i);
+    this.imageChanged.emit(index);
+    this.imageChanged.emit(source);
+    index.patchValue({
+      Source: source,
     });
   }
 
-  changeGraphic(data: any): void {
-    this.renderer.data, (this.signUpGraphic.Source = data);
-    this.signUpGraphic.Source = data;
-    this.signUpGraphicForm.get('Source')?.setValue(data);
-  }
-
-  // Event from child form
-  changeBgColor(bgColorData: any): void {
-    bgColorData = this.signUpGraphicForm.get('BackgroundColor')!.value;
+  // EMIT a new background color of the component to the editor
+  setBackgroundColor(color: any, i: number) {
+    const index = this.graphics.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      BackgroundColor: color,
+    });
   }
 
   // Event from child form
   changePadding(data: any) {
-    data = this.signUpGraphicForm.get('Padding')!.value;
+    data = this.parent.get('Padding')!.value;
   }
 
-  onSubmit(): void {
-    this.signUpGraphic.Version = this.signUpGraphicForm.get('Version')!.value;
-    this.signUpGraphic.Source = this.signUpGraphicForm.get('Source')!.value;
-    this.signUpGraphic.Width =
-      this.signUpGraphicForm.get('Width')!.value || '100';
-    this.signUpGraphic.Height =
-      this.signUpGraphicForm.get('Height')!.value || '100';
-    this.signUpGraphic.MinWidth = this.signUpGraphicForm.get('MinWidth')!.value;
-    this.signUpGraphic.MinHeight =
-      this.signUpGraphicForm.get('MinHeight')!.value;
-    this.signUpGraphic.BackgroundColor =
-      this.signUpGraphicForm.get('BackgroundColor')!.value;
-    this.signUpGraphic.Padding.top = this.signUpGraphicForm.get([
-      'Padding',
-      'top',
-    ])!.value;
-    this.signUpGraphic.Padding.right = this.signUpGraphicForm.get([
-      'Padding',
-      'right',
-    ])!.value;
-    this.signUpGraphic.Padding.bottom = this.signUpGraphicForm.get([
-      'Padding',
-      'bottom',
-    ])!.value;
-    this.signUpGraphic.Padding.left = this.signUpGraphicForm.get([
-      'Padding',
-      'left',
-    ])!.value;
-
-    this.is
-      .updateImageConfig(this.id, this.signUpGraphicForm.value)
-      .subscribe((res) => {
-        console.log('Image updated!');
-        this.closeSidebar();
-      });
-
-    console.log('<Image Context>: ', this.signUpGraphic);
+  // Saves component to API as individual component at current array index
+  // ex: if index is a '1', then it will save to 'API/H1/1'
+  saveComponent(i: number) {
+    const index = this.graphics.at(i);
+    console.log(i);
+    this.is.updateImageConfig(i, index.value).subscribe(() => {});
+    this.closeSidebar();
   }
+
+  // onSubmit(): void {
+  //   this.signUpGraphic.Version = this.signUpGraphicForm.get('Version')!.value;
+  //   this.signUpGraphic.Source = this.signUpGraphicForm.get('Source')!.value;
+  //   this.signUpGraphic.Width =
+  //     this.signUpGraphicForm.get('Width')!.value || '100';
+  //   this.signUpGraphic.Height =
+  //     this.signUpGraphicForm.get('Height')!.value || '100';
+  //   this.signUpGraphic.MinWidth = this.signUpGraphicForm.get('MinWidth')!.value;
+  //   this.signUpGraphic.MinHeight =
+  //     this.signUpGraphicForm.get('MinHeight')!.value;
+  //   this.signUpGraphic.BackgroundColor =
+  //     this.signUpGraphicForm.get('BackgroundColor')!.value;
+  //   this.signUpGraphic.Padding.top = this.signUpGraphicForm.get([
+  //     'Padding',
+  //     'top',
+  //   ])!.value;
+  //   this.signUpGraphic.Padding.right = this.signUpGraphicForm.get([
+  //     'Padding',
+  //     'right',
+  //   ])!.value;
+  //   this.signUpGraphic.Padding.bottom = this.signUpGraphicForm.get([
+  //     'Padding',
+  //     'bottom',
+  //   ])!.value;
+  //   this.signUpGraphic.Padding.left = this.signUpGraphicForm.get([
+  //     'Padding',
+  //     'left',
+  //   ])!.value;
+
+  //   this.is
+  //     .updateImageConfig(this.id, this.signUpGraphicForm.value)
+  //     .subscribe((res) => {
+  //       console.log('Image updated!');
+  //       this.closeSidebar();
+  //     });
+
+  //   console.log('<Image Context>: ', this.signUpGraphic);
+  // }
 }

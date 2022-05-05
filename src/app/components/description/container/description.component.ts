@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { DescriptionService } from '@app/components/description/service/description.service';
 import { Description } from '@app/components/description/model/description.interface';
+import { Colors } from '@app/services/colors/colors.interface';
+import { ColorsService } from '@app/services/colors/colors.service';
 
 @Component({
   selector: 'app-description',
@@ -13,83 +15,47 @@ export class DescriptionComponent implements OnInit {
   preview = 'Description';
   @Input() id!: number;
   luu: number = 1;
-  public description!: Description;
+  description!: Description;
+  colorPalettes!: Colors[];
 
-  descriptionForm = this.fb.group({
-    Version: '',
-    Text: '',
-    TextColor: '',
-    BackgroundColor: '',
-    Padding: this.fb.group({
-      top: '',
-      right: '',
-      bottom: '',
-      left: '',
-    }),
-  });
+  @Input()
+  payload!: FormGroup;
+
+  @Input()
+  parent!: FormGroup;
+
+  @Output()
+  versionChanged = new EventEmitter();
+
+  @Output()
+  textColorChanged = new EventEmitter();
+
+  @Output()
+  backgroundColorChanged = new EventEmitter();
+
+  // GET viewConfig FormArray and assign to 'descriptions' for use in *ngFor in template
+  get descriptions(): any {
+    return (this.parent.controls['payload'].get('viewConfig') as FormArray)
+      .controls;
+  }
 
   constructor(
     public ess: EditSidebarService,
     public ds: DescriptionService,
-    private fb: FormBuilder
+    private cs: ColorsService
   ) {}
 
   ngOnInit(): void {
-    // Make dynamic
-    this.id = this.id;
-
-    this.ds.getDescriptioneConfig(this.id).subscribe((data: any) => {
-      this.description = data;
-      console.log('Description: ', this.id);
-      this.setInitialValues();
-    });
+    this.colorPalettes = this.cs.getAppColors();
   }
 
-  createDescrition() {
-    const luu = this.id++;
-    this.ds
-      .createDescriptionConfig(luu, this.descriptionForm.value)
-      .subscribe(() => {
-        console.log('Description created!');
-      });
-
-    this.ds.getDescriptioneConfig(luu).subscribe((data: any) => {
-      this.description = data;
-      console.log('Description: ', this.description);
-    });
+  copy(i: number) {
+    const index = this.descriptions.at(i).value;
+    console.log(index);
+    this.ds.copy(index);
   }
 
-  copy() {
-    this.ds.copy(this.description);
-  }
-
-  setInitialValues() {
-    this.descriptionForm.setValue({
-      Version: this.description.Version,
-      Text: this.description.Text,
-      TextColor: this.description.TextColor,
-      BackgroundColor: this.description.BackgroundColor,
-      Padding: {
-        top: this.description.Padding.top,
-        right: this.description.Padding.right,
-        bottom: this.description.Padding.bottom,
-        left: this.description.Padding.left,
-      },
-    });
-  }
-
-  // Style object for ngStyle
-  styleObject(): Object {
-    return {
-      color: this.description.TextColor,
-      'padding-top': this.description.Padding.top + 'px',
-      'padding-right': this.description.Padding.right + 'px',
-      'padding-bottom': this.description.Padding.bottom + 'px',
-      'padding-left': this.description.Padding.left + 'px',
-    };
-  }
-
-  edit(): void {
+  edit(i: number): void {
     this.ess.showDescriptionEdit();
   }
 
@@ -98,60 +64,58 @@ export class DescriptionComponent implements OnInit {
   }
 
   // Event from child form
-  loadVersion(versionData: any): void {
-    this.ds.findDescriptioneConfig(versionData).subscribe((data: any) => {
+  loadVersion(version: any, i: number): void {
+    const index = this.descriptions.at(i);
+    this.ds.findDescriptioneConfig(version).subscribe((data: any) => {
+      console.log(data);
       this.description = data;
-      this.setInitialValues();
+      index.patchValue({
+        Version: this.description.Version,
+        Text: this.description.Text,
+        TextColor: this.description.TextColor,
+        BackgroundColor: this.description.BackgroundColor,
+        Padding: {
+          top: this.description.Padding.top,
+          right: this.description.Padding.right,
+          bottom: this.description.Padding.bottom,
+          left: this.description.Padding.left,
+        },
+      });
+    });
+    this.versionChanged.emit(index);
+  }
+
+  // EMIT a new text color of the component to the editor
+  setTextColor(color: any, i: number) {
+    const index = this.descriptions.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      TextColor: color,
+    });
+  }
+
+  // EMIT a new background color of the component to the editor
+  setBackgroundColor(color: any, i: number) {
+    const index = this.descriptions.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      BackgroundColor: color,
     });
   }
 
   // Event from child form
-  changeTextColor(textColorData: any): void {
-    textColorData = this.descriptionForm.get('TextColor')!.value;
-  }
+  // changePadding(data: any) {
+  //   data = this.descriptionForm.get('Padding')!.value;
+  // }
 
-  // Event from child form
-  changeBgColor(bgColorData: any): void {
-    bgColorData = this.descriptionForm.get('BackgroundColor')!.value;
-  }
-
-  // Event from child form
-  changePadding(data: any) {
-    data = this.descriptionForm.get('Padding')!.value;
-  }
-
-  onSubmit(): void {
-    // Assigning new form values to component style simulation
-    this.description.Version = this.descriptionForm.get('Version')!.value;
-    this.description.Text = this.descriptionForm.get('Text')!.value;
-    this.description.TextColor = this.descriptionForm.get('TextColor')!.value;
-    this.description.BackgroundColor =
-      this.descriptionForm.get('BackgroundColor')!.value;
-    this.description.Padding.top = this.descriptionForm.get([
-      'Padding',
-      'top',
-    ])!.value;
-    this.description.Padding.right = this.descriptionForm.get([
-      'Padding',
-      'right',
-    ])!.value;
-    this.description.Padding.bottom = this.descriptionForm.get([
-      'Padding',
-      'bottom',
-    ])!.value;
-    this.description.Padding.left = this.descriptionForm.get([
-      'Padding',
-      'left',
-    ])!.value;
-
-    this.ds
-      .updateDescriptionConfig(this.id, this.descriptionForm.value)
-      .subscribe(() => {
-        console.log(this.id);
-      });
-
+  // Saves component to API as individual component at current array index
+  // ex: if index is a '1', then it will save to 'API/H1/1'
+  saveComponent(i: number) {
+    const index = this.descriptions.at(i);
+    console.log(i);
+    this.ds.updateDescriptionConfig(i, index.value).subscribe(() => {});
     this.closeSidebar();
-
-    console.log('<H2 Context>: ', this.description);
   }
 }

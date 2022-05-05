@@ -1,50 +1,253 @@
 <!-- Editable wrapper -->
-<section class="w-full true-component">
-  <!-- Edit button -->
-  <div class="flex justify-start items-center">
-    <app-edit-button (click)="edit()"></app-edit-button>
-    <app-copy-button (click)="copy()"></app-copy-button>
-    <app-version-button (click)="loadVersion(2)"></app-version-button>
-  </div>
+<section class="true-component">
+  <section [formGroup]="parent" class="true-component">
+    <div>
+      <div formArrayName="graphicConfig">
+        <div *ngFor="let graphic of graphics; let i = index">
+          <div [formGroupName]="i">
+            <!-- Actual component -->
+            <div
+              [ngStyle]="{
+                'background-color': graphic.value.BackgroundColor
+              }"
+            >
+              <img
+                class="mx-auto"
+                [src]="imgHost + graphic.value.Source"
+                [ngStyle]="{
+                  width: this.graphic.value.Width + '%',
+                  height: this.graphic.value.Height + '%',
+                  'min-width': this.graphic.value.MinWidth + 'rem',
+                  'min-height': this.graphic.value.MinHeight + 'rem',
+                  'padding-top': this.graphic.value.Padding.top + 'px',
+                  'padding-right': this.graphic.value.Padding.right + 'px',
+                  'padding-bottom': this.graphic.value.Padding.bottom + 'px',
+                  'padding-left': this.graphic.value.Padding.left + 'px'
+                }"
+                alt="Graphic"
+              />
+            </div>
 
-  <!-- Actual component -->
-  <div
-    *ngIf="signUpGraphic"
-    [ngStyle]="{ 'background-color': signUpGraphic.BackgroundColor }"
-  >
-    <img
-      class="mx-auto"
-      [src]="imgHost + signUpGraphic.Source"
-      [ngStyle]="styleObject()"
-      *ngIf="signUpGraphic"
-      alt="Graphic"
-    />
-  </div>
+            <!-- Edit/Copy/Version switch buttons -->
+            <div class="edit-button">
+              <app-edit-button (click)="edit(i)"></app-edit-button>
+              <app-copy-button (click)="copy(i)"></app-copy-button>
+              <app-version-button
+                (click)="loadVersion(2, i)"
+              ></app-version-button>
+            </div>
 
-  <!-- Edit form -->
-  <form
-    [formGroup]="signUpGraphicForm"
-    (ngSubmit)="onSubmit()"
-    *ngIf="ess.showSignUpGraphicSidebar"
-  >
-    <app-editor-sidebar>
-      <app-sign-up-graphic-form
-        [parent]="signUpGraphicForm"
-        (graphicChanged)="changeGraphic($event)"
-        (bgColorChanged)="changeBgColor($event)"
-        (paddingChanged)="changePadding($event)"
-        edit-form
-      ></app-sign-up-graphic-form>
+            <!-- Edit sidebar -->
+            <app-editor-sidebar *ngIf="ess.showSignUpGraphicSidebar">
+              <!-- Base edit form -->
+              <section edit-form>
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Component Version:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Set initial value"
+                    type="text"
+                    formControlName="Version"
+                  />
+                </section>
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Sign Up Graphic:</h2>
+                  <section
+                    class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+                  >
+                    <button (click)="changeGraphic('girl-laying.svg', i)">
+                      <img src="../../../../../assets/girl-laying.svg" />
+                    </button>
+                    <button (click)="changeGraphic('girl-sitting.svg', i)">
+                      <img src="../../../../../assets/girl-sitting.svg" />
+                    </button>
+                    <button (click)="changeGraphic('question.svg', i)">
+                      <img src="../../../../../assets/question.svg" />
+                    </button>
+                    <button (click)="changeGraphic('refer-a-friend.svg', i)">
+                      <img src="../../../../../assets/refer-a-friend.svg" />
+                    </button>
+                    <button
+                      (click)="changeGraphic('signup-graphic-one.svg', i)"
+                    >
+                      <img src="../../../../../assets/signup-graphic-one.svg" />
+                    </button>
+                    <button
+                      (click)="changeGraphic('signup-graphic-two.svg', i)"
+                    >
+                      <img src="../../../../../assets/signup-graphic-two.svg" />
+                    </button>
+                    <button (click)="changeGraphic('sitting-blocks.svg', i)">
+                      <img src="../../../../../assets/sitting-blocks.svg" />
+                    </button>
+                  </section>
+                </section>
+                <section class="edit-section">
+                  <h2 class="edit-section-title">
+                    Set Image Width & Height (%):
+                  </h2>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        Width:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set initial value"
+                        type="text"
+                        formControlName="Width"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        Height:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set initial value"
+                        type="text"
+                        formControlName="Height"
+                      />
+                    </div>
+                  </div>
+                </section>
+                <section class="edit-section">
+                  <h2 class="edit-section-title">
+                    Set Image Min-Width & Min-Height (REM):
+                  </h2>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        Min-Width:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set initial value"
+                        type="text"
+                        formControlName="MinWidth"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        Min-Height:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set initial value"
+                        type="text"
+                        formControlName="MinHeight"
+                      />
+                    </div>
+                  </div>
+                </section>
+                <!-- Background Color -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Background Color:</h2>
+                  <div class="flex justify-between items-center gap-x-10">
+                    <button
+                      class="color-button bg-transparent border border-gray-400 text-gray-400"
+                      (click)="setBackgroundColor('', i)"
+                    >
+                      None
+                    </button>
+                    <button
+                      class="color-button primary-blue"
+                      (click)="setBackgroundColor('#3589F9', i)"
+                    >
+                      #3589F9
+                    </button>
+                  </div>
+                </section>
+                <!-- Padding -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Padding:</h2>
+                  <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="top"
+                      >
+                        T:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set padding top value"
+                        type="text"
+                        formControlName="top"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        R:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set padding right value"
+                        type="text"
+                        formControlName="right"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="bottom"
+                      >
+                        B:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set padding bottom value"
+                        type="text"
+                        formControlName="bottom"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="left"
+                      >
+                        L:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set padding left value"
+                        type="number"
+                        formControlName="left"
+                      />
+                    </div>
+                  </div>
+                </section>
+              </section>
+              <!-- Code edit form -->
 
-      <app-sign-up-graphic-code-form
-        [parent]="signUpGraphicForm"
-        edit-config-code
-      ></app-sign-up-graphic-code-form>
-    </app-editor-sidebar>
-  </form>
+              <!-- Save component version -->
+              <div class="form-submit-wrapper z-50" save-component>
+                <section class="form-submit-section">
+                  <app-save-button (click)="saveComponent(i)"></app-save-button>
+                  <app-cancel-button
+                    (click)="closeSidebar()"
+                  ></app-cancel-button>
+                </section>
+              </div>
+            </app-editor-sidebar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
-
-<!-- Preview -->
-<comp-preview>{{ preview }}</comp-preview>
-<!-- In flight -->
-<comp-dragging></comp-dragging>

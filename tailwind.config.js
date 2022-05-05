@@ -52,6 +52,9 @@ module.exports = {
         "ct-dark-purple": "#654cff",
         "ct-yellow": "#feec4b",
         "ct-emerald": "#19a9a5",
+        alabaster: "#edeade",
+        beige: "#f5f5dc",
+        "bone-white": "#f9f6ee",
       },
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",

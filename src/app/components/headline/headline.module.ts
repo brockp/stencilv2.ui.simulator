@@ -6,17 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
-
 import { HeadlineComponent } from '@app/components/headline/container/headline.component';
-import { HeadlineFormComponent } from '@app/components/headline/edit/headline-form/headline-form.component';
-import { HeadlineCodeFormComponent } from '@app/components/headline/edit/headline-code-form/headline-code-form.component';
+import { HeadlineSelectorComponent } from './headline-selector/headline-selector.component';
+
+import { SignUpGraphicModule } from '../sign-up-graphic/sign-up-graphic.module';
+
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
-  declarations: [
-    HeadlineComponent,
-    HeadlineFormComponent,
-    HeadlineCodeFormComponent,
-  ],
+  declarations: [HeadlineComponent, HeadlineSelectorComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -24,7 +22,9 @@ import { HeadlineCodeFormComponent } from '@app/components/headline/edit/headlin
     HttpClientModule,
     MaterialModule,
     SharedModule,
+    SignUpGraphicModule,
+    DragulaModule,
   ],
-  exports: [HeadlineComponent],
+  exports: [HeadlineComponent, HeadlineSelectorComponent],
 })
 export class HeadlineModule {}

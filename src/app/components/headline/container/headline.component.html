@@ -1,53 +1,244 @@
-<!-- Editable wrapper -->
-<main class="w-full true-component">
-  <!-- Edit button -->
-  <div class="flex justify-start items-center">
-    <app-edit-button (click)="edit()"></app-edit-button>
-    <app-copy-button (click)="copy()"></app-copy-button>
-    <app-version-button (click)="loadVersion(2)"></app-version-button>
-  </div>
-
-  <!-- Actual component -->
-  <section>
-    <div
-      class="headline-grid"
-      *ngIf="headline"
-      [ngStyle]="{ 'background-color': headline.BackgroundColor }"
-    >
-      <h1
-        class="text-2xl font-bold tracking-wide leading-10"
-        [ngStyle]="styleObject()"
-        *ngIf="headline"
+<main [formGroup]="parent" class="true-component">
+  <div formGroupName="payload">
+    <div formArrayName="viewConfig">
+      <div
+        *ngFor="let headline of headlines; let i = index"
+        dragula="COMPONENTS"
       >
-        {{ headline.Text }}
-      </h1>
+        <!-- Form-->
+        <div [formGroupName]="i">
+          <!-- Actual component -->
+          <section
+            [ngStyle]="{ 'background-color': headline.value.BackgroundColor }"
+          >
+            <div
+              class="font-bold tracking-wide leading-10"
+              [ngStyle]="{
+                'font-size': headline.value.TextSize,
+                color: headline.value.TextColor,
+                'padding-top': headline.value.Padding.top + 'px',
+                'padding-right': headline.value.Padding.right + 'px',
+                'padding-bottom': headline.value.Padding.bottom + 'px',
+                'padding-left': headline.value.Padding.left + 'px'
+              }"
+            >
+              {{ headline.value.Text }}
+            </div>
+          </section>
+
+          <!-- Edit/Copy/Version switch buttons -->
+          <div class="edit-button">
+            <app-edit-button (click)="edit(i)"></app-edit-button>
+            <app-copy-button (click)="copy(i)"></app-copy-button>
+            <app-version-button
+              (click)="loadVersion(2, i)"
+            ></app-version-button>
+          </div>
+          <!-- Edit sidebar -->
+          <app-editor-sidebar *ngIf="headlineEdit">
+            <!-- Base edit form -->
+            <section edit-form>
+              <!-- Version -->
+              <h2 class="edit-section-title">Set Component Version:</h2>
+              <input
+                class="form-control"
+                placeholder="Set component version"
+                type="text"
+                formControlName="Version"
+              />
+              <!-- H1 Text -->
+              <h2 class="edit-section-title">Set Headline:</h2>
+              <textarea
+                class="textarea-control"
+                placeholder="Set initial value"
+                type="text"
+                formControlName="Text"
+                rows="3"
+                cols="33"
+              ></textarea>
+              <!-- Text Color -->
+              <h2 class="edit-section-title">Set Text Color:</h2>
+              <section
+                class="grid grid-cols-4 justify-between items-center gap-y-4 gap-x-1 max-h-40 overflow-y-auto overflow-x-hidden"
+              >
+                <div *ngFor="let color of colorPalettes">
+                  <button
+                    class="color-button"
+                    [class]="[color.class, color.textColor]"
+                    (click)="setTextColor(color.color, i)"
+                  >
+                    {{ color.name }}
+                  </button>
+                </div>
+              </section>
+              <!-- Background Color -->
+              <h2 class="edit-section-title">Set Background Color:</h2>
+              <section
+                class="grid grid-cols-4 justify-between items-center gap-y-4 gap-x-1 max-h-40 overflow-y-auto overflow-x-hidden"
+              >
+                <div *ngFor="let color of colorPalettes">
+                  <button
+                    class="color-button"
+                    [class]="[color.class, color.textColor]"
+                    (click)="setBackgroundColor(color.color, i)"
+                  >
+                    {{ color.name }}
+                  </button>
+                </div>
+              </section>
+              <!-- Padding -->
+              <h2 class="edit-section-title">Set Padding:</h2>
+              <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+                <div class="flex gap-x-2 justify-start items-center">
+                  <label
+                    class="text-ctdark text-quicksand text-xs font-semibold"
+                    for="top"
+                  >
+                    T:
+                  </label>
+                  <input
+                    class="form-control w-full overflow-hidden"
+                    placeholder="Set padding top value"
+                    type="text"
+                    formControlName="top"
+                  />
+                </div>
+                <div class="flex gap-x-2 justify-start items-center">
+                  <label
+                    class="text-ctdark text-quicksand text-xs font-semibold"
+                    for="right"
+                  >
+                    R:
+                  </label>
+                  <input
+                    class="form-control w-full overflow-hidden"
+                    placeholder="Set padding right value"
+                    type="text"
+                    formControlName="right"
+                  />
+                </div>
+                <div class="flex gap-x-2 justify-start items-center">
+                  <label
+                    class="text-ctdark text-quicksand text-xs font-semibold"
+                    for="bottom"
+                  >
+                    B:
+                  </label>
+                  <input
+                    class="form-control w-full overflow-hidden"
+                    placeholder="Set padding bottom value"
+                    type="text"
+                    formControlName="bottom"
+                  />
+                </div>
+                <div class="flex gap-x-2 justify-start items-center">
+                  <label
+                    class="text-ctdark text-quicksand text-xs font-semibold"
+                    for="left"
+                  >
+                    L:
+                  </label>
+                  <input
+                    class="form-control w-full overflow-hidden"
+                    placeholder="Set padding left value"
+                    type="number"
+                    formControlName="left"
+                  />
+                </div>
+              </div>
+            </section>
+            <!-- Code edit form -->
+            <section edit-config-code>
+              <h2 class="edit-section-title mt-4">
+                Edit configuration code directly:
+              </h2>
+              <code class="code-box">
+                <section>
+                  <label for="icon">version: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="Version"
+                  />
+                </section>
+                <section>
+                  <label for="icon">Text: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="Text"
+                  />
+                </section>
+                <section>
+                  <label for="icon">TextColor: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="TextColor"
+                  />
+                </section>
+                <section formGroupName="Padding">
+                  <pre>Padding: </pre>
+                  <section>
+                    <label for="top">top: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="top"
+                    />
+                  </section>
+                  <section>
+                    <label for="right">right: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="right"
+                    />
+                  </section>
+                  <section>
+                    <label for="bottom">bottom: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="bottom"
+                    />
+                  </section>
+                  <section>
+                    <label for="left">left: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="left"
+                    />
+                  </section>
+                </section>
+                <section>
+                  <label for="icon">BackgroundColor: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="BackgroundColor"
+                  />
+                </section>
+              </code>
+            </section>
+            <!-- Save component version -->
+            <div class="form-submit-wrapper z-50" save-component>
+              <section class="form-submit-section">
+                <app-save-button (click)="saveComponent(i)"></app-save-button>
+                <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
+              </section>
+            </div>
+          </app-editor-sidebar>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- Edit form -->
-  <form
-    [formGroup]="headlineForm"
-    (ngSubmit)="onSubmit()"
-    *ngIf="ess.headlineEdit"
-  >
-    <app-editor-sidebar>
-      <app-headline-form
-        [parent]="headlineForm"
-        (textColorChanged)="changeTextColor($event)"
-        (bgColorChanged)="changeBgColor($event)"
-        (paddingChanged)="changePadding($event)"
-        edit-form
-      ></app-headline-form>
-
-      <app-headline-code-form
-        [parent]="headlineForm"
-        edit-config-code
-      ></app-headline-code-form>
-    </app-editor-sidebar>
-  </form>
+  </div>
 </main>
-
-<!-- Preview -->
-<comp-preview>{{ preview }}</comp-preview>
-<!-- In flight -->
-<comp-dragging></comp-dragging>
