@@ -157,9 +157,10 @@ export class EditorService {
   }
 
   // Submit full configuration information
-  sendConfig(image: any): Observable<any> {
+  sendConfig(image: any, visualConfig: any): Observable<any> {
     const body = {
-      viewConfig: image,
+      VisualConfig: visualConfig,
+      ViewConfig: image,
     };
 
     const call = this.http

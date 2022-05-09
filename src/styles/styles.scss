@@ -6,10 +6,9 @@
 @import "dragula";
 @import "animate.css";
 @import "variables";
-
-.headline-font {
-  @apply text-2xl;
-}
+@import "~tippy.js/dist/tippy.css";
+@import "~tippy.js/themes/light.css";
+@import "~tippy.js/animations/scale.css";
 
 .description-font {
   @apply text-base;
@@ -21,10 +20,6 @@ body {
 }
 
 @layer base {
-  .content-container {
-    /* @apply p-4; */
-  }
-
   .main-height {
     height: calc(100vh - 10vh);
   }

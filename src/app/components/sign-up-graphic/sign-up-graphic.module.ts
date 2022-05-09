@@ -18,7 +18,13 @@ import { GraphicSelectorComponent } from './graphic-selector/graphic-selector.co
     SignUpGraphicCodeFormComponent,
     GraphicSelectorComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+    MaterialModule,
+  ],
   exports: [SignUpGraphicComponent, GraphicSelectorComponent],
 })
 export class SignUpGraphicModule {}

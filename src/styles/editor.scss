@@ -1,7 +1,7 @@
 .viewport-canvas {
   @apply transition-all ease-out duration-150 flex items-stretch w-full min-h-full mx-auto justify-center;
   .viewport-inner-canvas {
-    @apply container max-w-full grid grid-cols-1 mx-auto shadow-md dark:bg-ctdark bg-slate-50 rounded-lg bg-none z-0 overflow-hidden text-white;
+    @apply container max-w-full grid grid-cols-1 mx-auto shadow-md dark:bg-ctdark bg-slate-50 rounded-lg bg-none z-0 overflow-hidden text-white bg-no-repeat bg-contain;
   }
 }
 .basic-layout {
@@ -144,4 +144,17 @@
 
 .vertical-options-item {
   @apply font-quicksand text-base flex justify-center items-center gap-x-1;
+}
+
+.element-button {
+  @apply text-gray-400 uppercase font-quicksand font-semibold text-sm w-full flex justify-between items-center mb-4 px-2;
+  &:hover {
+    @apply text-ct-dark-purple;
+  }
+  .element-icon {
+    @apply w-6 h-6 m-0 p-0;
+    &:hover {
+      @apply text-ct-dark-purple;
+    }
+  }
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
@@ -13,6 +19,8 @@ import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-gra
 import { primaryButton } from '@app/components/primary-button/model/primary-button.interface';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
 import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
+import { environment } from 'src/environments/environment';
+import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 
 @Component({
   selector: 'app-editor',
@@ -22,6 +30,7 @@ import { SlimEntry } from '@app/components/text-input/model/slimentry.interface'
 export class EditorComponent implements OnInit {
   fontSize!: boolean;
   descriptionFontSize!: boolean;
+  visualConfigSidebar: boolean = false;
   luu: boolean = false;
   poo: boolean = false;
 
@@ -46,6 +55,22 @@ export class EditorComponent implements OnInit {
 
   // PRIMARY form for entire editor
   form = this.fb.group({
+    visualConfig: this.fb.group({
+      BackgroundColor: '',
+      BackgroundImage: '',
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+    }),
     headlineSelector: this.es.createHeadline({}),
     descriptionSelector: this.es.createDescription({}),
     graphicSelector: this.es.createGraphic({}),
@@ -59,17 +84,39 @@ export class EditorComponent implements OnInit {
     spacerSelector: this.es.createSpacer({}),
     spacerConfig: this.fb.array([]),
     payload: this.fb.group({
-      visualConfig: this.fb.array([]),
+      finalConfig: this.fb.array([]),
       viewConfig: this.fb.array([]),
     }),
   });
+
+  imgHost = environment.imgHost;
+  bgColor = this.form.controls['visualConfig'].get('BackgroundColor')!.value;
+  bgImage = this.form.controls['visualConfig'].get('BackgroundImage')!.value;
+  marginTop =
+    this.form.controls['visualConfig'].get(['Margin', 'top'])!.value + 'px';
+  marginRight =
+    this.form.controls['visualConfig'].get(['Margin', 'right'])!.value + 'px';
+  marginBottom =
+    this.form.controls['visualConfig'].get(['Margin', 'bottom'])!.value + 'px';
+  marginLeft =
+    this.form.controls['visualConfig'].get(['Margin', 'left'])!.value + 'px';
+
+  paddingTop =
+    this.form.controls['visualConfig'].get(['Padding', 'top'])!.value + 'px';
+  paddingRight =
+    this.form.controls['visualConfig'].get(['Padding', 'right'])!.value + 'px';
+  paddingBottom =
+    this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value + 'px';
+  paddingLeft =
+    this.form.controls['visualConfig'].get(['Padding', 'left'])!.value + 'px';
 
   constructor(
     public vps: ViewportService,
     private dragulaService: DragulaService,
     public los: LayoutOptionsService,
     private es: EditorService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ess: EditSidebarService
   ) {
     this.dragulaService.createGroup('COMPONENTS', {
       invalid: (handle) => handle!.className === 'sidebar',
@@ -84,8 +131,8 @@ export class EditorComponent implements OnInit {
     return this.form.controls['payload'].get('viewConfig') as FormArray;
   }
 
-  get visualConfig() {
-    return this.form.controls['payload'].get('visualConfig') as FormArray;
+  get finalConfig() {
+    return this.form.controls['payload'].get('finalConfig') as FormArray;
   }
 
   get graphicConfig() {
@@ -106,6 +153,15 @@ export class EditorComponent implements OnInit {
 
   get spacerConfig() {
     return this.form.get('spacerConfig') as FormArray;
+  }
+
+  edit(): void {
+    this.visualConfigSidebar = true;
+  }
+
+  closeSidebar() {
+    this.ess.hideHomeEdit();
+    this.visualConfigSidebar = false;
   }
 
   // Pushes the dynamically created FormGroup to the FormArray
@@ -166,9 +222,63 @@ export class EditorComponent implements OnInit {
     this.form.updateValueAndValidity();
   }
 
+  updateVisualConfig() {
+    this.form.controls['visualConfig'].patchValue({
+      BackgroundColor:
+        this.form.controls['visualConfig'].get('BackgroundColor')!.value,
+      BackgroundImage:
+        this.form.controls['visualConfig'].get('BackgroundImage')!.value,
+      Margin: {
+        top: this.form.controls['visualConfig'].get(['Margin', 'top'])!.value,
+        right: this.form.controls['visualConfig'].get(['Margin', 'right'])!
+          .value,
+        bottom: this.form.controls['visualConfig'].get(['Margin', 'bottom'])!
+          .value,
+        left: this.form.controls['visualConfig'].get(['Margin', 'left'])!.value,
+      },
+      Padding: {
+        top: this.form.controls['visualConfig'].get(['Padding', 'top'])!.value,
+        right: this.form.controls['visualConfig'].get(['Padding', 'right'])!
+          .value,
+        bottom: this.form.controls['visualConfig'].get(['Padding', 'bottom'])!
+          .value,
+        left: this.form.controls['visualConfig'].get(['Padding', 'left'])!
+          .value,
+      },
+    });
+
+    this.paddingTop =
+      this.form.controls['visualConfig'].get(['Padding', 'top'])!.value + 'px';
+    this.paddingRight =
+      this.form.controls['visualConfig'].get(['Padding', 'right'])!.value +
+      'px';
+    this.paddingBottom =
+      this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value +
+      'px';
+    this.paddingLeft =
+      this.form.controls['visualConfig'].get(['Padding', 'left'])!.value + 'px';
+
+    this.bgColor =
+      this.form.controls['visualConfig'].get('BackgroundColor')!.value;
+    this.bgImage =
+      this.form.controls['visualConfig'].get('BackgroundImage')!.value;
+    this.marginTop =
+      this.form.controls['visualConfig'].get(['Margin', 'top'])!.value + 'px';
+    this.marginRight =
+      this.form.controls['visualConfig'].get(['Margin', 'right'])!.value + 'px';
+    this.marginBottom =
+      this.form.controls['visualConfig'].get(['Margin', 'bottom'])!.value +
+      'px';
+    this.marginLeft =
+      this.form.controls['visualConfig'].get(['Margin', 'left'])!.value + 'px';
+
+    console.log(this.paddingTop);
+  }
+
   // FINAL submit of full data set to Stencil
   onSubmit(): void {
-    let final = this.visualConfig.controls.concat(
+    let visualConfig = this.form.get('visualConfig')!.value;
+    let final = this.finalConfig.controls.concat(
       this.viewConfig.value,
       this.graphicConfig.value,
       this.buttonConfig.value,
@@ -177,14 +287,35 @@ export class EditorComponent implements OnInit {
       this.spacerConfig.value
     );
 
-    console.log(final);
+    console.log('Visual Config: ', visualConfig, 'View Config: ', final);
 
-    this.es.sendConfig(final).subscribe(() => {});
+    this.es.sendConfig(final, visualConfig).subscribe(() => {});
   }
 
   ////////////////////////////////////////////////////
   // Utility functions to support viewport adjustments
   ////////////////////////////////////////////////////
+
+  changeVisaulConfigBgColor(color: any): void {
+    this.form.controls['visualConfig'].patchValue({
+      BackgroundColor: color,
+    });
+    this.form.updateValueAndValidity();
+
+    this.bgColor =
+      this.form.controls['visualConfig'].get('BackgroundColor')!.value;
+  }
+
+  changeVisualConfigBgImage(image: any): void {
+    this.form.controls['visualConfig'].patchValue({
+      BackgroundImage: image,
+    });
+    this.form.updateValueAndValidity();
+
+    this.bgImage =
+      this.form.controls['visualConfig'].get('BackgroundImage')!.value;
+  }
+
   basicLayout(): void {
     this.los.basicLayoutOptions();
   }

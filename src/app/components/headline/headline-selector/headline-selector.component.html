@@ -1,9 +1,8 @@
 <div [formGroup]="parent">
-  <div class="">
-    <div formGroupName="headlineSelector">
-      <button class="bg-blue-400 text-white" type="button" (click)="onAdd()">
-        Add headline
-      </button>
-    </div>
+  <div formGroupName="headlineSelector">
+    <button class="element-button" type="button" (click)="onAdd()">
+      Headline
+      <mat-icon class="element-icon">add_circle_outline</mat-icon>
+    </button>
   </div>
 </div>

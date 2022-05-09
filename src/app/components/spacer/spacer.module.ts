@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EditorRoutingModule } from '@app/editor/editor-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { SpacerComponent } from './container/spacer.component';
@@ -18,6 +18,7 @@ import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.compo
     SharedModule,
     RouterModule,
     EditorRoutingModule,
+    MaterialModule,
   ],
   exports: [SpacerComponent, SpacerSelectorComponent],
 })

@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Libraries
 import { DragulaModule } from 'ng2-dragula';
-import { DndModule } from 'ngx-drag-drop';
 
 // Services
 import { ViewportService } from '../services/viewport/viewport.service';
@@ -30,6 +29,11 @@ import { SpacerModule } from '@app/components/spacer/spacer.module';
 
 // Helper Components
 import { SharedModule } from '@app/shared/shared.module';
+import {
+  TippyModule,
+  tooltipVariation,
+  popperVariation,
+} from '@ngneat/helipopper';
 
 // testing
 import { MaterialModule } from '@app/shared/material.module';
@@ -54,8 +58,14 @@ import { MaterialModule } from '@app/shared/material.module';
     TextareaModule,
     SpacerModule,
     SharedModule,
-    DndModule,
     DragulaModule.forRoot(),
+    TippyModule.forRoot({
+      defaultVariation: 'tooltip',
+      variations: {
+        tooltip: tooltipVariation,
+        popper: popperVariation,
+      },
+    }),
   ],
   exports: [EditorComponent],
   providers: [ViewportService],

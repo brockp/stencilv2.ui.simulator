@@ -1,27 +1,14 @@
 <mat-sidenav-container class="main-content-container dark">
   <mat-sidenav class="main-sidenav" opened="true" mode="side" #snav>
     <mat-nav-list class="preview-container">
-      <!---->
-      <div
-        class="flex justify-start items-center gap-x-3 pl-4 border-b border-gray-300"
-      >
-        <img
-          class="w-6 h-6"
-          src="../../../assets/stencil-logo.svg"
-          alt="Stencil Logo"
-        />
-        <button mat-button (click)="accordion.openAll()">
-          <mat-icon>expand</mat-icon>
-        </button>
-        <button mat-button (click)="accordion.closeAll()">
-          <mat-icon>unfold_less</mat-icon>
-        </button>
-      </div>
       <mat-accordion multi>
-        <mat-expansion-panel class="border-l-4 border-ctdark">
+        <!-- Components-->
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h2>Base Elements</h2>
+              <h2 class="text-blueprint uppercase font-quicksand font-semibold">
+                Base Elements
+              </h2>
             </mat-panel-title>
             <mat-panel-description>
               <mat-icon>arrow_down</mat-icon>
@@ -35,7 +22,6 @@
               [headlines]="headlines"
               (added)="addHeadline($event)"
             ></app-headline-selector>
-            <br /><br />
 
             <app-description-selector
               [parent]="form"
@@ -49,7 +35,6 @@
               (graphicAdded)="addGraphic($event)"
             >
             </app-graphic-selector>
-            <br /><br />
 
             <app-primary-button-selector
               [parent]="form"
@@ -64,7 +49,6 @@
               (iconButtonAdded)="addIconButton($event)"
             >
             </app-icon-button-selector>
-            <br /><br /><br />
 
             <app-text-input-selector
               [parent]="form"
@@ -72,7 +56,6 @@
               (slimEntryAdded)="addSlimEntry($event)"
             >
             </app-text-input-selector>
-            <br /><br />
 
             <app-spacer-selector
               [parent]="form"
@@ -80,31 +63,16 @@
               (spacerAdded)="addSpacer($event)"
             ></app-spacer-selector>
 
-            <!-- <app-headline [id]="1"></app-headline>
-            <app-headline [id]="2"></app-headline>
-            <app-description [id]="1"></app-description>
-            <app-description [id]="2"></app-description>
-            <app-sign-up-graphic [id]="1"></app-sign-up-graphic>
-            <app-sign-up-graphic [id]="2"></app-sign-up-graphic>
-            <app-icon-button [id]="1"></app-icon-button>
-            <app-icon-button [id]="2"></app-icon-button>
-            <app-primary-button [id]="1"></app-primary-button>
-            <app-primary-button [id]="2"></app-primary-button>
-            <app-header></app-header>
-            <app-text-input [id]="1"></app-text-input>
-            <app-text-input [id]="2"></app-text-input>
-            <app-spacer [id]="1"></app-spacer>
-            <app-spacer [id]="2"></app-spacer>
-            <app-carousel></app-carousel> -->
-
             <hr size="1" />
           </section>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="border-l-4 border-ctdark">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h2>Curated Components</h2>
+              <h2 class="text-blueprint uppercase font-quicksand font-semibold">
+                Curated Components
+              </h2>
             </mat-panel-title>
             <mat-panel-description>
               <mat-icon>arrow_down</mat-icon>
@@ -116,110 +84,66 @@
             <hr size="1" />
           </section>
         </mat-expansion-panel>
-
-        <mat-expansion-panel class="border-l-4 border-ctdark">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h2>VisualConfig Options</h2>
-            </mat-panel-title>
-            <mat-panel-description>
-              <mat-icon>arrow_down</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <p class="p-0 mb-3 font-quicksand text-sm italic text-gray-400">
-            Set the overall vertical VisualConfig for the screen.
-          </p>
-
-          <mat-list role="list">
-            <mat-list-item role="listitem">
-              <section (click)="basicLayout()" class="vertical-options-item">
-                <img
-                  src="../../../assets/icons/normal-layout-icon.svg"
-                  class="w-8 h-8"
-                />
-                <div class="font-quicksand font-semibold text-sm capitalize">
-                  Normal
-                </div>
-              </section>
-            </mat-list-item>
-            <mat-list-item role="listitem"
-              ><section
-                (click)="noFooterLayout()"
-                class="vertical-options-item"
-              >
-                <img
-                  src="../../../assets/icons/no-footer-layout-icon.svg"
-                  class="w-8 h-8"
-                />
-                <div class="font-quicksand font-semibold text-sm capitalize">
-                  No Footer
-                </div>
-              </section>
-            </mat-list-item>
-            <mat-list-item role="listitem"
-              ><section
-                (click)="noHeaderLayout()"
-                class="vertical-options-item"
-              >
-                <img
-                  src="../../../assets/icons/no-header-layout-icon.svg"
-                  class="w-8 h-8"
-                />
-                <div class="font-quicksand font-semibold text-sm capitalize">
-                  No Header
-                </div>
-              </section>
-            </mat-list-item>
-
-            <mat-list-item role="listitem"
-              ><span (click)="verticalLayout()" class="vertical-options-item">
-                <img
-                  src="../../../assets/icons/no-rows-layout-icon.svg"
-                  class="w-8 h-8"
-                />
-                <div class="font-quicksand font-semibold text-sm capitalize">
-                  No Rows
-                </div>
-              </span>
-            </mat-list-item>
-            <mat-list-item> </mat-list-item>
-          </mat-list>
-        </mat-expansion-panel>
       </mat-accordion>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <section [formGroup]="form" (ngSubmit)="onSubmit()">
-      <main class="content-container">
-        <div class="flex justify-start items-center gap-x-3 p-4">
-          <span (click)="snav.toggle()" class="viewport-icon">
-            <mat-icon>menu</mat-icon>
-          </span>
-          <span (click)="setiPhone11()" class="viewport-icon">
+      <main>
+        <section class="flex justify-between items-center max-h-16">
+          <span (click)="snav.toggle()">
             <img
-              class="viewport-icon"
-              src="../../../assets/iphonex.svg"
-              alt="iPhone Icon"
+              class="ml-4 h-10 cursor-pointer"
+              tippy="Open Menu"
+              src="../../../assets/stencil-logo.svg"
+              alt="Stencil Logo"
             />
           </span>
-          <span (click)="setAndroid()" class="viewport-icon">
-            <img
-              class="viewport-icon"
-              src="../../../assets/android.svg"
-              alt="Android Phone Icon"
-            />
-          </span>
-          <span (click)="desktopViewPort()" class="viewport-icon">
-            <img
-              class="viewport-icon"
-              src="../../../assets/web-browser.svg"
-              alt="Web Browser Icon"
-            />
-          </span>
-        </div>
+          <div class="flex justify-center items-center gap-x-12 p-4 ml-20">
+            <span (click)="setiPhone11()" class="viewport-icon">
+              <button
+                class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+              >
+                IPHONE
+              </button>
+            </span>
+            <span (click)="setAndroid()" class="viewport-icon">
+              <button
+                class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+              >
+                ANDROID
+              </button>
+            </span>
+            <span (click)="desktopViewPort()" class="viewport-icon">
+              <button
+                class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+              >
+                DESKTOP
+              </button>
+            </span>
+          </div>
+          <section class="flex justify-start items-center">
+            <div>
+              <img
+                class="w-8 h-8 hover:cursor-pointer"
+                (click)="edit()"
+                tippy="Edit VisualConfig"
+                src="../../../assets/edit-visualconfig-icon.svg"
+              />
+            </div>
+            <div class="pr-4">
+              <button
+                class="py-2 px-3 bg-transparent border border-blueprint hover:bg-blueprint hover:text-white transition ease-in-out duration-100 hover:cursor-pointer hover:scale-110 text-ct-dark text-sm font-semibold rounded-md shadow focus:outline-none"
+                (click)="onSubmit()"
+              >
+                Submit Screen
+              </button>
+            </div>
+          </section>
+        </section>
 
+        <!-- Phone screen -->
         <section
           [ngClass]="{
             'max-w-Android': vps.android,
@@ -243,6 +167,18 @@
               'no-header': los.noHeader,
               'vertical-layout': los.vertical
             }"
+            [ngStyle]="{
+              'background-color': bgColor,
+              'background-image': 'url(assets/' + bgImage + ')',
+              'margin-top': marginTop,
+              'margin-right': marginRight,
+              'margin-bottom': marginBottom,
+              'margin-left': marginLeft,
+              'padding-top': paddingTop,
+              'padding-right': paddingRight,
+              'padding-bottom': paddingBottom,
+              'padding-left': paddingLeft
+            }"
           >
             <div
               class="flex justify-start flex-col border-red-300 border-b-2"
@@ -264,15 +200,332 @@
               class="flex justify-end flex-col pb-4 border-red-300"
               dragula="COMPONENTS"
             ></div>
-
-            <button
-              class="text-white bg-blue-500 rounded-full px-2 py-1"
-              (click)="onSubmit()"
-            >
-              Send Configuration
-            </button>
           </div>
         </section>
+
+        <!-- Edit sidebar for VisualConfig ONLY -->
+        <app-editor-sidebar *ngIf="visualConfigSidebar">
+          <!-- Edit form VisualConfig -->
+          <div edit-form>
+            <div formGroupName="visualConfig">
+              <!-- VisualConfig Padding -->
+              <section class="edit-section">
+                <h2 class="edit-section-title">Set Screen Padding:</h2>
+                <div formGroupName="Padding" class="grid grid-cols-4 gap-3">
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="top"
+                    >
+                      T:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="top"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="right"
+                    >
+                      R:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="right"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="bottom"
+                    >
+                      B:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="bottom"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="left"
+                    >
+                      L:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="number"
+                      formControlName="left"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <!-- VisualConfig Margin -->
+              <section class="edit-section">
+                <h2 class="edit-section-title">Set Screen Margin:</h2>
+                <div formGroupName="Margin" class="grid grid-cols-4 gap-3">
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="top"
+                    >
+                      T:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="top"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="right"
+                    >
+                      R:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="right"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="bottom"
+                    >
+                      B:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="text"
+                      formControlName="bottom"
+                    />
+                  </div>
+                  <div class="flex gap-x-2 justify-start items-center">
+                    <label
+                      class="text-ctdark text-quicksand text-xs font-semibold"
+                      for="left"
+                    >
+                      L:
+                    </label>
+                    <input
+                      class="form-control w-full overflow-hidden"
+                      placeholder="#"
+                      type="number"
+                      formControlName="left"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <!-- Background Color -->
+              <section class="edit-section">
+                <h2 class="edit-section-title">Set Screen Background Color:</h2>
+                <div class="flex justify-between items-center gap-x-10">
+                  <button
+                    class="color-button primary-blue text-white"
+                    (click)="changeVisaulConfigBgColor('#3589f9')"
+                  >
+                    #3589F9
+                  </button>
+                  <button
+                    class="color-button purple-black text-white"
+                    (click)="changeVisaulConfigBgColor('#1a152e')"
+                  >
+                    #1A152E
+                  </button>
+                  <button
+                    class="color-button lighter-blue text-white"
+                    (click)="changeVisaulConfigBgColor('#62b4ff')"
+                  >
+                    #62B4FF
+                  </button>
+                </div>
+              </section>
+
+              <!-- Background Image -->
+              <section class="edit-section">
+                <h2 class="edit-section-title">Set Sign Up Graphic:</h2>
+                <section
+                  class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
+                >
+                  <button
+                    (click)="changeVisualConfigBgImage('girl-laying.svg')"
+                  >
+                    <img src="../../../../../assets/girl-laying.svg" />
+                  </button>
+                  <button
+                    (click)="changeVisualConfigBgImage('girl-sitting.svg')"
+                  >
+                    <img src="../../../../../assets/girl-sitting.svg" />
+                  </button>
+                  <button (click)="changeVisualConfigBgImage('question.svg')">
+                    <img src="../../../../../assets/question.svg" />
+                  </button>
+                  <button
+                    (click)="changeVisualConfigBgImage('refer-a-friend.svg')"
+                  >
+                    <img src="../../../../../assets/refer-a-friend.svg" />
+                  </button>
+                  <button
+                    (click)="
+                      changeVisualConfigBgImage('signup-graphic-one.svg')
+                    "
+                  >
+                    <img src="../../../../../assets/signup-graphic-one.svg" />
+                  </button>
+                  <button
+                    (click)="
+                      changeVisualConfigBgImage('signup-graphic-two.svg')
+                    "
+                  >
+                    <img src="../../../../../assets/signup-graphic-two.svg" />
+                  </button>
+                  <button
+                    (click)="changeVisualConfigBgImage('sitting-blocks.svg')"
+                  >
+                    <img src="../../../../../assets/sitting-blocks.svg" />
+                  </button>
+                </section>
+              </section>
+            </div>
+          </div>
+
+          <div edit-config-code formGroupName="visualConfig">
+            <!-- Code edit form -->
+            <code class="code-box" edit-config-code>
+              <section>
+                <label for="icon" class="text-white">BackgroundColor: </label>
+                <input
+                  class="code-form-control"
+                  type="text"
+                  formControlName="BackgroundColor"
+                />
+              </section>
+
+              <section>
+                <label for="icon" class="text-white">BackgroundImage: </label>
+                <input
+                  class="code-form-control"
+                  type="text"
+                  formControlName="BackgroundImage"
+                />
+              </section>
+
+              <section formGroupName="Padding">
+                <pre class="text-white">Padding </pre>
+
+                <section>
+                  <label for="top" class="text-white">top: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="top"
+                  />
+                </section>
+
+                <section>
+                  <label for="right" class="text-white">right: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="right"
+                  />
+                </section>
+
+                <section>
+                  <label for="bottom" class="text-white">bottom: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="bottom"
+                  />
+                </section>
+
+                <section>
+                  <label for="left" class="text-white">left: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="left"
+                  />
+                </section>
+              </section>
+
+              <section formGroupName="Margin">
+                <pre class="text-white">Margin </pre>
+
+                <section>
+                  <label for="top" class="text-white">top: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="top"
+                  />
+                </section>
+
+                <section>
+                  <label for="right" class="text-white">right: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="right"
+                  />
+                </section>
+
+                <section>
+                  <label for="bottom" class="text-white">bottom: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="bottom"
+                  />
+                </section>
+
+                <section>
+                  <label for="left" class="text-white">left: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="left"
+                  />
+                </section>
+              </section>
+            </code>
+          </div>
+
+          <!-- Save component version -->
+          <div class="form-submit-wrapper z-50" save-component>
+            <section class="form-submit-section">
+              <app-save-button (click)="updateVisualConfig()"></app-save-button>
+              <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
+            </section>
+          </div>
+        </app-editor-sidebar>
       </main>
     </section>
   </mat-sidenav-content>
