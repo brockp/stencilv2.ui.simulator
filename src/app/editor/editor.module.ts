@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Libraries
 import { DragulaModule } from 'ng2-dragula';
+import { SortablejsModule } from 'ngx-sortablejs';
 
 // Services
 import { ViewportService } from '../services/viewport/viewport.service';
@@ -58,7 +59,7 @@ import { MaterialModule } from '@app/shared/material.module';
     TextareaModule,
     SpacerModule,
     SharedModule,
-    DragulaModule.forRoot(),
+    SortablejsModule.forRoot({ animation: 150 }),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {

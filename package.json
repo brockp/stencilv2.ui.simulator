@@ -1,6 +1,6 @@
 {
   "name": "stencil.ui.simulator",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,6 +8,7 @@
     "build:stats": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/stencil.ui.simulator/stats.json",
     "json:server": "json-server --watch db.json",
+    "gzip": "gzipper compress ./dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -32,7 +33,9 @@
     "keen-slider": "^6.6.4",
     "ng2-dragula": "^2.1.1",
     "ngx-drag-scroll": "^13.0.0-beta.1",
+    "ngx-sortablejs": "^11.1.0",
     "rxjs": "~7.4.0",
+    "sortablejs": "^1.15.0",
     "tailwindcss": "^3.0.23",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -44,7 +47,8 @@
     "@tailwindcss/forms": "^0.5.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
-    "@types/sortablejs": "^1.10.7",
+    "@types/sortablejs": "^1.13.0",
+    "gzipper": "^7.1.0",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

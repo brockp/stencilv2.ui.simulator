@@ -5,20 +5,28 @@
       <div *ngFor="let entry of slimEntries; let i = index">
         <div [formGroupName]="i">
           <!-- Actual component -->
-          <mat-form-field
-            class="w-full px-8 text-white"
-            [appearance]="entry.value.Borderless"
-          >
-            <mat-label class="text-white">{{
-              entry.value.FieldName
-            }}</mat-label>
-            <input
-              [type]="entry.value.Type"
-              matInput
-              [placeholder]="entry.value.Placeholder"
-              [required]="entry.value.IsRequired"
-            />
-          </mat-form-field>
+          <div dragula="COMPONENTS">
+            <mat-form-field
+              class="w-full px-8 text-white font-quicksand font-semibold"
+              [appearance]="entry.value.Borderless"
+              [ngStyle]="{
+                'padding-top': this.entry.value.Padding.top + 'px',
+                'padding-right': this.entry.value.Padding.right + 'px',
+                'padding-bottom': this.entry.value.Padding.bottom + 'px',
+                'padding-left': this.entry.value.Padding.left + 'px'
+              }"
+            >
+              <mat-label class="text-white">{{
+                entry.value.FieldName
+              }}</mat-label>
+              <input
+                [type]="entry.value.Type"
+                matInput
+                [placeholder]="entry.value.Placeholder"
+                [required]="entry.value.IsRequired"
+              />
+            </mat-form-field>
+          </div>
 
           <!-- Edit/Copy/Version switch buttons -->
           <div class="edit-button">
@@ -29,7 +37,7 @@
             ></app-version-button>
           </div>
 
-          <app-editor-sidebar>
+          <app-editor-sidebar *ngIf="ess.textInputEdit">
             <!-- Edit form -->
             <section edit-form>
               <section class="edit-section">
@@ -42,24 +50,22 @@
                 />
               </section>
 
-              <div class="grid grid-cols-2 gap-x-2">
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Is it required?:</h2>
-                  <mat-checkbox
-                    class="form-control font-quicksand text-sm font-semibold"
-                    formControlName="IsRequired"
-                    >Make Required</mat-checkbox
-                  >
-                </section>
-                <section class="edit-section">
+              <section class="edit-section">
+                <h2 class="edit-section-title">Is it required?:</h2>
+                <mat-checkbox
+                  class="form-control font-quicksand text-sm font-semibold"
+                  formControlName="IsRequired"
+                  >Make Required</mat-checkbox
+                >
+              </section>
+              <!-- <section class="edit-section">
                   <h2 class="edit-section-title">Is it a password field?:</h2>
                   <mat-checkbox
                     class="form-control font-quicksand text-sm font-semibold"
-                    formControlName="IsPassword"
+                    formControlName="Type"
                     >Make Password</mat-checkbox
                   >
-                </section>
-              </div>
+                </section> -->
 
               <section class="edit-section">
                 <h2 class="edit-section-title">Set GroupName:</h2>

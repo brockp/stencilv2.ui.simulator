@@ -26,7 +26,6 @@ export class HeadlineComponent implements OnInit {
   headline!: Headline;
   imgHost = environment.imgHost;
   colorPalettes!: Colors[];
-  headlineEdit = false;
 
   @Input()
   textOnly!: boolean;
@@ -78,13 +77,12 @@ export class HeadlineComponent implements OnInit {
 
   // Trigger edit sidebar
   edit(i: number): void {
-    this.headlineEdit = true;
-    this.changeDetector.detectChanges();
+    this.ess.showHeadlineEdit(i);
   }
 
   // Close edit sidebar
   closeSidebar() {
-    this.headlineEdit = false;
+    this.ess.hideHomeEdit();
     this.changeDetector.detectChanges();
   }
 

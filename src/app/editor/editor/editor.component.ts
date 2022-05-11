@@ -1,11 +1,11 @@
 import {
-  ChangeDetectorRef,
   Component,
+  EventEmitter,
   OnInit,
-  Renderer2,
+  Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
 import { DragulaService } from 'ng2-dragula';
@@ -21,6 +21,8 @@ import { iconButton } from '@app/components/icon-button/model/icon-button.interf
 import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
 import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
+import { Colors } from '@app/services/colors/colors.interface';
+import { HeadlineService } from '@app/components/headline/service/headline.service';
 
 @Component({
   selector: 'app-editor',
@@ -31,8 +33,10 @@ export class EditorComponent implements OnInit {
   fontSize!: boolean;
   descriptionFontSize!: boolean;
   visualConfigSidebar: boolean = false;
+  colorPalettes!: Colors[];
   luu: boolean = false;
   poo: boolean = false;
+  yuu!: FormGroup;
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   headlines: Headline[] = [];
@@ -112,16 +116,16 @@ export class EditorComponent implements OnInit {
 
   constructor(
     public vps: ViewportService,
-    private dragulaService: DragulaService,
     public los: LayoutOptionsService,
     private es: EditorService,
     private fb: FormBuilder,
-    private ess: EditSidebarService
+    public ess: EditSidebarService,
+    private hs: HeadlineService
   ) {
-    this.dragulaService.createGroup('COMPONENTS', {
-      invalid: (handle) => handle!.className === 'sidebar',
-      removeOnSpill: true,
-    });
+    // this.dragulaService.createGroup('COMPONENTS', {
+    //   invalid: (el, handle) => el!.classList.contains('sidebar'),
+    //   removeOnSpill: true,
+    // });
   }
 
   ngOnInit(): void {}
@@ -167,9 +171,6 @@ export class EditorComponent implements OnInit {
   // Pushes the dynamically created FormGroup to the FormArray
   addHeadline(headline: any): any {
     this.viewConfig.push(this.es.createHeadline(headline));
-    // Debug only
-    console.log(headline);
-    console.log(Object.keys(headline));
   }
 
   addDescription(description: any): any {
@@ -191,7 +192,7 @@ export class EditorComponent implements OnInit {
   }
 
   addIconButton(button: any): any {
-    this.iconButtonConfig.push(this.es.createIconButton(button));
+    this.viewConfig.push(this.es.createIconButton(button));
   }
 
   addSlimEntry(input: any): any {

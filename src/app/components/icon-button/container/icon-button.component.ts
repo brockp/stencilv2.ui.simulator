@@ -11,6 +11,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-icon-button',
@@ -48,7 +49,8 @@ export class IconButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get iconButtons(): any {
-    return (this.parent.get('iconButtonConfig') as FormArray).controls;
+    return (this.parent.controls['payload'].get('viewConfig') as FormArray)
+      .controls;
   }
 
   constructor(public ess: EditSidebarService, public ibs: IconButtonService) {}
@@ -61,8 +63,9 @@ export class IconButtonComponent implements OnInit {
     this.ibs.copy(index);
   }
 
-  edit(i: number): void {
+  edit(): void {
     this.ess.showIconButtonEdit();
+    console.log(this.ess.iconButtonOnly);
   }
 
   closeSidebar() {

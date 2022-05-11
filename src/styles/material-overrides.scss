@@ -37,6 +37,11 @@
   color: white !important;
 }
 
+// Replaces mat-input placeholder color
+.mat-input-element::placeholder {
+  color: white !important;
+}
+
 .mat-form-field-label {
   color: white !important;
 }

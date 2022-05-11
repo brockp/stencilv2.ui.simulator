@@ -12,6 +12,7 @@ import { TextInputService } from '@app/components/text-input/service/text-input.
 export class TextInputComponent implements OnInit {
   preview = 'SlimEntry';
   slimEntry!: SlimEntry;
+  isChecked: any = false;
 
   @Input()
   payload!: FormGroup;

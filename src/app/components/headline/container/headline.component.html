@@ -1,10 +1,7 @@
 <main [formGroup]="parent" class="true-component">
   <div formGroupName="payload">
-    <div formArrayName="viewConfig">
-      <div
-        *ngFor="let headline of headlines; let i = index"
-        dragula="COMPONENTS"
-      >
+    <div formArrayName="viewConfig" [sortablejs]="headlines">
+      <div *ngFor="let headline of headlines; let i = index">
         <!-- Form-->
         <div [formGroupName]="i">
           <!-- Actual component -->
@@ -35,7 +32,7 @@
             ></app-version-button>
           </div>
           <!-- Edit sidebar -->
-          <app-editor-sidebar *ngIf="headlineEdit">
+          <app-editor-sidebar class="sidebar" *ngIf="ess.headlineEdit">
             <!-- Base edit form -->
             <section edit-form>
               <!-- Version -->

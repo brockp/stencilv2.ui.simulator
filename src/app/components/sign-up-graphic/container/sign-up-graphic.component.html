@@ -3,7 +3,10 @@
   <section [formGroup]="parent" class="true-component">
     <div>
       <div formArrayName="graphicConfig">
-        <div *ngFor="let graphic of graphics; let i = index">
+        <div
+          *ngFor="let graphic of graphics; let i = index"
+          dragula="COMPONENTS"
+        >
           <div [formGroupName]="i">
             <!-- Actual component -->
             <div

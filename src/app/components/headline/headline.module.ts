@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { SortablejsModule } from 'ngx-sortablejs';
 import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { HeadlineComponent } from '@app/components/headline/container/headline.component';
@@ -24,6 +24,7 @@ import { DragulaModule } from 'ng2-dragula';
     SharedModule,
     SignUpGraphicModule,
     DragulaModule,
+    SortablejsModule,
   ],
   exports: [HeadlineComponent, HeadlineSelectorComponent],
 })
