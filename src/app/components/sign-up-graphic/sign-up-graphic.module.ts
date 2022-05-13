@@ -8,6 +8,7 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { SignUpGraphicComponent } from '@app/components/sign-up-graphic/container/sign-up-graphic.component';
 import { GraphicSelectorComponent } from './graphic-selector/graphic-selector.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [SignUpGraphicComponent, GraphicSelectorComponent],
@@ -17,6 +18,7 @@ import { GraphicSelectorComponent } from './graphic-selector/graphic-selector.co
     HttpClientModule,
     SharedModule,
     MaterialModule,
+    DragulaModule,
   ],
   exports: [SignUpGraphicComponent, GraphicSelectorComponent],
 })

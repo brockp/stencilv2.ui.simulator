@@ -182,12 +182,14 @@
           >
             <div
               class="flex justify-start flex-col border-red-300 border-b-2"
+              dragula="COMPONENTS"
             ></div>
             <div
               class="flex justify-start flex-col border-red-300 border-b-2"
-              [sortablejs]="viewConfig"
+              dragula="COMPONENTS"
             >
               <app-headline [parent]="form"></app-headline>
+              <app-description [parent]="form"></app-description>
               <app-sign-up-graphic [parent]="form"></app-sign-up-graphic>
               <app-primary-button [parent]="form"></app-primary-button>
               <app-icon-button [parent]="form"></app-icon-button>
@@ -195,7 +197,10 @@
               <app-spacer [parent]="form"></app-spacer>
             </div>
             <!-- ADD CHILD COMPONENT HERE THAT WILL GET ADDED TO THE FORMARRAY -->
-            <div class="flex justify-end flex-col pb-4 border-red-300"></div>
+            <div
+              class="flex justify-end flex-col pb-4 border-red-300"
+              dragula="COMPONENTS"
+            ></div>
           </div>
         </section>
 

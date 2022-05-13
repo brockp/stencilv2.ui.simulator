@@ -1,8 +1,8 @@
 <main [formGroup]="parent" class="true-component">
-  <div formGroupName="payload">
-    <div formArrayName="viewConfig" [sortablejs]="headlines">
-      <div *ngFor="let headline of headlines; let i = index">
-        <!-- Form-->
+  <div formArrayName="headlineConfig">
+    <div *ngFor="let headline of headlines; let i = index">
+      <!-- Form-->
+      <section dragula="COMPONENTS" *ngIf="headline">
         <div [formGroupName]="i">
           <!-- Actual component -->
           <section
@@ -22,7 +22,6 @@
               {{ headline.value.Text }}
             </div>
           </section>
-
           <!-- Edit/Copy/Version switch buttons -->
           <div class="edit-button">
             <app-edit-button (click)="edit(i)"></app-edit-button>
@@ -235,7 +234,7 @@
             </div>
           </app-editor-sidebar>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </main>

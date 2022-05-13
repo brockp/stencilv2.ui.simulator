@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { MaterialModule } from '@app/shared/material.module';
-
+import { DragulaModule } from 'ng2-dragula';
 import { DescriptionComponent } from '@app/components/description/container/description.component';
 import { DescriptionSelectorComponent } from './description-selector/description-selector.component';
 
@@ -18,6 +18,7 @@ import { DescriptionSelectorComponent } from './description-selector/description
     SharedModule,
     RouterModule,
     MaterialModule,
+    DragulaModule,
   ],
   exports: [DescriptionComponent, DescriptionSelectorComponent],
 })

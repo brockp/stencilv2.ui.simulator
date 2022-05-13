@@ -53,8 +53,7 @@ export class HeadlineComponent implements OnInit {
 
   // GET viewConfig FormArray and assign to 'headlines' for use in *ngFor in template
   get headlines(): any {
-    return (this.parent.controls['payload'].get('viewConfig') as FormArray)
-      .controls;
+    return (this.parent.get('headlineConfig') as FormArray).controls;
   }
 
   constructor(

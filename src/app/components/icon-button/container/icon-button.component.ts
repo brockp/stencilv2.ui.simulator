@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -21,7 +22,6 @@ import { DragulaService } from 'ng2-dragula';
 export class IconButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   preview = 'Icon Button';
-  @Input() id!: number;
   iconButton!: iconButton;
 
   @Input()
@@ -49,11 +49,14 @@ export class IconButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get iconButtons(): any {
-    return (this.parent.controls['payload'].get('viewConfig') as FormArray)
-      .controls;
+    return (this.parent.get('iconButtonConfig') as FormArray).controls;
   }
 
-  constructor(public ess: EditSidebarService, public ibs: IconButtonService) {}
+  constructor(
+    public ess: EditSidebarService,
+    public ibs: IconButtonService,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -63,13 +66,13 @@ export class IconButtonComponent implements OnInit {
     this.ibs.copy(index);
   }
 
-  edit(): void {
-    this.ess.showIconButtonEdit();
-    console.log(this.ess.iconButtonOnly);
+  edit(i: number): void {
+    this.ess.showIconButtonEdit(i);
   }
 
   closeSidebar() {
     this.ess.hideHomeEdit();
+    this.changeDetector.detectChanges();
   }
 
   loadVersion(version: any, i: number): void {

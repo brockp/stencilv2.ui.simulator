@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
+import { DragulaModule } from 'ng2-dragula';
 
 import { TextInputComponent } from '@app/components/text-input/container/text-input.component';
 import { TextInputSelectorComponent } from './text-input-selector/text-input-selector.component';
@@ -17,6 +18,7 @@ import { TextInputSelectorComponent } from './text-input-selector/text-input-sel
     HttpClientModule,
     SharedModule,
     MaterialModule,
+    DragulaModule,
   ],
   exports: [TextInputComponent, TextInputSelectorComponent],
 })

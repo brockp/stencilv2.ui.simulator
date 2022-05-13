@@ -13,8 +13,6 @@ import { ColorsService } from '@app/services/colors/colors.service';
 })
 export class DescriptionComponent implements OnInit {
   preview = 'Description';
-  @Input() id!: number;
-  luu: number = 1;
   description!: Description;
   colorPalettes!: Colors[];
 
@@ -35,8 +33,7 @@ export class DescriptionComponent implements OnInit {
 
   // GET viewConfig FormArray and assign to 'descriptions' for use in *ngFor in template
   get descriptions(): any {
-    return (this.parent.controls['payload'].get('viewConfig') as FormArray)
-      .controls;
+    return (this.parent.get('descriptionConfig') as FormArray).controls;
   }
 
   constructor(

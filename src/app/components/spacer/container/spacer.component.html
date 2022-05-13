@@ -1,8 +1,8 @@
 <!-- Editable wrapper -->
 <section [formGroup]="parent" class="true-component">
-  <div>
-    <div formArrayName="spacerConfig">
-      <div *ngFor="let spacer of spacers; let i = index" dragula="COMPONENTS">
+  <div formArrayName="spacerConfig">
+    <div *ngFor="let spacer of spacers; let i = index" dragula="COMPONENTS">
+      <section dragula="COMPONENTS" *ngIf="spacer">
         <div [formGroupName]="i">
           <!-- Actual component -->
           <section
@@ -13,7 +13,6 @@
           >
             &nbsp;
           </section>
-
           <!-- Edit/Copy/Version switch buttons -->
           <div class="edit-button">
             <app-edit-button (click)="edit(i)"></app-edit-button>
@@ -22,7 +21,6 @@
               (click)="loadVersion(2, i)"
             ></app-version-button>
           </div>
-
           <!-- Edit form -->
           <app-editor-sidebar *ngIf="ess.spacerEdit">
             <!-- Base edit for -->
@@ -37,7 +35,6 @@
                   formControlName="Version"
                 />
               </section>
-
               <!-- Height -->
               <section class="edit-section">
                 <h2 class="edit-section-title">Spacer Height:</h2>
@@ -48,7 +45,6 @@
                   formControlName="Height"
                 />
               </section>
-
               <!-- Background Color -->
               <section class="edit-section">
                 <h2 class="edit-section-title">Background Color:</h2>
@@ -79,7 +75,6 @@
                   formControlName="Version"
                 />
               </section>
-
               <section>
                 <label for="icon">Height: </label>
                 <input
@@ -89,7 +84,6 @@
                   formControlName="Height"
                 />
               </section>
-
               <section>
                 <label for="icon">BackgroundColor: </label>
                 <input
@@ -100,7 +94,6 @@
                 />
               </section>
             </code>
-
             <!-- Save component version -->
             <div class="form-submit-wrapper z-50" save-component>
               <section class="form-submit-section">
@@ -110,7 +103,7 @@
             </div>
           </app-editor-sidebar>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </section>

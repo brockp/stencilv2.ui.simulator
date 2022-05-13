@@ -1,17 +1,9 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  Renderer2,
-} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 
 import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-graphic.interface';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { ImageService } from '@app/components/sign-up-graphic/service/image.service';
-import { HotToastService } from '@ngneat/hot-toast';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -22,7 +14,6 @@ import { environment } from '../../../../environments/environment';
 export class SignUpGraphicComponent implements OnInit {
   preview = 'Image';
   imgHost = environment.imgHost;
-  @Input() id!: number;
   signUpGraphic!: SignUpGraphic;
 
   @Input()
@@ -45,13 +36,7 @@ export class SignUpGraphicComponent implements OnInit {
     return (this.parent.get('graphicConfig') as FormArray).controls;
   }
 
-  constructor(
-    public ess: EditSidebarService,
-    public is: ImageService,
-    private renderer: Renderer2,
-    private fb: FormBuilder,
-    private toast: HotToastService
-  ) {}
+  constructor(public ess: EditSidebarService, public is: ImageService) {}
 
   ngOnInit(): void {}
 
@@ -61,22 +46,8 @@ export class SignUpGraphicComponent implements OnInit {
     this.is.copy(index);
   }
 
-  // Style object for ngStyle
-  styleObject(): Object {
-    return {
-      width: this.signUpGraphic.Width + '%',
-      height: this.signUpGraphic.Height + '%',
-      'min-width': this.signUpGraphic.MinWidth + 'rem',
-      'min-height': this.signUpGraphic.MinHeight + 'rem',
-      'padding-top': this.signUpGraphic.Padding.top + 'px',
-      'padding-right': this.signUpGraphic.Padding.right + 'px',
-      'padding-bottom': this.signUpGraphic.Padding.bottom + 'px',
-      'padding-left': this.signUpGraphic.Padding.left + 'px',
-    };
-  }
-
   edit(i: number): void {
-    this.ess.showSignUpGraphicEdit();
+    this.ess.showSignUpGraphicEdit(i);
   }
 
   closeSidebar() {
@@ -108,10 +79,6 @@ export class SignUpGraphicComponent implements OnInit {
   }
 
   changeGraphic(source: any, i: number): void {
-    // this.renderer.data, (this.signUpGraphic.Source = data);
-    // this.signUpGraphic.Source = data;
-    // this.parent.get('Source')?.setValue(data);
-
     const index = this.graphics.at(i);
     this.imageChanged.emit(index);
     this.imageChanged.emit(source);
@@ -143,43 +110,4 @@ export class SignUpGraphicComponent implements OnInit {
     this.is.updateImageConfig(i, index.value).subscribe(() => {});
     this.closeSidebar();
   }
-
-  // onSubmit(): void {
-  //   this.signUpGraphic.Version = this.signUpGraphicForm.get('Version')!.value;
-  //   this.signUpGraphic.Source = this.signUpGraphicForm.get('Source')!.value;
-  //   this.signUpGraphic.Width =
-  //     this.signUpGraphicForm.get('Width')!.value || '100';
-  //   this.signUpGraphic.Height =
-  //     this.signUpGraphicForm.get('Height')!.value || '100';
-  //   this.signUpGraphic.MinWidth = this.signUpGraphicForm.get('MinWidth')!.value;
-  //   this.signUpGraphic.MinHeight =
-  //     this.signUpGraphicForm.get('MinHeight')!.value;
-  //   this.signUpGraphic.BackgroundColor =
-  //     this.signUpGraphicForm.get('BackgroundColor')!.value;
-  //   this.signUpGraphic.Padding.top = this.signUpGraphicForm.get([
-  //     'Padding',
-  //     'top',
-  //   ])!.value;
-  //   this.signUpGraphic.Padding.right = this.signUpGraphicForm.get([
-  //     'Padding',
-  //     'right',
-  //   ])!.value;
-  //   this.signUpGraphic.Padding.bottom = this.signUpGraphicForm.get([
-  //     'Padding',
-  //     'bottom',
-  //   ])!.value;
-  //   this.signUpGraphic.Padding.left = this.signUpGraphicForm.get([
-  //     'Padding',
-  //     'left',
-  //   ])!.value;
-
-  //   this.is
-  //     .updateImageConfig(this.id, this.signUpGraphicForm.value)
-  //     .subscribe((res) => {
-  //       console.log('Image updated!');
-  //       this.closeSidebar();
-  //     });
-
-  //   console.log('<Image Context>: ', this.signUpGraphic);
-  // }
 }

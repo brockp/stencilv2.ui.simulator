@@ -31,12 +31,8 @@ import { HeadlineService } from '@app/components/headline/service/headline.servi
 })
 export class EditorComponent implements OnInit {
   fontSize!: boolean;
-  descriptionFontSize!: boolean;
   visualConfigSidebar: boolean = false;
   colorPalettes!: Colors[];
-  luu: boolean = false;
-  poo: boolean = false;
-  yuu!: FormGroup;
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   headlines: Headline[] = [];
@@ -76,12 +72,14 @@ export class EditorComponent implements OnInit {
       }),
     }),
     headlineSelector: this.es.createHeadline({}),
+    headlineConfig: this.fb.array([]),
     descriptionSelector: this.es.createDescription({}),
+    descriptionConfig: this.fb.array([]),
     graphicSelector: this.es.createGraphic({}),
     graphicConfig: this.fb.array([]),
     buttonSelector: this.es.createButton({}),
     buttonConfig: this.fb.array([]),
-    iconButtonSelector: this.es.createIconButton({}),
+    iconButtonSelector: this.es.createIconButton(this.button),
     iconButtonConfig: this.fb.array([]),
     slimEntrySelector: this.es.createSlimEntry({}),
     slimEntryConfig: this.fb.array([]),
@@ -89,7 +87,6 @@ export class EditorComponent implements OnInit {
     spacerConfig: this.fb.array([]),
     payload: this.fb.group({
       finalConfig: this.fb.array([]),
-      viewConfig: this.fb.array([]),
     }),
   });
 
@@ -120,12 +117,12 @@ export class EditorComponent implements OnInit {
     private es: EditorService,
     private fb: FormBuilder,
     public ess: EditSidebarService,
-    private hs: HeadlineService
+    public dragulaService: DragulaService
   ) {
-    // this.dragulaService.createGroup('COMPONENTS', {
-    //   invalid: (el, handle) => el!.classList.contains('sidebar'),
-    //   removeOnSpill: true,
-    // });
+    this.dragulaService.createGroup('COMPONENTS', {
+      invalid: (el, handle) => el!.classList.contains('sidebar'),
+      removeOnSpill: true,
+    });
   }
 
   ngOnInit(): void {}
@@ -137,6 +134,14 @@ export class EditorComponent implements OnInit {
 
   get finalConfig() {
     return this.form.controls['payload'].get('finalConfig') as FormArray;
+  }
+
+  get headlineConfig() {
+    return this.form.get('headlineConfig') as FormArray;
+  }
+
+  get descriptionConfig() {
+    return this.form.get('descriptionConfig') as FormArray;
   }
 
   get graphicConfig() {
@@ -170,29 +175,23 @@ export class EditorComponent implements OnInit {
 
   // Pushes the dynamically created FormGroup to the FormArray
   addHeadline(headline: any): any {
-    this.viewConfig.push(this.es.createHeadline(headline));
+    this.headlineConfig.push(this.es.createHeadline(headline));
   }
 
   addDescription(description: any): any {
-    this.viewConfig.push(this.es.createDescription(description));
-
-    console.log(this.form.value);
+    this.descriptionConfig.push(this.es.createDescription(description));
   }
 
   addGraphic(graphic: any): any {
     this.graphicConfig.push(this.es.createGraphic(graphic));
-
-    console.log(this.form.value);
   }
 
   addButton(button: any): any {
     this.buttonConfig.push(this.es.createButton(button));
-
-    console.log(this.form.value);
   }
 
   addIconButton(button: any): any {
-    this.viewConfig.push(this.es.createIconButton(button));
+    this.iconButtonConfig.push(this.es.createIconButton(button));
   }
 
   addSlimEntry(input: any): any {
@@ -280,7 +279,8 @@ export class EditorComponent implements OnInit {
   onSubmit(): void {
     let visualConfig = this.form.get('visualConfig')!.value;
     let final = this.finalConfig.controls.concat(
-      this.viewConfig.value,
+      this.headlineConfig.value,
+      this.descriptionConfig.value,
       this.graphicConfig.value,
       this.buttonConfig.value,
       this.iconButtonConfig.value,

@@ -86,7 +86,7 @@ export class EditSidebarService {
     );
   }
 
-  public showSignUpGraphicEdit() {
+  public showSignUpGraphicEdit(i: number) {
     return (
       (this.showSignUpGraphicSidebar = true),
       (this.showHeader = false),
@@ -148,7 +148,7 @@ export class EditSidebarService {
     );
   }
 
-  public showIconButtonEdit() {
+  public showIconButtonEdit(i: number) {
     return (
       (this.descriptionEdit = false),
       (this.headlineEdit = false),

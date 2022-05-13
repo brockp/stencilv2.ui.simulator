@@ -1,8 +1,8 @@
 <!-- Editable wrapper -->
 <section [formGroup]="parent" class="true-component">
-  <div>
-    <div formArrayName="slimEntryConfig">
-      <div *ngFor="let entry of slimEntries; let i = index">
+  <div formArrayName="slimEntryConfig">
+    <div *ngFor="let entry of slimEntries; let i = index">
+      <section dragula="COMPONENTS" *ngIf="entry">
         <div [formGroupName]="i">
           <!-- Actual component -->
           <div dragula="COMPONENTS">
@@ -27,7 +27,6 @@
               />
             </mat-form-field>
           </div>
-
           <!-- Edit/Copy/Version switch buttons -->
           <div class="edit-button">
             <app-edit-button (click)="edit(i)"></app-edit-button>
@@ -36,7 +35,6 @@
               (click)="loadVersion(2, i)"
             ></app-version-button>
           </div>
-
           <app-editor-sidebar *ngIf="ess.textInputEdit">
             <!-- Edit form -->
             <section edit-form>
@@ -49,7 +47,6 @@
                   formControlName="Version"
                 />
               </section>
-
               <section class="edit-section">
                 <h2 class="edit-section-title">Is it required?:</h2>
                 <mat-checkbox
@@ -59,14 +56,13 @@
                 >
               </section>
               <!-- <section class="edit-section">
-                  <h2 class="edit-section-title">Is it a password field?:</h2>
-                  <mat-checkbox
-                    class="form-control font-quicksand text-sm font-semibold"
-                    formControlName="Type"
-                    >Make Password</mat-checkbox
-                  >
-                </section> -->
-
+                    <h2 class="edit-section-title">Is it a password field?:</h2>
+                    <mat-checkbox
+                      class="form-control font-quicksand text-sm font-semibold"
+                      formControlName="Type"
+                      >Make Password</mat-checkbox
+                    >
+                  </section> -->
               <section class="edit-section">
                 <h2 class="edit-section-title">Set GroupName:</h2>
                 <input
@@ -76,7 +72,6 @@
                   formControlName="GroupName"
                 />
               </section>
-
               <section class="edit-section">
                 <h2 class="edit-section-title">Set FieldName:</h2>
                 <input
@@ -86,7 +81,6 @@
                   formControlName="FieldName"
                 />
               </section>
-
               <section class="edit-section">
                 <h2 class="edit-section-title">Set Placeholder:</h2>
                 <input
@@ -96,7 +90,6 @@
                   formControlName="Placeholder"
                 />
               </section>
-
               <section class="edit-section">
                 <h2 class="edit-section-title">Set Appearance:</h2>
                 <input
@@ -106,7 +99,6 @@
                   formControlName="Borderless"
                 />
               </section>
-
               <section class="edit-section">
                 <h2 class="edit-section-title">Set Input Type:</h2>
                 <input
@@ -116,7 +108,6 @@
                   formControlName="Type"
                 />
               </section>
-
               <!-- Padding -->
               <section class="edit-section">
                 <h2 class="edit-section-title">Set Padding:</h2>
@@ -230,7 +221,6 @@
                   formControlName="FieldName"
                 />
               </section>
-
               <section>
                 <label for="icon">Type: </label>
                 <input
@@ -239,10 +229,8 @@
                   formControlName="Type"
                 />
               </section>
-
               <section formGroupName="Padding">
                 <pre>Padding: </pre>
-
                 <section>
                   <label for="top">top: </label>
                   <input
@@ -252,7 +240,6 @@
                     formControlName="top"
                   />
                 </section>
-
                 <section>
                   <label for="right">right: </label>
                   <input
@@ -262,7 +249,6 @@
                     formControlName="right"
                   />
                 </section>
-
                 <section>
                   <label for="bottom">bottom: </label>
                   <input
@@ -272,7 +258,6 @@
                     formControlName="bottom"
                   />
                 </section>
-
                 <section>
                   <label for="left">left: </label>
                   <input
@@ -284,7 +269,6 @@
                 </section>
               </section>
             </code>
-
             <!-- Save component version -->
             <div class="form-submit-wrapper z-50" save-component>
               <section class="form-submit-section">
@@ -294,7 +278,7 @@
             </div>
           </app-editor-sidebar>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </section>

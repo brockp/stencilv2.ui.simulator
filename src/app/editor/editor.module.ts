@@ -59,7 +59,7 @@ import { MaterialModule } from '@app/shared/material.module';
     TextareaModule,
     SpacerModule,
     SharedModule,
-    SortablejsModule.forRoot({ animation: 150 }),
+    DragulaModule.forRoot(),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {
