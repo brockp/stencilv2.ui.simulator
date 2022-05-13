@@ -92,15 +92,15 @@ export class HeadlineComponent implements OnInit {
       console.log(data);
       this.headline = data;
       index.patchValue({
-        Version: this.headline.Version,
-        Text: this.headline.Text,
-        TextColor: this.headline.TextColor,
-        BackgroundColor: this.headline.BackgroundColor,
+        Version: this.headline.version,
+        Text: this.headline.configuration_json.Text,
+        TextColor: this.headline.configuration_json.TextColor,
+        BackgroundColor: this.headline.configuration_json.BackgroundColor,
         Padding: {
-          top: this.headline.Padding.top,
-          right: this.headline.Padding.right,
-          bottom: this.headline.Padding.bottom,
-          left: this.headline.Padding.left,
+          top: this.headline.configuration_json.Padding.top,
+          right: this.headline.configuration_json.Padding.right,
+          bottom: this.headline.configuration_json.Padding.bottom,
+          left: this.headline.configuration_json.Padding.left,
         },
       });
     });
@@ -113,7 +113,9 @@ export class HeadlineComponent implements OnInit {
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      configuration_json: {
+        TextColor: color,
+      },
     });
 
     // Debug only
@@ -126,7 +128,9 @@ export class HeadlineComponent implements OnInit {
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      BackgroundColor: color,
+      configuration_json: {
+        BackgroundColor: color,
+      },
     });
 
     // Debug only
@@ -138,6 +142,10 @@ export class HeadlineComponent implements OnInit {
   // TODO: Update save function to be dynamic, may need to move it
   saveComponent(i: number) {
     const index = this.headlines.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.hs.updateHeadlineConfig(i, index.value).subscribe(() => {});
     this.closeSidebar();

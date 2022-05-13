@@ -4,629 +4,625 @@
     <section dragula="COMPONENTS">
       <div *ngFor="let button of iconButtons; let i = index">
         <div [formGroupName]="i">
-          <!-- Actual component -->
-          <div class="icon-button-grid">
-            <button
-              class="icon-button"
-              [ngStyle]="{
-                color: this.button.value.TextColor,
-                'background-color': this.button.value.BackgroundColor,
-                width: this.button.value.Width + '%',
-                'border-radius': this.button.value.CornerRadius + 'px',
-                'padding-top': this.button.value.Padding!.top + 'px',
-                'padding-right': this.button.value.Padding.right + 'px',
-                'padding-bottom': this.button.value.Padding.bottom + 'px',
-                'padding-left': this.button.value.Padding.left + 'px',
-                'margin-top': this.button.value.Margin.top + 'px',
-                'margin-right': this.button.value.Margin.right + 'px',
-                'margin-bottom': this.button.value.Margin.bottom + 'px',
-                'margin-left': this.button.value.Margin.left + 'px'
-              }"
-            >
-              <mat-icon>{{ button.value.Icon }}</mat-icon>
-              {{ button.value.Text }}
-            </button>
-          </div>
-          <!-- Edit/Copy/Version switch buttons -->
-          <div class="edit-button">
-            <app-edit-button (click)="edit(i)"></app-edit-button>
-            <app-copy-button (click)="copy(i)"></app-copy-button>
-            <app-version-button
-              (click)="loadVersion(2, i)"
-            ></app-version-button>
-          </div>
-          <!-- Edit form -->
-          <app-editor-sidebar class="sidebar" *ngIf="ess.iconButtonOnly">
-            <!-- Edit form -->
-            <section edit-form>
-              <!-- Version Text -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Set Component Version:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Set Initial Value"
-                  type="text"
-                  formControlName="Version"
-                />
-              </section>
-              <!-- Command Name Text -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Set Command Name:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Set Initial Value"
-                  type="text"
-                  formControlName="CommandName"
-                />
-              </section>
-              <!-- Command Parameter -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Set Command Parameter:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Set Initial Value"
-                  type="text"
-                  formControlName="CommandParameter"
-                />
-              </section>
-              <!-- Left icon section -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">
-                  Set Button Icon (Material Icons):
-                </h2>
-                <section
-                  class="flex flex-start justify-between items-center gap-3 flex-wrap"
-                >
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('', i)"
-                  >
-                    None
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('keyboard_arrow_right', i)"
-                  >
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('keyboard_arrow_left', i)"
-                  >
-                    <mat-icon>keyboard_arrow_left</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('keyboard_arrow_down', i)"
-                  >
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('keyboard_arrow_up', i)"
-                  >
-                    <mat-icon>keyboard_arrow_up</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('search', i)"
-                  >
-                    <mat-icon>search</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('home', i)"
-                  >
-                    <mat-icon>home</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('account_circle', i)"
-                  >
-                    <mat-icon>account_circle</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('settings', i)"
-                  >
-                    <mat-icon>settings</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('done', i)"
-                  >
-                    <mat-icon>done</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('info', i)"
-                  >
-                    <mat-icon>info</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('delete', i)"
-                  >
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('check_circle', i)"
-                  >
-                    <mat-icon>check_circle</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('shopping_cart', i)"
-                  >
-                    <mat-icon>shopping_cart</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('favorite', i)"
-                  >
-                    <mat-icon>favorite</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('logout', i)"
-                  >
-                    <mat-icon>logout</mat-icon>
-                  </button>
-                  <button
-                    class="mat-icon-edit-view"
-                    (click)="changeIcon('login', i)"
-                  >
-                    <mat-icon>login</mat-icon>
-                  </button>
-                </section>
-              </section>
-              <!-- Button Text -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Selected Text:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Set Initial Value"
-                  type="text"
-                  formControlName="Text"
-                />
-              </section>
-              <!-- Text Color -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Text Color:</h2>
-                <div
-                  class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
-                >
-                  <button
-                    class="color-button bg-white border border-gray-400 text-black"
-                    (click)="changeTextColor('#ffffff', i)"
-                  >
-                    #ffffff
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-primary text-purpleblack"
-                    (click)="changeTextColor('#fafafa', i)"
-                  >
-                    #fafafa
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-secondary text-purpleblack"
-                    (click)="changeTextColor('#e5e5e5', i)"
-                  >
-                    #e5e5e5
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-accent-one text-purpleblack"
-                    (click)="changeTextColor('#cecece', i)"
-                  >
-                    #cecece
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-accent-two text-purpleblack"
-                    (click)="changeTextColor('#dbdade', i)"
-                  >
-                    #dbdade
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-icon text-white"
-                    (click)="changeTextColor('#1a152e', i)"
-                  >
-                    #1a152e
-                  </button>
-                  <button
-                    class="color-button bg-ct-dark-blue text-white"
-                    (click)="changeTextColor('#1e6fdb', i)"
-                  >
-                    #1e6fdb
-                  </button>
-                  <button
-                    class="color-button bg-ct-blue text-white"
-                    (click)="changeTextColor('#3580f0', i)"
-                  >
-                    #3580f0
-                  </button>
-                  <button
-                    class="color-button bg-ct-light-blue text-white"
-                    (click)="changeTextColor('#62b4ff', i)"
-                  >
-                    #62b4ff
-                  </button>
-                  <button
-                    class="color-button bg-ct-dark-purple text-white"
-                    (click)="changeTextColor('#654cff', i)"
-                  >
-                    #654cff
-                  </button>
-                  <button
-                    class="color-button bg-ct-yellow text-black"
-                    (click)="changeTextColor('#feec4b', i)"
-                  >
-                    #feec4b
-                  </button>
-                  <button
-                    class="color-button bg-ct-emerald text-white"
-                    (click)="changeTextColor('#19a9a5', i)"
-                  >
-                    #19a9a5
-                  </button>
-                </div>
-              </section>
-              <!-- Button Width -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Width:</h2>
-                <div class="flex justify-between items-center gap-x-10">
-                  <button
-                    class="text-gray-700 text-sm font-light hover:text-ctlight"
-                    (click)="changeWidth('100', i)"
-                  >
-                    Full
-                  </button>
-                  <button
-                    class="text-gray-700 text-sm font-light hover:text-ctlight"
-                    (click)="changeWidth('50', i)"
-                  >
-                    50%
-                  </button>
-                  <button
-                    class="text-gray-700 text-sm font-light hover:text-ctlight"
-                    (click)="changeWidth('auto', i)"
-                  >
-                    Auto
-                  </button>
-                </div>
-              </section>
-              <!-- Border Radius -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Border Radius:</h2>
-                <div class="flex justify-between items-center gap-x-10">
-                  <button
-                    role="tab"
-                    class="radius-edit-button"
-                    (click)="changeBorderRadius('9999', i)"
-                  >
-                    <div class="full"></div>
-                    Full
-                  </button>
-                  <button
-                    role="tab"
-                    class="radius-edit-button"
-                    (click)="changeBorderRadius('8', i)"
-                  >
-                    <div class="large"></div>
-                    Large
-                  </button>
-                  <button
-                    role="tab"
-                    class="radius-edit-button"
-                    (click)="changeBorderRadius('2', i)"
-                  >
-                    <div class="small"></div>
-                    Small
-                  </button>
-                </div>
-              </section>
-              <!-- Background Color -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Background Color:</h2>
-                <div class="flex justify-between items-center gap-x-10">
-                  <button
-                    class="color-button primary-blue"
-                    (click)="changeBgColor('#3589f9', i)"
-                  >
-                    #3589F9
-                  </button>
-                  <button
-                    class="color-button purple-black"
-                    (click)="changeBgColor('#1a152e', i)"
-                  >
-                    #1A152E
-                  </button>
-                  <button
-                    class="color-button lighter-blue"
-                    (click)="changeBgColor('#62b4ff', i)"
-                  >
-                    #62B4FF
-                  </button>
-                </div>
-              </section>
-              <!-- Padding -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Set Padding:</h2>
-                <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="top"
-                    >
-                      T:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="top"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="right"
-                    >
-                      R:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="right"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="bottom"
-                    >
-                      B:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="bottom"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="left"
-                    >
-                      L:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="number"
-                      formControlName="left"
-                    />
-                  </div>
-                </div>
-              </section>
-              <!-- Margin -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Set Margin:</h2>
-                <div class="grid grid-cols-4 gap-3" formGroupName="Margin">
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="top"
-                    >
-                      T:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="top"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="right"
-                    >
-                      R:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="right"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="bottom"
-                    >
-                      B:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="text"
-                      formControlName="bottom"
-                    />
-                  </div>
-                  <div class="flex gap-x-2 justify-start items-center">
-                    <label
-                      class="text-ctdark text-quicksand text-xs font-semibold"
-                      for="left"
-                    >
-                      L:
-                    </label>
-                    <input
-                      class="form-control w-full overflow-hidden"
-                      placeholder="Set Initial Value"
-                      type="number"
-                      formControlName="left"
-                    />
-                  </div>
-                </div>
-              </section>
-            </section>
-            <!-- Code edit form -->
-            <code class="code-box" edit-config-code>
-              <section>
-                <label for="icon">Version: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="Version"
-                />
-              </section>
-              <section>
-                <label for="icon">Text: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="Text"
-                />
-              </section>
-              <section>
-                <label for="icon">CornerRadius: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="CornerRadius"
-                />
-              </section>
-              <section>
-                <label for="icon">BackgroundColor: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="BackgroundColor"
-                />
-              </section>
-              <section>
-                <label for="icon">Width: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="Width"
-                />
-              </section>
-              <section>
-                <label for="icon">CommandName: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="CommandName"
-                />
-              </section>
-              <section>
-                <label for="icon">CommandParameter: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="CommandParameter"
-                />
-              </section>
-              <section>
-                <label for="icon">Icon: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  formControlName="Icon"
-                />
-              </section>
-              <section formGroupName="Padding">
-                <pre>Padding </pre>
-                <section>
-                  <label for="top">top: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="top"
-                  />
-                </section>
-                <section>
-                  <label for="right">right: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="right"
-                  />
-                </section>
-                <section>
-                  <label for="bottom">bottom: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="bottom"
-                  />
-                </section>
-                <section>
-                  <label for="left">left: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="left"
-                  />
-                </section>
-              </section>
-              <section formGroupName="Margin">
-                <pre>Margin </pre>
-                <section>
-                  <label for="top">top: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="top"
-                  />
-                </section>
-                <section>
-                  <label for="right">right: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="right"
-                  />
-                </section>
-                <section>
-                  <label for="bottom">bottom: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="bottom"
-                  />
-                </section>
-                <section>
-                  <label for="left">left: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    placeholder="set initial value"
-                    formControlName="left"
-                  />
-                </section>
-              </section>
-            </code>
-            <!-- Save component version -->
-            <div class="form-submit-wrapper z-50" save-component>
-              <section class="form-submit-section">
-                <app-save-button (click)="saveComponent(i)"></app-save-button>
-                <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
-              </section>
+          <div formGroupName="configuration_json">
+            <!-- Actual component -->
+            <div class="icon-button-grid">
+              <button
+                class="icon-button"
+                [ngStyle]="{
+                  color: this.button.value.configuration_json.TextColor,
+                  'background-color':
+                    this.button.value.configuration_json.BackgroundColor,
+                  width: this.button.value.configuration_json.Width + '%',
+                  'border-radius':
+                    this.button.value.configuration_json.CornerRadius + 'px',
+                  'padding-top':
+                    this.button.value.configuration_json.Padding!.top + 'px',
+                  'padding-right':
+                    this.button.value.configuration_json.Padding.right + 'px',
+                  'padding-bottom':
+                    this.button.value.configuration_json.Padding.bottom + 'px',
+                  'padding-left':
+                    this.button.value.configuration_json.Padding.left + 'px',
+                  'margin-top':
+                    this.button.value.configuration_json.Margin.top + 'px',
+                  'margin-right':
+                    this.button.value.configuration_json.Margin.right + 'px',
+                  'margin-bottom':
+                    this.button.value.configuration_json.Margin.bottom + 'px',
+                  'margin-left':
+                    this.button.value.configuration_json.Margin.left + 'px'
+                }"
+              >
+                <mat-icon>{{ button.value.configuration_json.Icon }}</mat-icon>
+                {{ button.value.configuration_json.Text }}
+              </button>
             </div>
-          </app-editor-sidebar>
+            <!-- Edit/Copy/Version switch buttons -->
+            <div class="edit-button">
+              <app-edit-button (click)="edit(i)"></app-edit-button>
+              <app-copy-button (click)="copy(i)"></app-copy-button>
+              <app-version-button
+                (click)="loadVersion(2, i)"
+              ></app-version-button>
+            </div>
+            <!-- Edit form -->
+            <app-editor-sidebar class="sidebar" *ngIf="ess.iconButtonOnly">
+              <!-- Edit form -->
+              <section edit-form>
+                <!-- Command Name Text -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Command Name:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Set Initial Value"
+                    type="text"
+                    formControlName="CommandName"
+                  />
+                </section>
+                <!-- Command Parameter -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Command Parameter:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Set Initial Value"
+                    type="text"
+                    formControlName="CommandParameter"
+                  />
+                </section>
+                <!-- Left icon section -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">
+                    Set Button Icon (Material Icons):
+                  </h2>
+                  <section
+                    class="flex flex-start justify-between items-center gap-3 flex-wrap"
+                  >
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('', i)"
+                    >
+                      None
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('keyboard_arrow_right', i)"
+                    >
+                      <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('keyboard_arrow_left', i)"
+                    >
+                      <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('keyboard_arrow_down', i)"
+                    >
+                      <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('keyboard_arrow_up', i)"
+                    >
+                      <mat-icon>keyboard_arrow_up</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('search', i)"
+                    >
+                      <mat-icon>search</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('home', i)"
+                    >
+                      <mat-icon>home</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('account_circle', i)"
+                    >
+                      <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('settings', i)"
+                    >
+                      <mat-icon>settings</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('done', i)"
+                    >
+                      <mat-icon>done</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('info', i)"
+                    >
+                      <mat-icon>info</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('delete', i)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('check_circle', i)"
+                    >
+                      <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('shopping_cart', i)"
+                    >
+                      <mat-icon>shopping_cart</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('favorite', i)"
+                    >
+                      <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('logout', i)"
+                    >
+                      <mat-icon>logout</mat-icon>
+                    </button>
+                    <button
+                      class="mat-icon-edit-view"
+                      (click)="changeIcon('login', i)"
+                    >
+                      <mat-icon>login</mat-icon>
+                    </button>
+                  </section>
+                </section>
+                <!-- Button Text -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Selected Text:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Set Initial Value"
+                    type="text"
+                    formControlName="Text"
+                  />
+                </section>
+                <!-- Text Color -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Text Color:</h2>
+                  <div
+                    class="grid grid-cols-4 justify-between items-center gap-x-8 gap-y-4 max-h-40 overflow-y-auto overflow-x-hidden"
+                  >
+                    <button
+                      class="color-button bg-white border border-gray-400 text-black"
+                      (click)="changeTextColor('#ffffff', i)"
+                    >
+                      #ffffff
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-primary text-purpleblack"
+                      (click)="changeTextColor('#fafafa', i)"
+                    >
+                      #fafafa
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-secondary text-purpleblack"
+                      (click)="changeTextColor('#e5e5e5', i)"
+                    >
+                      #e5e5e5
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-accent-one text-purpleblack"
+                      (click)="changeTextColor('#cecece', i)"
+                    >
+                      #cecece
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-accent-two text-purpleblack"
+                      (click)="changeTextColor('#dbdade', i)"
+                    >
+                      #dbdade
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-icon text-white"
+                      (click)="changeTextColor('#1a152e', i)"
+                    >
+                      #1a152e
+                    </button>
+                    <button
+                      class="color-button bg-ct-dark-blue text-white"
+                      (click)="changeTextColor('#1e6fdb', i)"
+                    >
+                      #1e6fdb
+                    </button>
+                    <button
+                      class="color-button bg-ct-blue text-white"
+                      (click)="changeTextColor('#3580f0', i)"
+                    >
+                      #3580f0
+                    </button>
+                    <button
+                      class="color-button bg-ct-light-blue text-white"
+                      (click)="changeTextColor('#62b4ff', i)"
+                    >
+                      #62b4ff
+                    </button>
+                    <button
+                      class="color-button bg-ct-dark-purple text-white"
+                      (click)="changeTextColor('#654cff', i)"
+                    >
+                      #654cff
+                    </button>
+                    <button
+                      class="color-button bg-ct-yellow text-black"
+                      (click)="changeTextColor('#feec4b', i)"
+                    >
+                      #feec4b
+                    </button>
+                    <button
+                      class="color-button bg-ct-emerald text-white"
+                      (click)="changeTextColor('#19a9a5', i)"
+                    >
+                      #19a9a5
+                    </button>
+                  </div>
+                </section>
+                <!-- Button Width -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Width:</h2>
+                  <div class="flex justify-between items-center gap-x-10">
+                    <button
+                      class="text-gray-700 text-sm font-light hover:text-ctlight"
+                      (click)="changeWidth('100', i)"
+                    >
+                      Full
+                    </button>
+                    <button
+                      class="text-gray-700 text-sm font-light hover:text-ctlight"
+                      (click)="changeWidth('50', i)"
+                    >
+                      50%
+                    </button>
+                    <button
+                      class="text-gray-700 text-sm font-light hover:text-ctlight"
+                      (click)="changeWidth('auto', i)"
+                    >
+                      Auto
+                    </button>
+                  </div>
+                </section>
+                <!-- Border Radius -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Border Radius:</h2>
+                  <div class="flex justify-between items-center gap-x-10">
+                    <button
+                      role="tab"
+                      class="radius-edit-button"
+                      (click)="changeBorderRadius('9999', i)"
+                    >
+                      <div class="full"></div>
+                      Full
+                    </button>
+                    <button
+                      role="tab"
+                      class="radius-edit-button"
+                      (click)="changeBorderRadius('8', i)"
+                    >
+                      <div class="large"></div>
+                      Large
+                    </button>
+                    <button
+                      role="tab"
+                      class="radius-edit-button"
+                      (click)="changeBorderRadius('2', i)"
+                    >
+                      <div class="small"></div>
+                      Small
+                    </button>
+                  </div>
+                </section>
+                <!-- Background Color -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Background Color:</h2>
+                  <div class="flex justify-between items-center gap-x-10">
+                    <button
+                      class="color-button primary-blue"
+                      (click)="changeBgColor('#3589f9', i)"
+                    >
+                      #3589F9
+                    </button>
+                    <button
+                      class="color-button purple-black"
+                      (click)="changeBgColor('#1a152e', i)"
+                    >
+                      #1A152E
+                    </button>
+                    <button
+                      class="color-button lighter-blue"
+                      (click)="changeBgColor('#62b4ff', i)"
+                    >
+                      #62B4FF
+                    </button>
+                  </div>
+                </section>
+                <!-- Padding -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Padding:</h2>
+                  <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="top"
+                      >
+                        T:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="top"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        R:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="right"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="bottom"
+                      >
+                        B:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="bottom"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="left"
+                      >
+                        L:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="number"
+                        formControlName="left"
+                      />
+                    </div>
+                  </div>
+                </section>
+                <!-- Margin -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Set Margin:</h2>
+                  <div class="grid grid-cols-4 gap-3" formGroupName="Margin">
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="top"
+                      >
+                        T:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="top"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="right"
+                      >
+                        R:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="right"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="bottom"
+                      >
+                        B:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="text"
+                        formControlName="bottom"
+                      />
+                    </div>
+                    <div class="flex gap-x-2 justify-start items-center">
+                      <label
+                        class="text-ctdark text-quicksand text-xs font-semibold"
+                        for="left"
+                      >
+                        L:
+                      </label>
+                      <input
+                        class="form-control w-full overflow-hidden"
+                        placeholder="Set Initial Value"
+                        type="number"
+                        formControlName="left"
+                      />
+                    </div>
+                  </div>
+                </section>
+              </section>
+              <!-- Code edit form -->
+              <code class="code-box" edit-config-code>
+                <section>
+                  <label for="icon">Text: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="Text"
+                  />
+                </section>
+                <section>
+                  <label for="icon">CornerRadius: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="CornerRadius"
+                  />
+                </section>
+                <section>
+                  <label for="icon">BackgroundColor: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="BackgroundColor"
+                  />
+                </section>
+                <section>
+                  <label for="icon">Width: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="Width"
+                  />
+                </section>
+                <section>
+                  <label for="icon">CommandName: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="CommandName"
+                  />
+                </section>
+                <section>
+                  <label for="icon">CommandParameter: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="CommandParameter"
+                  />
+                </section>
+                <section>
+                  <label for="icon">Icon: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    formControlName="Icon"
+                  />
+                </section>
+                <section formGroupName="Padding">
+                  <pre>Padding </pre>
+                  <section>
+                    <label for="top">top: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="top"
+                    />
+                  </section>
+                  <section>
+                    <label for="right">right: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="right"
+                    />
+                  </section>
+                  <section>
+                    <label for="bottom">bottom: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="bottom"
+                    />
+                  </section>
+                  <section>
+                    <label for="left">left: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="left"
+                    />
+                  </section>
+                </section>
+                <section formGroupName="Margin">
+                  <pre>Margin </pre>
+                  <section>
+                    <label for="top">top: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="top"
+                    />
+                  </section>
+                  <section>
+                    <label for="right">right: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="right"
+                    />
+                  </section>
+                  <section>
+                    <label for="bottom">bottom: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="bottom"
+                    />
+                  </section>
+                  <section>
+                    <label for="left">left: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      placeholder="set initial value"
+                      formControlName="left"
+                    />
+                  </section>
+                </section>
+              </code>
+              <!-- Save component version -->
+              <div class="form-submit-wrapper z-50" save-component>
+                <section class="form-submit-section">
+                  <app-save-button (click)="saveComponent(i)"></app-save-button>
+                  <app-cancel-button
+                    (click)="closeSidebar()"
+                  ></app-cancel-button>
+                </section>
+              </div>
+            </app-editor-sidebar>
+          </div>
         </div>
       </div>
     </section>

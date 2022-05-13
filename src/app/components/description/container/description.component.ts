@@ -67,15 +67,15 @@ export class DescriptionComponent implements OnInit {
       console.log(data);
       this.description = data;
       index.patchValue({
-        Version: this.description.Version,
-        Text: this.description.Text,
-        TextColor: this.description.TextColor,
-        BackgroundColor: this.description.BackgroundColor,
+        Version: this.description.version,
+        Text: this.description.configuration_json.Text,
+        TextColor: this.description.configuration_json.TextColor,
+        BackgroundColor: this.description.configuration_json.BackgroundColor,
         Padding: {
-          top: this.description.Padding.top,
-          right: this.description.Padding.right,
-          bottom: this.description.Padding.bottom,
-          left: this.description.Padding.left,
+          top: this.description.configuration_json.Padding.top,
+          right: this.description.configuration_json.Padding.right,
+          bottom: this.description.configuration_json.Padding.bottom,
+          left: this.description.configuration_json.Padding.left,
         },
       });
     });
@@ -88,7 +88,9 @@ export class DescriptionComponent implements OnInit {
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      configuration_json: {
+        TextColor: color,
+      },
     });
   }
 
@@ -98,7 +100,9 @@ export class DescriptionComponent implements OnInit {
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      BackgroundColor: color,
+      configuration_json: {
+        BackgroundColor: color,
+      },
     });
   }
 
@@ -111,6 +115,10 @@ export class DescriptionComponent implements OnInit {
   // ex: if index is a '1', then it will save to 'API/H1/1'
   saveComponent(i: number) {
     const index = this.descriptions.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.ds.updateDescriptionConfig(i, index.value).subscribe(() => {});
     this.closeSidebar();

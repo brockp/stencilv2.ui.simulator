@@ -8,11 +8,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
-import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-icon-button',
@@ -82,26 +81,26 @@ export class IconButtonComponent implements OnInit {
       this.iconButton = data;
       index.patchValue({
         id: null,
-        Version: this.iconButton.Version,
-        Width: this.iconButton.Width,
-        CornerRadius: this.iconButton.CornerRadius,
-        Text: this.iconButton.Text,
-        TextColor: this.iconButton.TextColor,
-        CommandName: this.iconButton.CommandName,
-        CommandParameter: this.iconButton.CommandParameter,
-        BackgroundColor: this.iconButton.BackgroundColor,
-        Icon: this.iconButton.Icon,
+        Version: this.iconButton.version,
+        Width: this.iconButton.configuration_json.Width,
+        CornerRadius: this.iconButton.configuration_json.CornerRadius,
+        Text: this.iconButton.configuration_json.Text,
+        TextColor: this.iconButton.configuration_json.TextColor,
+        CommandName: this.iconButton.configuration_json.CommandName,
+        CommandParameter: this.iconButton.configuration_json.CommandParameter,
+        BackgroundColor: this.iconButton.configuration_json.BackgroundColor,
+        Icon: this.iconButton.configuration_json.Icon,
         Padding: {
-          top: this.iconButton.Padding.top,
-          right: this.iconButton.Padding.right,
-          bottom: this.iconButton.Padding.bottom,
-          left: this.iconButton.Padding.left,
+          top: this.iconButton.configuration_json.Padding.top,
+          right: this.iconButton.configuration_json.Padding.right,
+          bottom: this.iconButton.configuration_json.Padding.bottom,
+          left: this.iconButton.configuration_json.Padding.left,
         },
         Margin: {
-          top: this.iconButton.Margin.top,
-          right: this.iconButton.Margin.right,
-          bottom: this.iconButton.Margin.bottom,
-          left: this.iconButton.Margin.left,
+          top: this.iconButton.configuration_json.Margin.top,
+          right: this.iconButton.configuration_json.Margin.right,
+          bottom: this.iconButton.configuration_json.Margin.bottom,
+          left: this.iconButton.configuration_json.Margin.left,
         },
       });
     });
@@ -114,7 +113,7 @@ export class IconButtonComponent implements OnInit {
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      configuration_json: { TextColor: color },
     });
   }
 
@@ -123,7 +122,7 @@ export class IconButtonComponent implements OnInit {
     this.borderRadiusChanged.emit(index);
     this.borderRadiusChanged.emit(radius);
     index.patchValue({
-      CornerRadius: radius,
+      configuration_json: { CornerRadius: radius },
     });
   }
 
@@ -132,7 +131,7 @@ export class IconButtonComponent implements OnInit {
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      BackgroundColor: color,
+      configuration_json: { BackgroundColor: color },
     });
   }
 
@@ -141,7 +140,7 @@ export class IconButtonComponent implements OnInit {
     this.widthChanged.emit(index);
     this.widthChanged.emit(width);
     index.patchValue({
-      Width: width,
+      configuration_json: { Width: width },
     });
   }
 
@@ -150,12 +149,16 @@ export class IconButtonComponent implements OnInit {
     this.iconChanged.emit(index);
     this.iconChanged.emit(icon);
     index.patchValue({
-      Icon: icon,
+      configuration_json: { Icon: icon },
     });
   }
 
   saveComponent(i: number) {
     const index = this.iconButtons.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.ibs.updateIconButton(i, index.value).subscribe(() => {});
     this.closeSidebar();

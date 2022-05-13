@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
 import { TextInputService } from '@app/components/text-input/service/text-input.service';
@@ -12,7 +12,6 @@ import { TextInputService } from '@app/components/text-input/service/text-input.
 export class TextInputComponent implements OnInit {
   preview = 'SlimEntry';
   slimEntry!: SlimEntry;
-  isChecked: any = false;
 
   @Input()
   payload!: FormGroup;
@@ -51,20 +50,20 @@ export class TextInputComponent implements OnInit {
       console.log(data);
       this.slimEntry = data;
       index.patchValue({
-        Version: this.slimEntry.Version,
-        IsRequired: this.slimEntry.IsRequired,
-        IsPassword: this.slimEntry.IsPassword,
-        GroupName: this.slimEntry.GroupName,
-        BackgroundColor: this.slimEntry.BackgroundColor,
-        Borderless: this.slimEntry.Borderless,
-        FieldName: this.slimEntry.FieldName,
-        Placeholder: this.slimEntry.Placeholder,
-        Type: this.slimEntry.Type,
+        Version: this.slimEntry.version,
+        IsRequired: this.slimEntry.configuration_json.IsRequired,
+        IsPassword: this.slimEntry.configuration_json.IsPassword,
+        GroupName: this.slimEntry.configuration_json.GroupName,
+        BackgroundColor: this.slimEntry.configuration_json.BackgroundColor,
+        Borderless: this.slimEntry.configuration_json.Borderless,
+        FieldName: this.slimEntry.configuration_json.FieldName,
+        Placeholder: this.slimEntry.configuration_json.Placeholder,
+        Type: this.slimEntry.configuration_json.Type,
         Padding: {
-          top: this.slimEntry.Padding.top,
-          right: this.slimEntry.Padding.right,
-          bottom: this.slimEntry.Padding.bottom,
-          left: this.slimEntry.Padding.left,
+          top: this.slimEntry.configuration_json.Padding.top,
+          right: this.slimEntry.configuration_json.Padding.right,
+          bottom: this.slimEntry.configuration_json.Padding.bottom,
+          left: this.slimEntry.configuration_json.Padding.left,
         },
       });
     });
@@ -73,6 +72,10 @@ export class TextInputComponent implements OnInit {
 
   saveComponent(i: number) {
     const index = this.slimEntries.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.ses.updateSlimEntry(i, index.value).subscribe(() => {});
     this.closeSidebar();

@@ -78,25 +78,26 @@ export class PrimaryButtonComponent implements OnInit {
       this.primaryButton = data;
       index.patchValue({
         id: null,
-        Version: this.primaryButton.Version,
-        Width: this.primaryButton.Width,
-        CornerRadius: this.primaryButton.CornerRadius,
-        Text: this.primaryButton.Text,
-        TextColor: this.primaryButton.TextColor,
-        CommandName: this.primaryButton.CommandName,
-        CommandParameter: this.primaryButton.CommandParameter,
-        BackgroundColor: this.primaryButton.BackgroundColor,
+        Version: this.primaryButton.version,
+        Width: this.primaryButton.configuration_json.Width,
+        CornerRadius: this.primaryButton.configuration_json.CornerRadius,
+        Text: this.primaryButton.configuration_json.Text,
+        TextColor: this.primaryButton.configuration_json.TextColor,
+        CommandName: this.primaryButton.configuration_json.CommandName,
+        CommandParameter:
+          this.primaryButton.configuration_json.CommandParameter,
+        BackgroundColor: this.primaryButton.configuration_json.BackgroundColor,
         Padding: {
-          top: this.primaryButton.Padding.top,
-          right: this.primaryButton.Padding.right,
-          bottom: this.primaryButton.Padding.bottom,
-          left: this.primaryButton.Padding.left,
+          top: this.primaryButton.configuration_json.Padding.top,
+          right: this.primaryButton.configuration_json.Padding.right,
+          bottom: this.primaryButton.configuration_json.Padding.bottom,
+          left: this.primaryButton.configuration_json.Padding.left,
         },
         Margin: {
-          top: this.primaryButton.Margin.top,
-          right: this.primaryButton.Margin.right,
-          bottom: this.primaryButton.Margin.bottom,
-          left: this.primaryButton.Margin.left,
+          top: this.primaryButton.configuration_json.Margin.top,
+          right: this.primaryButton.configuration_json.Margin.right,
+          bottom: this.primaryButton.configuration_json.Margin.bottom,
+          left: this.primaryButton.configuration_json.Margin.left,
         },
       });
     });
@@ -109,7 +110,7 @@ export class PrimaryButtonComponent implements OnInit {
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      configuration_json: { TextColor: color },
     });
   }
 
@@ -118,7 +119,7 @@ export class PrimaryButtonComponent implements OnInit {
     this.borderRadiusChanged.emit(index);
     this.borderRadiusChanged.emit(radius);
     index.patchValue({
-      CornerRadius: radius,
+      configuration_json: { CornerRadius: radius },
     });
   }
 
@@ -127,7 +128,7 @@ export class PrimaryButtonComponent implements OnInit {
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      BackgroundColor: color,
+      configuration_json: { BackgroundColor: color },
     });
   }
 
@@ -136,7 +137,7 @@ export class PrimaryButtonComponent implements OnInit {
     this.widthChanged.emit(index);
     this.widthChanged.emit(width);
     index.patchValue({
-      Width: width,
+      configuration_json: { Width: width },
     });
   }
 
@@ -145,12 +146,16 @@ export class PrimaryButtonComponent implements OnInit {
     this.iconChanged.emit(index);
     this.iconChanged.emit(icon);
     index.patchValue({
-      Icon: icon,
+      configuration_json: { Icon: icon },
     });
   }
 
   saveComponent(i: number) {
     const index = this.buttons.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.ibs.updatePrimaryButton(i, index.value).subscribe(() => {});
     this.closeSidebar();

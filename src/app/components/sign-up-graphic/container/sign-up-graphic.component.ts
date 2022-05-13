@@ -60,18 +60,18 @@ export class SignUpGraphicComponent implements OnInit {
       console.log(data);
       this.signUpGraphic = data;
       index.patchValue({
-        Version: this.signUpGraphic.Version,
-        Source: this.signUpGraphic.Source,
-        Width: this.signUpGraphic.Width,
-        Height: this.signUpGraphic.Height,
-        MinWidth: this.signUpGraphic.MinWidth,
-        MinHeight: this.signUpGraphic.MinHeight,
-        BackgroundColor: this.signUpGraphic.BackgroundColor,
+        Version: this.signUpGraphic.version,
+        Source: this.signUpGraphic.configuration_json.Source,
+        Width: this.signUpGraphic.configuration_json.Width,
+        Height: this.signUpGraphic.configuration_json.Height,
+        MinWidth: this.signUpGraphic.configuration_json.MinWidth,
+        MinHeight: this.signUpGraphic.configuration_json.MinHeight,
+        BackgroundColor: this.signUpGraphic.configuration_json.BackgroundColor,
         Padding: {
-          top: this.signUpGraphic.Padding.top,
-          right: this.signUpGraphic.Padding.right,
-          bottom: this.signUpGraphic.Padding.bottom,
-          left: this.signUpGraphic.Padding.left,
+          top: this.signUpGraphic.configuration_json.Padding.top,
+          right: this.signUpGraphic.configuration_json.Padding.right,
+          bottom: this.signUpGraphic.configuration_json.Padding.bottom,
+          left: this.signUpGraphic.configuration_json.Padding.left,
         },
       });
     });
@@ -83,7 +83,9 @@ export class SignUpGraphicComponent implements OnInit {
     this.imageChanged.emit(index);
     this.imageChanged.emit(source);
     index.patchValue({
-      Source: source,
+      configuration_json: {
+        Source: source,
+      },
     });
   }
 
@@ -93,7 +95,9 @@ export class SignUpGraphicComponent implements OnInit {
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      BackgroundColor: color,
+      configuration_json: {
+        BackgroundColor: color,
+      },
     });
   }
 
@@ -106,6 +110,10 @@ export class SignUpGraphicComponent implements OnInit {
   // ex: if index is a '1', then it will save to 'API/H1/1'
   saveComponent(i: number) {
     const index = this.graphics.at(i);
+    let versionUpdate = index.get('version')!.value;
+    index.patchValue({
+      version: Math.round(versionUpdate + 1),
+    });
     console.log(i);
     this.is.updateImageConfig(i, index.value).subscribe(() => {});
     this.closeSidebar();
