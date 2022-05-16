@@ -177,17 +177,88 @@ export class EditorService {
   }
 
   // Submit full configuration information
-  sendConfig(image: any, visualConfig: any): Observable<any> {
+  sendConfig(image: any, visualConfig: any, supress: boolean): Observable<any> {
     const body = {
+      ScreenStorageKey: null,
+      ScreenName: null,
+      ScreenParameter: null,
+      SuppressPersist: supress,
+      AutomaticDownload: false,
+      IsMenuSupported: true,
+      DisableCellReuse: true,
+      Lifetime: 0,
+      DownloadedUTC: null,
+      CacheUntilUTC: null,
+      ExpireUTC: null,
+      InvalidatedUTC: null,
+      ScreenNavigationData: null,
       VisualConfig: visualConfig,
       ViewConfig: image,
+      HeaderConfigs: [],
+      FooterConfigs: [],
+      BeforeShowCommands: [],
+      AfterShowCommands: [],
+      DownloadCommands: [],
+      MenuConfigs: [
+        {
+          is_selected: false,
+          identifier: 'main.home',
+          is_icon: true,
+          icon_character: '',
+          label: 'Home',
+          command: 'app.navigate.push',
+          command_parameter: 'dashboard',
+          ui_suppressed: false,
+        },
+        {
+          is_selected: false,
+          identifier: 'main.tests',
+          is_icon: true,
+          icon_character: '',
+          label: 'Tests',
+          command: 'app.navigate.push',
+          command_parameter: 'test.list.v1',
+          ui_suppressed: false,
+        },
+        {
+          is_selected: false,
+          identifier: 'main.glossary',
+          is_icon: true,
+          icon_character: '',
+          label: 'Glossary',
+          command: 'app.navigate.push',
+          command_parameter: 'dictionary.overview.v1',
+          ui_suppressed: false,
+        },
+        {
+          is_selected: true,
+          identifier: 'main.help',
+          is_icon: true,
+          icon_character: '',
+          label: 'Help',
+          command: 'app.navigate.push',
+          command_parameter: 'help.overview.v1',
+          ui_suppressed: false,
+        },
+        {
+          is_selected: false,
+          identifier: 'main.settings',
+          is_icon: true,
+          icon_character: '',
+          label: 'Account',
+          command: 'app.navigate.push',
+          command_parameter: 'settings.overview.v1',
+          ui_suppressed: false,
+        },
+      ],
+      Claims: [],
     };
 
     const call = this.http
       .post<any>(this.apiURL + FINAL + '1', body, this.httpOptions)
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Image Updated!', {
+    this.toasty.show('Screen Sent!', {
       theme: 'snackbar',
       icon: '🤘',
       position: 'bottom-center',

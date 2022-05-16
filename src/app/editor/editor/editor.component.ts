@@ -290,7 +290,7 @@ export class EditorComponent implements OnInit {
 
     console.log('Visual Config: ', visualConfig, 'View Config: ', final);
 
-    this.es.sendConfig(final, visualConfig).subscribe(() => {});
+    this.es.sendConfig(final, visualConfig, true).subscribe(() => {});
   }
 
   ////////////////////////////////////////////////////
