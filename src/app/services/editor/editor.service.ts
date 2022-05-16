@@ -255,7 +255,11 @@ export class EditorService {
     };
 
     const call = this.http
-      .post<any>(this.apiURL + FINAL + '1', body, this.httpOptions)
+      .post<any>(
+        this.apiURL + FINAL + 'test',
+        JSON.stringify(body),
+        this.httpOptions
+      )
       .pipe(catchError(this.errorHandler));
 
     this.toasty.show('Screen Sent!', {
