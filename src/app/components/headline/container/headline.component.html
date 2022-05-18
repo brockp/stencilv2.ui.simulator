@@ -2,7 +2,7 @@
   <div formArrayName="headlineConfig">
     <div *ngFor="let headline of headlines; let i = index">
       <!-- Form-->
-      <section dragula="COMPONENTS" *ngIf="headline">
+      <section *ngIf="headline" dragula="COMPONENTS">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->
@@ -42,14 +42,6 @@
             <app-editor-sidebar class="sidebar" *ngIf="ess.headlineEdit">
               <!-- Base edit form -->
               <section edit-form>
-                <!-- Version -->
-                <!-- <h2 class="edit-section-title">Set Component Version:</h2>
-              <input
-                class="form-control"
-                placeholder="Set component version"
-                type="text"
-                formControlName="version"
-              /> -->
                 <div>
                   <!-- H1 Text -->
                   <h2 class="edit-section-title">Set Headline:</h2>

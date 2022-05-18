@@ -38,8 +38,9 @@ import {
 
 // testing
 import { MaterialModule } from '@app/shared/material.module';
+import { MaterialShellComponent } from './material-shell/material-shell.component';
 @NgModule({
-  declarations: [EditorComponent],
+  declarations: [EditorComponent, MaterialShellComponent],
   imports: [
     CommonModule,
     HttpClientModule,

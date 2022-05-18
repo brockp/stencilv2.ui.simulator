@@ -15,6 +15,7 @@ import { ColorsService } from '@app/services/colors/colors.service';
 import { Headline } from '@app/components/headline/model/headline.interface';
 import { Colors } from '@app/services/colors/colors.interface';
 import { environment } from 'src/environments/environment';
+import { EditorService } from '@app/services/editor/editor.service';
 
 @Component({
   selector: 'app-headline',
@@ -26,6 +27,9 @@ export class HeadlineComponent implements OnInit {
   headline!: Headline;
   imgHost = environment.imgHost;
   colorPalettes!: Colors[];
+
+  @Input()
+  finalArray!: any[];
 
   @Input()
   textOnly!: boolean;
@@ -46,6 +50,9 @@ export class HeadlineComponent implements OnInit {
   versionChanged = new EventEmitter();
 
   @Output()
+  componentChanged = new EventEmitter();
+
+  @Output()
   textColorChanged = new EventEmitter();
 
   @Output()
@@ -58,6 +65,7 @@ export class HeadlineComponent implements OnInit {
 
   constructor(
     public ess: EditSidebarService,
+    private es: EditorService,
     public hs: HeadlineService,
     private cs: ColorsService,
     private changeDetector: ChangeDetectorRef
@@ -76,7 +84,8 @@ export class HeadlineComponent implements OnInit {
 
   // Trigger edit sidebar
   edit(i: number): void {
-    this.ess.showHeadlineEdit(i);
+    const index = this.headlines.at(i);
+    this.ess.showHeadlineEdit(index);
   }
 
   // Close edit sidebar
@@ -140,14 +149,33 @@ export class HeadlineComponent implements OnInit {
   // Saves component to API as individual component at current array index
   // ex: if index is a '1', then it will save to 'API/H1/1'
   // TODO: Update save function to be dynamic, may need to move it
-  saveComponent(i: number) {
+
+  setIcon(formControl: string, name: string) {
+    this.componentChanged.emit(name);
+    this.parent.get(formControl)?.setValue(name);
+    this.parent.get(formControl)?.markAsTouched();
+  }
+
+  saveComponent(i: any) {
     const index = this.headlines.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.hs.updateHeadlineConfig(i, index.value).subscribe(() => {});
+    let objUpdate = index.getRawValue();
+    let configuration_json = JSON.stringify(objUpdate.configuration_json);
+    let newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('HeadlineConfig: ', newObj);
+
+    this.hs.updateHeadlineConfig(i, newObj).subscribe(() => {});
+
+    if (this.es.finalArray.length > 0) {
+      this.es.finalArray[i] = newObj;
+    } else {
+      this.es.finalArray.push(newObj);
+    }
+
     this.closeSidebar();
   }
 }

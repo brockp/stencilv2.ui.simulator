@@ -13,6 +13,7 @@ import { API_ENDPOINT, HTTP_HEADERS, FINAL } from '@app/config/constants';
 export class EditorService {
   private apiURL = API_ENDPOINT;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
+  public finalArray: any[] = [];
 
   constructor(
     public fb: FormBuilder,
@@ -25,7 +26,6 @@ export class EditorService {
     return this.fb.group({
       id: '',
       component: 'h1',
-      version: headline.version || '1.0',
       configuration_json: this.fb.group({
         Text: headline.Text || 'Headline Default',
         TextSize: '32px',

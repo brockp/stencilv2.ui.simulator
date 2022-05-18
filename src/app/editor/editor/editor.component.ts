@@ -1,5 +1,6 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   OnInit,
   Output,
@@ -23,6 +24,8 @@ import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { Colors } from '@app/services/colors/colors.interface';
 import { HeadlineService } from '@app/components/headline/service/headline.service';
+import { Subscription } from 'rxjs';
+import { MaterialShellComponent } from '../material-shell/material-shell.component';
 
 @Component({
   selector: 'app-editor',
@@ -30,11 +33,10 @@ import { HeadlineService } from '@app/components/headline/service/headline.servi
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
-  fontSize!: boolean;
+  subs = new Subscription();
   visualConfigSidebar: boolean = false;
   colorPalettes!: Colors[];
 
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
   headlines: Headline[] = [];
   headline!: Headline;
 
@@ -53,7 +55,10 @@ export class EditorComponent implements OnInit {
   slimEntries: SlimEntry[] = [];
   slimEntry!: SlimEntry;
 
-  // PRIMARY form for entire editor
+  ////////////////////////////////////////////////////
+  // PARENT form for entire editor
+  ////////////////////////////////////////////////////
+
   form = this.fb.group({
     visualConfig: this.fb.group({
       BackgroundColor: '',
@@ -90,27 +95,6 @@ export class EditorComponent implements OnInit {
     }),
   });
 
-  imgHost = environment.imgHost;
-  bgColor = this.form.controls['visualConfig'].get('BackgroundColor')!.value;
-  bgImage = this.form.controls['visualConfig'].get('BackgroundImage')!.value;
-  marginTop =
-    this.form.controls['visualConfig'].get(['Margin', 'top'])!.value + 'px';
-  marginRight =
-    this.form.controls['visualConfig'].get(['Margin', 'right'])!.value + 'px';
-  marginBottom =
-    this.form.controls['visualConfig'].get(['Margin', 'bottom'])!.value + 'px';
-  marginLeft =
-    this.form.controls['visualConfig'].get(['Margin', 'left'])!.value + 'px';
-
-  paddingTop =
-    this.form.controls['visualConfig'].get(['Padding', 'top'])!.value + 'px';
-  paddingRight =
-    this.form.controls['visualConfig'].get(['Padding', 'right'])!.value + 'px';
-  paddingBottom =
-    this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value + 'px';
-  paddingLeft =
-    this.form.controls['visualConfig'].get(['Padding', 'left'])!.value + 'px';
-
   constructor(
     public vps: ViewportService,
     public los: LayoutOptionsService,
@@ -120,17 +104,38 @@ export class EditorComponent implements OnInit {
     public dragulaService: DragulaService
   ) {
     this.dragulaService.createGroup('COMPONENTS', {
-      invalid: (el, handle) => el!.classList.contains('sidebar'),
+      invalid: (el: any, _handle: any) => el!.classList.contains('sidebar'),
       removeOnSpill: true,
     });
+
+    // this.subs.add(
+    //   this.dragulaService
+    //     .drop('COMPONENTS')
+    //     .subscribe(({ name, el, target, source, sibling }) => {
+    //       this.moveItem(-1, 0);
+    //       console.log('HEADLINECONFIG ARRAY: ', this.headlineConfig.value);
+    //       console.log('FINAL ARRAY: ', this.es.finalArray);
+    //     })
+    // );
+  }
+
+  moveItem(from: any, to: any) {
+    this.headlineConfig.value.splice(
+      to,
+      0,
+      this.headlineConfig.value.splice(from, 1)[0]
+    );
+
+    this.es.finalArray.splice(to, 0, this.es.finalArray.splice(from, 1)[0]);
   }
 
   ngOnInit(): void {}
 
-  // viewConfig getter to access FormArray in simple type-safe way.
-  get viewConfig() {
-    return this.form.controls['payload'].get('viewConfig') as FormArray;
-  }
+  ngAfterViewInit(): void {}
+
+  ////////////////////////////////////////////////////
+  // get accessors for each FormArray
+  ////////////////////////////////////////////////////
 
   get finalConfig() {
     return this.form.controls['payload'].get('finalConfig') as FormArray;
@@ -164,16 +169,10 @@ export class EditorComponent implements OnInit {
     return this.form.get('spacerConfig') as FormArray;
   }
 
-  edit(): void {
-    this.visualConfigSidebar = true;
-  }
-
-  closeSidebar() {
-    this.ess.hideHomeEdit();
-    this.visualConfigSidebar = false;
-  }
-
+  ////////////////////////////////////////////////////
   // Pushes the dynamically created FormGroup to the FormArray
+  ////////////////////////////////////////////////////
+
   addHeadline(headline: any): any {
     this.headlineConfig.push(this.es.createHeadline(headline));
   }
@@ -204,22 +203,96 @@ export class EditorComponent implements OnInit {
 
   // Removes the headline from the FormArray
   deleteHeadline(headlineIndex: number) {
-    this.viewConfig.removeAt(headlineIndex);
+    this.finalConfig.removeAt(headlineIndex);
   }
 
-  // GET a new version of the component from the API
+  // TODO: GET RID OF
   changeVersion(version: any): void {
     this.form.updateValueAndValidity();
   }
 
-  // Event from child form
+  // TODO: GET RID OF
   changeTextColor(color: any): void {
     this.form.updateValueAndValidity();
   }
 
-  // Event from child form
+  // TODO: GET RID OF
   changeBackgroundColor(bgColor: any): void {
     this.form.updateValueAndValidity();
+  }
+
+  updateComponent(data: any) {
+    this.headlines = data;
+    this.headlineConfig.valueChanges.subscribe((data) => {
+      console.log('headline data changed');
+      console.log(data);
+    });
+
+    this.form.updateValueAndValidity();
+  }
+
+  ////////////////////////////////////////////////////
+  // Visual Config Updates
+  ////////////////////////////////////////////////////
+
+  viewPortClassSwitch() {
+    return {
+      'max-w-Android': this.vps.android,
+      'max-w-iPhone13': this.vps.iPhone12,
+      'max-w-iPhone11': this.vps.iPhone11,
+      'max-w-screen-xl': this.vps.desktop,
+      'main-height': [
+        this.vps.android,
+        this.vps.iPhone11,
+        this.vps.iPhone12,
+        this.vps.desktop,
+      ],
+    };
+  }
+
+  visualConfigStyleObject() {
+    return {
+      'background-color': this.bgColor,
+      'background-image': 'url(assets/' + this.bgImage + ')',
+      'margin-top': this.marginTop,
+      'margin-right': this.marginRight,
+      'margin-bottom': this.marginBottom,
+      'margin-left': this.marginLeft,
+      'padding-top': this.paddingTop,
+      'padding-right': this.paddingRight,
+      'padding-bottom': this.paddingBottom,
+      'padding-left': this.paddingLeft,
+    };
+  }
+
+  imgHost = environment.imgHost;
+  bgColor = this.form.controls['visualConfig'].get('BackgroundColor')!.value;
+  bgImage = this.form.controls['visualConfig'].get('BackgroundImage')!.value;
+  marginTop =
+    this.form.controls['visualConfig'].get(['Margin', 'top'])!.value + 'px';
+  marginRight =
+    this.form.controls['visualConfig'].get(['Margin', 'right'])!.value + 'px';
+  marginBottom =
+    this.form.controls['visualConfig'].get(['Margin', 'bottom'])!.value + 'px';
+  marginLeft =
+    this.form.controls['visualConfig'].get(['Margin', 'left'])!.value + 'px';
+
+  paddingTop =
+    this.form.controls['visualConfig'].get(['Padding', 'top'])!.value + 'px';
+  paddingRight =
+    this.form.controls['visualConfig'].get(['Padding', 'right'])!.value + 'px';
+  paddingBottom =
+    this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value + 'px';
+  paddingLeft =
+    this.form.controls['visualConfig'].get(['Padding', 'left'])!.value + 'px';
+
+  edit(): void {
+    this.visualConfigSidebar = true;
+  }
+
+  closeSidebar() {
+    this.ess.hideHomeEdit();
+    this.visualConfigSidebar = false;
   }
 
   updateVisualConfig() {
@@ -275,28 +348,6 @@ export class EditorComponent implements OnInit {
     console.log(this.paddingTop);
   }
 
-  // FINAL submit of full data set to Stencil
-  onSubmit(): void {
-    let visualConfig = this.form.get('visualConfig')!.value;
-    let final = this.finalConfig.controls.concat(
-      this.headlineConfig.value,
-      this.descriptionConfig.value,
-      this.graphicConfig.value,
-      this.buttonConfig.value,
-      this.iconButtonConfig.value,
-      this.slimEntryConfig.value,
-      this.spacerConfig.value
-    );
-
-    console.log('Visual Config: ', visualConfig, 'View Config: ', final);
-
-    this.es.sendConfig(final, visualConfig, true).subscribe(() => {});
-  }
-
-  ////////////////////////////////////////////////////
-  // Utility functions to support viewport adjustments
-  ////////////////////////////////////////////////////
-
   changeVisaulConfigBgColor(color: any): void {
     this.form.controls['visualConfig'].patchValue({
       BackgroundColor: color,
@@ -317,39 +368,26 @@ export class EditorComponent implements OnInit {
       this.form.controls['visualConfig'].get('BackgroundImage')!.value;
   }
 
-  basicLayout(): void {
-    this.los.basicLayoutOptions();
+  ////////////////////////////////////////////////////
+  // FINAL submit of full data set to Stencil
+  ////////////////////////////////////////////////////
+
+  onSubmit(newObj: any): void {
+    let visualConfig = this.form.get('visualConfig')!.value;
+
+    let final = this.es.finalArray;
+
+    console.log('Visual Config: ', visualConfig, 'View Configs: ', final);
+
+    this.es.sendConfig(final, visualConfig, true).subscribe(() => {});
   }
 
-  noFooterLayout(): void {
-    this.los.noFooterLayoutOptions();
-  }
+  ////////////////////////////////////////////////////
+  // Destroy all subscriptions
+  ////////////////////////////////////////////////////
 
-  noHeaderLayout(): void {
-    this.los.noHeaderLayoutOptions();
-  }
-
-  verticalLayout(): void {
-    this.los.verticalLayoutOptions();
-  }
-
-  surveyLayout(): void {
-    this.los.surveyLayoutOptions();
-  }
-
-  setAndroid(): void {
-    this.vps.setAndroid();
-  }
-
-  setiPhone12(): void {
-    this.vps.setiPhone12();
-  }
-
-  setiPhone11(): void {
-    this.vps.setiPhone11();
-  }
-
-  desktopViewPort(): void {
-    this.vps.setDesktop();
+  ngOnDestroy() {
+    // destroy all the subscriptions at once
+    this.subs.unsubscribe();
   }
 }

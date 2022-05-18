@@ -5,6 +5,7 @@ import { DescriptionService } from '@app/components/description/service/descript
 import { Description } from '@app/components/description/model/description.interface';
 import { Colors } from '@app/services/colors/colors.interface';
 import { ColorsService } from '@app/services/colors/colors.service';
+import { EditorService } from '@app/services/editor/editor.service';
 
 @Component({
   selector: 'app-description',
@@ -38,6 +39,7 @@ export class DescriptionComponent implements OnInit {
 
   constructor(
     public ess: EditSidebarService,
+    private es: EditorService,
     public ds: DescriptionService,
     private cs: ColorsService
   ) {}
@@ -115,12 +117,22 @@ export class DescriptionComponent implements OnInit {
   // ex: if index is a '1', then it will save to 'API/H1/1'
   saveComponent(i: number) {
     const index = this.descriptions.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.ds.updateDescriptionConfig(i, index.value).subscribe(() => {});
-    this.closeSidebar();
+    let objUpdate = index.getRawValue();
+    let configuration_json = JSON.stringify(objUpdate.configuration_json);
+    let newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('DescriptionConfig: ', newObj);
+
+    this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
+
+    if (this.es.finalArray.length > 1) {
+      this.es.finalArray[i] = newObj;
+    } else {
+      this.es.finalArray.push(newObj);
+    }
   }
 }

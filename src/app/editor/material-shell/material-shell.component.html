@@ -1,0 +1,85 @@
+<mat-sidenav-container class="main-content-container dark">
+  <!-- Main material sidenav -->
+  <mat-sidenav class="main-sidenav" opened="true" mode="side" #snav>
+    <mat-nav-list class="preview-container">
+      <mat-accordion multi>
+        <!-- Components-->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2 class="text-blueprint uppercase font-quicksand font-semibold">
+                Base Elements
+              </h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>arrow_down</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ng-content select="[components-menu]"></ng-content>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2 class="text-blueprint uppercase font-quicksand font-semibold">
+                Curated Components
+              </h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>arrow_down</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <section>
+            <!-- ADD SELECTORS HERE -->
+            <hr size="1" />
+          </section>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Viewport toggles-->
+    <section class="flex justify-between items-center">
+      <span (click)="snav.toggle()">
+        <img
+          class="ml-4 h-10 cursor-pointer"
+          tippy="Open Menu"
+          src="../../../assets/stencil-logo.svg"
+          alt="Stencil Logo"
+        />
+      </span>
+      <div class="flex justify-center items-center gap-x-12 p-4 ml-20">
+        <span (click)="setiPhone11()" class="viewport-icon">
+          <button
+            class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+          >
+            IPHONE
+          </button>
+        </span>
+        <span (click)="setAndroid()" class="viewport-icon">
+          <button
+            class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+          >
+            ANDROID
+          </button>
+        </span>
+        <span (click)="desktopViewPort()" class="viewport-icon">
+          <button
+            class="py-1 px-2 bg-transparent border border-blueprint text-ct-dark text-xs font-semibold rounded-md shadow focus:outline-none"
+          >
+            DESKTOP
+          </button>
+        </span>
+      </div>
+      <section>
+        <ng-content select="[visualConfig]"></ng-content>
+      </section>
+    </section>
+
+    <!-- ng-conent for phone screen and visualConfig edit sidebars (found in editor.component.html)-->
+    <ng-content select="[phoneScreen]"></ng-content>
+    <ng-content select="[visualConfigEdit]"></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -21,9 +21,9 @@ export class HeadlineService {
     private clipboard: Clipboard
   ) {}
 
-  getHeadlineConfig(id: number): Observable<any> {
+  getHeadlineConfig(): Observable<any> {
     return this.http
-      .get<any>(this.apiURL + H1 + id)
+      .get<any>(this.apiURL + H1)
       .pipe(catchError(this.errorHandler));
   }
 
