@@ -5,7 +5,6 @@ import { EditorRoutingModule } from '@app/editor/editor-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/shared/material.module';
 import { SharedModule } from '@app/shared/shared.module';
-import { DragulaModule } from 'ng2-dragula';
 import { SpacerComponent } from './container/spacer.component';
 
 import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.component';
@@ -19,7 +18,6 @@ import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.compo
     RouterModule,
     EditorRoutingModule,
     MaterialModule,
-    DragulaModule,
   ],
   exports: [SpacerComponent, SpacerSelectorComponent],
 })

@@ -2,11 +2,11 @@
 <section [formGroup]="parent" class="true-component">
   <div formArrayName="slimEntryConfig">
     <div *ngFor="let entry of slimEntries; let i = index">
-      <section dragula="COMPONENTS" *ngIf="entry">
+      <section *ngIf="entry">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->
-            <div dragula="COMPONENTS">
+            <div>
               <mat-form-field
                 class="w-full px-8 text-white font-quicksand font-semibold"
                 [appearance]="entry.value.configuration_json.Borderless"

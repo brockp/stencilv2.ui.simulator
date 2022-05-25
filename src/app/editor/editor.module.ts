@@ -6,7 +6,6 @@ import { EditorRoutingModule } from './editor-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 // Libraries
-import { DragulaModule } from 'ng2-dragula';
 import { SortablejsModule } from 'ngx-sortablejs';
 
 // Services
@@ -60,7 +59,6 @@ import { MaterialShellComponent } from './material-shell/material-shell.componen
     TextareaModule,
     SpacerModule,
     SharedModule,
-    DragulaModule.forRoot(),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {

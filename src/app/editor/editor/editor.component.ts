@@ -9,7 +9,6 @@ import {
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
-import { DragulaService } from 'ng2-dragula';
 import { ViewportService } from '@app/services/viewport/viewport.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
 import { EditorService } from '@app/services/editor/editor.service';
@@ -100,24 +99,8 @@ export class EditorComponent implements OnInit {
     public los: LayoutOptionsService,
     private es: EditorService,
     private fb: FormBuilder,
-    public ess: EditSidebarService,
-    public dragulaService: DragulaService
-  ) {
-    this.dragulaService.createGroup('COMPONENTS', {
-      invalid: (el: any, _handle: any) => el!.classList.contains('sidebar'),
-      removeOnSpill: true,
-    });
-
-    // this.subs.add(
-    //   this.dragulaService
-    //     .drop('COMPONENTS')
-    //     .subscribe(({ name, el, target, source, sibling }) => {
-    //       this.moveItem(-1, 0);
-    //       console.log('HEADLINECONFIG ARRAY: ', this.headlineConfig.value);
-    //       console.log('FINAL ARRAY: ', this.es.finalArray);
-    //     })
-    // );
-  }
+    public ess: EditSidebarService
+  ) {}
 
   moveItem(from: any, to: any) {
     this.headlineConfig.value.splice(

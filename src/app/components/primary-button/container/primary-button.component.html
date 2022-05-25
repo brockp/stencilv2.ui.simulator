@@ -3,8 +3,8 @@
   <section [formGroup]="parent" class="true-component">
     <div>
       <div formArrayName="buttonConfig">
-        <div *ngFor="let button of buttons; let i = index" dragula="COMPONENTS">
-          <section dragula="COMPONENTS" *ngIf="button">
+        <div *ngFor="let button of buttons; let i = index">
+          <section *ngIf="button">
             <div [formGroupName]="i">
               <div formGroupName="configuration_json">
                 <!-- Actual component -->

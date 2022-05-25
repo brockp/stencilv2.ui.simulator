@@ -1,8 +1,8 @@
 <!-- Editable wrapper -->
 <section [formGroup]="parent" class="true-component">
   <div formArrayName="spacerConfig">
-    <div *ngFor="let spacer of spacers; let i = index" dragula="COMPONENTS">
-      <section dragula="COMPONENTS" *ngIf="spacer">
+    <div *ngFor="let spacer of spacers; let i = index">
+      <section *ngIf="spacer">
         <div [formGroupName]="i">
           <!-- Actual component -->
           <section

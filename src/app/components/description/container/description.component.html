@@ -2,7 +2,7 @@
 <main [formGroup]="parent" class="true-component">
   <div formArrayName="descriptionConfig">
     <div *ngFor="let description of descriptions; let i = index">
-      <section dragula="COMPONENTS" *ngIf="description">
+      <section *ngIf="description">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->

@@ -11,8 +11,6 @@ import { HeadlineSelectorComponent } from './headline-selector/headline-selector
 
 import { SignUpGraphicModule } from '../sign-up-graphic/sign-up-graphic.module';
 
-import { DragulaModule } from 'ng2-dragula';
-
 @NgModule({
   declarations: [HeadlineComponent, HeadlineSelectorComponent],
   imports: [
@@ -23,7 +21,6 @@ import { DragulaModule } from 'ng2-dragula';
     MaterialModule,
     SharedModule,
     SignUpGraphicModule,
-    DragulaModule,
     SortablejsModule,
   ],
   exports: [HeadlineComponent, HeadlineSelectorComponent],

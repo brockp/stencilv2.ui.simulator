@@ -85,7 +85,8 @@ export class HeadlineComponent implements OnInit {
   // Trigger edit sidebar
   edit(i: number): void {
     const index = this.headlines.at(i);
-    this.ess.showHeadlineEdit(index);
+    console.log(i);
+    this.ess.headlineEdit = true;
   }
 
   // Close edit sidebar
@@ -119,16 +120,13 @@ export class HeadlineComponent implements OnInit {
   // EMIT a new text color of the component to the editor
   setTextColor(color: any, i: number) {
     const index = this.headlines.at(i);
-    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(i);
     this.textColorChanged.emit(color);
     index.patchValue({
       configuration_json: {
         TextColor: color,
       },
     });
-
-    // Debug only
-    console.log('TARGET FORMGROUP: ', index);
   }
 
   // EMIT a new background color of the component to the editor

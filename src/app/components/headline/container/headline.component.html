@@ -2,7 +2,7 @@
   <div formArrayName="headlineConfig">
     <div *ngFor="let headline of headlines; let i = index">
       <!-- Form-->
-      <section *ngIf="headline" dragula="COMPONENTS">
+      <section *ngIf="headline">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->

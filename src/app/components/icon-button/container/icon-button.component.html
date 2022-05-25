@@ -1,7 +1,7 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent" class="true-component">
   <div formArrayName="iconButtonConfig">
-    <section dragula="COMPONENTS">
+    <section>
       <div *ngFor="let button of iconButtons; let i = index">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">

@@ -2,7 +2,7 @@
 <section [formGroup]="parent" class="true-component">
   <div formArrayName="graphicConfig">
     <div *ngFor="let graphic of graphics; let i = index">
-      <section dragula="COMPONENTS" *ngIf="graphic">
+      <section *ngIf="graphic">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->
