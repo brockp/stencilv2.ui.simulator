@@ -19,7 +19,6 @@ import { PrimaryButtonService } from '@app/components/primary-button/service/pri
 })
 export class PrimaryButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
-  preview = 'Primary Button';
   primaryButton!: primaryButton;
 
   @Input()
@@ -57,14 +56,22 @@ export class PrimaryButtonComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  copy(i: number) {
-    const index = this.buttons.at(i).value;
-    console.log(index);
-    this.ibs.copy(index);
+  update(i: number) {
+    const index = this.buttons.at(i);
+    console.log(index.value);
+    index.patchValue({
+      Text: index.value.configuration_json.Text.value,
+    });
+    console.log(this.buttons);
   }
 
-  edit(i: number): void {
-    this.ess.showPrimaryButtonEdit();
+  cancel() {
+    console.log('clicked off of editable primary button');
+  }
+
+  copy(i: number) {
+    const index = this.buttons.at(i).value;
+    this.ibs.copy(index);
   }
 
   closeSidebar() {
@@ -78,7 +85,6 @@ export class PrimaryButtonComponent implements OnInit {
       this.primaryButton = data;
       index.patchValue({
         id: null,
-        Version: this.primaryButton.version,
         Width: this.primaryButton.configuration_json.Width,
         CornerRadius: this.primaryButton.configuration_json.CornerRadius,
         Text: this.primaryButton.configuration_json.Text,
@@ -152,12 +158,18 @@ export class PrimaryButtonComponent implements OnInit {
 
   saveComponent(i: number) {
     const index = this.buttons.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.ibs.updatePrimaryButton(i, index.value).subscribe(() => {});
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('PrimaryButtonConfig: ', newObj);
+
+    this.ibs.updatePrimaryButton(i, newObj).subscribe(() => {});
+
     this.closeSidebar();
   }
 }

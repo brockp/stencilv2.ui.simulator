@@ -1,6 +1,5 @@
 export interface iconButton {
   id: number;
-  version: string;
   component: string;
   configuration_json: {
     Width: string;

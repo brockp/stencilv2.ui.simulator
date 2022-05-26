@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditorModule } from './editor/editor.module';
 import { MaterialModule } from './shared/material.module';
+import { EditableModule } from '@ngneat/edit-in-place';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { MaterialModule } from './shared/material.module';
     BrowserAnimationsModule,
     EditorModule,
     MaterialModule,
+    EditableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

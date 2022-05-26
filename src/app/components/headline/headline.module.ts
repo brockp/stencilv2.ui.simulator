@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+// App libraries
+import { EditableModule } from '@ngneat/edit-in-place';
 import { SortablejsModule } from 'ngx-sortablejs';
-import { MaterialModule } from '@app/shared/material.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '@app/shared/shared.module';
+
+// Components
 import { HeadlineComponent } from '@app/components/headline/container/headline.component';
 import { HeadlineSelectorComponent } from './headline-selector/headline-selector.component';
-
-import { SignUpGraphicModule } from '../sign-up-graphic/sign-up-graphic.module';
 
 @NgModule({
   declarations: [HeadlineComponent, HeadlineSelectorComponent],
@@ -18,10 +22,11 @@ import { SignUpGraphicModule } from '../sign-up-graphic/sign-up-graphic.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule,
+    MatIconModule,
+    MatTabsModule,
     SharedModule,
-    SignUpGraphicModule,
     SortablejsModule,
+    EditableModule,
   ],
   exports: [HeadlineComponent, HeadlineSelectorComponent],
 })

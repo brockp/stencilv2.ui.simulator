@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Libraries
 import { SortablejsModule } from 'ngx-sortablejs';
+import { EditableModule } from '@ngneat/edit-in-place';
 
 // Services
 import { ViewportService } from '../services/viewport/viewport.service';
@@ -20,12 +21,11 @@ import { AppHeaderModule } from '@app/components/app-header/app-header.module';
 import { CarouselModule } from '@app/components/carousel/carousel.module';
 import { DescriptionModule } from '@app/components/description/description.module';
 import { IconButtonModule } from '@app/components/icon-button/icon-button.module';
-import { ParagraphModule } from '@app/components/paragraph/paragraph.module';
 import { PrimaryButtonModule } from '@app/components/primary-button/primary-button.module';
 import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
 import { TextInputModule } from '@app/components/text-input/text-input.module';
-import { TextareaModule } from '@app/components/textarea/textarea.module';
 import { SpacerModule } from '@app/components/spacer/spacer.module';
+import { ParagraphComponent } from '@app/editor/components/paragraph/paragraph.component';
 
 // Helper Components
 import { SharedModule } from '@app/shared/shared.module';
@@ -39,7 +39,7 @@ import {
 import { MaterialModule } from '@app/shared/material.module';
 import { MaterialShellComponent } from './material-shell/material-shell.component';
 @NgModule({
-  declarations: [EditorComponent, MaterialShellComponent],
+  declarations: [EditorComponent, MaterialShellComponent, ParagraphComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -52,13 +52,12 @@ import { MaterialShellComponent } from './material-shell/material-shell.componen
     CarouselModule,
     DescriptionModule,
     IconButtonModule,
-    ParagraphModule,
     PrimaryButtonModule,
     SignUpGraphicModule,
     TextInputModule,
-    TextareaModule,
     SpacerModule,
     SharedModule,
+    EditableModule,
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {

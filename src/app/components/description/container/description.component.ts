@@ -13,7 +13,6 @@ import { EditorService } from '@app/services/editor/editor.service';
   styleUrls: ['./description.component.scss'],
 })
 export class DescriptionComponent implements OnInit {
-  preview = 'Description';
   description!: Description;
   colorPalettes!: Colors[];
 
@@ -48,14 +47,22 @@ export class DescriptionComponent implements OnInit {
     this.colorPalettes = this.cs.getAppColors();
   }
 
-  copy(i: number) {
-    const index = this.descriptions.at(i).value;
-    console.log(index);
-    this.ds.copy(index);
+  update(i: number) {
+    const index = this.descriptions.at(i);
+    console.log(index.value);
+    index.patchValue({
+      Text: index.value.configuration_json.Text.value,
+    });
+    console.log(this.descriptions);
   }
 
-  edit(i: number): void {
-    this.ess.showDescriptionEdit();
+  cancel() {
+    console.log('clicked off of editable headline');
+  }
+
+  copy(i: number) {
+    const index = this.descriptions.at(i).value;
+    this.ds.copy(index);
   }
 
   closeSidebar() {
@@ -69,7 +76,6 @@ export class DescriptionComponent implements OnInit {
       console.log(data);
       this.description = data;
       index.patchValue({
-        Version: this.description.version,
         Text: this.description.configuration_json.Text,
         TextColor: this.description.configuration_json.TextColor,
         BackgroundColor: this.description.configuration_json.BackgroundColor,
@@ -108,18 +114,13 @@ export class DescriptionComponent implements OnInit {
     });
   }
 
-  // Event from child form
-  // changePadding(data: any) {
-  //   data = this.descriptionForm.get('Padding')!.value;
-  // }
-
   // Saves component to API as individual component at current array index
   // ex: if index is a '1', then it will save to 'API/H1/1'
   saveComponent(i: number) {
     const index = this.descriptions.at(i);
-    let objUpdate = index.getRawValue();
-    let configuration_json = JSON.stringify(objUpdate.configuration_json);
-    let newObj = {
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
       id: objUpdate.id + 1,
       component: objUpdate.component,
       configuration_json,
@@ -129,10 +130,6 @@ export class DescriptionComponent implements OnInit {
 
     this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
 
-    if (this.es.finalArray.length > 1) {
-      this.es.finalArray[i] = newObj;
-    } else {
-      this.es.finalArray.push(newObj);
-    }
+    this.closeSidebar();
   }
 }

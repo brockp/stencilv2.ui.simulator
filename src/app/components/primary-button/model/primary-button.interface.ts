@@ -1,6 +1,5 @@
 export interface primaryButton {
   id: number | null;
-  version: string;
   component: string;
   configuration_json: {
     Width: string;

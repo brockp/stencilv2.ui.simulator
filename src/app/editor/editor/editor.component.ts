@@ -354,12 +354,32 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
   // FINAL submit of full data set to Stencil
   ////////////////////////////////////////////////////
-
-  onSubmit(newObj: any): void {
+  arrpoo: any[] = [];
+  onSubmit(event: any): void {
     let visualConfig = this.form.get('visualConfig')!.value;
+    const h = this.form.get('headlineConfig')!.value;
+    const d = this.form.get('descriptionConfig')!.value;
+    const i = this.form.get('iconButtonConfig')!.value;
+    const p = this.form.get('primaryButtonConfig')!.value;
+    const g = this.form.get('graphicConfig')!.value;
+    const yep = this.es.finalArray.concat(h, g, d, i, p);
 
-    let final = this.es.finalArray;
+    let newArray = (values: any) => {
+      return values.map((value: any) => {
+        let configuration_json = JSON.stringify(value.configuration_json);
+        let newObj = {
+          id: value.id + 1,
+          component: value.component,
+          configuration_json,
+        };
+        return newObj;
+      });
+    };
 
+    let awesome = newArray(yep);
+    console.log('final array: ', awesome);
+
+    let final = awesome;
     console.log('Visual Config: ', visualConfig, 'View Configs: ', final);
 
     this.es.sendConfig(final, visualConfig, true).subscribe(() => {});

@@ -1,6 +1,6 @@
 export interface Description {
   id: number;
-  version: string | number;
+  component: string;
   configuration_json: {
     Text: string;
     TextColor: string;

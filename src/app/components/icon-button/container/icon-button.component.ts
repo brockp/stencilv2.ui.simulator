@@ -12,6 +12,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
+import { EditorService } from '@app/services/editor/editor.service';
 
 @Component({
   selector: 'app-icon-button',
@@ -20,7 +21,6 @@ import { iconButton } from '@app/components/icon-button/model/icon-button.interf
 })
 export class IconButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
-  preview = 'Icon Button';
   iconButton!: iconButton;
 
   @Input()
@@ -53,20 +53,29 @@ export class IconButtonComponent implements OnInit {
 
   constructor(
     public ess: EditSidebarService,
+    private es: EditorService,
     public ibs: IconButtonService,
     private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {}
 
-  copy(i: number) {
-    const index = this.iconButtons.at(i).value;
-    console.log(index);
-    this.ibs.copy(index);
+  update(i: number) {
+    const index = this.iconButtons.at(i);
+    console.log(index.value);
+    index.patchValue({
+      Text: index.value.configuration_json.Text.value,
+    });
+    console.log(this.iconButtons);
   }
 
-  edit(i: number): void {
-    this.ess.showIconButtonEdit(i);
+  cancel() {
+    console.log('clicked off of editable headline');
+  }
+
+  copy(i: number) {
+    const index = this.iconButtons.at(i).value;
+    this.ibs.copy(index);
   }
 
   closeSidebar() {
@@ -81,7 +90,6 @@ export class IconButtonComponent implements OnInit {
       this.iconButton = data;
       index.patchValue({
         id: null,
-        Version: this.iconButton.version,
         Width: this.iconButton.configuration_json.Width,
         CornerRadius: this.iconButton.configuration_json.CornerRadius,
         Text: this.iconButton.configuration_json.Text,
@@ -155,12 +163,18 @@ export class IconButtonComponent implements OnInit {
 
   saveComponent(i: number) {
     const index = this.iconButtons.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.ibs.updateIconButton(i, index.value).subscribe(() => {});
+    let objUpdate = index.getRawValue();
+    let configuration_json = JSON.stringify(objUpdate.configuration_json);
+    let newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('IconButtonConfig: ', newObj);
+
+    this.ibs.updateIconButton(i, newObj).subscribe(() => {});
+
     this.closeSidebar();
   }
 }

@@ -23,16 +23,9 @@ import { EditorService } from '@app/services/editor/editor.service';
   styleUrls: ['./headline.component.scss'],
 })
 export class HeadlineComponent implements OnInit {
-  preview = 'Headline';
   headline!: Headline;
   imgHost = environment.imgHost;
   colorPalettes!: Colors[];
-
-  @Input()
-  finalArray!: any[];
-
-  @Input()
-  textOnly!: boolean;
 
   @Input()
   graphicOnly!: boolean;
@@ -41,16 +34,10 @@ export class HeadlineComponent implements OnInit {
   payload!: FormGroup;
 
   @Input()
-  TextSize!: string;
-
-  @Input()
   parent!: FormGroup;
 
   @Output()
   versionChanged = new EventEmitter();
-
-  @Output()
-  componentChanged = new EventEmitter();
 
   @Output()
   textColorChanged = new EventEmitter();
@@ -75,18 +62,23 @@ export class HeadlineComponent implements OnInit {
     this.colorPalettes = this.cs.getAppColors();
   }
 
+  update(i: number) {
+    const index = this.headlines.at(i);
+    console.log(index.value);
+    index.patchValue({
+      Text: index.value.configuration_json.Text.value,
+    });
+    console.log(this.headlines);
+  }
+
+  cancel() {
+    console.log('clicked off of editable headline');
+  }
+
   // COPY component JSON object
   copy(i: number) {
     const index = this.headlines.at(i).value;
-    console.log(index);
     this.hs.copy(index);
-  }
-
-  // Trigger edit sidebar
-  edit(i: number): void {
-    const index = this.headlines.at(i);
-    console.log(i);
-    this.ess.headlineEdit = true;
   }
 
   // Close edit sidebar
@@ -100,21 +92,21 @@ export class HeadlineComponent implements OnInit {
     const index = this.headlines.at(i);
     this.hs.findHeadlineConfig(version).subscribe((data: any) => {
       console.log(data);
-      this.headline = data;
+      const luu = data;
       index.patchValue({
-        Version: this.headline.version,
-        Text: this.headline.configuration_json.Text,
-        TextColor: this.headline.configuration_json.TextColor,
-        BackgroundColor: this.headline.configuration_json.BackgroundColor,
+        Text: luu.value,
+        TextColor: luu.TextColor,
+        BackgroundColor: luu.BackgroundColor,
         Padding: {
-          top: this.headline.configuration_json.Padding.top,
-          right: this.headline.configuration_json.Padding.right,
-          bottom: this.headline.configuration_json.Padding.bottom,
-          left: this.headline.configuration_json.Padding.left,
+          top: luu.top,
+          right: luu.right,
+          bottom: luu.bottom,
+          left: luu.left,
         },
       });
     });
-    this.versionChanged.emit(index);
+    this.parent.updateValueAndValidity();
+    this.changeDetector.detectChanges();
   }
 
   // EMIT a new text color of the component to the editor
@@ -139,26 +131,22 @@ export class HeadlineComponent implements OnInit {
         BackgroundColor: color,
       },
     });
-
-    // Debug only
-    console.log('TARGET FORMGROUP: ', index);
   }
 
+  get headlineConfig() {
+    return this.parent.get('headlineConfig') as FormArray;
+  }
+
+  isHeadline(headline: any) {
+    return headline.component === 'h1';
+  }
   // Saves component to API as individual component at current array index
   // ex: if index is a '1', then it will save to 'API/H1/1'
-  // TODO: Update save function to be dynamic, may need to move it
-
-  setIcon(formControl: string, name: string) {
-    this.componentChanged.emit(name);
-    this.parent.get(formControl)?.setValue(name);
-    this.parent.get(formControl)?.markAsTouched();
-  }
-
   saveComponent(i: any) {
     const index = this.headlines.at(i);
-    let objUpdate = index.getRawValue();
-    let configuration_json = JSON.stringify(objUpdate.configuration_json);
-    let newObj = {
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
       id: objUpdate.id + 1,
       component: objUpdate.component,
       configuration_json,
@@ -167,12 +155,6 @@ export class HeadlineComponent implements OnInit {
     console.log('HeadlineConfig: ', newObj);
 
     this.hs.updateHeadlineConfig(i, newObj).subscribe(() => {});
-
-    if (this.es.finalArray.length > 0) {
-      this.es.finalArray[i] = newObj;
-    } else {
-      this.es.finalArray.push(newObj);
-    }
 
     this.closeSidebar();
   }

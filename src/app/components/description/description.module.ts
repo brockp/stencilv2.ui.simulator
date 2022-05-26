@@ -3,8 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+
+// App libraries
 import { SharedModule } from '@app/shared/shared.module';
-import { MaterialModule } from '@app/shared/material.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { EditableModule } from '@ngneat/edit-in-place';
+
+// Components
 import { DescriptionComponent } from '@app/components/description/container/description.component';
 import { DescriptionSelectorComponent } from './description-selector/description-selector.component';
 
@@ -16,7 +22,9 @@ import { DescriptionSelectorComponent } from './description-selector/description
     HttpClientModule,
     SharedModule,
     RouterModule,
-    MaterialModule,
+    MatIconModule,
+    MatTabsModule,
+    EditableModule,
   ],
   exports: [DescriptionComponent, DescriptionSelectorComponent],
 })

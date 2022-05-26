@@ -12,7 +12,6 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./sign-up-graphic.component.scss'],
 })
 export class SignUpGraphicComponent implements OnInit {
-  preview = 'Image';
   imgHost = environment.imgHost;
   signUpGraphic!: SignUpGraphic;
 
@@ -40,14 +39,22 @@ export class SignUpGraphicComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  copy(i: number) {
-    const index = this.graphics.at(i).value;
-    console.log(index);
-    this.is.copy(index);
+  update(i: number) {
+    const index = this.graphics.at(i);
+    console.log(index.value);
+    index.patchValue({
+      Text: index.value.configuration_json.Text.value,
+    });
+    console.log(this.graphics);
   }
 
-  edit(i: number): void {
-    this.ess.showSignUpGraphicEdit(i);
+  cancel() {
+    console.log('clicked off of editable graphic');
+  }
+
+  copy(i: number) {
+    const index = this.graphics.at(i).value;
+    this.is.copy(index);
   }
 
   closeSidebar() {
@@ -110,12 +117,17 @@ export class SignUpGraphicComponent implements OnInit {
   // ex: if index is a '1', then it will save to 'API/H1/1'
   saveComponent(i: number) {
     const index = this.graphics.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.is.updateImageConfig(i, index.value).subscribe(() => {});
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('GraphicConfig: ', newObj);
+
+    this.is.updateImageConfig(i, newObj).subscribe(() => {});
     this.closeSidebar();
   }
 }
