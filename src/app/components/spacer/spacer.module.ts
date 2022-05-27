@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { EditorRoutingModule } from '@app/editor/editor-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '@app/shared/material.module';
-import { SharedModule } from '@app/shared/shared.module';
-import { SpacerComponent } from './container/spacer.component';
 
+// App libraries
+import { EditableModule } from '@ngneat/edit-in-place';
+import { SortablejsModule } from 'ngx-sortablejs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { SharedModule } from '@app/shared/shared.module';
+
+// Components
+import { SpacerComponent } from './container/spacer.component';
 import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.component';
 
 @NgModule({
@@ -16,8 +21,10 @@ import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.compo
     ReactiveFormsModule,
     SharedModule,
     RouterModule,
-    EditorRoutingModule,
-    MaterialModule,
+    EditableModule,
+    SortablejsModule,
+    MatIconModule,
+    MatTabsModule,
   ],
   exports: [SpacerComponent, SpacerSelectorComponent],
 })

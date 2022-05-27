@@ -1,8 +1,8 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent" class="true-component">
-  <div formArrayName="iconButtonConfig">
-    <div *ngFor="let button of iconButtons; let i = index">
-      <editable (save)="update(i)" (cancel)="cancel()">
+  <div formArrayName="finalConfig" [sortablejs]="iconButtons">
+    <div *ngFor="let iconButton of iconButtons; let i = index">
+      <editable (save)="update(i)" (cancel)="cancel()" *ngIf="iconButton">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->
@@ -11,35 +11,43 @@
                 <button
                   class="icon-button"
                   [ngStyle]="{
-                    color: this.button.value.configuration_json.TextColor,
+                    color: this.iconButton.value.configuration_json.TextColor,
                     'background-color':
-                      this.button.value.configuration_json.BackgroundColor,
-                    width: this.button.value.configuration_json.Width + '%',
+                      this.iconButton.value.configuration_json.BackgroundColor,
+                    width: this.iconButton.value.configuration_json.Width + '%',
                     'border-radius':
-                      this.button.value.configuration_json.CornerRadius + 'px',
+                      this.iconButton.value.configuration_json.CornerRadius +
+                      'px',
                     'padding-top':
-                      this.button.value.configuration_json.Padding!.top + 'px',
+                      this.iconButton.value.configuration_json.Padding!.top +
+                      'px',
                     'padding-right':
-                      this.button.value.configuration_json.Padding.right + 'px',
+                      this.iconButton.value.configuration_json.Padding.right +
+                      'px',
                     'padding-bottom':
-                      this.button.value.configuration_json.Padding.bottom +
+                      this.iconButton.value.configuration_json.Padding.bottom +
                       'px',
                     'padding-left':
-                      this.button.value.configuration_json.Padding.left + 'px',
+                      this.iconButton.value.configuration_json.Padding.left +
+                      'px',
                     'margin-top':
-                      this.button.value.configuration_json.Margin.top + 'px',
+                      this.iconButton.value.configuration_json.Margin.top +
+                      'px',
                     'margin-right':
-                      this.button.value.configuration_json.Margin.right + 'px',
+                      this.iconButton.value.configuration_json.Margin.right +
+                      'px',
                     'margin-bottom':
-                      this.button.value.configuration_json.Margin.bottom + 'px',
+                      this.iconButton.value.configuration_json.Margin.bottom +
+                      'px',
                     'margin-left':
-                      this.button.value.configuration_json.Margin.left + 'px'
+                      this.iconButton.value.configuration_json.Margin.left +
+                      'px'
                   }"
                 >
                   <mat-icon>{{
-                    button.value.configuration_json.Icon
+                    iconButton.value.configuration_json.Icon
                   }}</mat-icon>
-                  {{ button.value.configuration_json.Text }}
+                  {{ iconButton.value.configuration_json.Text }}
                 </button>
               </section>
             </ng-template>
@@ -50,35 +58,43 @@
                 <button
                   class="icon-button"
                   [ngStyle]="{
-                    color: this.button.value.configuration_json.TextColor,
+                    color: this.iconButton.value.configuration_json.TextColor,
                     'background-color':
-                      this.button.value.configuration_json.BackgroundColor,
-                    width: this.button.value.configuration_json.Width + '%',
+                      this.iconButton.value.configuration_json.BackgroundColor,
+                    width: this.iconButton.value.configuration_json.Width + '%',
                     'border-radius':
-                      this.button.value.configuration_json.CornerRadius + 'px',
+                      this.iconButton.value.configuration_json.CornerRadius +
+                      'px',
                     'padding-top':
-                      this.button.value.configuration_json.Padding!.top + 'px',
+                      this.iconButton.value.configuration_json.Padding!.top +
+                      'px',
                     'padding-right':
-                      this.button.value.configuration_json.Padding.right + 'px',
+                      this.iconButton.value.configuration_json.Padding.right +
+                      'px',
                     'padding-bottom':
-                      this.button.value.configuration_json.Padding.bottom +
+                      this.iconButton.value.configuration_json.Padding.bottom +
                       'px',
                     'padding-left':
-                      this.button.value.configuration_json.Padding.left + 'px',
+                      this.iconButton.value.configuration_json.Padding.left +
+                      'px',
                     'margin-top':
-                      this.button.value.configuration_json.Margin.top + 'px',
+                      this.iconButton.value.configuration_json.Margin.top +
+                      'px',
                     'margin-right':
-                      this.button.value.configuration_json.Margin.right + 'px',
+                      this.iconButton.value.configuration_json.Margin.right +
+                      'px',
                     'margin-bottom':
-                      this.button.value.configuration_json.Margin.bottom + 'px',
+                      this.iconButton.value.configuration_json.Margin.bottom +
+                      'px',
                     'margin-left':
-                      this.button.value.configuration_json.Margin.left + 'px'
+                      this.iconButton.value.configuration_json.Margin.left +
+                      'px'
                   }"
                 >
                   <mat-icon>{{
-                    button.value.configuration_json.Icon
+                    iconButton.value.configuration_json.Icon
                   }}</mat-icon>
-                  {{ button.value.configuration_json.Text }}
+                  {{ iconButton.value.configuration_json.Text }}
                 </button>
               </section>
               <!-- Edit form -->

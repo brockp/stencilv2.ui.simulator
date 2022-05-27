@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { SpacerService } from '@app/components/spacer/service/spacer.service';
-import { HotToastService } from '@ngneat/hot-toast';
 import { Spacer } from '@app/components/spacer/container/spacer';
 
 @Component({
@@ -11,7 +10,6 @@ import { Spacer } from '@app/components/spacer/container/spacer';
   styleUrls: ['./spacer.component.scss'],
 })
 export class SpacerComponent implements OnInit {
-  preview = 'Spacer';
   spacer!: Spacer;
 
   @Input()
@@ -40,8 +38,15 @@ export class SpacerComponent implements OnInit {
     this.ss.copy(index);
   }
 
-  edit(i: number): void {
-    this.ess.showSpacerEdit();
+  update(i: number) {
+    const index = this.spacers.at(i);
+    console.log(index.value);
+    index.patchValue({});
+    console.log(this.spacer);
+  }
+
+  cancel() {
+    console.log('clicked off of editable spacer');
   }
 
   closeSidebar() {
@@ -54,7 +59,6 @@ export class SpacerComponent implements OnInit {
       console.log(data);
       this.spacer = data;
       index.patchValue({
-        Version: this.spacer.Version,
         Height: this.spacer.Height,
         BackgroundColor: this.spacer.BackgroundColor,
       });
@@ -73,8 +77,17 @@ export class SpacerComponent implements OnInit {
 
   saveComponent(i: number) {
     const index = this.spacers.at(i);
-    console.log(i);
-    this.ss.updateSpacerConfig(i, index.value).subscribe(() => {});
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('SpacerConfig: ', newObj);
+
+    this.ss.updateSpacerConfig(i, newObj).subscribe(() => {});
     this.closeSidebar();
   }
 }

@@ -1,13 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { MatAccordion } from '@angular/material/expansion';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 
 import { ViewportService } from '@app/services/viewport/viewport.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
@@ -22,9 +14,7 @@ import { SlimEntry } from '@app/components/text-input/model/slimentry.interface'
 import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { Colors } from '@app/services/colors/colors.interface';
-import { HeadlineService } from '@app/components/headline/service/headline.service';
 import { Subscription } from 'rxjs';
-import { MaterialShellComponent } from '../material-shell/material-shell.component';
 
 @Component({
   selector: 'app-editor',
@@ -83,16 +73,16 @@ export class EditorComponent implements OnInit {
     graphicConfig: this.fb.array([]),
     buttonSelector: this.es.createButton({}),
     buttonConfig: this.fb.array([]),
-    iconButtonSelector: this.es.createIconButton(this.button),
+    iconButtonSelector: this.es.createIconButton({}),
     iconButtonConfig: this.fb.array([]),
     slimEntrySelector: this.es.createSlimEntry({}),
     slimEntryConfig: this.fb.array([]),
     spacerSelector: this.es.createSpacer({}),
     spacerConfig: this.fb.array([]),
-    payload: this.fb.group({
-      finalConfig: this.fb.array([]),
-    }),
+    finalConfig: this.fb.array([]),
   });
+
+  finalArray = this.es.finalArray;
 
   constructor(
     public vps: ViewportService,
@@ -121,7 +111,7 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   get finalConfig() {
-    return this.form.controls['payload'].get('finalConfig') as FormArray;
+    return this.form.get('finalConfig') as FormArray;
   }
 
   get headlineConfig() {
@@ -157,11 +147,11 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   addHeadline(headline: any): any {
-    this.headlineConfig.push(this.es.createHeadline(headline));
+    this.finalConfig.push(this.es.createHeadline(headline));
   }
 
   addDescription(description: any): any {
-    this.descriptionConfig.push(this.es.createDescription(description));
+    this.finalConfig.push(this.es.createDescription(description));
   }
 
   addGraphic(graphic: any): any {
@@ -169,11 +159,11 @@ export class EditorComponent implements OnInit {
   }
 
   addButton(button: any): any {
-    this.buttonConfig.push(this.es.createButton(button));
+    this.finalConfig.push(this.es.createButton(button));
   }
 
   addIconButton(button: any): any {
-    this.iconButtonConfig.push(this.es.createIconButton(button));
+    this.finalConfig.push(this.es.createIconButton(button));
   }
 
   addSlimEntry(input: any): any {
@@ -360,9 +350,11 @@ export class EditorComponent implements OnInit {
     const h = this.form.get('headlineConfig')!.value;
     const d = this.form.get('descriptionConfig')!.value;
     const i = this.form.get('iconButtonConfig')!.value;
-    const p = this.form.get('primaryButtonConfig')!.value;
+    const p = this.form.get('buttonConfig')!.value;
     const g = this.form.get('graphicConfig')!.value;
-    const yep = this.es.finalArray.concat(h, g, d, i, p);
+    const s = this.form.get('spacerConfig')!.value;
+    const se = this.form.get('slimEntryConfig')!.value;
+    const yep = this.es.finalArray.concat(h, g, d, se, i, p, s);
 
     let newArray = (values: any) => {
       return values.map((value: any) => {

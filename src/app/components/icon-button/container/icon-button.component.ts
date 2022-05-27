@@ -48,7 +48,7 @@ export class IconButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get iconButtons(): any {
-    return (this.parent.get('iconButtonConfig') as FormArray).controls;
+    return (this.parent.get('finalConfig') as FormArray).controls;
   }
 
   constructor(
@@ -66,7 +66,7 @@ export class IconButtonComponent implements OnInit {
     index.patchValue({
       Text: index.value.configuration_json.Text.value,
     });
-    console.log(this.iconButtons);
+    console.log('IconButon? ', this.iconButtons.value);
   }
 
   cancel() {

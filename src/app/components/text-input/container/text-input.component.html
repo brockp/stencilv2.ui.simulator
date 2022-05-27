@@ -1,275 +1,292 @@
 <!-- Editable wrapper -->
-<section [formGroup]="parent" class="true-component">
+<main [formGroup]="parent" class="true-component">
   <div formArrayName="slimEntryConfig">
     <div *ngFor="let entry of slimEntries; let i = index">
-      <section *ngIf="entry">
+      <editable (save)="update(i)" (cancel)="cancel()">
         <div [formGroupName]="i">
           <div formGroupName="configuration_json">
             <!-- Actual component -->
-            <div>
-              <mat-form-field
-                class="w-full px-8 text-white font-quicksand font-semibold"
-                [appearance]="entry.value.configuration_json.Borderless"
-                [ngStyle]="{
-                  'padding-top':
-                    this.entry.value.configuration_json.Padding.top + 'px',
-                  'padding-right':
-                    this.entry.value.configuration_json.Padding.right + 'px',
-                  'padding-bottom':
-                    this.entry.value.configuration_json.Padding.bottom + 'px',
-                  'padding-left':
-                    this.entry.value.configuration_json.Padding.left + 'px'
-                }"
-              >
-                <mat-label class="text-white">{{
-                  entry.value.configuration_json.FieldName
-                }}</mat-label>
-                <input
-                  [type]="entry.value.configuration_json.Type"
-                  matInput
-                  [placeholder]="entry.value.configuration_json.Placeholder"
-                  [required]="entry.value.configuration_json.IsRequired"
-                />
-              </mat-form-field>
-            </div>
-            <!-- Edit/Copy/Version switch buttons -->
-            <div class="edit-button">
-              <app-edit-button (click)="edit(i)"></app-edit-button>
-              <app-copy-button (click)="copy(i)"></app-copy-button>
-              <app-version-button
-                (click)="loadVersion(2, i)"
-              ></app-version-button>
-            </div>
-            <app-editor-sidebar *ngIf="ess.textInputEdit">
+            <ng-template viewMode>
+              <div>
+                <mat-form-field
+                  class="w-full px-8 text-white font-quicksand font-semibold"
+                  [appearance]="entry.value.configuration_json.Borderless"
+                  [ngStyle]="{
+                    'padding-top':
+                      this.entry.value.configuration_json.Padding.top + 'px',
+                    'padding-right':
+                      this.entry.value.configuration_json.Padding.right + 'px',
+                    'padding-bottom':
+                      this.entry.value.configuration_json.Padding.bottom + 'px',
+                    'padding-left':
+                      this.entry.value.configuration_json.Padding.left + 'px'
+                  }"
+                >
+                  <mat-label class="text-white">{{
+                    entry.value.configuration_json.FieldName
+                  }}</mat-label>
+                  <input
+                    [type]="entry.value.configuration_json.Type"
+                    matInput
+                    [placeholder]="entry.value.configuration_json.Placeholder"
+                    [required]="entry.value.configuration_json.IsRequired"
+                  />
+                </mat-form-field>
+              </div>
+            </ng-template>
+
+            <ng-template editMode>
+              <!-- For preview only -->
+              <div>
+                <mat-form-field
+                  class="w-full px-8 text-white font-quicksand font-semibold"
+                  [appearance]="entry.value.configuration_json.Borderless"
+                  [ngStyle]="{
+                    'padding-top':
+                      this.entry.value.configuration_json.Padding.top + 'px',
+                    'padding-right':
+                      this.entry.value.configuration_json.Padding.right + 'px',
+                    'padding-bottom':
+                      this.entry.value.configuration_json.Padding.bottom + 'px',
+                    'padding-left':
+                      this.entry.value.configuration_json.Padding.left + 'px'
+                  }"
+                >
+                  <mat-label class="text-white">{{
+                    entry.value.configuration_json.FieldName
+                  }}</mat-label>
+                  <input
+                    [type]="entry.value.configuration_json.Type"
+                    matInput
+                    [placeholder]="entry.value.configuration_json.Placeholder"
+                    [required]="entry.value.configuration_json.IsRequired"
+                  />
+                </mat-form-field>
+              </div>
+
               <!-- Edit form -->
-              <section edit-form>
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Is it required?:</h2>
-                  <mat-checkbox
-                    class="form-control font-quicksand text-sm font-semibold"
-                    formControlName="IsRequired"
-                    >Make Required</mat-checkbox
-                  >
+              <app-editor-sidebar>
+                <section edit-form>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Is it required?:</h2>
+                    <mat-checkbox
+                      class="form-control font-quicksand text-sm font-semibold"
+                      formControlName="IsRequired"
+                      >Make Required</mat-checkbox
+                    >
+                  </section>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set GroupName:</h2>
+                    <input
+                      class="form-control"
+                      placeholder="Enter initial value"
+                      type="text"
+                      formControlName="GroupName"
+                    />
+                  </section>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set FieldName:</h2>
+                    <input
+                      class="form-control"
+                      placeholder="Enter initial value"
+                      type="text"
+                      formControlName="FieldName"
+                    />
+                  </section>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set Placeholder:</h2>
+                    <input
+                      class="form-control"
+                      placeholder="Enter initial value"
+                      type="text"
+                      formControlName="Placeholder"
+                    />
+                  </section>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set Appearance:</h2>
+                    <input
+                      class="form-control"
+                      placeholder="fill, legacy, standard, outline"
+                      type="text"
+                      formControlName="Borderless"
+                    />
+                  </section>
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set Input Type:</h2>
+                    <input
+                      class="form-control"
+                      placeholder="date, email, password, number, etc..."
+                      type="text"
+                      formControlName="Type"
+                    />
+                  </section>
+                  <!-- Padding -->
+                  <section class="edit-section">
+                    <h2 class="edit-section-title">Set Padding:</h2>
+                    <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
+                      <div class="flex gap-x-2 justify-start items-center">
+                        <label
+                          class="text-ctdark text-quicksand text-xs font-semibold"
+                          for="top"
+                        >
+                          T:
+                        </label>
+                        <input
+                          class="form-control w-full overflow-hidden"
+                          placeholder="Set padding top value"
+                          type="text"
+                          formControlName="top"
+                        />
+                      </div>
+                      <div class="flex gap-x-2 justify-start items-center">
+                        <label
+                          class="text-ctdark text-quicksand text-xs font-semibold"
+                          for="right"
+                        >
+                          R:
+                        </label>
+                        <input
+                          class="form-control w-full overflow-hidden"
+                          placeholder="Set padding right value"
+                          type="text"
+                          formControlName="right"
+                        />
+                      </div>
+                      <div class="flex gap-x-2 justify-start items-center">
+                        <label
+                          class="text-ctdark text-quicksand text-xs font-semibold"
+                          for="bottom"
+                        >
+                          B:
+                        </label>
+                        <input
+                          class="form-control w-full overflow-hidden"
+                          placeholder="Set padding bottom value"
+                          type="text"
+                          formControlName="bottom"
+                        />
+                      </div>
+                      <div class="flex gap-x-2 justify-start items-center">
+                        <label
+                          class="text-ctdark text-quicksand text-xs font-semibold"
+                          for="left"
+                        >
+                          L:
+                        </label>
+                        <input
+                          class="form-control w-full overflow-hidden"
+                          placeholder="Set padding left value"
+                          type="number"
+                          formControlName="left"
+                        />
+                      </div>
+                    </div>
+                  </section>
                 </section>
-                <!-- <section class="edit-section">
-                      <h2 class="edit-section-title">Is it a password field?:</h2>
-                      <mat-checkbox
-                        class="form-control font-quicksand text-sm font-semibold"
-                        formControlName="Type"
-                        >Make Password</mat-checkbox
-                      >
-                    </section> -->
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set GroupName:</h2>
-                  <input
-                    class="form-control"
-                    placeholder="Enter initial value"
-                    type="text"
-                    formControlName="GroupName"
-                  />
-                </section>
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set FieldName:</h2>
-                  <input
-                    class="form-control"
-                    placeholder="Enter initial value"
-                    type="text"
-                    formControlName="FieldName"
-                  />
-                </section>
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set Placeholder:</h2>
-                  <input
-                    class="form-control"
-                    placeholder="Enter initial value"
-                    type="text"
-                    formControlName="Placeholder"
-                  />
-                </section>
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set Appearance:</h2>
-                  <input
-                    class="form-control"
-                    placeholder="fill, legacy, standard, outline"
-                    type="text"
-                    formControlName="Borderless"
-                  />
-                </section>
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set Input Type:</h2>
-                  <input
-                    class="form-control"
-                    placeholder="date, email, password, number, etc..."
-                    type="text"
-                    formControlName="Type"
-                  />
-                </section>
-                <!-- Padding -->
-                <section class="edit-section">
-                  <h2 class="edit-section-title">Set Padding:</h2>
-                  <div class="grid grid-cols-4 gap-3" formGroupName="Padding">
-                    <div class="flex gap-x-2 justify-start items-center">
-                      <label
-                        class="text-ctdark text-quicksand text-xs font-semibold"
-                        for="top"
-                      >
-                        T:
-                      </label>
+                <!-- Code edit form -->
+                <code class="code-box" edit-config-code>
+                  <section>
+                    <label for="icon">IsRequired: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="IsRequired"
+                    />
+                  </section>
+                  <section>
+                    <label for="icon">IsPassword: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="IsPassword"
+                    />
+                  </section>
+                  <section>
+                    <label for="icon">Borderless: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="Borderless"
+                    />
+                  </section>
+                  <section>
+                    <label for="icon">Placeholder: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="Placeholder"
+                    />
+                  </section>
+                  <section>
+                    <label for="icon">FieldName: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="FieldName"
+                    />
+                  </section>
+                  <section>
+                    <label for="icon">Type: </label>
+                    <input
+                      class="code-form-control"
+                      type="text"
+                      formControlName="Type"
+                    />
+                  </section>
+                  <section formGroupName="Padding">
+                    <pre>Padding: </pre>
+                    <section>
+                      <label for="top">top: </label>
                       <input
-                        class="form-control w-full overflow-hidden"
-                        placeholder="Set padding top value"
+                        class="code-form-control"
                         type="text"
+                        placeholder="set initial value"
                         formControlName="top"
                       />
-                    </div>
-                    <div class="flex gap-x-2 justify-start items-center">
-                      <label
-                        class="text-ctdark text-quicksand text-xs font-semibold"
-                        for="right"
-                      >
-                        R:
-                      </label>
+                    </section>
+                    <section>
+                      <label for="right">right: </label>
                       <input
-                        class="form-control w-full overflow-hidden"
-                        placeholder="Set padding right value"
+                        class="code-form-control"
                         type="text"
+                        placeholder="set initial value"
                         formControlName="right"
                       />
-                    </div>
-                    <div class="flex gap-x-2 justify-start items-center">
-                      <label
-                        class="text-ctdark text-quicksand text-xs font-semibold"
-                        for="bottom"
-                      >
-                        B:
-                      </label>
+                    </section>
+                    <section>
+                      <label for="bottom">bottom: </label>
                       <input
-                        class="form-control w-full overflow-hidden"
-                        placeholder="Set padding bottom value"
+                        class="code-form-control"
                         type="text"
+                        placeholder="set initial value"
                         formControlName="bottom"
                       />
-                    </div>
-                    <div class="flex gap-x-2 justify-start items-center">
-                      <label
-                        class="text-ctdark text-quicksand text-xs font-semibold"
-                        for="left"
-                      >
-                        L:
-                      </label>
+                    </section>
+                    <section>
+                      <label for="left">left: </label>
                       <input
-                        class="form-control w-full overflow-hidden"
-                        placeholder="Set padding left value"
-                        type="number"
+                        class="code-form-control"
+                        type="text"
+                        placeholder="set initial value"
                         formControlName="left"
                       />
-                    </div>
-                  </div>
-                </section>
-              </section>
-              <!-- Code edit form -->
-              <code class="code-box" edit-config-code>
-                <section>
-                  <label for="icon">IsRequired: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="IsRequired"
-                  />
-                </section>
-                <section>
-                  <label for="icon">IsPassword: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="IsPassword"
-                  />
-                </section>
-                <section>
-                  <label for="icon">Borderless: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="Borderless"
-                  />
-                </section>
-                <section>
-                  <label for="icon">Placeholder: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="Placeholder"
-                  />
-                </section>
-                <section>
-                  <label for="icon">FieldName: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="FieldName"
-                  />
-                </section>
-                <section>
-                  <label for="icon">Type: </label>
-                  <input
-                    class="code-form-control"
-                    type="text"
-                    formControlName="Type"
-                  />
-                </section>
-                <section formGroupName="Padding">
-                  <pre>Padding: </pre>
-                  <section>
-                    <label for="top">top: </label>
-                    <input
-                      class="code-form-control"
-                      type="text"
-                      placeholder="set initial value"
-                      formControlName="top"
-                    />
+                    </section>
                   </section>
-                  <section>
-                    <label for="right">right: </label>
-                    <input
-                      class="code-form-control"
-                      type="text"
-                      placeholder="set initial value"
-                      formControlName="right"
-                    />
+                </code>
+                <!-- Save component version -->
+                <div class="form-submit-wrapper z-50" save-component>
+                  <section class="form-submit-section">
+                    <app-save-button
+                      (click)="saveComponent(i)"
+                    ></app-save-button>
+                    <app-cancel-button editableOnCancel></app-cancel-button>
                   </section>
-                  <section>
-                    <label for="bottom">bottom: </label>
-                    <input
-                      class="code-form-control"
-                      type="text"
-                      placeholder="set initial value"
-                      formControlName="bottom"
-                    />
-                  </section>
-                  <section>
-                    <label for="left">left: </label>
-                    <input
-                      class="code-form-control"
-                      type="text"
-                      placeholder="set initial value"
-                      formControlName="left"
-                    />
-                  </section>
-                </section>
-              </code>
-              <!-- Save component version -->
-              <div class="form-submit-wrapper z-50" save-component>
-                <section class="form-submit-section">
-                  <app-save-button (click)="saveComponent(i)"></app-save-button>
-                  <app-cancel-button
-                    (click)="closeSidebar()"
-                  ></app-cancel-button>
-                </section>
-              </div>
-            </app-editor-sidebar>
+                </div>
+              </app-editor-sidebar>
+            </ng-template>
           </div>
         </div>
-      </section>
+      </editable>
     </div>
   </div>
-</section>
+</main>

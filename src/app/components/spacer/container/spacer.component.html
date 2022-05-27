@@ -1,109 +1,116 @@
 <!-- Editable wrapper -->
-<section [formGroup]="parent" class="true-component">
+<main [formGroup]="parent" class="true-component">
   <div formArrayName="spacerConfig">
     <div *ngFor="let spacer of spacers; let i = index">
-      <section *ngIf="spacer">
+      <editable (save)="update(i)" (cancel)="cancel()">
         <div [formGroupName]="i">
           <!-- Actual component -->
-          <section
-            [ngStyle]="{
-              height: this.spacer.value.Height + 'px',
-              'background-color': this.spacer.value.BackgroundColor
-            }"
-          >
-            &nbsp;
-          </section>
-          <!-- Edit/Copy/Version switch buttons -->
-          <div class="edit-button">
-            <app-edit-button (click)="edit(i)"></app-edit-button>
-            <app-copy-button (click)="copy(i)"></app-copy-button>
-            <app-version-button
-              (click)="loadVersion(2, i)"
-            ></app-version-button>
-          </div>
-          <!-- Edit form -->
-          <app-editor-sidebar *ngIf="ess.spacerEdit">
-            <!-- Base edit for -->
-            <section edit-form>
-              <!-- Version -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Version:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Enter initial value"
-                  type="text"
-                  formControlName="Version"
-                />
-              </section>
-              <!-- Height -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Spacer Height:</h2>
-                <input
-                  class="form-control"
-                  placeholder="Enter initial value"
-                  type="text"
-                  formControlName="Height"
-                />
-              </section>
-              <!-- Background Color -->
-              <section class="edit-section">
-                <h2 class="edit-section-title">Background Color:</h2>
-                <div class="flex justify-between items-center gap-x-10">
-                  <button
-                    class="color-button bg-transparent border border-gray-400 text-gray-400"
-                    (click)="changeBgColor('', i)"
-                  >
-                    None
-                  </button>
-                  <button
-                    class="color-button primary-blue"
-                    (click)="changeBgColor('#3589F9', i)"
-                  >
-                    #3589F9
-                  </button>
-                </div>
-              </section>
+          <ng-template viewMode>
+            <section
+              [ngStyle]="{
+                height: this.spacer.value.Height + 'px',
+                'background-color': this.spacer.value.BackgroundColor
+              }"
+            >
+              &nbsp;
             </section>
-            <!-- Code edit form -->
-            <code class="code-box" edit-config-code>
-              <section>
-                <label for="icon">Version: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  placeholder="set initial value"
-                  formControlName="Version"
-                />
+          </ng-template>
+
+          <ng-template editMode>
+            <!-- For preview only -->
+            <section
+              [ngStyle]="{
+                height: this.spacer.value.Height + 'px',
+                'background-color': this.spacer.value.BackgroundColor
+              }"
+            >
+              &nbsp;
+            </section>
+
+            <!-- Edit form -->
+            <app-editor-sidebar *ngIf="ess.spacerEdit">
+              <!-- Base edit for -->
+              <section edit-form>
+                <!-- Version -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Version:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Enter initial value"
+                    type="text"
+                    formControlName="Version"
+                  />
+                </section>
+                <!-- Height -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Spacer Height:</h2>
+                  <input
+                    class="form-control"
+                    placeholder="Enter initial value"
+                    type="text"
+                    formControlName="Height"
+                  />
+                </section>
+                <!-- Background Color -->
+                <section class="edit-section">
+                  <h2 class="edit-section-title">Background Color:</h2>
+                  <div class="flex justify-between items-center gap-x-10">
+                    <button
+                      class="color-button bg-transparent border border-gray-400 text-gray-400"
+                      (click)="changeBgColor('', i)"
+                    >
+                      None
+                    </button>
+                    <button
+                      class="color-button primary-blue"
+                      (click)="changeBgColor('#3589F9', i)"
+                    >
+                      #3589F9
+                    </button>
+                  </div>
+                </section>
               </section>
-              <section>
-                <label for="icon">Height: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  placeholder="set initial value"
-                  formControlName="Height"
-                />
-              </section>
-              <section>
-                <label for="icon">BackgroundColor: </label>
-                <input
-                  class="code-form-control"
-                  type="text"
-                  placeholder="set initial value"
-                  formControlName="BackgroundColor"
-                />
-              </section>
-            </code>
-            <!-- Save component version -->
-            <div class="form-submit-wrapper z-50" save-component>
-              <section class="form-submit-section">
-                <app-save-button (click)="saveComponent(i)"></app-save-button>
-                <app-cancel-button (click)="closeSidebar()"></app-cancel-button>
-              </section>
-            </div>
-          </app-editor-sidebar>
+              <!-- Code edit form -->
+              <code class="code-box" edit-config-code>
+                <section>
+                  <label for="icon">Version: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="Version"
+                  />
+                </section>
+                <section>
+                  <label for="icon">Height: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="Height"
+                  />
+                </section>
+                <section>
+                  <label for="icon">BackgroundColor: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="BackgroundColor"
+                  />
+                </section>
+              </code>
+              <!-- Save component version -->
+              <div class="form-submit-wrapper z-50" save-component>
+                <section class="form-submit-section">
+                  <app-save-button (click)="saveComponent(i)"></app-save-button>
+                  <app-cancel-button editableOnCancel></app-cancel-button>
+                </section>
+              </div>
+            </app-editor-sidebar>
+          </ng-template>
         </div>
-      </section>
+      </editable>
     </div>
   </div>
-</section>
+</main>

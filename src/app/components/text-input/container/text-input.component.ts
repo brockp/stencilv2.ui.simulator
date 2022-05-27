@@ -10,7 +10,6 @@ import { TextInputService } from '@app/components/text-input/service/text-input.
   styleUrls: ['./text-input.component.scss'],
 })
 export class TextInputComponent implements OnInit {
-  preview = 'SlimEntry';
   slimEntry!: SlimEntry;
 
   @Input()
@@ -36,8 +35,15 @@ export class TextInputComponent implements OnInit {
     this.ses.copy(index);
   }
 
-  edit(i: number): void {
-    this.ess.showTextInputEdit();
+  update(i: number) {
+    const index = this.slimEntries.at(i);
+    console.log(index.value);
+    index.patchValue({});
+    console.log(this.slimEntries);
+  }
+
+  cancel() {
+    console.log('clicked off of editable slimEntry');
   }
 
   closeSidebar() {
@@ -50,7 +56,6 @@ export class TextInputComponent implements OnInit {
       console.log(data);
       this.slimEntry = data;
       index.patchValue({
-        Version: this.slimEntry.version,
         IsRequired: this.slimEntry.configuration_json.IsRequired,
         IsPassword: this.slimEntry.configuration_json.IsPassword,
         GroupName: this.slimEntry.configuration_json.GroupName,
@@ -72,12 +77,17 @@ export class TextInputComponent implements OnInit {
 
   saveComponent(i: number) {
     const index = this.slimEntries.at(i);
-    let versionUpdate = index.get('version')!.value;
-    index.patchValue({
-      version: Math.round(versionUpdate + 1),
-    });
-    console.log(i);
-    this.ses.updateSlimEntry(i, index.value).subscribe(() => {});
+    const objUpdate = index.getRawValue();
+    const configuration_json = JSON.stringify(objUpdate.configuration_json);
+    const newObj = {
+      id: objUpdate.id + 1,
+      component: objUpdate.component,
+      configuration_json,
+    };
+
+    console.log('SlimEntryConfig: ', newObj);
+
+    this.ses.updateSlimEntry(i, newObj).subscribe(() => {});
     this.closeSidebar();
   }
 }

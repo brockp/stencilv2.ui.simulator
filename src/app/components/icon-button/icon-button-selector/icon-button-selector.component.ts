@@ -11,7 +11,7 @@ export class IconButtonSelectorComponent implements OnInit {
   parent!: FormGroup;
 
   @Input()
-  buttons!: any[];
+  iconButtons!: any[];
 
   @Output()
   iconButtonAdded = new EventEmitter<any>();

@@ -1,6 +1,6 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent" class="true-component">
-  <div formArrayName="buttonConfig">
+  <div formArrayName="finalConfig" [sortablejs]="buttons">
     <div *ngFor="let button of buttons; let i = index">
       <editable (save)="update(i)" (cancel)="cancel()">
         <div [formGroupName]="i">

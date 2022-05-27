@@ -1,5 +1,5 @@
 <main [formGroup]="parent" class="true-component">
-  <div formArrayName="headlineConfig">
+  <div formArrayName="finalConfig" [sortablejs]="headlines">
     <div *ngFor="let headline of headlines; let i = index">
       <!-- Form-->
       <editable (save)="update(i)" (cancel)="cancel()">

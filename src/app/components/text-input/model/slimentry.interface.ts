@@ -1,6 +1,5 @@
 export interface SlimEntry {
   id: number;
-  version: string;
   component: string;
   configuration_json: {
     Placeholder: string;

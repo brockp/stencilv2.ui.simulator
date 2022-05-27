@@ -1,6 +1,6 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent" class="true-component">
-  <div formArrayName="descriptionConfig">
+  <div formArrayName="finalConfig" [sortablejs]="descriptions">
     <div *ngFor="let description of descriptions; let i = index">
       <editable (save)="update(i)" (cancel)="cancel()">
         <section *ngIf="description">

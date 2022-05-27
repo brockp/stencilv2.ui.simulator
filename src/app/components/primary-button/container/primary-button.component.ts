@@ -46,7 +46,7 @@ export class PrimaryButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get buttons(): any {
-    return (this.parent.get('buttonConfig') as FormArray).controls;
+    return (this.parent.get('finalConfig') as FormArray).controls;
   }
 
   constructor(

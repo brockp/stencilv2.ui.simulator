@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { EditorRoutingModule } from './editor-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,7 +24,6 @@ import { PrimaryButtonModule } from '@app/components/primary-button/primary-butt
 import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
 import { TextInputModule } from '@app/components/text-input/text-input.module';
 import { SpacerModule } from '@app/components/spacer/spacer.module';
-import { ParagraphComponent } from '@app/editor/components/paragraph/paragraph.component';
 
 // Helper Components
 import { SharedModule } from '@app/shared/shared.module';
@@ -39,14 +37,13 @@ import {
 import { MaterialModule } from '@app/shared/material.module';
 import { MaterialShellComponent } from './material-shell/material-shell.component';
 @NgModule({
-  declarations: [EditorComponent, MaterialShellComponent, ParagraphComponent],
+  declarations: [EditorComponent, MaterialShellComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     EditorRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule,
     HeadlineModule,
     AppHeaderModule,
     CarouselModule,
@@ -58,6 +55,7 @@ import { MaterialShellComponent } from './material-shell/material-shell.componen
     SpacerModule,
     SharedModule,
     EditableModule,
+    SortablejsModule.forRoot({ animation: 150 }),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {
