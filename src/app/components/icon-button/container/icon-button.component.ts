@@ -29,6 +29,9 @@ export class IconButtonComponent implements OnInit {
   @Input()
   parent!: FormGroup;
 
+  @Input()
+  COMPONENTS!: string;
+
   @Output()
   versionChanged = new EventEmitter();
 
@@ -48,7 +51,7 @@ export class IconButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get iconButtons(): any {
-    return (this.parent.get('finalConfig') as FormArray).controls;
+    return (this.parent.get('iconButtonConfig') as FormArray).controls;
   }
 
   constructor(

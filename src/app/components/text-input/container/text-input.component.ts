@@ -18,6 +18,9 @@ export class TextInputComponent implements OnInit {
   @Input()
   parent!: FormGroup;
 
+  @Input()
+  COMPONENTS!: string;
+
   @Output()
   versionChanged = new EventEmitter();
 

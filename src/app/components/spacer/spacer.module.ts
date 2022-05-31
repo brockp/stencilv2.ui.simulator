@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // App libraries
 import { EditableModule } from '@ngneat/edit-in-place';
-import { SortablejsModule } from 'ngx-sortablejs';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '@app/shared/shared.module';
@@ -13,6 +13,7 @@ import { SharedModule } from '@app/shared/shared.module';
 // Components
 import { SpacerComponent } from './container/spacer.component';
 import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [SpacerComponent, SpacerSelectorComponent],
@@ -22,7 +23,7 @@ import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.compo
     SharedModule,
     RouterModule,
     EditableModule,
-    SortablejsModule,
+    DragulaModule,
     MatIconModule,
     MatTabsModule,
   ],

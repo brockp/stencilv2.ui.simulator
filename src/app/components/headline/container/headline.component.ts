@@ -16,6 +16,7 @@ import { Headline } from '@app/components/headline/model/headline.interface';
 import { Colors } from '@app/services/colors/colors.interface';
 import { environment } from 'src/environments/environment';
 import { EditorService } from '@app/services/editor/editor.service';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-headline',
@@ -36,6 +37,9 @@ export class HeadlineComponent implements OnInit {
   @Input()
   parent!: FormGroup;
 
+  @Input()
+  COMPONENTS!: string;
+
   @Output()
   versionChanged = new EventEmitter();
 
@@ -55,7 +59,8 @@ export class HeadlineComponent implements OnInit {
     private es: EditorService,
     public hs: HeadlineService,
     private cs: ColorsService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private dragulaService: DragulaService
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +73,6 @@ export class HeadlineComponent implements OnInit {
     index.patchValue({
       Text: index.value.configuration_json.Text.value,
     });
-    console.log(this.headlines);
   }
 
   cancel() {

@@ -27,6 +27,9 @@ export class PrimaryButtonComponent implements OnInit {
   @Input()
   parent!: FormGroup;
 
+  @Input()
+  COMPONENTS!: string;
+
   @Output()
   versionChanged = new EventEmitter();
 

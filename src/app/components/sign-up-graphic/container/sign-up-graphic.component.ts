@@ -21,6 +21,9 @@ export class SignUpGraphicComponent implements OnInit {
   @Input()
   parent!: FormGroup;
 
+  @Input()
+  COMPONENTS!: string;
+
   @Output()
   versionChanged = new EventEmitter();
 
@@ -39,14 +42,7 @@ export class SignUpGraphicComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  update(i: number) {
-    const index = this.graphics.at(i);
-    console.log(index.value);
-    index.patchValue({
-      Text: index.value.configuration_json.Text.value,
-    });
-    console.log(this.graphics);
-  }
+  update(i: number) {}
 
   cancel() {
     console.log('clicked off of editable graphic');

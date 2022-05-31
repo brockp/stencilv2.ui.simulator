@@ -9,11 +9,11 @@ import { SharedModule } from '@app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditableModule } from '@ngneat/edit-in-place';
-import { SortablejsModule } from 'ngx-sortablejs';
 
 // Components
 import { DescriptionComponent } from '@app/components/description/container/description.component';
 import { DescriptionSelectorComponent } from './description-selector/description-selector.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [DescriptionComponent, DescriptionSelectorComponent],
@@ -26,7 +26,7 @@ import { DescriptionSelectorComponent } from './description-selector/description
     MatIconModule,
     MatTabsModule,
     EditableModule,
-    SortablejsModule,
+    DragulaModule,
   ],
   exports: [DescriptionComponent, DescriptionSelectorComponent],
 })

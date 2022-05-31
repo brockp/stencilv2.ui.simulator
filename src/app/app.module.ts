@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditorModule } from './editor/editor.module';
 import { MaterialModule } from './shared/material.module';
 import { EditableModule } from '@ngneat/edit-in-place';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { EditableModule } from '@ngneat/edit-in-place';
     EditorModule,
     MaterialModule,
     EditableModule,
+    DragulaModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

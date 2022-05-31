@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { Colors } from '@app/services/colors/colors.interface';
 import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-editor',
@@ -83,23 +84,21 @@ export class EditorComponent implements OnInit {
   });
 
   finalArray = this.es.finalArray;
+  COMPONENTS = 'COMPONENTS';
+  from = null;
 
   constructor(
     public vps: ViewportService,
     public los: LayoutOptionsService,
     private es: EditorService,
     private fb: FormBuilder,
-    public ess: EditSidebarService
-  ) {}
-
-  moveItem(from: any, to: any) {
-    this.headlineConfig.value.splice(
-      to,
-      0,
-      this.headlineConfig.value.splice(from, 1)[0]
-    );
-
-    this.es.finalArray.splice(to, 0, this.es.finalArray.splice(from, 1)[0]);
+    public ess: EditSidebarService,
+    private dragulaService: DragulaService
+  ) {
+    this.dragulaService.createGroup(this.COMPONENTS, {
+      removeOnSpill: true,
+    });
+    this.dragulaService.drop(this.COMPONENTS).subscribe((element) => {});
   }
 
   ngOnInit(): void {}
@@ -347,6 +346,7 @@ export class EditorComponent implements OnInit {
   arrpoo: any[] = [];
   onSubmit(event: any): void {
     let visualConfig = this.form.get('visualConfig')!.value;
+    const f = this.form.get('finalConfig')!.value;
     const h = this.form.get('headlineConfig')!.value;
     const d = this.form.get('descriptionConfig')!.value;
     const i = this.form.get('iconButtonConfig')!.value;
@@ -354,7 +354,7 @@ export class EditorComponent implements OnInit {
     const g = this.form.get('graphicConfig')!.value;
     const s = this.form.get('spacerConfig')!.value;
     const se = this.form.get('slimEntryConfig')!.value;
-    const yep = this.es.finalArray.concat(h, g, d, se, i, p, s);
+    const yep = this.es.finalArray.concat(f, h, g, d, se, i, p, s);
 
     let newArray = (values: any) => {
       return values.map((value: any) => {

@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // App libraries
 import { EditableModule } from '@ngneat/edit-in-place';
-import { SortablejsModule } from 'ngx-sortablejs';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +14,7 @@ import { SharedModule } from '@app/shared/shared.module';
 // Components
 import { TextInputComponent } from '@app/components/text-input/container/text-input.component';
 import { TextInputSelectorComponent } from './text-input-selector/text-input-selector.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [TextInputComponent, TextInputSelectorComponent],
@@ -23,7 +24,7 @@ import { TextInputSelectorComponent } from './text-input-selector/text-input-sel
     HttpClientModule,
     SharedModule,
     EditableModule,
-    SortablejsModule,
+    DragulaModule,
     MatIconModule,
     MatTabsModule,
     MatInputModule,

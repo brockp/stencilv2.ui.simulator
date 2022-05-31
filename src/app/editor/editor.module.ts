@@ -5,7 +5,7 @@ import { EditorRoutingModule } from './editor-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 // Libraries
-import { SortablejsModule } from 'ngx-sortablejs';
+
 import { EditableModule } from '@ngneat/edit-in-place';
 
 // Services
@@ -36,6 +36,7 @@ import {
 // testing
 import { MaterialModule } from '@app/shared/material.module';
 import { MaterialShellComponent } from './material-shell/material-shell.component';
+import { DragulaModule } from 'ng2-dragula';
 @NgModule({
   declarations: [EditorComponent, MaterialShellComponent],
   imports: [
@@ -55,7 +56,7 @@ import { MaterialShellComponent } from './material-shell/material-shell.componen
     SpacerModule,
     SharedModule,
     EditableModule,
-    SortablejsModule.forRoot({ animation: 150 }),
+    DragulaModule.forRoot(),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {

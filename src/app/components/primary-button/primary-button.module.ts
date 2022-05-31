@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // App libraries
 import { EditableModule } from '@ngneat/edit-in-place';
-import { SortablejsModule } from 'ngx-sortablejs';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '@app/shared/shared.module';
@@ -13,6 +13,7 @@ import { SharedModule } from '@app/shared/shared.module';
 // Components
 import { PrimaryButtonComponent } from '@app/components/primary-button/container/primary-button.component';
 import { PrimaryButtonSelectorComponent } from './primary-button-selector/primary-button-selector.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [PrimaryButtonComponent, PrimaryButtonSelectorComponent],
@@ -22,7 +23,7 @@ import { PrimaryButtonSelectorComponent } from './primary-button-selector/primar
     HttpClientModule,
     SharedModule,
     EditableModule,
-    SortablejsModule,
+    DragulaModule,
     MatIconModule,
     MatTabsModule,
   ],
