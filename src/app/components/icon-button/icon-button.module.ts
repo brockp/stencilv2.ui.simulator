@@ -14,6 +14,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { IconButtonComponent } from '@app/components/icon-button/container/icon-button.component';
 import { IconButtonSelectorComponent } from './icon-button-selector/icon-button-selector.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TippyModule } from '@ngneat/helipopper';
 
 @NgModule({
   declarations: [IconButtonComponent, IconButtonSelectorComponent],
@@ -26,6 +27,7 @@ import { DragulaModule } from 'ng2-dragula';
     DragulaModule,
     MatIconModule,
     MatTabsModule,
+    TippyModule,
   ],
   exports: [IconButtonComponent, IconButtonSelectorComponent],
 })

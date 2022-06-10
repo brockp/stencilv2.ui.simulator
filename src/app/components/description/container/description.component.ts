@@ -36,7 +36,7 @@ export class DescriptionComponent implements OnInit {
 
   // GET viewConfig FormArray and assign to 'descriptions' for use in *ngFor in template
   get descriptions(): any {
-    return (this.parent.get('finalConfig') as FormArray).controls;
+    return (this.parent.get('descriptionConfig') as FormArray).controls;
   }
 
   constructor(

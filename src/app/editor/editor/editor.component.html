@@ -53,27 +53,28 @@
     </section>
 
     <!-- Visal Config and Screen Submit -->
-    <div visualConfig class="flex justify-start items-center">
+    <div visualConfig class="flex justify-start items-center gap-x-2">
       <div>
-        <img
-          class="w-8 h-8 hover:cursor-pointer"
-          (click)="edit()"
-          tippy="Edit VisualConfig"
-          src="../../../assets/edit-visualconfig-icon.svg"
-        />
-      </div>
-      <div class="pr-4">
         <button
-          class="py-2 px-3 bg-transparent border border-blueprint hover:bg-blueprint hover:text-white transition ease-in-out duration-100 hover:cursor-pointer hover:scale-110 text-ct-dark text-sm font-semibold rounded-md shadow focus:outline-none"
+          class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
+          tippy="Screen Config"
+          (click)="edit()"
+        >
+          <mat-icon class="text-lg">tune</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button
+          class="py-2 px-3 mb-1 bg-ct-blue text-white transition ease-in-out duration-100 hover:cursor-pointer hover:scale-105 text-xs font-noir rounded-md shadow focus:outline-none"
           (click)="onSubmit($event)"
         >
-          Submit Screen
+          Publish Config
         </button>
       </div>
     </div>
 
     <!-- Phone screen -->
-    <section phoneScreen>
+    <section class="mt-4" phoneScreen>
       <div [ngClass]="viewPortClassSwitch()" class="viewport-canvas">
         <div
           class="viewport-inner-canvas drop-container basic-layout"
@@ -91,6 +92,10 @@
               [parent]="form"
               [COMPONENTS]="COMPONENTS"
             ></app-headline>
+            <app-description
+              [parent]="form"
+              [COMPONENTS]="COMPONENTS"
+            ></app-description>
             <app-sign-up-graphic
               [parent]="form"
               [COMPONENTS]="COMPONENTS"
@@ -101,14 +106,13 @@
             ></app-text-input>
             <app-primary-button
               [parent]="form"
-              *ngIf="button"
               [COMPONENTS]="COMPONENTS"
             ></app-primary-button>
             <app-icon-button
               [parent]="form"
-              *ngIf="iconButton"
               [COMPONENTS]="COMPONENTS"
             ></app-icon-button>
+            <app-spacer [parent]="form" [COMPONENTS]="COMPONENTS"></app-spacer>
           </div>
           <!-- ADD CHILD COMPONENT HERE THAT WILL GET ADDED TO THE FORMARRAY -->
           <div
@@ -126,125 +130,47 @@
         <div formGroupName="visualConfig">
           <!-- VisualConfig Padding -->
           <section class="edit-section">
-            <h2 class="edit-section-title">Set Screen Padding:</h2>
-            <div formGroupName="Padding" class="grid grid-cols-4 gap-3">
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="top"
-                >
-                  T:
-                </label>
+            <h2 class="edit-section-title">Screen Padding:</h2>
+            <div formGroupName="Padding">
+              <div class="flex justify-around items-center">
                 <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
+                  class="form-control w-12 overflow-hidden p-1"
+                  placeholder="0"
+                  type="number"
                   formControlName="top"
                 />
               </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="right"
-                >
-                  R:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
-                  formControlName="right"
-                />
-              </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="bottom"
-                >
-                  B:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
-                  formControlName="bottom"
-                />
-              </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="left"
-                >
-                  L:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="number"
-                  formControlName="left"
-                />
-              </div>
-            </div>
-          </section>
 
-          <!-- VisualConfig Margin -->
-          <section class="edit-section">
-            <h2 class="edit-section-title">Set Screen Margin:</h2>
-            <div formGroupName="Margin" class="grid grid-cols-4 gap-3">
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="top"
-                >
-                  T:
-                </label>
+              <section class="flex justify-around">
+                <div class="flex justify-start items-center gap-x-2">
+                  <input
+                    class="form-control w-12 overflow-hidden p-1"
+                    placeholder="0"
+                    type="number"
+                    formControlName="left"
+                  />
+                  <div
+                    class="rounded-md w-12 h-12 bg-gray-600 m-2 flex justify-center items-center"
+                  >
+                    <mat-icon class="text-white"
+                      >horizontal_distribute</mat-icon
+                    >
+                  </div>
+                  <input
+                    class="form-control w-12 overflow-hidden p-1"
+                    placeholder="0"
+                    type="number"
+                    formControlName="right"
+                  />
+                </div>
+              </section>
+
+              <div class="flex justify-around items-center">
                 <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
-                  formControlName="top"
-                />
-              </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="right"
-                >
-                  R:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
-                  formControlName="right"
-                />
-              </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="bottom"
-                >
-                  B:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
-                  type="text"
-                  formControlName="bottom"
-                />
-              </div>
-              <div class="flex gap-x-2 justify-start items-center">
-                <label
-                  class="text-ctdark text-quicksand text-xs font-semibold"
-                  for="left"
-                >
-                  L:
-                </label>
-                <input
-                  class="form-control w-full overflow-hidden"
-                  placeholder="#"
+                  class="form-control w-12 overflow-hidden p-1"
+                  placeholder="0"
                   type="number"
-                  formControlName="left"
+                  formControlName="bottom"
                 />
               </div>
             </div>
@@ -252,32 +178,29 @@
 
           <!-- Background Color -->
           <section class="edit-section">
-            <h2 class="edit-section-title">Set Screen Background Color:</h2>
-            <div class="flex justify-between items-center gap-x-10">
+            <h2 class="edit-section-title">Screen Background Color:</h2>
+            <div class="flex justify-start items-center">
               <button
                 class="color-button primary-blue text-white"
                 (click)="changeVisaulConfigBgColor('#3589f9')"
-              >
-                #3589F9
-              </button>
+                tippy="#3589f9"
+              ></button>
               <button
                 class="color-button purple-black text-white"
                 (click)="changeVisaulConfigBgColor('#1a152e')"
-              >
-                #1A152E
-              </button>
+                tippy="#1a152e"
+              ></button>
               <button
                 class="color-button lighter-blue text-white"
                 (click)="changeVisaulConfigBgColor('#62b4ff')"
-              >
-                #62B4FF
-              </button>
+                tippy="#62b4ff"
+              ></button>
             </div>
           </section>
 
           <!-- Background Image -->
           <section class="edit-section">
-            <h2 class="edit-section-title">Set Sign Up Graphic:</h2>
+            <h2 class="edit-section-title">Background Image:</h2>
             <section
               class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
             >

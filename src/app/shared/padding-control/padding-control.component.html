@@ -1,0 +1,19 @@
+<div class="flex justify-around items-center">
+  <ng-content select="[paddingTop]"></ng-content>
+</div>
+
+<section class="flex justify-around">
+  <div class="flex justify-start items-center gap-x-2">
+    <ng-content select="[paddingLeft]"></ng-content>
+    <div
+      class="rounded-md w-12 h-12 bg-gray-600 m-2 flex justify-center items-center"
+    >
+      <mat-icon class="text-white">horizontal_distribute</mat-icon>
+    </div>
+    <ng-content select="[paddingRight]"></ng-content>
+  </div>
+</section>
+
+<div class="flex justify-around items-center">
+  <ng-content select="[paddingBottom]"></ng-content>
+</div>

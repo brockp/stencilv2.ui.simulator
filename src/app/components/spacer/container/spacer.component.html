@@ -1,6 +1,6 @@
 <!-- Editable wrapper -->
-<main [formGroup]="parent" class="true-component">
-  <div formArrayName="finalConfig">
+<main [formGroup]="parent">
+  <div formArrayName="spacerConfig">
     <div *ngFor="let spacer of spacers; let i = index">
       <div [dragula]="COMPONENTS">
         <editable (save)="update(i)" (cancel)="cancel()">
@@ -12,6 +12,7 @@
                   height: this.spacer.value.Height + 'px',
                   'background-color': this.spacer.value.BackgroundColor
                 }"
+                class="true-component"
               >
                 &nbsp;
               </section>
@@ -27,59 +28,45 @@
                 &nbsp;
               </section>
               <!-- Edit form -->
-              <app-editor-sidebar *ngIf="ess.spacerEdit">
+              <app-editor-sidebar>
                 <!-- Base edit for -->
                 <section edit-form>
-                  <!-- Version -->
-                  <section class="edit-section">
-                    <h2 class="edit-section-title">Version:</h2>
-                    <input
-                      class="form-control"
-                      placeholder="Enter initial value"
-                      type="text"
-                      formControlName="Version"
-                    />
-                  </section>
                   <!-- Height -->
                   <section class="edit-section">
                     <h2 class="edit-section-title">Spacer Height:</h2>
-                    <input
-                      class="form-control"
-                      placeholder="Enter initial value"
-                      type="text"
-                      formControlName="Height"
-                    />
+                    <div class="flex justify-start items-center gap-x-4">
+                      <label
+                        class="w-5 h-5 bg-gray-700 border-t-4 border-b-4 border-b-red-200 border-t-red-200"
+                        for="Height"
+                      >
+                      </label>
+                      <input
+                        class="form-control p-1"
+                        placeholder="0"
+                        type="number"
+                        formControlName="Height"
+                      />
+                    </div>
                   </section>
                   <!-- Background Color -->
                   <section class="edit-section">
                     <h2 class="edit-section-title">Background Color:</h2>
-                    <div class="flex justify-between items-center gap-x-10">
-                      <button
-                        class="color-button bg-transparent border border-gray-400 text-gray-400"
-                        (click)="changeBgColor('', i)"
-                      >
-                        None
-                      </button>
-                      <button
-                        class="color-button primary-blue"
-                        (click)="changeBgColor('#3589F9', i)"
-                      >
-                        #3589F9
-                      </button>
-                    </div>
+                    <section
+                      class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden"
+                    >
+                      <div *ngFor="let color of colorPalettes">
+                        <button
+                          class="color-button"
+                          [class]="[color.class, color.textColor]"
+                          (click)="changeBgColor(color.color, i)"
+                          [tippy]="color.name"
+                        ></button>
+                      </div>
+                    </section>
                   </section>
                 </section>
                 <!-- Code edit form -->
                 <code class="code-box" edit-config-code>
-                  <section>
-                    <label for="icon">Version: </label>
-                    <input
-                      class="code-form-control"
-                      type="text"
-                      placeholder="set initial value"
-                      formControlName="Version"
-                    />
-                  </section>
                   <section>
                     <label for="icon">Height: </label>
                     <input

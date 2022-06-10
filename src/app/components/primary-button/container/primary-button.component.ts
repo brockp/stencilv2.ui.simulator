@@ -11,6 +11,8 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.service';
 import { primaryButton } from '@app/components/primary-button/model/primary-button.interface';
 import { PrimaryButtonService } from '@app/components/primary-button/service/primary-button.service';
+import { ColorsService } from '@app/services/colors/colors.service';
+import { Colors } from '@app/services/colors/colors.interface';
 
 @Component({
   selector: 'app-primary-button',
@@ -20,6 +22,7 @@ import { PrimaryButtonService } from '@app/components/primary-button/service/pri
 export class PrimaryButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   primaryButton!: primaryButton;
+  colorPalettes!: Colors[];
 
   @Input()
   payload!: FormGroup;
@@ -49,15 +52,18 @@ export class PrimaryButtonComponent implements OnInit {
   iconChanged = new EventEmitter();
 
   get buttons(): any {
-    return (this.parent.get('finalConfig') as FormArray).controls;
+    return (this.parent.get('buttonConfig') as FormArray).controls;
   }
 
   constructor(
     public ess: EditSidebarService,
-    public ibs: PrimaryButtonService
+    public ibs: PrimaryButtonService,
+    private cs: ColorsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.colorPalettes = this.cs.getAppColors();
+  }
 
   update(i: number) {
     const index = this.buttons.at(i);

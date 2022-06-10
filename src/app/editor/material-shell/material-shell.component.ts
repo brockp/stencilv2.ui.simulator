@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EditorService } from '@app/services/editor/editor.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
 import { ViewportService } from '@app/services/viewport/viewport.service';
 
@@ -8,6 +9,7 @@ import { ViewportService } from '@app/services/viewport/viewport.service';
   styleUrls: ['./material-shell.component.scss'],
 })
 export class MaterialShellComponent implements OnInit {
+  isHidden = false;
   constructor(public vps: ViewportService, public los: LayoutOptionsService) {}
 
   ngOnInit(): void {}

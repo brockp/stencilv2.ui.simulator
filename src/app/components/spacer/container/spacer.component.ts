@@ -3,6 +3,8 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { SpacerService } from '@app/components/spacer/service/spacer.service';
 import { Spacer } from '@app/components/spacer/container/spacer';
+import { Colors } from '@app/services/colors/colors.interface';
+import { ColorsService } from '@app/services/colors/colors.service';
 
 @Component({
   selector: 'app-spacer',
@@ -11,6 +13,7 @@ import { Spacer } from '@app/components/spacer/container/spacer';
 })
 export class SpacerComponent implements OnInit {
   spacer!: Spacer;
+  colorPalettes!: Colors[];
 
   @Input()
   payload!: FormGroup;
@@ -31,9 +34,15 @@ export class SpacerComponent implements OnInit {
     return (this.parent.get('spacerConfig') as FormArray).controls;
   }
 
-  constructor(public ess: EditSidebarService, public ss: SpacerService) {}
+  constructor(
+    public ess: EditSidebarService,
+    public ss: SpacerService,
+    private cs: ColorsService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.colorPalettes = this.cs.getAppColors();
+  }
 
   copy(i: number) {
     const index = this.spacers.at(i).value;

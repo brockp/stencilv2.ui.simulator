@@ -14,6 +14,7 @@ import { EditableModule } from '@ngneat/edit-in-place';
 import { DescriptionComponent } from '@app/components/description/container/description.component';
 import { DescriptionSelectorComponent } from './description-selector/description-selector.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TippyModule } from '@ngneat/helipopper';
 
 @NgModule({
   declarations: [DescriptionComponent, DescriptionSelectorComponent],
@@ -27,6 +28,7 @@ import { DragulaModule } from 'ng2-dragula';
     MatTabsModule,
     EditableModule,
     DragulaModule,
+    TippyModule,
   ],
   exports: [DescriptionComponent, DescriptionSelectorComponent],
 })

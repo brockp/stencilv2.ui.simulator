@@ -5,6 +5,8 @@ import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-gra
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { ImageService } from '@app/components/sign-up-graphic/service/image.service';
 import { environment } from '../../../../environments/environment';
+import { Colors } from '@app/services/colors/colors.interface';
+import { ColorsService } from '@app/services/colors/colors.service';
 
 @Component({
   selector: 'app-sign-up-graphic',
@@ -14,6 +16,7 @@ import { environment } from '../../../../environments/environment';
 export class SignUpGraphicComponent implements OnInit {
   imgHost = environment.imgHost;
   signUpGraphic!: SignUpGraphic;
+  colorPalettes!: Colors[];
 
   @Input()
   payload!: FormGroup;
@@ -38,9 +41,15 @@ export class SignUpGraphicComponent implements OnInit {
     return (this.parent.get('graphicConfig') as FormArray).controls;
   }
 
-  constructor(public ess: EditSidebarService, public is: ImageService) {}
+  constructor(
+    public ess: EditSidebarService,
+    public is: ImageService,
+    private cs: ColorsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.colorPalettes = this.cs.getAppColors();
+  }
 
   update(i: number) {}
 

@@ -2,8 +2,16 @@
   @apply w-full h-screen;
 }
 
+.mat-drawer-container {
+  @apply bg-gradient-to-b from-ctdark to-gray-900;
+}
+
 .main-sidenav {
-  @apply w-64 rounded-2xl;
+  @apply w-60;
+}
+
+.mat-drawer {
+  @apply bg-gray-800 text-white font-noir;
 }
 
 .mat-drawer-side {
@@ -11,13 +19,34 @@
 }
 
 .mat-toolbar-single-row {
-  @apply max-h-10 bg-gradient-to-r from-ctdark to-ctlight bg-opacity-80 shadow-sm backdrop-filter backdrop-blur-lg ease-in-out;
+  @apply max-h-14 flex justify-between items-center bg-gray-900 shadow-lg text-gray-300;
+  span {
+    @apply text-base;
+  }
   .mat-icon {
     @apply text-white;
   }
 }
 
+.mat-tab-label-content {
+  @apply text-white text-xs;
+}
+
+.mat-tab-header-pagination-chevron {
+  @apply border-ct-blue;
+}
+
+.mat-tab-header-pagination-disabled .mat-tab-header-pagination-chevron {
+  @apply border-transparent;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  @apply bg-ct-blue;
+}
+
 .mat-expansion-panel {
+  @apply bg-gray-800 text-white font-noir text-base font-normal;
   box-shadow: none !important;
   .mat-expansion-panel-header {
     padding: 0px 8px !important;
@@ -29,7 +58,7 @@
 }
 
 .mat-icon-edit-view {
-  @apply text-gray-700 text-sm font-light hover:text-ctlight;
+  @apply text-gray-100 text-sm font-light hover:text-ctlight;
 }
 
 .mat-input-element {

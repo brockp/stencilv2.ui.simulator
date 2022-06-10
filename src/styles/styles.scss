@@ -7,7 +7,7 @@
 @import "dragula";
 @import "variables";
 @import "~tippy.js/dist/tippy.css";
-@import "~tippy.js/themes/light.css";
+@import "~tippy.js/themes/light-border.css";
 @import "~tippy.js/animations/scale.css";
 
 .description-font {
@@ -20,16 +20,21 @@ body {
 }
 
 @layer base {
+  @font-face {
+    font-family: "noir";
+    src: font-url("noir.woff2") format("opentype");
+  }
+
   .main-height {
-    height: calc(100vh - 10vh);
+    height: calc(100vh - 8.8vh);
   }
 
   .form-control {
-    @apply text-ctdark rounded-full text-sm w-full;
+    @apply text-gray-300 bg-gray-900 rounded-md text-xs font-noir font-normal w-full;
   }
 
   .textarea-control {
-    @apply text-ctdark rounded-md text-sm;
+    @apply text-gray-300 bg-gray-900 rounded-md text-xs font-noir font-normal w-full;
   }
 
   .code-form-control {
@@ -55,7 +60,7 @@ body {
 
 @layer components {
   .code-box {
-    @apply flex flex-col flex-wrap bg-gray-900 text-xs p-4 rounded-md shadow-inner w-full;
+    @apply flex flex-col bg-gray-900 text-xs p-4 rounded-md shadow-inner w-full h-min;
     section {
       @apply my-1;
     }

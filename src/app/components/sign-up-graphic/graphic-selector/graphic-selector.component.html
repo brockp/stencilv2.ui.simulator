@@ -1,8 +1,15 @@
 <div [formGroup]="parent">
   <div formGroupName="graphicSelector">
     <button class="element-button" type="button" (click)="onAdd()">
-      Add graphic
-      <mat-icon class="element-icon">add_circle_outline</mat-icon>
+      <section class="flex justify-start items-center gap-x-2">
+        <div
+          class="w-10 h-10 rounded-md bg-gray-700 flex justify-center items-center"
+        >
+          <mat-icon class="element-icon">add_circle_outline</mat-icon>
+        </div>
+        Add Graphic
+      </section>
+      <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
   </div>
 </div>

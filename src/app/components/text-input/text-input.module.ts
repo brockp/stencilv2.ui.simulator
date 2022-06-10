@@ -9,6 +9,7 @@ import { EditableModule } from '@ngneat/edit-in-place';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SharedModule } from '@app/shared/shared.module';
 
 // Components
@@ -28,6 +29,7 @@ import { DragulaModule } from 'ng2-dragula';
     MatIconModule,
     MatTabsModule,
     MatInputModule,
+    MatCheckboxModule,
   ],
   exports: [TextInputComponent, TextInputSelectorComponent],
 })

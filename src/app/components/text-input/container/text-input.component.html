@@ -1,5 +1,5 @@
 <!-- Editable wrapper -->
-<main [formGroup]="parent" class="true-component">
+<main [formGroup]="parent">
   <div formArrayName="slimEntryConfig">
     <div *ngFor="let entry of slimEntries; let i = index">
       <div [dragula]="COMPONENTS">
@@ -8,7 +8,7 @@
             <div formGroupName="configuration_json">
               <!-- Actual component -->
               <ng-template viewMode>
-                <div>
+                <div class="true-component">
                   <mat-form-field
                     class="w-full px-8 text-white font-quicksand font-semibold"
                     [appearance]="entry.value.configuration_json.Borderless"
@@ -70,18 +70,21 @@
                 <!-- Edit form -->
                 <app-editor-sidebar>
                   <section edit-form>
-                    <section class="edit-section">
-                      <h2 class="edit-section-title">Is it required?:</h2>
-                      <mat-checkbox
-                        class="form-control font-quicksand text-sm font-semibold"
-                        formControlName="IsRequired"
-                        >Make Required</mat-checkbox
-                      >
+                    <section class="edit-section edit-section-title">
+                      <div class="flex justify-start items-center gap-x-4">
+                        <h2 class="font-noir text-xs font-normal">
+                          Is it required?:
+                        </h2>
+                        <mat-checkbox
+                          class="p-1"
+                          formControlName="IsRequired"
+                        ></mat-checkbox>
+                      </div>
                     </section>
                     <section class="edit-section">
                       <h2 class="edit-section-title">Set GroupName:</h2>
                       <input
-                        class="form-control"
+                        class="form-control p-1"
                         placeholder="Enter initial value"
                         type="text"
                         formControlName="GroupName"
@@ -90,7 +93,7 @@
                     <section class="edit-section">
                       <h2 class="edit-section-title">Set FieldName:</h2>
                       <input
-                        class="form-control"
+                        class="form-control p-1"
                         placeholder="Enter initial value"
                         type="text"
                         formControlName="FieldName"
@@ -99,7 +102,7 @@
                     <section class="edit-section">
                       <h2 class="edit-section-title">Set Placeholder:</h2>
                       <input
-                        class="form-control"
+                        class="form-control p-1"
                         placeholder="Enter initial value"
                         type="text"
                         formControlName="Placeholder"
@@ -108,7 +111,7 @@
                     <section class="edit-section">
                       <h2 class="edit-section-title">Set Appearance:</h2>
                       <input
-                        class="form-control"
+                        class="form-control p-1"
                         placeholder="fill, legacy, standard, outline"
                         type="text"
                         formControlName="Borderless"
@@ -117,75 +120,47 @@
                     <section class="edit-section">
                       <h2 class="edit-section-title">Set Input Type:</h2>
                       <input
-                        class="form-control"
+                        class="form-control p-1"
                         placeholder="date, email, password, number, etc..."
                         type="text"
                         formControlName="Type"
                       />
                     </section>
-                    <!-- Padding -->
+
                     <section class="edit-section">
-                      <h2 class="edit-section-title">Set Padding:</h2>
-                      <div
-                        class="grid grid-cols-4 gap-3"
-                        formGroupName="Padding"
-                      >
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="top"
-                          >
-                            T:
-                          </label>
+                      <!-- Padding -->
+                      <h2 class="edit-section-title">Padding:</h2>
+                      <div formGroupName="Padding">
+                        <app-padding-control>
                           <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding top value"
-                            type="text"
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
                             formControlName="top"
+                            paddingTop
                           />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            R:
-                          </label>
                           <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding right value"
-                            type="text"
-                            formControlName="right"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="bottom"
-                          >
-                            B:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding bottom value"
-                            type="text"
-                            formControlName="bottom"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="left"
-                          >
-                            L:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding left value"
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
                             type="number"
                             formControlName="left"
+                            paddingLeft
                           />
-                        </div>
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="right"
+                            paddingRight
+                          />
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="bottom"
+                            paddingBottom
+                          />
+                        </app-padding-control>
                       </div>
                     </section>
                   </section>

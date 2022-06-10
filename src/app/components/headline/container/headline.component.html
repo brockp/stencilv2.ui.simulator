@@ -1,5 +1,5 @@
-<main [formGroup]="parent" class="true-component">
-  <div formArrayName="finalConfig">
+<main [formGroup]="parent">
+  <div formArrayName="headlineConfig">
     <div *ngFor="let headline of headlines; let i = index">
       <!-- Form-->
       <div [dragula]="COMPONENTS">
@@ -14,6 +14,7 @@
                       'background-color':
                         headline.value.configuration_json.BackgroundColor
                     }"
+                    class="true-component"
                   >
                     <div
                       class="font-bold tracking-wide leading-10"
@@ -67,115 +68,80 @@
                   <app-editor-sidebar>
                     <!-- Edit form -->
                     <div edit-form>
-                      <app-version-button
-                        (click)="loadVersion(2, i)"
-                        editableOnEscape
-                      ></app-version-button>
+                      <section class="edit-section">
+                        <!-- Padding -->
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <div formGroupName="Padding">
+                          <app-padding-control>
+                            <input
+                              class="form-control w-12 overflow-hidden p-1"
+                              placeholder="0"
+                              type="number"
+                              formControlName="top"
+                              paddingTop
+                            />
+                            <input
+                              class="form-control w-12 overflow-hidden p-1"
+                              placeholder="0"
+                              type="number"
+                              formControlName="left"
+                              paddingLeft
+                            />
+                            <input
+                              class="form-control w-12 overflow-hidden p-1"
+                              placeholder="0"
+                              type="number"
+                              formControlName="right"
+                              paddingRight
+                            />
+                            <input
+                              class="form-control w-12 overflow-hidden p-1"
+                              placeholder="0"
+                              type="number"
+                              formControlName="bottom"
+                              paddingBottom
+                            />
+                          </app-padding-control>
+                        </div>
+                      </section>
                       <!-- H1 Text -->
-                      <h2 class="edit-section-title">Set Headline:</h2>
-                      <textarea
-                        class="textarea-control"
+                      <h2 class="edit-section-title">Headline:</h2>
+                      <input
+                        class="form-control p-2"
                         placeholder="Set initial value"
                         type="text"
                         editableOnEnter
                         editableOnEscape
                         formControlName="Text"
-                        rows="3"
-                        cols="33"
-                      ></textarea>
+                      />
                       <!-- Text Color -->
-                      <h2 class="edit-section-title">Set Text Color:</h2>
+                      <h2 class="edit-section-title">Text Color:</h2>
                       <section
-                        class="grid grid-cols-4 justify-between items-center gap-y-4 gap-x-1 max-h-40 overflow-y-auto overflow-x-hidden"
+                        class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden"
                       >
                         <div *ngFor="let color of colorPalettes">
                           <button
                             class="color-button"
                             [class]="[color.class, color.textColor]"
                             (click)="setTextColor(color.color, i)"
-                          >
-                            {{ color.name }}
-                          </button>
+                            [tippy]="color.name"
+                          ></button>
                         </div>
                       </section>
                       <!-- Background Color -->
-                      <h2 class="edit-section-title">Set Background Color:</h2>
+                      <h2 class="edit-section-title">Background Color:</h2>
                       <section
-                        class="grid grid-cols-4 justify-between items-center gap-y-4 gap-x-1 max-h-40 overflow-y-auto overflow-x-hidden"
+                        class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden"
                       >
                         <div *ngFor="let color of colorPalettes">
                           <button
                             class="color-button"
                             [class]="[color.class, color.textColor]"
                             (click)="setBackgroundColor(color.color, i)"
-                          >
-                            {{ color.name }}
-                          </button>
+                            [tippy]="color.name"
+                          ></button>
                         </div>
                       </section>
-                      <!-- Padding -->
-                      <h2 class="edit-section-title">Set Padding:</h2>
-                      <div
-                        class="grid grid-cols-4 gap-3"
-                        formGroupName="Padding"
-                      >
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="top"
-                          >
-                            T:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding top value"
-                            type="text"
-                            formControlName="top"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            R:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding right value"
-                            type="text"
-                            formControlName="right"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="bottom"
-                          >
-                            B:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding bottom value"
-                            type="text"
-                            formControlName="bottom"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="left"
-                          >
-                            L:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding left value"
-                            type="number"
-                            formControlName="left"
-                          />
-                        </div>
-                      </div>
                     </div>
                     <!-- Code edit form -->
                     <section edit-config-code>

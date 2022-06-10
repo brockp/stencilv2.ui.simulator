@@ -21,14 +21,18 @@ module.exports = {
         iPhone11: "375px",
         Android: "412px",
       },
+      width: {
+        85: "22rem",
+      },
       height: {
         iPhone11: "812px",
         iPhone13: "844px",
         Android: "823px",
-        "edit-sidebar": "96vh",
+        "edit-sidebar": "93vh",
       },
       fontFamily: {
         quicksand: ["Quicksand", ...defaultTheme.fontFamily.sans],
+        noir: ["noir", ...defaultTheme.fontFamily.sans],
       },
       backgroundColor: {
         ctdark: "#261E45",

@@ -14,6 +14,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { PrimaryButtonComponent } from '@app/components/primary-button/container/primary-button.component';
 import { PrimaryButtonSelectorComponent } from './primary-button-selector/primary-button-selector.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TippyModule } from '@ngneat/helipopper';
 
 @NgModule({
   declarations: [PrimaryButtonComponent, PrimaryButtonSelectorComponent],
@@ -26,6 +27,7 @@ import { DragulaModule } from 'ng2-dragula';
     DragulaModule,
     MatIconModule,
     MatTabsModule,
+    TippyModule,
   ],
   exports: [PrimaryButtonComponent, PrimaryButtonSelectorComponent],
 })

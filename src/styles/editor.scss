@@ -1,7 +1,7 @@
 .viewport-canvas {
   @apply transition-all ease-out duration-150 flex items-stretch w-full mx-auto justify-center;
   .viewport-inner-canvas {
-    @apply container max-w-full grid grid-cols-1 mx-auto shadow-md dark:bg-ctdark bg-slate-50 rounded-lg bg-none z-0 overflow-hidden text-white bg-no-repeat bg-contain;
+    @apply container max-w-full mb-4 grid grid-cols-1 mx-auto shadow-md dark:bg-none bg-none rounded-lg z-0 overflow-hidden text-white bg-no-repeat bg-contain border border-dashed border-gray-200;
   }
 }
 .basic-layout {
@@ -29,7 +29,7 @@
     display: none;
   }
   .preview-component {
-    @apply block bg-white bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
+    @apply block bg-gray-800 bg-opacity-30 rounded-md px-2 py-3 uppercase font-quicksand leading-3 tracking-wide my-2;
     .preview-placeholder {
       @apply w-auto h-full p-2 border-gray-400 border-2 border-dashed rounded-full text-center text-xs leading-3 text-gray-400 font-bold uppercase transition-all ease-in-out;
       &:hover {
@@ -61,7 +61,7 @@
     @apply transition duration-75;
 
     &:hover {
-      @apply bg-white bg-opacity-30 shadow-lg rounded-lg;
+      @apply bg-white bg-opacity-30 shadow-lg;
     }
   }
   .preview-component {
@@ -77,7 +77,7 @@
 }
 
 .edit-section-title {
-  @apply text-sm font-bold font-quicksand border-b border-gray-300 mb-2 text-ctdark;
+  @apply text-xs font-normal font-noir border-t pt-2 border-gray-700 mb-2;
 }
 
 .icon-selection {
@@ -85,7 +85,7 @@
 }
 
 .color-button {
-  @apply transition-all ease-in-out hover:scale-110 flex items-center justify-center w-full h-7 rounded-md border-none shadow-md p-2 my-2 text-xs text-gray-600 font-semibold font-quicksand cursor-pointer;
+  @apply transition-all ease-in-out hover:scale-110 flex items-center justify-center w-7 h-7 hover:w-full overflow-hidden border-none shadow-md p-4 my-2 text-xs text-gray-600 font-normal font-noir cursor-pointer;
 }
 
 .primary-blue {
@@ -105,15 +105,15 @@
 }
 
 .grouped-form-submit-button {
-  @apply w-full rounded-full px-3 py-1 m-2 text-white font-semibold;
+  @apply py-2 px-3 mb-1 bg-ct-blue text-white transition ease-in-out duration-100 hover:cursor-pointer hover:scale-105 text-xs font-noir rounded-md shadow focus:outline-none;
 }
 
 .form-submit-wrapper {
-  @apply fixed bottom-0 left-0 w-full bg-white shadow-md rounded-br-lg rounded-bl-lg;
+  @apply fixed bottom-0 left-0 w-full bg-gray-800 shadow-md rounded-br-lg rounded-bl-lg;
 }
 
 .form-submit-section {
-  @apply flex justify-around border-t border-gray-300 py-4 px-4;
+  @apply flex justify-around  py-4 px-4;
 }
 
 .radius-edit-button {
@@ -138,7 +138,7 @@
 
 .image-gallery {
   img {
-    @apply w-10 h-10;
+    @apply w-14 h-14;
   }
 }
 
@@ -147,9 +147,9 @@
 }
 
 .element-button {
-  @apply text-gray-400 uppercase font-quicksand font-semibold text-sm w-full flex justify-between items-center mb-4 px-2;
+  @apply text-gray-300 font-noir font-normal text-sm w-full flex justify-between items-center mb-4 px-2;
   &:hover {
-    @apply text-ct-dark-purple;
+    @apply text-ct-blue;
   }
   .element-icon {
     @apply w-6 h-6 m-0 p-0;

@@ -13,6 +13,8 @@ import { EditSidebarService } from 'src/app/services/edit-sidebar/edit-sidebar.s
 import { IconButtonService } from '@app/components/icon-button/service/icon-button.service';
 import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
 import { EditorService } from '@app/services/editor/editor.service';
+import { Colors } from '@app/services/colors/colors.interface';
+import { ColorsService } from '@app/services/colors/colors.service';
 
 @Component({
   selector: 'app-icon-button',
@@ -22,6 +24,7 @@ import { EditorService } from '@app/services/editor/editor.service';
 export class IconButtonComponent implements OnInit {
   @ViewChild('button') button!: ElementRef;
   iconButton!: iconButton;
+  colorPalettes!: Colors[];
 
   @Input()
   payload!: FormGroup;
@@ -58,10 +61,13 @@ export class IconButtonComponent implements OnInit {
     public ess: EditSidebarService,
     private es: EditorService,
     public ibs: IconButtonService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private cs: ColorsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.colorPalettes = this.cs.getAppColors();
+  }
 
   update(i: number) {
     const index = this.iconButtons.at(i);

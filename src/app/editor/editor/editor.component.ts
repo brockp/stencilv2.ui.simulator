@@ -54,7 +54,7 @@ export class EditorComponent implements OnInit {
       BackgroundColor: '',
       BackgroundImage: '',
       Margin: this.fb.group({
-        top: '',
+        top: 0,
         right: '',
         bottom: '',
         left: '',
@@ -146,11 +146,11 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   addHeadline(headline: any): any {
-    this.finalConfig.push(this.es.createHeadline(headline));
+    this.headlineConfig.push(this.es.createHeadline(headline));
   }
 
   addDescription(description: any): any {
-    this.finalConfig.push(this.es.createDescription(description));
+    this.descriptionConfig.push(this.es.createDescription(description));
   }
 
   addGraphic(graphic: any): any {
@@ -158,11 +158,11 @@ export class EditorComponent implements OnInit {
   }
 
   addButton(button: any): any {
-    this.finalConfig.push(this.es.createButton(button));
+    this.buttonConfig.push(this.es.createButton(button));
   }
 
   addIconButton(button: any): any {
-    this.finalConfig.push(this.es.createIconButton(button));
+    this.iconButtonConfig.push(this.es.createIconButton(button));
   }
 
   addSlimEntry(input: any): any {

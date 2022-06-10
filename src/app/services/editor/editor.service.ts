@@ -120,19 +120,19 @@ export class EditorService {
       version: '',
       component: 'iconButton',
       configuration_json: this.fb.group({
-        Width: '',
-        CornerRadius: '',
+        Width: '50',
+        CornerRadius: '9999',
         Text: 'Click Now',
         TextColor: '',
         CommandName: '',
         CommandParameter: '',
-        BackgroundColor: '#900',
-        Icon: '',
+        BackgroundColor: 'rgb(53 137 249)',
+        Icon: 'apple',
         Padding: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
+          top: '10',
+          right: '20',
+          bottom: '10',
+          left: '20',
         }),
         Margin: this.fb.group({
           top: '',
@@ -172,7 +172,7 @@ export class EditorService {
     return this.fb.group({
       Version: '',
       Height: '',
-      BackgroundColor: '',
+      BackgroundColor: 'rgb(252 165 165)',
     });
   }
 

@@ -14,6 +14,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { SpacerComponent } from './container/spacer.component';
 import { SpacerSelectorComponent } from './spacer-selector/spacer-selector.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TippyModule } from '@ngneat/helipopper';
 
 @NgModule({
   declarations: [SpacerComponent, SpacerSelectorComponent],
@@ -26,6 +27,7 @@ import { DragulaModule } from 'ng2-dragula';
     DragulaModule,
     MatIconModule,
     MatTabsModule,
+    TippyModule,
   ],
   exports: [SpacerComponent, SpacerSelectorComponent],
 })

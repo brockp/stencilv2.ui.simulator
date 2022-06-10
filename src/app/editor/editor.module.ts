@@ -60,7 +60,9 @@ import { DragulaModule } from 'ng2-dragula';
     TippyModule.forRoot({
       defaultVariation: 'tooltip',
       variations: {
-        tooltip: tooltipVariation,
+        tooltip: {
+          theme: 'light-border',
+        },
         popper: popperVariation,
       },
     }),

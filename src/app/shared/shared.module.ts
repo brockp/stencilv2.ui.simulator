@@ -9,6 +9,7 @@ import { CancelButtonComponent } from '@app/shared/cancel-button/cancel-button.c
 import { EditorSidebarComponent } from '@app/editor/editor-sidebar/editor-sidebar.component';
 import { CopyButtonComponent } from '@app/shared/copy-button/copy-button.component';
 import { VersionButtonComponent } from './version-button/version-button.component';
+import { PaddingControlComponent } from './padding-control/padding-control.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { VersionButtonComponent } from './version-button/version-button.componen
     EditorSidebarComponent,
     CopyButtonComponent,
     VersionButtonComponent,
+    PaddingControlComponent,
   ],
   imports: [CommonModule, MaterialModule],
   exports: [
@@ -27,6 +29,7 @@ import { VersionButtonComponent } from './version-button/version-button.componen
     EditorSidebarComponent,
     CopyButtonComponent,
     VersionButtonComponent,
+    PaddingControlComponent,
   ],
 })
 export class SharedModule {}

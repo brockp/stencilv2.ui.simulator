@@ -1,5 +1,5 @@
 <!-- Editable wrapper -->
-<main [formGroup]="parent" class="true-component">
+<main [formGroup]="parent">
   <div formArrayName="graphicConfig">
     <div *ngFor="let graphic of graphics; let i = index">
       <div [dragula]="COMPONENTS">
@@ -13,6 +13,7 @@
                     'background-color':
                       graphic.value.configuration_json.BackgroundColor
                   }"
+                  class="true-component"
                 >
                   <img
                     class="mx-auto"
@@ -81,8 +82,80 @@
                 <app-editor-sidebar>
                   <!-- Base edit form -->
                   <section edit-form>
+                    <!-- Padding -->
                     <section class="edit-section">
-                      <h2 class="edit-section-title">Set Sign Up Graphic:</h2>
+                      <h2 class="edit-section-title">Padding:</h2>
+                      <div formGroupName="Padding">
+                        <app-padding-control>
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="top"
+                            paddingTop
+                          />
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="left"
+                            paddingLeft
+                          />
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="right"
+                            paddingRight
+                          />
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="0"
+                            type="number"
+                            formControlName="bottom"
+                            paddingBottom
+                          />
+                        </app-padding-control>
+                      </div>
+                    </section>
+
+                    <!-- Width + Height -->
+                    <section class="edit-section edit-section-title">
+                      <div class="grid grid-cols-2 gap-3">
+                        <div class="flex gap-x-2 justify-start items-center">
+                          <label
+                            class="text-white text-noir text-xs font-normal"
+                            for="right"
+                          >
+                            Width:
+                          </label>
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="Set initial value"
+                            type="text"
+                            formControlName="Width"
+                          />
+                        </div>
+                        <div class="flex gap-x-2 justify-start items-center">
+                          <label
+                            class="text-white text-noir text-xs font-normal"
+                            for="right"
+                          >
+                            Height:
+                          </label>
+                          <input
+                            class="form-control w-12 overflow-hidden p-1"
+                            placeholder="Set initial value"
+                            type="text"
+                            formControlName="Height"
+                          />
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- Graphic -->
+                    <section class="edit-section">
+                      <h2 class="edit-section-title">Graphic:</h2>
                       <section
                         class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery"
                       >
@@ -121,157 +194,19 @@
                         </button>
                       </section>
                     </section>
-                    <section class="edit-section">
-                      <h2 class="edit-section-title">
-                        Set Image Width & Height (%):
-                      </h2>
-                      <div class="grid grid-cols-2 gap-3">
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            Width:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set initial value"
-                            type="text"
-                            formControlName="Width"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            Height:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set initial value"
-                            type="text"
-                            formControlName="Height"
-                          />
-                        </div>
-                      </div>
-                    </section>
-                    <section class="edit-section">
-                      <h2 class="edit-section-title">
-                        Set Image Min-Width & Min-Height (REM):
-                      </h2>
-                      <div class="grid grid-cols-2 gap-3">
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            Min-Width:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set initial value"
-                            type="text"
-                            formControlName="MinWidth"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            Min-Height:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set initial value"
-                            type="text"
-                            formControlName="MinHeight"
-                          />
-                        </div>
-                      </div>
-                    </section>
+
                     <!-- Background Color -->
-                    <section class="edit-section">
-                      <h2 class="edit-section-title">Background Color:</h2>
-                      <div class="flex justify-between items-center gap-x-10">
+                    <h2 class="edit-section-title">Background Color:</h2>
+                    <section
+                      class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden"
+                    >
+                      <div *ngFor="let color of colorPalettes">
                         <button
-                          class="color-button bg-transparent border border-gray-400 text-gray-400"
-                          (click)="setBackgroundColor('', i)"
-                        >
-                          None
-                        </button>
-                        <button
-                          class="color-button primary-blue"
-                          (click)="setBackgroundColor('#3589F9', i)"
-                        >
-                          #3589F9
-                        </button>
-                      </div>
-                    </section>
-                    <!-- Padding -->
-                    <section class="edit-section">
-                      <h2 class="edit-section-title">Set Padding:</h2>
-                      <div
-                        class="grid grid-cols-4 gap-3"
-                        formGroupName="Padding"
-                      >
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="top"
-                          >
-                            T:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding top value"
-                            type="text"
-                            formControlName="top"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="right"
-                          >
-                            R:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding right value"
-                            type="text"
-                            formControlName="right"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="bottom"
-                          >
-                            B:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding bottom value"
-                            type="text"
-                            formControlName="bottom"
-                          />
-                        </div>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label
-                            class="text-ctdark text-quicksand text-xs font-semibold"
-                            for="left"
-                          >
-                            L:
-                          </label>
-                          <input
-                            class="form-control w-full overflow-hidden"
-                            placeholder="Set padding left value"
-                            type="number"
-                            formControlName="left"
-                          />
-                        </div>
+                          class="color-button"
+                          [class]="[color.class, color.textColor]"
+                          (click)="setBackgroundColor(color.color, i)"
+                          [tippy]="color.name"
+                        ></button>
                       </div>
                     </section>
                   </section>
