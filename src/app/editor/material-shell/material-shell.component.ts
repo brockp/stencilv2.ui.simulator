@@ -9,10 +9,17 @@ import { ViewportService } from '@app/services/viewport/viewport.service';
   styleUrls: ['./material-shell.component.scss'],
 })
 export class MaterialShellComponent implements OnInit {
-  isHidden = false;
-  constructor(public vps: ViewportService, public los: LayoutOptionsService) {}
+  constructor(
+    public vps: ViewportService,
+    public los: LayoutOptionsService,
+    public es: EditorService
+  ) {}
 
   ngOnInit(): void {}
+
+  edit(): void {
+    this.es.isHidden = true;
+  }
 
   ////////////////////////////////////////////////////
   // Utility functions to support viewport adjustments

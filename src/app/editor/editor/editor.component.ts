@@ -90,7 +90,7 @@ export class EditorComponent implements OnInit {
   constructor(
     public vps: ViewportService,
     public los: LayoutOptionsService,
-    private es: EditorService,
+    public es: EditorService,
     private fb: FormBuilder,
     public ess: EditSidebarService,
     private dragulaService: DragulaService
@@ -104,6 +104,10 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {}
+
+  close(): void {
+    this.es.isHidden = false;
+  }
 
   ////////////////////////////////////////////////////
   // get accessors for each FormArray

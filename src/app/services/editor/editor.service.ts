@@ -14,6 +14,7 @@ export class EditorService {
   private apiURL = API_ENDPOINT;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
   public finalArray: any[] = [];
+  public isHidden!: boolean;
 
   constructor(
     public fb: FormBuilder,

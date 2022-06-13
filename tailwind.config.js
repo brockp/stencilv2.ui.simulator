@@ -38,6 +38,7 @@ module.exports = {
         ctdark: "#261E45",
       },
       colors: {
+        "mat-toolbar": "#111827",
         blueprint: "#5094FF",
         ctdark: "#261E45",
         ctlight: "#3958FF",
