@@ -14,7 +14,13 @@
           <section components-menu>
 
             <!-- ADD SELECTORS HERE -->
-            <app-headline-selector [parent]="form" [headlines]="headlines" (added)="addHeadline($event)">
+            <app-image-selector [parent]="form" [components]="components" (baseAdded)="addBaseComponent($event)">
+            </app-image-selector>
+
+            <app-base-selectortwo [parent]="form" [components]="components" (baseAdded)="addBaseComponentTwo($event)">
+            </app-base-selectortwo>
+
+            <app-headline-selector [parent]="form" [components]="components" (baseAdded)="addHeadline($event)">
             </app-headline-selector>
 
             <app-description-selector [parent]="form" [descriptions]="descriptions"
@@ -47,8 +53,6 @@
   <!-- Test -->
 
   <app-material-shell>
-
-
     <!-- Visal Config and Screen Submit -->
     <div visualConfig class="flex justify-start items-center gap-x-2">
       <div>
@@ -72,6 +76,8 @@
         <div class="viewport-inner-canvas drop-container basic-layout" [ngStyle]="visualConfigStyleObject()">
           <div class="flex justify-start flex-col border-red-300 border-b-2" [dragula]="COMPONENTS"></div>
           <div class="flex justify-start flex-col border-red-300 border-b-2" [dragula]="COMPONENTS">
+            <!-- <app-basecomponent [parent]="form" [COMPONENTS]="COMPONENTS"></app-basecomponent> -->
+            <app-basecomponenttwo [parent]="form" [COMPONENTS]="COMPONENTS"></app-basecomponenttwo>
             <app-headline [parent]="form" [COMPONENTS]="COMPONENTS"></app-headline>
             <app-description [parent]="form" [COMPONENTS]="COMPONENTS"></app-description>
             <app-sign-up-graphic [parent]="form" [COMPONENTS]="COMPONENTS"></app-sign-up-graphic>

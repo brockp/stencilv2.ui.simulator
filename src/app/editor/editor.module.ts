@@ -37,8 +37,21 @@ import {
 import { MaterialModule } from '@app/shared/material.module';
 import { MaterialShellComponent } from './material-shell/material-shell.component';
 import { DragulaModule } from 'ng2-dragula';
+
+import { BasecomponentTwoComponent } from '@app/components/basecomponent-two/basecomponent.component';
+import { BaseSelectorTwoComponent } from '@app/components/component-selectors/description-selector/base-selector.component';
+import { ImageSelectorComponent } from '@app/components/component-selectors/image-selector/image-selector.component';
+import { HeadlineSelectorComponent } from '@app/components/component-selectors/headline-selector/headline-selector.component';
+
 @NgModule({
-  declarations: [EditorComponent, MaterialShellComponent],
+  declarations: [
+    EditorComponent,
+    MaterialShellComponent,
+    BasecomponentTwoComponent,
+    BaseSelectorTwoComponent,
+    ImageSelectorComponent,
+    HeadlineSelectorComponent,
+  ],
   imports: [
     CommonModule,
     HttpClientModule,

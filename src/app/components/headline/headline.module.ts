@@ -13,12 +13,11 @@ import { SharedModule } from '@app/shared/shared.module';
 
 // Components
 import { HeadlineComponent } from '@app/components/headline/container/headline.component';
-import { HeadlineSelectorComponent } from './headline-selector/headline-selector.component';
 import { DragulaModule } from 'ng2-dragula';
 import { TippyModule } from '@ngneat/helipopper';
 
 @NgModule({
-  declarations: [HeadlineComponent, HeadlineSelectorComponent],
+  declarations: [HeadlineComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -31,6 +30,6 @@ import { TippyModule } from '@ngneat/helipopper';
     EditableModule,
     TippyModule,
   ],
-  exports: [HeadlineComponent, HeadlineSelectorComponent],
+  exports: [HeadlineComponent],
 })
 export class HeadlineModule {}

@@ -42,6 +42,69 @@ export class EditorService {
     });
   }
 
+  public createBaseComponent(headline: any): any {
+    return this.fb.group({
+      id: '',
+      component: 'image',
+      Text: '',
+      TextSize: '32px',
+      TextColor: '#62b4ff',
+      BackgroundColor: '',
+      Width: '85',
+      Height: '',
+      Source: 'refer-a-friend.svg',
+      Icon: '',
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+    });
+  }
+
+  public createBaseComponentTwo(headline: any): any {
+    return this.fb.group({
+      id: '',
+      component: 'h2',
+      Text: 'Hello',
+      TextSize: '1rem',
+      TextColor: '#62b4ff',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      Source: 'blank.png',
+      Icon: '',
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+    });
+  }
+
+  public createDynamicHeadline(headline: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'h1',
+      Text: 'Headline',
+      TextSize: '3rem',
+      TextColor: '#62b4ff',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      Source: 'blank.png',
+      Icon: '',
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+    });
+  }
+
   // Create new Description component Formgroup inside FormArray
   public createDescription(description: any): any {
     return this.fb.group({

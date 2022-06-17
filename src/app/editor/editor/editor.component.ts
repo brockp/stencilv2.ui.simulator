@@ -27,6 +27,9 @@ export class EditorComponent implements OnInit {
   visualConfigSidebar: boolean = false;
   colorPalettes!: Colors[];
 
+  components: any[] = [];
+  component!: any;
+
   headlines: Headline[] = [];
   headline!: Headline;
 
@@ -68,6 +71,8 @@ export class EditorComponent implements OnInit {
     }),
     headlineSelector: this.es.createHeadline({}),
     headlineConfig: this.fb.array([]),
+    baseComponentSelector: this.es.createBaseComponent({}),
+    baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
     descriptionSelector: this.es.createDescription({}),
     descriptionConfig: this.fb.array([]),
     graphicSelector: this.es.createGraphic({}),
@@ -149,8 +154,16 @@ export class EditorComponent implements OnInit {
   // Pushes the dynamically created FormGroup to the FormArray
   ////////////////////////////////////////////////////
 
+  addBaseComponent(baseComponent: any): any {
+    this.finalConfig.push(this.es.createBaseComponent(baseComponent));
+  }
+
+  addBaseComponentTwo(baseComponent: any): any {
+    this.finalConfig.push(this.es.createBaseComponentTwo(baseComponent));
+  }
+
   addHeadline(headline: any): any {
-    this.headlineConfig.push(this.es.createHeadline(headline));
+    this.finalConfig.push(this.es.createDynamicHeadline(headline));
   }
 
   addDescription(description: any): any {
@@ -362,13 +375,86 @@ export class EditorComponent implements OnInit {
 
     let newArray = (values: any) => {
       return values.map((value: any) => {
-        let configuration_json = JSON.stringify(value.configuration_json);
-        let newObj = {
-          id: value.id + 1,
-          component: value.component,
-          configuration_json,
-        };
-        return newObj;
+        let h1;
+        if (value.component === 'h1') {
+          h1 = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.Text,
+              TextSize: value.TextSize,
+              TextColor: value.TextColor,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+              },
+            },
+          };
+          console.log('No background: ', h1);
+          let configuration_json = JSON.stringify(h1?.configuration_json);
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
+
+        let h2;
+        if (value.component === 'h2') {
+          h2 = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.Text,
+              TextSize: value.TextSize,
+              TextColor: value.TextColor,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+              },
+            },
+          };
+          console.log('No background: ', h2);
+          let configuration_json = JSON.stringify(h2?.configuration_json);
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
+
+        let image;
+        if (value.component === 'image') {
+          image = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              BackgroundColor: value.BackgroundColor,
+              Width: value.Width,
+              Height: value.Height,
+              Source: value.Source,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(image?.configuration_json);
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
       });
     };
 
