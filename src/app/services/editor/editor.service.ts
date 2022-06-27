@@ -15,6 +15,10 @@ export class EditorService {
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
   public finalArray: any[] = [];
   public isHidden!: boolean;
+  public iconButton = false;
+  public image = false;
+  public description = false;
+  public input = false;
 
   constructor(
     public fb: FormBuilder,
@@ -22,35 +26,20 @@ export class EditorService {
     private toasty: HotToastService
   ) {}
 
-  // Create new Headline component Formgroup inside FormArray
-  public createHeadline(headline: any): any {
-    return this.fb.group({
-      id: '',
-      component: 'h1',
-      configuration_json: this.fb.group({
-        Text: headline.Text || 'Headline Default',
-        TextSize: '32px',
-        TextColor: headline.TextColor || '#62b4ff',
-        BackgroundColor: headline.BackgroundColor || '',
-        Padding: this.fb.group({
-          top: headline.top || '',
-          right: headline.right || '',
-          bottom: headline.bottom || '',
-          left: headline.left || '',
-        }),
-      }),
-    });
-  }
-
   public createBaseComponent(headline: any): any {
     return this.fb.group({
       id: '',
       component: 'image',
       Text: '',
-      TextSize: '32px',
+      TextSize: '32',
+      TextAlignment: 'start',
+      ButtonTextSize: '',
+      ButtonText: '',
       TextColor: '#62b4ff',
+      ButtonTextColor: '',
       BackgroundColor: '',
-      Width: '85',
+      Width: '',
+      ImageWidth: '85',
       Height: '',
       Source: 'refer-a-friend.svg',
       Icon: '',
@@ -60,6 +49,29 @@ export class EditorService {
         bottom: '',
         left: '',
       }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        Placeholder: '',
+        Type: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
     });
   }
 
@@ -68,10 +80,15 @@ export class EditorService {
       id: '',
       component: 'h2',
       Text: 'Hello',
-      TextSize: '1rem',
+      TextSize: '16',
+      TextAlignment: 'start',
+      ButtonTextSize: '',
+      ButtonText: '',
       TextColor: '#62b4ff',
+      ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
+      ImageWidth: '',
       Height: '',
       Source: 'blank.png',
       Icon: '',
@@ -80,6 +97,29 @@ export class EditorService {
         right: '',
         bottom: '',
         left: '',
+      }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        Placeholder: '',
+        Type: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
       }),
     });
   }
@@ -89,10 +129,15 @@ export class EditorService {
       id: 1,
       component: 'h1',
       Text: 'Headline',
-      TextSize: '3rem',
+      TextSize: '32',
+      TextAlignment: 'start',
+      ButtonTextSize: '',
+      ButtonText: '',
       TextColor: '#62b4ff',
+      ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
+      ImageWidth: '',
       Height: '',
       Source: 'blank.png',
       Icon: '',
@@ -102,141 +147,126 @@ export class EditorService {
         bottom: '',
         left: '',
       }),
-    });
-  }
-
-  // Create new Description component Formgroup inside FormArray
-  public createDescription(description: any): any {
-    return this.fb.group({
-      id: '',
-      component: 'h2',
-      version: description.Version || '1.0',
-      configuration_json: this.fb.group({
-        Text: description.Text || 'Description Default',
-        TextSize: '16px',
-        TextColor: description.TextColor || '#efefef',
-        BackgroundColor: description.BackgroundColor || '',
-        Padding: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
-        }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
       }),
-    });
-  }
-
-  // Create new GraphicSelectorComponent
-  public createGraphic(graphic: any): any {
-    return this.fb.group({
-      id: '',
-      version: '',
-      component: 'image',
-      configuration_json: this.fb.group({
-        Source: 'refer-a-friend.svg',
-        Width: '35',
-        Height: '100',
-        MinWidth: '',
-        MinHeight: '',
-        BackgroundColor: '',
-        Padding: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
-        }),
-      }),
-    });
-  }
-
-  public createButton(button: any): any {
-    return this.fb.group({
-      id: '',
-      version: '',
-      component: 'primaryButton',
-      configuration_json: this.fb.group({
-        Width: '',
-        CornerRadius: '',
-        Text: 'Click Now',
-        TextColor: '',
-        CommandName: '',
-        CommandParameter: '',
-        BackgroundColor: '#900',
-        Padding: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
-        }),
-        Margin: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
-        }),
-      }),
-    });
-  }
-
-  public createIconButton(button: any): any {
-    return this.fb.group({
-      id: '',
-      version: '',
-      component: 'iconButton',
-      configuration_json: this.fb.group({
-        Width: '50',
-        CornerRadius: '9999',
-        Text: 'Click Now',
-        TextColor: '',
-        CommandName: '',
-        CommandParameter: '',
-        BackgroundColor: 'rgb(53 137 249)',
-        Icon: 'apple',
-        Padding: this.fb.group({
-          top: '10',
-          right: '20',
-          bottom: '10',
-          left: '20',
-        }),
-        Margin: this.fb.group({
-          top: '',
-          right: '',
-          bottom: '',
-          left: '',
-        }),
-      }),
-    });
-  }
-
-  public createSlimEntry(input: any): any {
-    return this.fb.group({
-      id: '',
-      version: '',
-      component: 'slimEntry',
-      configuration_json: this.fb.group({
-        IsRequired: false,
-        IsPassword: false,
+      slimEntry: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
         GroupName: '',
-        BackgroundColor: '',
-        Borderless: 'standard',
+        Borderless: '',
         FieldName: '',
         Placeholder: '',
         Type: '',
         Padding: this.fb.group({
-          top: '0',
-          right: '0',
-          bottom: '0',
-          left: '0',
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
         }),
       }),
     });
   }
 
-  public createSpacer(spacer: any): any {
+  public createDynamicButton(button: any): any {
     return this.fb.group({
-      Version: '',
+      id: 1,
+      component: 'primaryButton',
+      Text: 'Login',
+      ButtonText: '',
+      TextSize: '32',
+      TextAlignment: 'center',
+      ButtonTextSize: '',
+      TextColor: '#ffffff',
+      ButtonTextColor: '',
+      BackgroundColor: '#3589F9',
+      Width: '',
       Height: '',
-      BackgroundColor: 'rgb(252 165 165)',
+      ImageWidth: '',
+      Source: 'blank.png',
+      Icon: '',
+      CornerRadius: '9999',
+      Padding: this.fb.group({
+        top: 10,
+        right: 20,
+        bottom: 10,
+        left: 20,
+      }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        Placeholder: '',
+        Type: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
+    });
+  }
+
+  public createDynamicInput(input: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'slimEntry',
+      Text: '',
+      TextAlignment: 'start',
+      ButtonText: '',
+      TextSize: '',
+      ButtonTextSize: '',
+      TextColor: '',
+      ButtonTextColor: '',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      ImageWidth: '',
+      Source: 'blank.png',
+      Icon: '',
+      CornerRadius: '',
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      slimEntry: this.fb.group({
+        display: true,
+        IsRequired: false,
+        IsPassword: false,
+        GroupName: '',
+        Borderless: 'standard',
+        FieldName: 'FieldName Default',
+        Placeholder: '',
+        Type: '',
+        Padding: this.fb.group({
+          top: 10,
+          right: 20,
+          bottom: 10,
+          left: 20,
+        }),
+      }),
     });
   }
 

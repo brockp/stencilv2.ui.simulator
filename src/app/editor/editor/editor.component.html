@@ -23,26 +23,11 @@
             <app-headline-selector [parent]="form" [components]="components" (baseAdded)="addHeadline($event)">
             </app-headline-selector>
 
-            <app-description-selector [parent]="form" [descriptions]="descriptions"
-              (descriptionAdded)="addDescription($event)">
-            </app-description-selector>
+            <app-button-selector [parent]="form" [components]="components" (baseAdded)="addPrimaryButton($event)">
+            </app-button-selector>
 
-            <app-graphic-selector [parent]="form" [graphics]="graphics" (graphicAdded)="addGraphic($event)">
-            </app-graphic-selector>
-
-            <app-primary-button-selector [parent]="form" [buttons]="buttons" (buttonAdded)="addButton($event)">
-            </app-primary-button-selector>
-
-            <app-icon-button-selector [parent]="form" [iconButtons]="iconButtons"
-              (iconButtonAdded)="addIconButton($event)">
-            </app-icon-button-selector>
-
-            <app-text-input-selector [parent]="form" [slimEntries]="slimEntries"
-              (slimEntryAdded)="addSlimEntry($event)">
-            </app-text-input-selector>
-
-            <app-spacer-selector [parent]="form" [spacers]="slimEntries" (spacerAdded)="addSpacer($event)">
-            </app-spacer-selector>
+            <app-input-selector [parent]="form" [components]="components" (baseAdded)="addSlimEntry($event)">
+            </app-input-selector>
 
             <hr size="1" />
           </section>
@@ -76,15 +61,7 @@
         <div class="viewport-inner-canvas drop-container basic-layout" [ngStyle]="visualConfigStyleObject()">
           <div class="flex justify-start flex-col border-red-300 border-b-2" [dragula]="COMPONENTS"></div>
           <div class="flex justify-start flex-col border-red-300 border-b-2" [dragula]="COMPONENTS">
-            <!-- <app-basecomponent [parent]="form" [COMPONENTS]="COMPONENTS"></app-basecomponent> -->
             <app-basecomponenttwo [parent]="form" [COMPONENTS]="COMPONENTS"></app-basecomponenttwo>
-            <app-headline [parent]="form" [COMPONENTS]="COMPONENTS"></app-headline>
-            <app-description [parent]="form" [COMPONENTS]="COMPONENTS"></app-description>
-            <app-sign-up-graphic [parent]="form" [COMPONENTS]="COMPONENTS"></app-sign-up-graphic>
-            <app-text-input [parent]="form" [COMPONENTS]="COMPONENTS"></app-text-input>
-            <app-primary-button [parent]="form" [COMPONENTS]="COMPONENTS"></app-primary-button>
-            <app-icon-button [parent]="form" [COMPONENTS]="COMPONENTS"></app-icon-button>
-            <app-spacer [parent]="form" [COMPONENTS]="COMPONENTS"></app-spacer>
           </div>
           <!-- ADD CHILD COMPONENT HERE THAT WILL GET ADDED TO THE FORMARRAY -->
           <div class="flex justify-end flex-col pb-4 border-red-300" [dragula]="COMPONENTS"></div>

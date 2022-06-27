@@ -5,12 +5,6 @@ import { ViewportService } from '@app/services/viewport/viewport.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
 import { EditorService } from '@app/services/editor/editor.service';
 
-import { Headline } from '@app/components/headline/model/headline.interface';
-import { Description } from '@app/components/description/model/description.interface';
-import { SignUpGraphic } from '@app/components/sign-up-graphic/model/sign-up-graphic.interface';
-import { primaryButton } from '@app/components/primary-button/model/primary-button.interface';
-import { iconButton } from '@app/components/icon-button/model/icon-button.interface';
-import { SlimEntry } from '@app/components/text-input/model/slimentry.interface';
 import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { Colors } from '@app/services/colors/colors.interface';
@@ -26,27 +20,8 @@ export class EditorComponent implements OnInit {
   subs = new Subscription();
   visualConfigSidebar: boolean = false;
   colorPalettes!: Colors[];
-
   components: any[] = [];
   component!: any;
-
-  headlines: Headline[] = [];
-  headline!: Headline;
-
-  descriptions: Description[] = [];
-  description!: Description;
-
-  graphics: SignUpGraphic[] = [];
-  graphic!: SignUpGraphic;
-
-  buttons: primaryButton[] = [];
-  button!: primaryButton;
-
-  iconButtons: iconButton[] = [];
-  iconButton!: iconButton;
-
-  slimEntries: SlimEntry[] = [];
-  slimEntry!: SlimEntry;
 
   ////////////////////////////////////////////////////
   // PARENT form for entire editor
@@ -69,22 +44,10 @@ export class EditorComponent implements OnInit {
         left: '',
       }),
     }),
-    headlineSelector: this.es.createHeadline({}),
-    headlineConfig: this.fb.array([]),
     baseComponentSelector: this.es.createBaseComponent({}),
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
-    descriptionSelector: this.es.createDescription({}),
-    descriptionConfig: this.fb.array([]),
-    graphicSelector: this.es.createGraphic({}),
-    graphicConfig: this.fb.array([]),
-    buttonSelector: this.es.createButton({}),
-    buttonConfig: this.fb.array([]),
-    iconButtonSelector: this.es.createIconButton({}),
-    iconButtonConfig: this.fb.array([]),
-    slimEntrySelector: this.es.createSlimEntry({}),
-    slimEntryConfig: this.fb.array([]),
-    spacerSelector: this.es.createSpacer({}),
-    spacerConfig: this.fb.array([]),
+    primaryButtonSelector: this.es.createDynamicButton({}),
+    inputSelector: this.es.createDynamicInput({}),
     finalConfig: this.fb.array([]),
   });
 
@@ -109,6 +72,14 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {}
+
+  iconButtonLuu() {
+    this.es.iconButton = true;
+  }
+
+  notIconButtonLuu() {
+    this.es.iconButton = false;
+  }
 
   close(): void {
     this.es.isHidden = false;
@@ -166,29 +137,15 @@ export class EditorComponent implements OnInit {
     this.finalConfig.push(this.es.createDynamicHeadline(headline));
   }
 
-  addDescription(description: any): any {
-    this.descriptionConfig.push(this.es.createDescription(description));
-  }
-
-  addGraphic(graphic: any): any {
-    this.graphicConfig.push(this.es.createGraphic(graphic));
-  }
-
-  addButton(button: any): any {
-    this.buttonConfig.push(this.es.createButton(button));
-  }
-
-  addIconButton(button: any): any {
-    this.iconButtonConfig.push(this.es.createIconButton(button));
+  addPrimaryButton(button: any): any {
+    this.finalConfig.push(this.es.createDynamicButton(button));
   }
 
   addSlimEntry(input: any): any {
-    this.slimEntryConfig.push(this.es.createSlimEntry(input));
+    this.finalConfig.push(this.es.createDynamicInput(input));
   }
 
-  addSpacer(spacer: any): any {
-    this.spacerConfig.push(this.es.createSpacer(spacer));
-  }
+  //////
 
   // Removes the headline from the FormArray
   deleteHeadline(headlineIndex: number) {
@@ -207,16 +164,6 @@ export class EditorComponent implements OnInit {
 
   // TODO: GET RID OF
   changeBackgroundColor(bgColor: any): void {
-    this.form.updateValueAndValidity();
-  }
-
-  updateComponent(data: any) {
-    this.headlines = data;
-    this.headlineConfig.valueChanges.subscribe((data) => {
-      console.log('headline data changed');
-      console.log(data);
-    });
-
     this.form.updateValueAndValidity();
   }
 
@@ -360,18 +307,10 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
   // FINAL submit of full data set to Stencil
   ////////////////////////////////////////////////////
-  arrpoo: any[] = [];
   onSubmit(event: any): void {
     let visualConfig = this.form.get('visualConfig')!.value;
     const f = this.form.get('finalConfig')!.value;
-    const h = this.form.get('headlineConfig')!.value;
-    const d = this.form.get('descriptionConfig')!.value;
-    const i = this.form.get('iconButtonConfig')!.value;
-    const p = this.form.get('buttonConfig')!.value;
-    const g = this.form.get('graphicConfig')!.value;
-    const s = this.form.get('spacerConfig')!.value;
-    const se = this.form.get('slimEntryConfig')!.value;
-    const yep = this.es.finalArray.concat(f, h, g, d, se, i, p, s);
+    const yep = this.es.finalArray.concat(f);
 
     let newArray = (values: any) => {
       return values.map((value: any) => {
@@ -448,6 +387,81 @@ export class EditorComponent implements OnInit {
             },
           };
           let configuration_json = JSON.stringify(image?.configuration_json);
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
+
+        let primaryButton;
+        if (value.component === 'primaryButton') {
+          primaryButton = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              BackgroundColor: value.BackgroundColor,
+              Width: value.Width,
+              Height: value.Height,
+              CornerRadius: value.CornerRadius,
+              ButtonText: value.ButtonText,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+              },
+              Margin: {
+                top: value.Margin.top,
+                right: value.Margin.right,
+                bottom: value.Margin.bottom,
+                left: value.Margin.left,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(
+            primaryButton?.configuration_json
+          );
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
+
+        let slimEntry;
+        if (value.component === 'slimEntry') {
+          slimEntry = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              TextColor: value.ButtonTextColor,
+              IsRequired: value.slimEntry.IsRequired,
+              IsPassword: value.slimEntry.IsPassword,
+              GroupName: value.slimEntry.GroupName,
+              Borderless: value.slimEntry.Borderless,
+              FieldName: value.slimEntry.FieldName,
+              Placeholder: value.slimEntry.Placeholder,
+              Type: value.slimEntry.Type,
+              Padding: {
+                top: value.slimEntry.Padding.top,
+                right: value.slimEntry.Padding.right,
+                bottom: value.slimEntry.Padding.bottom,
+                left: value.slimEntry.Padding.left,
+              },
+              Margin: {
+                top: value.Margin.top,
+                right: value.Margin.right,
+                bottom: value.Margin.bottom,
+                left: value.Margin.left,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(
+            slimEntry?.configuration_json
+          );
           let newObj = {
             id: value.id + 1,
             component: value.component,

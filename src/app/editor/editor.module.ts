@@ -19,7 +19,6 @@ import { HeadlineModule } from '@app/components/headline/headline.module';
 import { AppHeaderModule } from '@app/components/app-header/app-header.module';
 import { CarouselModule } from '@app/components/carousel/carousel.module';
 import { DescriptionModule } from '@app/components/description/description.module';
-import { IconButtonModule } from '@app/components/icon-button/icon-button.module';
 import { PrimaryButtonModule } from '@app/components/primary-button/primary-button.module';
 import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
 import { TextInputModule } from '@app/components/text-input/text-input.module';
@@ -42,6 +41,9 @@ import { BasecomponentTwoComponent } from '@app/components/basecomponent-two/bas
 import { BaseSelectorTwoComponent } from '@app/components/component-selectors/description-selector/base-selector.component';
 import { ImageSelectorComponent } from '@app/components/component-selectors/image-selector/image-selector.component';
 import { HeadlineSelectorComponent } from '@app/components/component-selectors/headline-selector/headline-selector.component';
+import { ButtonSelectorComponent } from '@app/components/component-selectors/button-selector/button-selector.component';
+import { IconButtonSelectorComponent } from '@app/components/component-selectors/icon-button-selector/icon-button-selector.component';
+import { InputSelectorComponent } from '@app/components/component-selectors/input-selector/input-selector.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,9 @@ import { HeadlineSelectorComponent } from '@app/components/component-selectors/h
     BaseSelectorTwoComponent,
     ImageSelectorComponent,
     HeadlineSelectorComponent,
+    ButtonSelectorComponent,
+    IconButtonSelectorComponent,
+    InputSelectorComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +67,6 @@ import { HeadlineSelectorComponent } from '@app/components/component-selectors/h
     AppHeaderModule,
     CarouselModule,
     DescriptionModule,
-    IconButtonModule,
     PrimaryButtonModule,
     SignUpGraphicModule,
     TextInputModule,
