@@ -48,6 +48,7 @@ export class EditorComponent implements OnInit {
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
     primaryButtonSelector: this.es.createDynamicButton({}),
     inputSelector: this.es.createDynamicInput({}),
+    dropdownSelector: this.es.createDynamicDropdown({}),
     finalConfig: this.fb.array([]),
   });
 
@@ -143,6 +144,10 @@ export class EditorComponent implements OnInit {
 
   addSlimEntry(input: any): any {
     this.finalConfig.push(this.es.createDynamicInput(input));
+  }
+
+  addDropdown(dropdown: any): any {
+    this.finalConfig.push(this.es.createDynamicDropdown(dropdown));
   }
 
   //////
@@ -462,6 +467,41 @@ export class EditorComponent implements OnInit {
           let configuration_json = JSON.stringify(
             slimEntry?.configuration_json
           );
+          let newObj = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+          };
+          return newObj;
+        }
+
+        let dropDown;
+        if (value.component === 'dropdown') {
+          dropDown = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              IsRequired: value.dropDown.IsRequired,
+              GroupName: value.dropDown.GroupName,
+              Borderless: value.dropDown.Borderless,
+              FieldName: value.dropDown.FieldName,
+              OptonOne: value.dropDown.OptionOne,
+              OptionTwo: value.dropDown.OptionTwo,
+              Padding: {
+                top: value.dropDown.Padding.top,
+                right: value.dropDown.Padding.right,
+                bottom: value.dropDown.Padding.bottom,
+                left: value.dropDown.Padding.left,
+              },
+              Margin: {
+                top: value.Margin.top,
+                right: value.Margin.right,
+                bottom: value.Margin.bottom,
+                left: value.Margin.left,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(dropDown?.configuration_json);
           let newObj = {
             id: value.id + 1,
             component: value.component,

@@ -29,6 +29,9 @@
             <app-input-selector [parent]="form" [components]="components" (baseAdded)="addSlimEntry($event)">
             </app-input-selector>
 
+            <app-dropdown-selector [parent]="form" [components]="components" (baseAdded)="addDropdown($event)">
+            </app-dropdown-selector>
+
             <hr size="1" />
           </section>
         </li>

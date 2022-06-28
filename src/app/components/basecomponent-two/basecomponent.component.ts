@@ -10,6 +10,7 @@ import { IconButtonService } from '../icon-button/service/icon-button.service';
 import { PrimaryButtonService } from '../primary-button/service/primary-button.service';
 import { ImageService } from '../sign-up-graphic/service/image.service';
 import { TextInputService } from '../text-input/service/text-input.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-basecomponenttwo',
@@ -26,18 +27,28 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.image = false;
     this.es.description = false;
     this.es.input = true;
+    this.es.dropdown = false;
+  }
+
+  dropdownEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.input = false;
+    this.es.dropdown = true;
   }
 
   descriptionEdit() {
     this.es.image = false;
     this.es.description = true;
     this.es.input = false;
+    this.es.dropdown = false;
   }
 
   imageluu() {
     this.es.image = true;
     this.es.description = false;
     this.es.input = false;
+    this.es.dropdown = false;
   }
 
   notimageluu() {
@@ -162,6 +173,7 @@ export class BasecomponentTwoComponent implements OnInit {
     let primaryButtonObj;
     let iconButtonObj;
     let slimEntryObj;
+    let dropDownObj;
 
     if (objUpdate.component === 'h1') {
       h1Obj = {
@@ -223,14 +235,14 @@ export class BasecomponentTwoComponent implements OnInit {
         component: objUpdate.component,
         configuration_json: {
           BackgroundColor: objUpdate.BackgroundColor,
-          Width: objUpdate.Width,
+          Width: objUpdate.ImageWidth,
           Height: objUpdate.Height,
           Source: objUpdate.Source,
-          Padding: {
-            top: objUpdate.Padding.top,
-            right: objUpdate.Padding.right,
-            bottom: objUpdate.Padding.bottom,
-            left: objUpdate.Padding.left,
+          Margin: {
+            top: objUpdate.Margin.top,
+            right: objUpdate.Margin.right,
+            bottom: objUpdate.Margin.bottom,
+            left: objUpdate.Margin.left,
           },
         },
       };
@@ -351,6 +363,42 @@ export class BasecomponentTwoComponent implements OnInit {
       };
 
       let configuration_json = JSON.stringify(slimEntryObj?.configuration_json);
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New slim entry: ', newObj);
+      this.ses.updateSlimEntry(i, newObj).subscribe(() => {});
+    }
+
+    if (objUpdate.component === 'dropdown') {
+      dropDownObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          IsRequired: objUpdate.dropDown.IsRequired,
+          GroupName: objUpdate.dropDown.GroupName,
+          Borderless: objUpdate.dropDown.Borderless,
+          FieldName: objUpdate.dropDown.FieldName,
+          OptionOne: objUpdate.dropDown.OptionOne,
+          OptionTwo: objUpdate.dropDown.OptionTwo,
+          Padding: {
+            top: objUpdate.dropDown.Padding.top,
+            right: objUpdate.dropDown.Padding.right,
+            bottom: objUpdate.dropDown.Padding.bottom,
+            left: objUpdate.dropDown.Padding.left,
+          },
+          Margin: {
+            top: objUpdate.Margin.top,
+            right: objUpdate.Margin.right,
+            bottom: objUpdate.Margin.bottom,
+            left: objUpdate.Margin.left,
+          },
+        },
+      };
+
+      let configuration_json = JSON.stringify(dropDownObj?.configuration_json);
       let newObj = {
         id: objUpdate.id + 1,
         component: objUpdate.component,

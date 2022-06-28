@@ -10,12 +10,13 @@
                 <!-- Actual component -->
                 <ng-template viewMode>
                   <!-- Non-image component -->
-                  <div class="font-semibold">
+                  <div>
                     <!-- Headline/Description component -->
                     <section (click)="descriptionEdit()" [ngStyle]="{
                                           color: base.value.TextColor,
                                           'text-align': base.value.TextAlignment,
                                           'font-size': base.value.TextSize + 'px',
+                                          'font-weight': base.value.FontWeight,
                                           'background-color':
                                             base.value.BackgroundColor,
                                           width: base.value.Width + 'px',
@@ -76,6 +77,29 @@
                         [placeholder]="base.value.slimEntry.Placeholder" [required]="base.value.slimEntry.IsRequired" />
                     </mat-form-field>
                     <!-- Slimentry component -->
+
+                    <!-- Dropdown component -->
+                    <mat-form-field *ngIf="base.value.dropDown.display" (click)="dropdownEdit()" class="w-full"
+                      [appearance]="base.value.dropDown.Borderless" [ngStyle]="{
+                                                                                                        
+                                                                                                        'padding-top':
+                                                                                                          base.value.dropDown.Padding.top + 'px',
+                                                                                                        'padding-right':
+                                                                                                          base.value.dropDown.Padding.right + 'px',
+                                                                                                        'padding-bottom':
+                                                                                                          base.value.dropDown.Padding.bottom + 'px',
+                                                                                                        'padding-left':
+                                                                                                          base.value.dropDown.Padding.left + 'px'
+                                                                                                      }">
+                      <mat-label>{{base.value.dropDown.FieldName}}</mat-label>
+                      <mat-select [required]="base.value.dropDown.IsRequired">
+                        <mat-option [value]="base.value.dropDown.OptionOne">{{base.value.dropDown.OptionOne}}
+                        </mat-option>
+                        <mat-option [value]="base.value.dropDown.OptionTwo">{{base.value.dropDown.OptionTwo}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- Drowpdown component -->
                   </div>
                   <!-- Non-image component -->
 
@@ -86,12 +110,13 @@
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
 
                   <!-- Non-image component -->
-                  <div class="font-semibold">
+                  <div>
                     <!-- Headline/Description component -->
                     <section (click)="descriptionEdit()" [ngStyle]="{
                                                             color: base.value.TextColor,
                                                             'text-align': base.value.TextAlignment,
                                                             'font-size': base.value.TextSize + 'px',
+                                                            'font-weight': base.value.FontWeight,
                                                             'background-color':
                                                               base.value.BackgroundColor,
                                                             width: base.value.Width + 'px',
@@ -152,6 +177,32 @@
                         [placeholder]="base.value.slimEntry.Placeholder" [required]="base.value.slimEntry.IsRequired" />
                     </mat-form-field>
                     <!-- Slimentry component -->
+
+                    <!-- Dropdown component -->
+                    <mat-form-field *ngIf="base.value.dropDown.display" (click)="dropdownEdit()" class="w-full"
+                      [appearance]="base.value.dropDown.Borderless"
+                      [ngStyle]="{
+                                                                                                                          
+                                                                                                                          'padding-top':
+                                                                                                                            base.value.dropDown.Padding.top + 'px',
+                                                                                                                          'padding-right':
+                                                                                                                            base.value.dropDown.Padding.right + 'px',
+                                                                                                                          'padding-bottom':
+                                                                                                                            base.value.dropDown.Padding.bottom + 'px',
+                                                                                                                          'padding-left':
+                                                                                                                            base.value.dropDown.Padding.left + 'px'
+                                                                                                                        }">
+                      <mat-label>{{base.value.dropDown.FieldName}}</mat-label>
+                      <mat-select [required]="base.value.dropDown.IsRequired">
+                        <mat-option class="text-black" [value]="base.value.dropDown.OptionOne">
+                          {{base.value.dropDown.OptionOne}}
+                        </mat-option>
+                        <mat-option class="text-black" [value]="base.value.dropDown.OptionTwo">
+                          {{base.value.dropDown.OptionTwo}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- Drowpdown component -->
                   </div>
                   <!-- Non-image component -->
 
@@ -163,7 +214,7 @@
                     <section edit-form>
 
                       <!-- Padding -->
-                      <ng-container *ngIf="es.description || es.input">
+                      <ng-container *ngIf="es.description">
                         <h2 class="edit-section-title">Padding:</h2>
                         <div formGroupName="Padding">
                           <app-padding-control>
@@ -179,19 +230,50 @@
                         </div>
                       </ng-container>
 
+                      <!-- Slim Entry Padding -->
+                      <ng-container *ngIf="es.input">
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <section formGroupName="slimEntry">
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </ng-container>
+
                       <!-- Margin -->
                       <h2 class="edit-section-title">Margin:</h2>
                       <div formGroupName="Margin">
-                        <app-padding-control>
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
-                            formControlName="top" paddingTop />
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
-                            formControlName="right" paddingRight />
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
-                            formControlName="bottom" paddingBottom />
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
-                            formControlName="left" paddingLeft />
-                        </app-padding-control>
+                        <section class="flex justify-between items-center mb-4">
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-t-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="top" paddingTop />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-r-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="right" paddingRight />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-b-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="bottom" paddingBottom />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-l-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="left" paddingLeft />
+                          </div>
+                        </section>
                       </div>
 
                       <!-- SlimEntry-->
@@ -225,6 +307,38 @@
                         </section>
                       </ng-container>
 
+                      <!-- Dropdown-->
+                      <ng-container *ngIf="es.dropdown">
+                        <section formGroupName="dropDown">
+                          <ng-container *ngIf="es.dropdown">
+                            <section class="edit-section edit-section-title">
+                              <div class="flex justify-start items-center gap-x-4">
+                                <h2 class="font-noir text-xs font-normal">
+                                  Is it required?:
+                                </h2>
+                                <mat-checkbox class="p-1" formControlName="IsRequired"></mat-checkbox>
+                              </div>
+                            </section>
+                            <h2 class="edit-section-title">GroupName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="GroupName" />
+                            <h2 class="edit-section-title">Set FieldName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="FieldName" />
+                            <h2 class="edit-section-title">Set Option One:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="OptionOne" />
+                            <h2 class="edit-section-title">Set Option Two:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="OptionTwo" />
+                            <h2 class="edit-section-title">Set Appearance:</h2>
+                            <input class="form-control p-1" placeholder="fill, legacy, standard, outline" type="text"
+                              formControlName="Borderless" />
+
+                          </ng-container>
+                        </section>
+                      </ng-container>
+
                       <!-- H1 Text -->
                       <section *ngIf="es.description">
                         <h2 class="edit-section-title">Description:</h2>
@@ -246,7 +360,6 @@
                           </mat-icon>
                         </section>
                       </section>
-
 
                       <!-- Width + Height -->
                       <section *ngIf="es.description" class="edit-section edit-section-title">
@@ -403,8 +516,6 @@
                         </div>
                       </section>
 
-
-
                       <!-- Text Color -->
                       <section *ngIf="es.description || es.input">
                         <h2 class="edit-section-title">Text Color:</h2>
@@ -429,9 +540,6 @@
                         </section>
                       </ng-container>
 
-
-
-
                     </section>
                     <!-- Code edit form -->
                     <section edit-config-code>
@@ -439,7 +547,7 @@
                         Edit configuration code directly:
                       </h2>
                       <code class="code-box">
-                        <section>
+                        <section *ngIf="es.description">
                           <label for="icon">Text: </label>
                           <input
                             class="code-form-control"
@@ -448,7 +556,13 @@
                             formControlName="Text"
                           />
                         </section>
-                        <section>
+
+                        <section *ngIf="es.description">
+                          <label for="TextSize">TextSize: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="TextSize" />
+                        </section>
+
+                        <section *ngIf="es.description">
                           <label for="icon">TextColor: </label>
                           <input
                             class="code-form-control"
@@ -457,7 +571,8 @@
                             formControlName="TextColor"
                           />
                         </section>
-                        <section formGroupName="Padding">
+
+                        <section *ngIf="es.description || es.input" formGroupName="Padding">
                           <pre>Padding: </pre>
                           <section>
                             <label for="top">top: </label>
@@ -496,7 +611,38 @@
                             />
                           </section>
                         </section>
-                        <section>
+
+                        <section *ngIf="es.description || es.input || es.image" formGroupName="Margin">
+                          <pre>Margin: </pre>
+                          <section>
+                            <label for="top">top: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="top" />
+                          </section>
+                          <section>
+                            <label for="right">right: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="right" />
+                          </section>
+                          <section>
+                            <label for="bottom">bottom: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="bottom" />
+                          </section>
+                          <section>
+                            <label for="left">left: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="left" />
+                          </section>
+                        </section>
+
+                        <section *ngIf="es.image">
+                          <label for="icon">Graphic: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Source" />
+                        </section>
+
+                        <section *ngIf="es.image">
+                          <label for="icon">Width: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="ImageWidth" />
+                        </section>
+
+                        <section *ngIf="es.description">
                           <label for="icon">BackgroundColor: </label>
                           <input
                             class="code-form-control"
@@ -504,6 +650,43 @@
                             placeholder="set initial value"
                             formControlName="BackgroundColor"
                           />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">Icon: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Icon" />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">CornerRadius: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="CornerRadius" />
+                        </section>
+
+                        <section *ngIf="es.input" formGroupName="slimEntry">
+                          <section>
+                            <label for="icon">Required: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="IsRequired" />
+                          </section>
+                          <section>
+                            <label for="icon">GroupName: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="GroupName" />
+                          </section>
+                          <section>
+                            <label for="icon">Borderless: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Borderless" />
+                          </section>
+                          <section>
+                            <label for="icon">FieldName: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="FieldName" />
+                          </section>
+                          <section>
+                            <label for="icon">Placeholder: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Placeholder" />
+                          </section>
+                          <section>
+                            <label for="icon">Type: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Type" />
+                          </section>
                         </section>
                       </code>
                     </section>

@@ -19,6 +19,7 @@ export class EditorService {
   public image = false;
   public description = false;
   public input = false;
+  public dropdown = false;
 
   constructor(
     public fb: FormBuilder,
@@ -36,6 +37,7 @@ export class EditorService {
       ButtonTextSize: '',
       ButtonText: '',
       TextColor: '#62b4ff',
+      FontWeight: '',
       ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
@@ -72,6 +74,22 @@ export class EditorService {
           left: '',
         }),
       }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        OptionOne: '',
+        OptionTwo: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
     });
   }
 
@@ -79,12 +97,13 @@ export class EditorService {
     return this.fb.group({
       id: '',
       component: 'h2',
-      Text: 'Hello',
+      Text: 'I am a description...',
       TextSize: '16',
       TextAlignment: 'start',
       ButtonTextSize: '',
       ButtonText: '',
       TextColor: '#62b4ff',
+      FontWeight: '500',
       ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
@@ -92,6 +111,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
+      CornerRadius: '',
       Padding: this.fb.group({
         top: '',
         right: '',
@@ -114,6 +134,22 @@ export class EditorService {
         FieldName: '',
         Placeholder: '',
         Type: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        OptionOne: '',
+        OptionTwo: '',
         Padding: this.fb.group({
           top: '',
           right: '',
@@ -134,6 +170,7 @@ export class EditorService {
       ButtonTextSize: '',
       ButtonText: '',
       TextColor: '#62b4ff',
+      FontWeight: '700',
       ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
@@ -141,6 +178,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
+      CornerRadius: '',
       Padding: this.fb.group({
         top: '',
         right: '',
@@ -169,6 +207,22 @@ export class EditorService {
           left: '',
         }),
       }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        OptionOne: '',
+        OptionTwo: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
     });
   }
 
@@ -182,6 +236,7 @@ export class EditorService {
       TextAlignment: 'center',
       ButtonTextSize: '',
       TextColor: '#ffffff',
+      FontWeight: '',
       ButtonTextColor: '',
       BackgroundColor: '#3589F9',
       Width: '',
@@ -218,6 +273,22 @@ export class EditorService {
           left: '',
         }),
       }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        OptionOne: '',
+        OptionTwo: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
     });
   }
 
@@ -231,6 +302,7 @@ export class EditorService {
       TextSize: '',
       ButtonTextSize: '',
       TextColor: '',
+      FontWeight: '',
       ButtonTextColor: '',
       BackgroundColor: '',
       Width: '',
@@ -261,10 +333,92 @@ export class EditorService {
         Placeholder: '',
         Type: '',
         Padding: this.fb.group({
-          top: 10,
-          right: 20,
-          bottom: 10,
-          left: 20,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        OptionOne: '',
+        OptionTwo: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
+    });
+  }
+
+  public createDynamicDropdown(dropdown: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'dropdown',
+      Text: '',
+      TextAlignment: '',
+      ButtonText: '',
+      TextSize: '',
+      ButtonTextSize: '',
+      TextColor: '',
+      FontWeight: '',
+      ButtonTextColor: '',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      ImageWidth: '',
+      Source: 'blank.png',
+      Icon: '',
+      CornerRadius: '',
+      Padding: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      Margin: this.fb.group({
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+        IsRequired: '',
+        IsPassword: '',
+        GroupName: '',
+        Borderless: '',
+        FieldName: '',
+        Placeholder: '',
+        Type: '',
+        Padding: this.fb.group({
+          top: '',
+          right: '',
+          bottom: '',
+          left: '',
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: true,
+        IsRequired: false,
+        IsPassword: false,
+        GroupName: '',
+        Borderless: 'standard',
+        FieldName: 'FieldName Default',
+        OptionOne: 'Option one',
+        OptionTwo: 'Option two...',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });

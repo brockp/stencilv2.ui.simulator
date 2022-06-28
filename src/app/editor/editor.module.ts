@@ -15,14 +15,14 @@ import { ViewportService } from '../services/viewport/viewport.service';
 import { EditorComponent } from './editor/editor.component';
 
 // Component Modules
-import { HeadlineModule } from '@app/components/headline/headline.module';
-import { AppHeaderModule } from '@app/components/app-header/app-header.module';
-import { CarouselModule } from '@app/components/carousel/carousel.module';
-import { DescriptionModule } from '@app/components/description/description.module';
-import { PrimaryButtonModule } from '@app/components/primary-button/primary-button.module';
-import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
-import { TextInputModule } from '@app/components/text-input/text-input.module';
-import { SpacerModule } from '@app/components/spacer/spacer.module';
+// import { HeadlineModule } from '@app/components/headline/headline.module';
+// import { AppHeaderModule } from '@app/components/app-header/app-header.module';
+// import { CarouselModule } from '@app/components/carousel/carousel.module';
+// import { DescriptionModule } from '@app/components/description/description.module';
+// import { PrimaryButtonModule } from '@app/components/primary-button/primary-button.module';
+// import { SignUpGraphicModule } from '@app/components/sign-up-graphic/sign-up-graphic.module';
+// import { TextInputModule } from '@app/components/text-input/text-input.module';
+// import { SpacerModule } from '@app/components/spacer/spacer.module';
 
 // Helper Components
 import { SharedModule } from '@app/shared/shared.module';
@@ -44,6 +44,7 @@ import { HeadlineSelectorComponent } from '@app/components/component-selectors/h
 import { ButtonSelectorComponent } from '@app/components/component-selectors/button-selector/button-selector.component';
 import { IconButtonSelectorComponent } from '@app/components/component-selectors/icon-button-selector/icon-button-selector.component';
 import { InputSelectorComponent } from '@app/components/component-selectors/input-selector/input-selector.component';
+import { DropdownSelectorComponent } from '@app/components/component-selectors/dropdown-selector/dropdown-selector.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { InputSelectorComponent } from '@app/components/component-selectors/inpu
     ButtonSelectorComponent,
     IconButtonSelectorComponent,
     InputSelectorComponent,
+    DropdownSelectorComponent,
   ],
   imports: [
     CommonModule,
@@ -63,16 +65,8 @@ import { InputSelectorComponent } from '@app/components/component-selectors/inpu
     EditorRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    HeadlineModule,
-    AppHeaderModule,
-    CarouselModule,
-    DescriptionModule,
-    PrimaryButtonModule,
-    SignUpGraphicModule,
-    TextInputModule,
-    SpacerModule,
-    SharedModule,
     EditableModule,
+    SharedModule,
     DragulaModule.forRoot(),
     TippyModule.forRoot({
       defaultVariation: 'tooltip',

@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -27,6 +29,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatCheckboxModule,
     MatTabsModule,
     ClipboardModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   exports: [
     MatSidenavModule,
@@ -40,6 +44,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatCheckboxModule,
     MatTabsModule,
     ClipboardModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}

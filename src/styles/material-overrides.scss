@@ -2,6 +2,9 @@
   @apply w-full h-screen;
 }
 
+.mat-select-arrow {
+  color: white !important;
+}
 .mat-drawer-container {
   @apply bg-gradient-to-b from-ctdark to-gray-900;
 }
