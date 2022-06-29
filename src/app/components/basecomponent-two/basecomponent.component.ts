@@ -4,13 +4,12 @@ import { Colors } from '@app/services/colors/colors.interface';
 import { ColorsService } from '@app/services/colors/colors.service';
 import { EditorService } from '@app/services/editor/editor.service';
 import { environment } from 'src/environments/environment';
-import { DescriptionService } from '../description/service/description.service';
-import { HeadlineService } from '../headline/service/headline.service';
-import { IconButtonService } from '../icon-button/service/icon-button.service';
-import { PrimaryButtonService } from '../primary-button/service/primary-button.service';
-import { ImageService } from '../sign-up-graphic/service/image.service';
-import { TextInputService } from '../text-input/service/text-input.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { AppHeaderService } from '@app/services/app-header/app-header.service';
+import { DescriptionService } from '@app/services/description/description.service';
+import { HeadlineService } from '@app/services/headline/headline.service';
+import { IconButtonService } from '@app/services/icon-button/icon-button.service';
+import { ImageService } from '@app/services/sign-up-graphic/image.service';
+import { TextInputService } from '@app/services/text-input/text-input.service';
 
 @Component({
   selector: 'app-basecomponenttwo',
@@ -21,13 +20,29 @@ export class BasecomponentTwoComponent implements OnInit {
   base: any;
   imgHost = environment.imgHost;
   colorPalettes!: Colors[];
+  icons!: any[];
   primaryButton = false;
+
+  // Appheader specific properties
+  DualColumnView!: string;
+  Column1Config: string = 'flex-start';
+  Column2Config: string = 'flex-end';
+  TriColumnView!: boolean;
 
   inputEdit() {
     this.es.image = false;
     this.es.description = false;
     this.es.input = true;
     this.es.dropdown = false;
+    this.es.appHeader = false;
+  }
+
+  appHeaderEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = true;
   }
 
   dropdownEdit() {
@@ -35,6 +50,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.description = false;
     this.es.input = false;
     this.es.dropdown = true;
+    this.es.appHeader = false;
   }
 
   descriptionEdit() {
@@ -42,6 +58,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.description = true;
     this.es.input = false;
     this.es.dropdown = false;
+    this.es.appHeader = false;
   }
 
   imageluu() {
@@ -49,6 +66,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.description = false;
     this.es.input = false;
     this.es.dropdown = false;
+    this.es.appHeader = false;
   }
 
   notimageluu() {
@@ -79,22 +97,69 @@ export class BasecomponentTwoComponent implements OnInit {
   @Output()
   iconChanged = new EventEmitter();
 
+  @Output()
+  leftIconChanged = new EventEmitter();
+
+  @Output()
+  rightIconChanged = new EventEmitter();
+
+  @Output()
+  logoChanged = new EventEmitter();
+
   get components(): any {
     return (this.parent.get('finalConfig') as FormArray).controls;
+  }
+
+  get array(): any {
+    return this.parent.get('finalConfig') as FormArray;
   }
   constructor(
     private cs: ColorsService,
     private hs: HeadlineService,
     private ds: DescriptionService,
     private is: ImageService,
-    public ibs: PrimaryButtonService,
     private ipbs: IconButtonService,
     private ses: TextInputService,
+    private ahs: AppHeaderService,
     public es: EditorService
   ) {}
 
   ngOnInit(): void {
     this.colorPalettes = this.cs.getAppColors();
+    this.icons = this.cs.getAppIcons();
+  }
+
+  setIcon(icon: string, i: number) {
+    const index = this.components.at(i);
+    this.leftIconChanged.emit(index);
+    this.leftIconChanged.emit(icon);
+    index.patchValue({
+      appHeader: {
+        leftIcon: icon,
+      },
+    });
+  }
+
+  setRightIcon(icon: string, i: number) {
+    const index = this.components.at(i);
+    this.rightIconChanged.emit(index);
+    this.rightIconChanged.emit(icon);
+    index.patchValue({
+      appHeader: {
+        rightIcon: icon,
+      },
+    });
+  }
+
+  setLogo(logo: string, i: number) {
+    const index = this.components.at(i);
+    this.logoChanged.emit(index);
+    this.logoChanged.emit(logo);
+    index.patchValue({
+      appHeader: {
+        logo: logo,
+      },
+    });
   }
 
   // EMIT a new text color of the component to the editor
@@ -174,6 +239,7 @@ export class BasecomponentTwoComponent implements OnInit {
     let iconButtonObj;
     let slimEntryObj;
     let dropDownObj;
+    let appHeaderObj;
 
     if (objUpdate.component === 'h1') {
       h1Obj = {
@@ -268,11 +334,12 @@ export class BasecomponentTwoComponent implements OnInit {
           CornerRadius: objUpdate.CornerRadius,
           Text: objUpdate.ButtonText,
           TextColor: objUpdate.ButtonTextColor,
+          Icon: objUpdate.Icon,
           Padding: {
-            top: objUpdate.ButtonPadding.top,
-            right: objUpdate.ButtonPadding.right,
-            bottom: objUpdate.ButtonPadding.bottom,
-            left: objUpdate.ButtonPadding.left,
+            top: objUpdate.Padding.top,
+            right: objUpdate.Padding.right,
+            bottom: objUpdate.Padding.bottom,
+            left: objUpdate.Padding.left,
           },
           Margin: {
             top: objUpdate.Margin.top,
@@ -292,7 +359,7 @@ export class BasecomponentTwoComponent implements OnInit {
         configuration_json: configuration_json,
       };
       console.log('New primary button: ', newObj);
-      this.ibs.updatePrimaryButton(i, newObj).subscribe(() => {});
+      this.ipbs.updateIconButton(i, newObj).subscribe(() => {});
     }
 
     if (objUpdate.component === 'iconButton') {
@@ -406,6 +473,33 @@ export class BasecomponentTwoComponent implements OnInit {
       };
       console.log('New slim entry: ', newObj);
       this.ses.updateSlimEntry(i, newObj).subscribe(() => {});
+    }
+
+    if (objUpdate.component === 'appHeader') {
+      appHeaderObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          leftIcon: objUpdate.appHeader.leftIcon,
+          rightIcon: objUpdate.appHeader.rightIcon,
+          logo: objUpdate.appHeader.logo,
+          Padding: {
+            top: objUpdate.Padding.top,
+            right: objUpdate.Padding.right,
+            bottom: objUpdate.Padding.bottom,
+            left: objUpdate.Padding.left,
+          },
+        },
+      };
+
+      let configuration_json = JSON.stringify(appHeaderObj?.configuration_json);
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New app header: ', newObj);
+      this.ahs.updateHeadernConfig(i, newObj).subscribe(() => {});
     }
   }
 }

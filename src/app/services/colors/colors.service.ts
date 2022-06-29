@@ -112,4 +112,63 @@ export class ColorsService {
       },
     ];
   }
+
+  getAppIcons() {
+    return [
+      {
+        name: 'keyboard_arrow_right',
+      },
+      {
+        name: 'keyboard_arrow_left',
+      },
+      {
+        name: 'keyboard_arrow_down',
+      },
+      {
+        name: 'keyboard_arrow_up',
+      },
+      {
+        name: 'search',
+      },
+      {
+        name: 'home',
+      },
+      {
+        name: 'account_circle',
+      },
+      {
+        name: 'settings',
+      },
+      {
+        name: 'done',
+      },
+      {
+        name: 'info',
+      },
+      {
+        name: 'delete',
+      },
+      {
+        name: 'check_circle',
+      },
+      {
+        name: 'shopping_cart',
+      },
+      {
+        name: 'grade',
+      },
+      {
+        name: 'autorenew',
+      },
+      {
+        name: 'add_box',
+      },
+      {
+        name: 'android',
+      },
+      {
+        name: 'apple',
+      },
+    ];
+  }
 }

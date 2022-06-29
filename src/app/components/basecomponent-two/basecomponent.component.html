@@ -1,8 +1,8 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent">
-  <div formArrayName="finalConfig">
+  <div formArrayName="finalConfig" [sortablejs]="array">
     <div *ngFor="let base of components; let i = index">
-      <div [dragula]="COMPONENTS">
+      <div>
         <editable (save)="update(i)" (cancel)="cancel()">
           <section *ngIf="base">
             <div [formGroupName]="i">
@@ -11,9 +11,39 @@
                 <ng-template viewMode>
                   <!-- Non-image component -->
                   <div>
+                    <!-- Appheader component -->
+                    <section (click)="appHeaderEdit()" *ngIf="base.value.appHeader.display" [ngStyle]="{display: 'grid',
+                      height: base.value.Height + 'px',
+                      'align-items': 'center',
+                      'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
+                      'padding-top': base.value.Padding.top + 'px',
+                      'padding-right': base.value.Padding.right + 'px',
+                      'padding-bottom': base.value.Padding.bottom + 'px',
+                      'padding-left': base.value.Padding.left + 'px'}">
+
+                      <div [ngStyle]="{display: 'flex',
+                      'align-items': 'center',
+                      'justify-content': this.Column1Config}">
+                        <mat-icon>{{ base.value.appHeader.leftIcon }}</mat-icon>
+                      </div>
+
+                      <div>
+                        <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + base.value.appHeader.logo"
+                          alt="Logo" />
+                      </div>
+
+                      <div [ngStyle]="{display: 'flex',
+      'align-items': 'center',
+      'justify-content': this.Column2Config}">
+                        <mat-icon>{{ base.value.appHeader.rightIcon }}</mat-icon>
+                      </div>
+                    </section>
+                    <!-- Appheader component -->
+
                     <!-- Headline/Description component -->
-                    <section (click)="descriptionEdit()" [ngStyle]="{
+                    <section class="flex" (click)="descriptionEdit()" [ngStyle]="{
                                           color: base.value.TextColor,
+                                          'justify-content': base.value.TextAlignment,
                                           'text-align': base.value.TextAlignment,
                                           'font-size': base.value.TextSize + 'px',
                                           'font-weight': base.value.FontWeight,
@@ -82,15 +112,15 @@
                     <mat-form-field *ngIf="base.value.dropDown.display" (click)="dropdownEdit()" class="w-full"
                       [appearance]="base.value.dropDown.Borderless" [ngStyle]="{
                                                                                                         
-                                                                                                        'padding-top':
-                                                                                                          base.value.dropDown.Padding.top + 'px',
-                                                                                                        'padding-right':
-                                                                                                          base.value.dropDown.Padding.right + 'px',
-                                                                                                        'padding-bottom':
-                                                                                                          base.value.dropDown.Padding.bottom + 'px',
-                                                                                                        'padding-left':
-                                                                                                          base.value.dropDown.Padding.left + 'px'
-                                                                                                      }">
+                      'padding-top':
+                        base.value.dropDown.Padding.top + 'px',
+                      'padding-right':
+                        base.value.dropDown.Padding.right + 'px',
+                      'padding-bottom':
+                        base.value.dropDown.Padding.bottom + 'px',
+                      'padding-left':
+                        base.value.dropDown.Padding.left + 'px'
+                    }">
                       <mat-label>{{base.value.dropDown.FieldName}}</mat-label>
                       <mat-select [required]="base.value.dropDown.IsRequired">
                         <mat-option [value]="base.value.dropDown.OptionOne">{{base.value.dropDown.OptionOne}}
@@ -108,12 +138,40 @@
 
                 <ng-template editMode>
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
-
-                  <!-- Non-image component -->
                   <div>
+                    <!-- Appheader component -->
+                    <section *ngIf="base.value.appHeader.display" [ngStyle]="{display: 'grid',
+                                          height: base.value.Height + 'px',
+                                          'align-items': 'center',
+                                          'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
+                                          'padding-top': base.value.Padding.top + 'px',
+                                          'padding-right': base.value.Padding.right + 'px',
+                                          'padding-bottom': base.value.Padding.bottom + 'px',
+                                          'padding-left': base.value.Padding.left + 'px'}">
+
+                      <div [ngStyle]="{display: 'flex',
+                                          'align-items': 'center',
+                                          'justify-content': this.Column1Config}">
+                        <mat-icon>{{ base.value.appHeader.leftIcon }}</mat-icon>
+                      </div>
+
+                      <div>
+                        <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + base.value.appHeader.logo"
+                          alt="Logo" />
+                      </div>
+
+                      <div [ngStyle]="{display: 'flex',
+                          'align-items': 'center',
+                          'justify-content': this.Column2Config}">
+                        <mat-icon>{{ base.value.appHeader.rightIcon }}</mat-icon>
+                      </div>
+                    </section>
+                    <!-- Appheader component -->
+
                     <!-- Headline/Description component -->
-                    <section (click)="descriptionEdit()" [ngStyle]="{
+                    <section class="flex" (click)="descriptionEdit()" [ngStyle]="{
                                                             color: base.value.TextColor,
+                                                            'justify-content': base.value.TextAlignment,
                                                             'text-align': base.value.TextAlignment,
                                                             'font-size': base.value.TextSize + 'px',
                                                             'font-weight': base.value.FontWeight,
@@ -204,8 +262,6 @@
                     </mat-form-field>
                     <!-- Drowpdown component -->
                   </div>
-                  <!-- Non-image component -->
-
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
 
                   <!-- Edit sidebar -->
@@ -214,7 +270,7 @@
                     <section edit-form>
 
                       <!-- Padding -->
-                      <ng-container *ngIf="es.description">
+                      <ng-container *ngIf="es.description || es.appHeader">
                         <h2 class="edit-section-title">Padding:</h2>
                         <div formGroupName="Padding">
                           <app-padding-control>
@@ -234,6 +290,25 @@
                       <ng-container *ngIf="es.input">
                         <h2 class="edit-section-title">Padding:</h2>
                         <section formGroupName="slimEntry">
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </ng-container>
+
+                      <!-- Dropdown Padding -->
+                      <ng-container *ngIf="es.dropdown">
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <section formGroupName="dropDown">
                           <div formGroupName="Padding">
                             <app-padding-control>
                               <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
@@ -305,6 +380,47 @@
                               type="text" formControlName="Type" />
                           </ng-container>
                         </section>
+                      </ng-container>
+
+                      <!-- AppHeader -->
+                      <ng-container *ngIf="es.appHeader">
+                        <section formGroupName="appHeader">
+                          <h2 class="edit-section-title">Left Icon:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let icon of icons">
+                              <button class="color-button" class="mat-icon-edit-view" (click)="setIcon(icon.name, i)"
+                                [tippy]="icon.name">
+                                <mat-icon>{{icon.name}}</mat-icon>
+                              </button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Right Icon:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let icon of icons">
+                              <button class="color-button" class="mat-icon-edit-view"
+                                (click)="setRightIcon(icon.name, i)" [tippy]="icon.name">
+                                <mat-icon>{{icon.name}}</mat-icon>
+                              </button>
+                            </div>
+
+                          </section>
+                        </section>
+
+                        <h2 class="edit-section-title">Logo:</h2>
+                        <div class="flex justify-between items-center mb-4 gap-x-4">
+                          <div class="icon-selection w-14" (click)="setLogo('crowdtap-logo-icon.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-icon.svg" alt="Crowdtap logo icon" />
+                          </div>
+                          <div class="icon-selection w-48" (click)="setLogo('crowdtap-logo-white.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-white.svg" alt="Crowdtap logo white" />
+                          </div>
+                          <div class="icon-selection w-48" (click)="setLogo('crowdtap-logo-mark.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-mark.svg" alt="Crowdtap logo mark" />
+                          </div>
+                        </div>
                       </ng-container>
 
                       <!-- Dropdown-->
@@ -405,78 +521,15 @@
                         <h2 class="edit-section-title">
                           Set Button Icon (Material Icons):
                         </h2>
-                        <section class="flex flex-start justify-between items-center gap-3 flex-wrap">
-                          <button class="mat-icon-edit-view" (click)="changeIcon('', i)">
-                            None
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('keyboard_arrow_right', i)">
-                            <mat-icon>keyboard_arrow_right</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('keyboard_arrow_left', i)">
-                            <mat-icon>keyboard_arrow_left</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('keyboard_arrow_down', i)">
-                            <mat-icon>keyboard_arrow_down</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('keyboard_arrow_up', i)">
-                            <mat-icon>keyboard_arrow_up</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('search', i)">
-                            <mat-icon>search</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('home', i)">
-                            <mat-icon>home</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('account_circle', i)">
-                            <mat-icon>account_circle</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('settings', i)">
-                            <mat-icon>settings</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('done', i)">
-                            <mat-icon>done</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('info', i)">
-                            <mat-icon>info</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('delete', i)">
-                            <mat-icon>delete</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('check_circle', i)">
-                            <mat-icon>check_circle</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('shopping_cart', i)">
-                            <mat-icon>shopping_cart</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('grade', i)">
-                            <span class="material-symbols-rounded">
-                              grade
-                            </span>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('logout', i)">
-                            <mat-icon>logout</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('login', i)">
-                            <mat-icon>login</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('bolt', i)">
-                            <mat-icon>bolt</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('grade', i)">
-                            <mat-icon>grade</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('autorenew', i)">
-                            <mat-icon>autorenew</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('add_box', i)">
-                            <mat-icon>add_box</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('android', i)">
-                            <mat-icon>android</mat-icon>
-                          </button>
-                          <button class="mat-icon-edit-view" (click)="changeIcon('apple', i)">
-                            <mat-icon>apple</mat-icon>
-                          </button>
+                        <section
+                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                          <div *ngFor="let icon of icons">
+                            <button class="color-button" class="mat-icon-edit-view" (click)="changeIcon(icon.name, i)"
+                              [tippy]="icon.name">
+                              <mat-icon>{{icon.name}}</mat-icon>
+                            </button>
+                          </div>
+
                         </section>
                       </section>
 
@@ -540,7 +593,22 @@
                         </section>
                       </ng-container>
 
+                      <!-- CommandName -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Command Name:</h2>
+                        <input class="form-control" placeholder="Set initial value" type="text"
+                          formControlName="CommandName" />
+                      </section>
+
+                      <!-- CommandParameter -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Command Parameters:</h2>
+                        <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                          formControlName="CommandParameter" rows="3" cols="33"></textarea>
+                      </section>
+
                     </section>
+
                     <!-- Code edit form -->
                     <section edit-config-code>
                       <h2 class="edit-section-title mt-4">
@@ -572,7 +640,7 @@
                           />
                         </section>
 
-                        <section *ngIf="es.description || es.input" formGroupName="Padding">
+                        <section *ngIf="es.description || es.input || es.appHeader" formGroupName="Padding">
                           <pre>Padding: </pre>
                           <section>
                             <label for="top">top: </label>
@@ -688,8 +756,26 @@
                             <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Type" />
                           </section>
                         </section>
+
+                        <section *ngIf="es.appHeader" formGroupName="appHeader">
+                          <section>
+                            <label for="icon">LeftIcon: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="leftIcon" />
+                          </section>
+                          <section>
+                            <label for="icon">RightIcon: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="rightIcon" />
+                          </section>
+                          <section>
+                            <label for="icon">Logo: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="logo" />
+                          </section>
+                        </section>
                       </code>
                     </section>
+
+
+
                     <!-- Save component version -->
                     <div class="form-submit-wrapper z-50" save-component>
                       <section class="form-submit-section">

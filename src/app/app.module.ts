@@ -4,9 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditorModule } from './editor/editor.module';
-import { MaterialModule } from './shared/material.module';
 import { EditableModule } from '@ngneat/edit-in-place';
-import { DragulaModule } from 'ng2-dragula';
+
+import { SortablejsModule } from 'ngx-sortablejs';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +15,8 @@ import { DragulaModule } from 'ng2-dragula';
     AppRoutingModule,
     BrowserAnimationsModule,
     EditorModule,
-    MaterialModule,
     EditableModule,
-    DragulaModule.forRoot(),
+    SortablejsModule.forRoot({ animation: 150 }),
   ],
   providers: [],
   bootstrap: [AppComponent],

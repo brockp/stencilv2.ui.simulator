@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.service';
 import { Colors } from '@app/services/colors/colors.interface';
 import { Subscription } from 'rxjs';
-import { DragulaService } from 'ng2-dragula';
+import { ColorsService } from '@app/services/colors/colors.service';
 
 @Component({
   selector: 'app-editor',
@@ -32,7 +32,7 @@ export class EditorComponent implements OnInit {
       BackgroundColor: '',
       BackgroundImage: '',
       Margin: this.fb.group({
-        top: 0,
+        top: '',
         right: '',
         bottom: '',
         left: '',
@@ -49,6 +49,7 @@ export class EditorComponent implements OnInit {
     primaryButtonSelector: this.es.createDynamicButton({}),
     inputSelector: this.es.createDynamicInput({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
+    appHeaderSelector: this.es.createAppHeader({}),
     finalConfig: this.fb.array([]),
   });
 
@@ -62,15 +63,12 @@ export class EditorComponent implements OnInit {
     public es: EditorService,
     private fb: FormBuilder,
     public ess: EditSidebarService,
-    private dragulaService: DragulaService
-  ) {
-    this.dragulaService.createGroup(this.COMPONENTS, {
-      removeOnSpill: true,
-    });
-    this.dragulaService.drop(this.COMPONENTS).subscribe((element) => {});
-  }
+    private cs: ColorsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.colorPalettes = this.cs.getAppColors();
+  }
 
   ngAfterViewInit(): void {}
 
@@ -92,34 +90,6 @@ export class EditorComponent implements OnInit {
 
   get finalConfig() {
     return this.form.get('finalConfig') as FormArray;
-  }
-
-  get headlineConfig() {
-    return this.form.get('headlineConfig') as FormArray;
-  }
-
-  get descriptionConfig() {
-    return this.form.get('descriptionConfig') as FormArray;
-  }
-
-  get graphicConfig() {
-    return this.form.get('graphicConfig') as FormArray;
-  }
-
-  get buttonConfig() {
-    return this.form.get('buttonConfig') as FormArray;
-  }
-
-  get iconButtonConfig() {
-    return this.form.get('iconButtonConfig') as FormArray;
-  }
-
-  get slimEntryConfig() {
-    return this.form.get('slimEntryConfig') as FormArray;
-  }
-
-  get spacerConfig() {
-    return this.form.get('spacerConfig') as FormArray;
   }
 
   ////////////////////////////////////////////////////
@@ -148,6 +118,10 @@ export class EditorComponent implements OnInit {
 
   addDropdown(dropdown: any): any {
     this.finalConfig.push(this.es.createDynamicDropdown(dropdown));
+  }
+
+  addAppHeader(appHeader: any): any {
+    this.finalConfig.push(this.es.createAppHeader(appHeader));
   }
 
   //////
@@ -326,22 +300,27 @@ export class EditorComponent implements OnInit {
             component: value.component,
             configuration_json: {
               Text: value.Text,
-              TextSize: value.TextSize,
+              FontSize: value.TextSize,
               TextColor: value.TextColor,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
                 bottom: value.Padding.bottom,
                 left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
             },
           };
           console.log('No background: ', h1);
           let configuration_json = JSON.stringify(h1?.configuration_json);
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
           };
           return newObj;
         }
@@ -353,22 +332,27 @@ export class EditorComponent implements OnInit {
             component: value.component,
             configuration_json: {
               Text: value.Text,
-              TextSize: value.TextSize,
+              FontSize: value.TextSize,
               TextColor: value.TextColor,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
                 bottom: value.Padding.bottom,
                 left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
             },
           };
           console.log('No background: ', h2);
           let configuration_json = JSON.stringify(h2?.configuration_json);
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
           };
           return newObj;
         }
@@ -388,14 +372,19 @@ export class EditorComponent implements OnInit {
                 right: value.Padding.right,
                 bottom: value.Padding.bottom,
                 left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
             },
           };
           let configuration_json = JSON.stringify(image?.configuration_json);
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
           };
           return newObj;
         }
@@ -403,12 +392,14 @@ export class EditorComponent implements OnInit {
         let primaryButton;
         if (value.component === 'primaryButton') {
           primaryButton = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: {
               BackgroundColor: value.BackgroundColor,
               Width: value.Width,
               Height: value.Height,
+              FontSize: value.TextSize,
               CornerRadius: value.CornerRadius,
               ButtonText: value.ButtonText,
               Padding: {
@@ -416,22 +407,31 @@ export class EditorComponent implements OnInit {
                 right: value.Padding.right,
                 bottom: value.Padding.bottom,
                 left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
               Margin: {
                 top: value.Margin.top,
                 right: value.Margin.right,
                 bottom: value.Margin.bottom,
                 left: value.Margin.left,
+                HorizontalThickness: value.Margin.left + value.Margin.right,
+                VerticalThickness: value.Margin.top + value.Margin.bottom,
               },
+              CommandName: value.CommandName,
+              CommandParameter: value.CommandParameter,
             },
           };
           let configuration_json = JSON.stringify(
             primaryButton?.configuration_json
           );
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
           };
           return newObj;
         }
@@ -455,12 +455,16 @@ export class EditorComponent implements OnInit {
                 right: value.slimEntry.Padding.right,
                 bottom: value.slimEntry.Padding.bottom,
                 left: value.slimEntry.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
               Margin: {
                 top: value.Margin.top,
                 right: value.Margin.right,
                 bottom: value.Margin.bottom,
                 left: value.Margin.left,
+                HorizontalThickness: value.Margin.left + value.Margin.right,
+                VerticalThickness: value.Margin.top + value.Margin.bottom,
               },
             },
           };
@@ -468,9 +472,12 @@ export class EditorComponent implements OnInit {
             slimEntry?.configuration_json
           );
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
           };
           return newObj;
         }
@@ -492,20 +499,70 @@ export class EditorComponent implements OnInit {
                 right: value.dropDown.Padding.right,
                 bottom: value.dropDown.Padding.bottom,
                 left: value.dropDown.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
               Margin: {
                 top: value.Margin.top,
                 right: value.Margin.right,
                 bottom: value.Margin.bottom,
                 left: value.Margin.left,
+                HorizontalThickness: value.Margin.left + value.Margin.right,
+                VerticalThickness: value.Margin.top + value.Margin.bottom,
               },
             },
           };
           let configuration_json = JSON.stringify(dropDown?.configuration_json);
           let newObj = {
+            library: 'crowdtap',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
+        let appHeader;
+        if (value.component === 'appHeader') {
+          appHeader = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
+              },
+              Column1Config: {
+                HorizontalOptions:
+                  value.appHeader.Column1Config.HorizontalOptions,
+              },
+              Column2Config: {
+                HorizontalOptions:
+                  value.appHeader.Column2Config.HorizontalOptions,
+              },
+              leftIcon: value.appHeader.LeftIcon,
+              logo: value.appHeader.logo,
+              rightIcon: value.appHeader.rightIcon,
+            },
+          };
+          console.log('app Header: ', appHeader);
+          let configuration_json = JSON.stringify(
+            appHeader?.configuration_json
+          );
+
+          let newObj = {
+            library: 'crowdtap',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
           };
           return newObj;
         }
@@ -516,6 +573,7 @@ export class EditorComponent implements OnInit {
     console.log('final array: ', awesome);
 
     let final = awesome;
+
     console.log('Visual Config: ', visualConfig, 'View Configs: ', final);
 
     this.es.sendConfig(final, visualConfig, true).subscribe(() => {});
