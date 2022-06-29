@@ -14,6 +14,7 @@ export class EditorService {
   private apiURL = API_ENDPOINT;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
   public finalArray: any[] = [];
+  public headerArray: any[] = [];
   public isHidden!: boolean;
   public iconButton = false;
   public image = false;
@@ -590,7 +591,12 @@ export class EditorService {
   }
 
   // Submit full configuration information
-  sendConfig(image: any, visualConfig: any, supress: boolean): Observable<any> {
+  sendConfig(
+    headerConfig: any,
+    image: any,
+    visualConfig: any,
+    supress: boolean
+  ): Observable<any> {
     const body = {
       ScreenStorageKey: null,
       ScreenName: null,
@@ -607,7 +613,7 @@ export class EditorService {
       ScreenNavigationData: null,
       VisualConfig: visualConfig,
       ViewConfig: image,
-      HeaderConfigs: [],
+      HeaderConfigs: headerConfig,
       FooterConfigs: [],
       BeforeShowCommands: [],
       AfterShowCommands: [],

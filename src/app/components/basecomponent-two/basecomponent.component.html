@@ -1,7 +1,7 @@
 <!-- Editable wrapper -->
 <main [formGroup]="parent">
-  <div formArrayName="finalConfig" [sortablejs]="array">
-    <div *ngFor="let base of components; let i = index">
+  <div formArrayName="headerConfig" [sortablejs]="array">
+    <div *ngFor="let base of headers; let i = index">
       <div>
         <editable (save)="update(i)" (cancel)="cancel()">
           <section *ngIf="base">
@@ -39,6 +39,584 @@
                       </div>
                     </section>
                     <!-- Appheader component -->
+                  </div>
+                </ng-template>
+
+                <ng-template editMode>
+                  <!-- EDITABLE PREVIEW OF COMPONENTS -->
+                  <div>
+                    <!-- Appheader component -->
+                    <section *ngIf="base.value.appHeader.display" [ngStyle]="{display: 'grid',
+                                          height: base.value.Height + 'px',
+                                          'align-items': 'center',
+                                          'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
+                                          'padding-top': base.value.Padding.top + 'px',
+                                          'padding-right': base.value.Padding.right + 'px',
+                                          'padding-bottom': base.value.Padding.bottom + 'px',
+                                          'padding-left': base.value.Padding.left + 'px'}">
+
+                      <div [ngStyle]="{display: 'flex',
+                                          'align-items': 'center',
+                                          'justify-content': this.Column1Config}">
+                        <mat-icon>{{ base.value.appHeader.leftIcon }}</mat-icon>
+                      </div>
+
+                      <div>
+                        <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + base.value.appHeader.logo"
+                          alt="Logo" />
+                      </div>
+
+                      <div [ngStyle]="{display: 'flex',
+                          'align-items': 'center',
+                          'justify-content': this.Column2Config}">
+                        <mat-icon>{{ base.value.appHeader.rightIcon }}</mat-icon>
+                      </div>
+                    </section>
+                    <!-- Appheader component -->
+                  </div>
+                  <!-- EDITABLE PREVIEW OF COMPONENTS -->
+
+                  <!-- Edit sidebar -->
+                  <app-editor-sidebar>
+                    <!-- Base edit form -->
+                    <section edit-form>
+
+                      <!-- Padding -->
+                      <ng-container *ngIf="es.description || es.appHeader">
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <div formGroupName="Padding">
+                          <app-padding-control>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="top" paddingTop />
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="right" paddingRight />
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="bottom" paddingBottom />
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="left" paddingLeft />
+                          </app-padding-control>
+                        </div>
+                      </ng-container>
+
+                      <!-- Slim Entry Padding -->
+                      <ng-container *ngIf="es.input">
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <section formGroupName="slimEntry">
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </ng-container>
+
+                      <!-- Dropdown Padding -->
+                      <ng-container *ngIf="es.dropdown">
+                        <h2 class="edit-section-title">Padding:</h2>
+                        <section formGroupName="dropDown">
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </ng-container>
+
+                      <!-- Margin -->
+                      <h2 class="edit-section-title">Margin:</h2>
+                      <div formGroupName="Margin">
+                        <section class="flex justify-between items-center mb-4">
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-t-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="top" paddingTop />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-r-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="right" paddingRight />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-b-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="bottom" paddingBottom />
+                          </div>
+                          <div class="flex justify-start items-center gap-x-1">
+                            <div class="w-4 h-4 bg-gray-900 border-l-2 border-red-200"></div>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                              formControlName="left" paddingLeft />
+                          </div>
+                        </section>
+                      </div>
+
+                      <!-- SlimEntry-->
+                      <ng-container *ngIf="es.input">
+                        <section formGroupName="slimEntry">
+                          <ng-container *ngIf="es.input">
+                            <section class="edit-section edit-section-title">
+                              <div class="flex justify-start items-center gap-x-4">
+                                <h2 class="font-noir text-xs font-normal">
+                                  Is it required?:
+                                </h2>
+                                <mat-checkbox class="p-1" formControlName="IsRequired"></mat-checkbox>
+                              </div>
+                            </section>
+                            <h2 class="edit-section-title">GroupName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="GroupName" />
+                            <h2 class="edit-section-title">Set FieldName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="FieldName" />
+                            <h2 class="edit-section-title">Set Placeholder:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="Placeholder" />
+                            <h2 class="edit-section-title">Set Appearance:</h2>
+                            <input class="form-control p-1" placeholder="fill, legacy, standard, outline" type="text"
+                              formControlName="Borderless" />
+                            <h2 class="edit-section-title">Set Input Type:</h2>
+                            <input class="form-control p-1" placeholder="date, email, password, number, etc..."
+                              type="text" formControlName="Type" />
+                          </ng-container>
+                        </section>
+                      </ng-container>
+
+                      <!-- AppHeader -->
+                      <ng-container *ngIf="es.appHeader">
+                        <section formGroupName="appHeader">
+                          <h2 class="edit-section-title">Left Icon:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let icon of icons">
+                              <button class="color-button" class="mat-icon-edit-view" (click)="setIcon(icon.name, i)"
+                                [tippy]="icon.name">
+                                <mat-icon>{{icon.name}}</mat-icon>
+                              </button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Right Icon:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let icon of icons">
+                              <button class="color-button" class="mat-icon-edit-view"
+                                (click)="setRightIcon(icon.name, i)" [tippy]="icon.name">
+                                <mat-icon>{{icon.name}}</mat-icon>
+                              </button>
+                            </div>
+
+                          </section>
+                        </section>
+
+                        <h2 class="edit-section-title">Logo:</h2>
+                        <div class="flex justify-between items-center mb-4 gap-x-4">
+                          <div class="icon-selection w-14" (click)="setLogo('crowdtap-logo-icon.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-icon.svg" alt="Crowdtap logo icon" />
+                          </div>
+                          <div class="icon-selection w-48" (click)="setLogo('crowdtap-logo-white.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-white.svg" alt="Crowdtap logo white" />
+                          </div>
+                          <div class="icon-selection w-48" (click)="setLogo('crowdtap-logo-mark.svg', i)">
+                            <img src="'../../../../../assets/crowdtap-logo-mark.svg" alt="Crowdtap logo mark" />
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <!-- Dropdown-->
+                      <ng-container *ngIf="es.dropdown">
+                        <section formGroupName="dropDown">
+                          <ng-container *ngIf="es.dropdown">
+                            <section class="edit-section edit-section-title">
+                              <div class="flex justify-start items-center gap-x-4">
+                                <h2 class="font-noir text-xs font-normal">
+                                  Is it required?:
+                                </h2>
+                                <mat-checkbox class="p-1" formControlName="IsRequired"></mat-checkbox>
+                              </div>
+                            </section>
+                            <h2 class="edit-section-title">GroupName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="GroupName" />
+                            <h2 class="edit-section-title">Set FieldName:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="FieldName" />
+                            <h2 class="edit-section-title">Set Option One:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="OptionOne" />
+                            <h2 class="edit-section-title">Set Option Two:</h2>
+                            <input class="form-control p-1" placeholder="Enter initial value" type="text"
+                              formControlName="OptionTwo" />
+                            <h2 class="edit-section-title">Set Appearance:</h2>
+                            <input class="form-control p-1" placeholder="fill, legacy, standard, outline" type="text"
+                              formControlName="Borderless" />
+
+                          </ng-container>
+                        </section>
+                      </ng-container>
+
+                      <!-- H1 Text -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Description:</h2>
+                        <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                          formControlName="Text" rows="3" cols="33"></textarea>
+                      </section>
+
+                      <!-- Text Alignment -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Align & Size Text:</h2>
+                        <section class="flex justify-between items-center">
+                          <input class="textarea-control w-20 p-2 mr-2" [placeholder]="base.value.TextSize"
+                            type="number" formControlName="TextSize" />
+                          <mat-icon class="text-white" (click)="setTextAlignment('start', i)">format_align_left
+                          </mat-icon>
+                          <mat-icon class="text-white" (click)="setTextAlignment('center', i)">format_align_center
+                          </mat-icon>
+                          <mat-icon class="text-white" (click)="setTextAlignment('end', i)">format_align_right
+                          </mat-icon>
+                        </section>
+                      </section>
+
+                      <!-- Width + Height -->
+                      <section *ngIf="es.description" class="edit-section edit-section-title">
+                        <div class="grid grid-cols-2 gap-3">
+                          <div class="flex gap-x-2 justify-start items-center">
+                            <label class="text-white text-noir text-xs font-normal" for="right">
+                              Width:
+                            </label>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
+                              type="text" formControlName="Width" />
+                          </div>
+                          <div class="flex gap-x-2 justify-start items-center">
+                            <label class="text-white text-noir text-xs font-normal" for="right">
+                              Height:
+                            </label>
+                            <input class="form-control w-12 overflow-hidden p-1 hover:cursor-not-allowed"
+                              placeholder="auto" type="text" formControlName="Height">
+                          </div>
+                        </div>
+                      </section>
+
+                      <!-- Border Radius -->
+                      <section *ngIf="es.description" class="edit-section">
+                        <h2 class="edit-section-title">Border Radius:</h2>
+                        <div class="flex justify-between items-center">
+                          <button role="tab" class="radius-edit-button" (click)="changeBorderRadius('9999', i)">
+                            <div class="full"></div>
+                            <div class="text-xs font-normal font-noir">Full</div>
+                          </button>
+                          <button role="tab" class="radius-edit-button" (click)="changeBorderRadius('8', i)">
+                            <div class="large"></div>
+                            <div class="text-xs font-normal font-noir">Large</div>
+                          </button>
+                          <button role="tab" class="radius-edit-button" (click)="changeBorderRadius('2', i)">
+                            <div class="small"></div>
+                            <div class="text-xs font-normal font-noir">Small</div>
+                          </button>
+                        </div>
+                      </section>
+
+                      <!-- Left icon section -->
+                      <section *ngIf="es.description" class="edit-section">
+                        <h2 class="edit-section-title">
+                          Set Button Icon (Material Icons):
+                        </h2>
+                        <section
+                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                          <div *ngFor="let icon of icons">
+                            <button class="color-button" class="mat-icon-edit-view" (click)="changeIcon(icon.name, i)"
+                              [tippy]="icon.name">
+                              <mat-icon>{{icon.name}}</mat-icon>
+                            </button>
+                          </div>
+
+                        </section>
+                      </section>
+
+                      <!-- Graphic -->
+                      <section class="edit-section" *ngIf="es.image">
+                        <h2 class="edit-section-title">Graphic:</h2>
+                        <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                          <button (click)="changeGraphic('girl-laying.svg', i)">
+                            <img src="../../../../../assets/girl-laying.svg" />
+                          </button>
+                          <button (click)="changeGraphic('girl-sitting.svg', i)">
+                            <img src="../../../../../assets/girl-sitting.svg" />
+                          </button>
+                          <button (click)="changeGraphic('question.svg', i)">
+                            <img src="../../../../../assets/question.svg" />
+                          </button>
+                          <button (click)="changeGraphic('refer-a-friend.svg', i)">
+                            <img src="../../../../../assets/refer-a-friend.svg" />
+                          </button>
+                          <button (click)="changeGraphic('signup-graphic-one.svg', i)">
+                            <img src="../../../../../assets/signup-graphic-one.svg" />
+                          </button>
+                          <button (click)="changeGraphic('signup-graphic-two.svg', i)">
+                            <img src="../../../../../assets/signup-graphic-two.svg" />
+                          </button>
+                          <button (click)="changeGraphic('sitting-blocks.svg', i)">
+                            <img src="../../../../../assets/sitting-blocks.svg" />
+                          </button>
+                        </section>
+                        <h2 class="edit-section-title">Image Width:</h2>
+                        <div class="flex gap-x-2 justify-start items-center">
+                          <label class="text-white text-noir text-xs font-normal" for="right">
+                            Width:
+                          </label>
+                          <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
+                            type="text" formControlName="ImageWidth" />
+                        </div>
+                      </section>
+
+                      <!-- Text Color -->
+                      <section *ngIf="es.description || es.input">
+                        <h2 class="edit-section-title">Text Color:</h2>
+                        <section
+                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                          <div *ngFor="let color of colorPalettes">
+                            <button class="color-button" [class]="[color.class, color.textColor]"
+                              (click)="setTextColor(color.color, i)" [tippy]="color.name"></button>
+                          </div>
+                        </section>
+                      </section>
+
+                      <!-- Background Color -->
+                      <ng-container *ngIf="es.description">
+                        <h2 class="edit-section-title">Background Color:</h2>
+                        <section
+                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                          <div *ngFor="let color of colorPalettes">
+                            <button class="color-button" [class]="[color.class, color.textColor]"
+                              (click)="setBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                          </div>
+                        </section>
+                      </ng-container>
+
+                      <!-- CommandName -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Command Name:</h2>
+                        <input class="form-control" placeholder="Set initial value" type="text"
+                          formControlName="CommandName" />
+                      </section>
+
+                      <!-- CommandParameter -->
+                      <section *ngIf="es.description">
+                        <h2 class="edit-section-title">Command Parameters:</h2>
+                        <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                          formControlName="CommandParameter" rows="3" cols="33"></textarea>
+                      </section>
+
+                    </section>
+
+                    <!-- Code edit form -->
+                    <section edit-config-code>
+                      <h2 class="edit-section-title mt-4">
+                        Edit configuration code directly:
+                      </h2>
+                      <code class="code-box">
+                        <section *ngIf="es.description">
+                          <label for="icon">Text: </label>
+                          <input
+                            class="code-form-control"
+                            type="text"
+                            placeholder="set initial value"
+                            formControlName="Text"
+                          />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="TextSize">TextSize: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="TextSize" />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">TextColor: </label>
+                          <input
+                            class="code-form-control"
+                            type="text"
+                            placeholder="set initial value"
+                            formControlName="TextColor"
+                          />
+                        </section>
+
+                        <section *ngIf="es.description || es.input || es.appHeader" formGroupName="Padding">
+                          <pre>Padding: </pre>
+                          <section>
+                            <label for="top">top: </label>
+                            <input
+                              class="code-form-control"
+                              type="text"
+                              placeholder="set initial value"
+                              formControlName="top"
+                            />
+                          </section>
+                          <section>
+                            <label for="right">right: </label>
+                            <input
+                              class="code-form-control"
+                              type="text"
+                              placeholder="set initial value"
+                              formControlName="right"
+                            />
+                          </section>
+                          <section>
+                            <label for="bottom">bottom: </label>
+                            <input
+                              class="code-form-control"
+                              type="text"
+                              placeholder="set initial value"
+                              formControlName="bottom"
+                            />
+                          </section>
+                          <section>
+                            <label for="left">left: </label>
+                            <input
+                              class="code-form-control"
+                              type="text"
+                              placeholder="set initial value"
+                              formControlName="left"
+                            />
+                          </section>
+                        </section>
+
+                        <section *ngIf="es.description || es.input || es.image" formGroupName="Margin">
+                          <pre>Margin: </pre>
+                          <section>
+                            <label for="top">top: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="top" />
+                          </section>
+                          <section>
+                            <label for="right">right: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="right" />
+                          </section>
+                          <section>
+                            <label for="bottom">bottom: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="bottom" />
+                          </section>
+                          <section>
+                            <label for="left">left: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="left" />
+                          </section>
+                        </section>
+
+                        <section *ngIf="es.image">
+                          <label for="icon">Graphic: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Source" />
+                        </section>
+
+                        <section *ngIf="es.image">
+                          <label for="icon">Width: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="ImageWidth" />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">BackgroundColor: </label>
+                          <input
+                            class="code-form-control"
+                            type="text"
+                            placeholder="set initial value"
+                            formControlName="BackgroundColor"
+                          />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">Icon: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Icon" />
+                        </section>
+
+                        <section *ngIf="es.description">
+                          <label for="icon">CornerRadius: </label>
+                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="CornerRadius" />
+                        </section>
+
+                        <section *ngIf="es.input" formGroupName="slimEntry">
+                          <section>
+                            <label for="icon">Required: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="IsRequired" />
+                          </section>
+                          <section>
+                            <label for="icon">GroupName: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="GroupName" />
+                          </section>
+                          <section>
+                            <label for="icon">Borderless: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Borderless" />
+                          </section>
+                          <section>
+                            <label for="icon">FieldName: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="FieldName" />
+                          </section>
+                          <section>
+                            <label for="icon">Placeholder: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Placeholder" />
+                          </section>
+                          <section>
+                            <label for="icon">Type: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Type" />
+                          </section>
+                        </section>
+
+                        <section *ngIf="es.appHeader" formGroupName="appHeader">
+                          <section>
+                            <label for="icon">LeftIcon: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="leftIcon" />
+                          </section>
+                          <section>
+                            <label for="icon">RightIcon: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="rightIcon" />
+                          </section>
+                          <section>
+                            <label for="icon">Logo: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="logo" />
+                          </section>
+                        </section>
+                      </code>
+                    </section>
+
+
+
+                    <!-- Save component version -->
+                    <div class="form-submit-wrapper z-50" save-component>
+                      <section class="form-submit-section">
+                        <app-save-button (click)="saveComponent(i)"></app-save-button>
+                        <app-cancel-button editableOnCancel></app-cancel-button>
+                      </section>
+                    </div>
+                  </app-editor-sidebar>
+                </ng-template>
+              </div>
+            </div>
+          </section>
+        </editable>
+      </div>
+    </div>
+  </div>
+
+  <div formArrayName="finalConfig" [sortablejs]="array">
+    <div *ngFor="let base of components; let i = index">
+      <div>
+        <editable (save)="update(i)" (cancel)="cancel()">
+          <section *ngIf="base">
+            <div [formGroupName]="i">
+              <div>
+                <!-- Actual component -->
+                <ng-template viewMode>
+                  <!-- Non-image component -->
+                  <div>
+
 
                     <!-- Headline/Description component -->
                     <section class="flex" (click)="descriptionEdit()" [ngStyle]="{
@@ -139,34 +717,6 @@
                 <ng-template editMode>
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
                   <div>
-                    <!-- Appheader component -->
-                    <section *ngIf="base.value.appHeader.display" [ngStyle]="{display: 'grid',
-                                          height: base.value.Height + 'px',
-                                          'align-items': 'center',
-                                          'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
-                                          'padding-top': base.value.Padding.top + 'px',
-                                          'padding-right': base.value.Padding.right + 'px',
-                                          'padding-bottom': base.value.Padding.bottom + 'px',
-                                          'padding-left': base.value.Padding.left + 'px'}">
-
-                      <div [ngStyle]="{display: 'flex',
-                                          'align-items': 'center',
-                                          'justify-content': this.Column1Config}">
-                        <mat-icon>{{ base.value.appHeader.leftIcon }}</mat-icon>
-                      </div>
-
-                      <div>
-                        <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + base.value.appHeader.logo"
-                          alt="Logo" />
-                      </div>
-
-                      <div [ngStyle]="{display: 'flex',
-                          'align-items': 'center',
-                          'justify-content': this.Column2Config}">
-                        <mat-icon>{{ base.value.appHeader.rightIcon }}</mat-icon>
-                      </div>
-                    </section>
-                    <!-- Appheader component -->
 
                     <!-- Headline/Description component -->
                     <section class="flex" (click)="descriptionEdit()" [ngStyle]="{

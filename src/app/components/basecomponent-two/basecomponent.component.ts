@@ -110,6 +110,10 @@ export class BasecomponentTwoComponent implements OnInit {
     return (this.parent.get('finalConfig') as FormArray).controls;
   }
 
+  get headers(): any {
+    return (this.parent.get('headerConfig') as FormArray).controls;
+  }
+
   get array(): any {
     return this.parent.get('finalConfig') as FormArray;
   }
@@ -130,7 +134,7 @@ export class BasecomponentTwoComponent implements OnInit {
   }
 
   setIcon(icon: string, i: number) {
-    const index = this.components.at(i);
+    const index = this.headers.at(i);
     this.leftIconChanged.emit(index);
     this.leftIconChanged.emit(icon);
     index.patchValue({
@@ -141,7 +145,7 @@ export class BasecomponentTwoComponent implements OnInit {
   }
 
   setRightIcon(icon: string, i: number) {
-    const index = this.components.at(i);
+    const index = this.headers.at(i);
     this.rightIconChanged.emit(index);
     this.rightIconChanged.emit(icon);
     index.patchValue({
@@ -152,7 +156,7 @@ export class BasecomponentTwoComponent implements OnInit {
   }
 
   setLogo(logo: string, i: number) {
-    const index = this.components.at(i);
+    const index = this.headers.at(i);
     this.logoChanged.emit(index);
     this.logoChanged.emit(logo);
     index.patchValue({
@@ -219,9 +223,15 @@ export class BasecomponentTwoComponent implements OnInit {
   }
 
   update(i: number) {
+    const headerIndex = this.headers.at(i);
+    const headerUpdate = headerIndex.getRawValue();
+
     const index = this.components.at(i);
     const objUpdate = index.getRawValue();
-    console.log(objUpdate);
+
+    console.log('Header', headerUpdate, 'View', objUpdate);
+
+    headerIndex.patchValue({ headerUpdate });
     index.patchValue({ objUpdate });
   }
 

@@ -50,6 +50,7 @@ export class EditorComponent implements OnInit {
     inputSelector: this.es.createDynamicInput({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
+    headerConfig: this.fb.array([]),
     finalConfig: this.fb.array([]),
   });
 
@@ -92,6 +93,10 @@ export class EditorComponent implements OnInit {
     return this.form.get('finalConfig') as FormArray;
   }
 
+  get headerConfig() {
+    return this.form.get('headerConfig') as FormArray;
+  }
+
   ////////////////////////////////////////////////////
   // Pushes the dynamically created FormGroup to the FormArray
   ////////////////////////////////////////////////////
@@ -121,7 +126,7 @@ export class EditorComponent implements OnInit {
   }
 
   addAppHeader(appHeader: any): any {
-    this.finalConfig.push(this.es.createAppHeader(appHeader));
+    this.headerConfig.push(this.es.createAppHeader(appHeader));
   }
 
   //////
@@ -288,6 +293,57 @@ export class EditorComponent implements OnInit {
   ////////////////////////////////////////////////////
   onSubmit(event: any): void {
     let visualConfig = this.form.get('visualConfig')!.value;
+
+    const h = this.form.get('headerConfig')!.value;
+    const yepHeader = this.es.headerArray.concat(h);
+
+    let newHeaderArray = (values: any) => {
+      return values.map((value: any) => {
+        let appHeader;
+        if (value.component === 'appHeader') {
+          appHeader = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
+              },
+              Column1Config: {
+                HorizontalOptions:
+                  value.appHeader.Column1Config.HorizontalOptions,
+              },
+              Column2Config: {
+                HorizontalOptions:
+                  value.appHeader.Column2Config.HorizontalOptions,
+              },
+              leftIcon: value.appHeader.LeftIcon,
+              logo: value.appHeader.logo,
+              rightIcon: value.appHeader.rightIcon,
+            },
+          };
+          console.log('app Header: ', appHeader);
+          let configuration_json = JSON.stringify(
+            appHeader?.configuration_json
+          );
+
+          let newObj = {
+            library: 'crowdtap',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
+          };
+          return newObj;
+        }
+      });
+    };
+
     const f = this.form.get('finalConfig')!.value;
     const yep = this.es.finalArray.concat(f);
 
@@ -570,13 +626,24 @@ export class EditorComponent implements OnInit {
     };
 
     let awesome = newArray(yep);
-    console.log('final array: ', awesome);
+    let awesomeHeader = newHeaderArray(yepHeader);
+    console.log('HeaderConfig: ', awesomeHeader, 'ViewConfig: : ', awesome);
 
     let final = awesome;
+    let finalHeader = awesomeHeader;
 
-    console.log('Visual Config: ', visualConfig, 'View Configs: ', final);
+    console.log(
+      'Visual Config: ',
+      visualConfig,
+      'Header Configs: ',
+      finalHeader,
+      'View Configs: ',
+      final
+    );
 
-    this.es.sendConfig(final, visualConfig, true).subscribe(() => {});
+    this.es
+      .sendConfig(finalHeader, final, visualConfig, true)
+      .subscribe(() => {});
   }
 
   ////////////////////////////////////////////////////
