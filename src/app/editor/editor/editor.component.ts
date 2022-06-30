@@ -32,16 +32,16 @@ export class EditorComponent implements OnInit {
       BackgroundColor: '',
       BackgroundImage: '',
       Margin: this.fb.group({
-        top: '',
-        right: '',
-        bottom: '',
-        left: '',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Padding: this.fb.group({
-        top: '',
-        right: '',
-        bottom: '',
-        left: '',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
     }),
     baseComponentSelector: this.es.createBaseComponent({}),
@@ -332,7 +332,7 @@ export class EditorComponent implements OnInit {
           );
 
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -371,7 +371,7 @@ export class EditorComponent implements OnInit {
           console.log('No background: ', h1);
           let configuration_json = JSON.stringify(h1?.configuration_json);
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -403,7 +403,7 @@ export class EditorComponent implements OnInit {
           console.log('No background: ', h2);
           let configuration_json = JSON.stringify(h2?.configuration_json);
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -435,7 +435,7 @@ export class EditorComponent implements OnInit {
           };
           let configuration_json = JSON.stringify(image?.configuration_json);
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -448,7 +448,7 @@ export class EditorComponent implements OnInit {
         let primaryButton;
         if (value.component === 'primaryButton') {
           primaryButton = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: {
@@ -457,7 +457,7 @@ export class EditorComponent implements OnInit {
               Height: value.Height,
               FontSize: value.TextSize,
               CornerRadius: value.CornerRadius,
-              ButtonText: value.ButtonText,
+              Text: value.Text,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -482,7 +482,7 @@ export class EditorComponent implements OnInit {
             primaryButton?.configuration_json
           );
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -528,7 +528,7 @@ export class EditorComponent implements OnInit {
             slimEntry?.configuration_json
           );
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -570,7 +570,7 @@ export class EditorComponent implements OnInit {
           };
           let configuration_json = JSON.stringify(dropDown?.configuration_json);
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
@@ -613,7 +613,7 @@ export class EditorComponent implements OnInit {
           );
 
           let newObj = {
-            library: 'crowdtap',
+            library: '',
             id: value.id + 1,
             component: value.component,
             configuration_json: configuration_json,
