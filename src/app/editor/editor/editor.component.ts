@@ -48,6 +48,8 @@ export class EditorComponent implements OnInit {
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
     primaryButtonSelector: this.es.createDynamicButton({}),
     inputSelector: this.es.createDynamicInput({}),
+    slimEditorSelector: this.es.createSlimEditor({}),
+    spacerSelector: this.es.createSpacer({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
     headerConfig: this.fb.array([]),
@@ -121,6 +123,10 @@ export class EditorComponent implements OnInit {
     this.finalConfig.push(this.es.createDynamicInput(input));
   }
 
+  addSlimEditor(input: any): any {
+    this.finalConfig.push(this.es.createSlimEditor(input));
+  }
+
   addDropdown(dropdown: any): any {
     this.finalConfig.push(this.es.createDynamicDropdown(dropdown));
   }
@@ -129,26 +135,15 @@ export class EditorComponent implements OnInit {
     this.headerConfig.push(this.es.createAppHeader(appHeader));
   }
 
+  addSpacer(spacer: any): any {
+    this.finalConfig.push(this.es.createSpacer(spacer));
+  }
+
   //////
 
   // Removes the headline from the FormArray
   deleteHeadline(headlineIndex: number) {
     this.finalConfig.removeAt(headlineIndex);
-  }
-
-  // TODO: GET RID OF
-  changeVersion(version: any): void {
-    this.form.updateValueAndValidity();
-  }
-
-  // TODO: GET RID OF
-  changeTextColor(color: any): void {
-    this.form.updateValueAndValidity();
-  }
-
-  // TODO: GET RID OF
-  changeBackgroundColor(bgColor: any): void {
-    this.form.updateValueAndValidity();
   }
 
   ////////////////////////////////////////////////////

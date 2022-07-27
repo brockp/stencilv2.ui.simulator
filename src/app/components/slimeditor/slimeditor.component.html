@@ -1,0 +1,25 @@
+<mat-form-field *ngIf="slimEditor.value.slimEditor.display" class="w-full" appearance="standard" [ngStyle]="{
+  'background-color': slimEditor.value.slimEditor.BackgroundColor,
+  'padding-top':
+  slimEditor.value.slimEditor.Padding.top + 'px',
+  'padding-right':
+  slimEditor.value.slimEditor.Padding.right + 'px',
+  'padding-bottom':
+  slimEditor.value.slimEditor.Padding.bottom + 'px',
+  'padding-left':
+  slimEditor.value.slimEditor.Padding.left + 'px',
+  'margin-top':
+  slimEditor.value.slimEditor.Margin.top + 'px',
+  'margin-right':
+  slimEditor.value.slimEditor.Margin.right + 'px',
+  'margin-bottom':
+  slimEditor.value.slimEditor.Margin.bottom + 'px',
+  'margin-left':
+  slimEditor.value.slimEditor.Margin.left + 'px'
+}">
+  <mat-label> {{slimEditor.value.slimEditor.Input}}</mat-label>
+  <input type="text" matInput [placeholder]="slimEditor.value.slimEditor.Placeholder" [ngStyle]="{
+color: slimEditor.value.slimEditor.TextColor,
+'background-color': slimEditor.value.slimEditor.InputBackgroundColor
+}" />
+</mat-form-field>

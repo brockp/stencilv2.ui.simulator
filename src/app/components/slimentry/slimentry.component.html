@@ -1,0 +1,23 @@
+<mat-form-field *ngIf="slimEntry.value.slimEntry.display" class="w-full"
+  [appearance]="slimEntry.value.slimEntry.Borderless" [ngStyle]="{
+'background-color': slimEntry.value.slimEntry.BackgroundColor,
+'padding-top':
+slimEntry.value.slimEntry.Padding.top + 'px',
+'padding-right':
+slimEntry.value.slimEntry.Padding.right + 'px',
+'padding-bottom':
+slimEntry.value.slimEntry.Padding.bottom + 'px',
+'padding-left':
+slimEntry.value.slimEntry.Padding.left + 'px'
+}">
+
+  <mat-label class="text-white">
+    {{ slimEntry.value.slimEntry.Input }}
+  </mat-label>
+
+  <input [type]="slimEntry.value.slimEntry.IsPassword" matInput [placeholder]="slimEntry.value.slimEntry.Placeholder"
+    [ngStyle]="{
+color: slimEntry.value.slimEntry.TextColor,
+'background-color': slimEntry.value.slimEntry.InputBackgroundColor
+}" />
+</mat-form-field>

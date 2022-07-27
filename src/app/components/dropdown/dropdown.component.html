@@ -1,0 +1,28 @@
+<mat-form-field *ngIf="dropdown.value.dropDown.display" class="w-full" [appearance]="dropdown.value.dropDown.Borderless"
+  [ngStyle]="{
+    color: dropdown.value.dropDown.TextColor,
+    'background-color': dropdown.value.dropDown.BackgroundColor,
+    'padding-top':
+    dropdown.value.dropDown.Padding.top + 'px',
+    'padding-right':
+    dropdown.value.dropDown.Padding.right + 'px',
+    'padding-bottom':
+    dropdown.value.dropDown.Padding.bottom + 'px',
+    'padding-left':
+    dropdown.value.dropDown.Padding.left + 'px'
+}">
+  <mat-label [ngStyle]="{color: dropdown.value.dropDown.TextColor}">{{dropdown.value.dropDown.Label}}
+  </mat-label>
+  <mat-select [required]="dropdown.value.dropDown.IsRequired">
+    <mat-option [ngStyle]="{color: dropdown.value.dropDown.TextColor}" [value]="dropdown.value.dropDown.OptionOne">
+      {{dropdown.value.dropDown.OptionOne}}
+    </mat-option>
+    <mat-option [ngStyle]="{color: dropdown.value.dropDown.TextColor}" [value]="dropdown.value.dropDown.OptionTwo">
+      {{dropdown.value.dropDown.OptionTwo}}
+    </mat-option>
+    <mat-option [ngStyle]="{color: dropdown.value.dropDown.TextColor}"
+      [value]="dropdown.value.dropDown.DropdownCancelText">
+      {{dropdown.value.dropDown.DropdownCancelText}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

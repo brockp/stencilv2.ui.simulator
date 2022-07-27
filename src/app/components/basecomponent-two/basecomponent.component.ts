@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormControlName,
+  FormGroup,
+} from '@angular/forms';
 import { Colors } from '@app/services/colors/colors.interface';
 import { ColorsService } from '@app/services/colors/colors.service';
 import { EditorService } from '@app/services/editor/editor.service';
@@ -10,6 +15,7 @@ import { HeadlineService } from '@app/services/headline/headline.service';
 import { IconButtonService } from '@app/services/icon-button/icon-button.service';
 import { ImageService } from '@app/services/sign-up-graphic/image.service';
 import { TextInputService } from '@app/services/text-input/text-input.service';
+import { Options } from 'sortablejs';
 
 @Component({
   selector: 'app-basecomponenttwo',
@@ -22,6 +28,8 @@ export class BasecomponentTwoComponent implements OnInit {
   colorPalettes!: Colors[];
   icons!: any[];
   primaryButton = false;
+  Text!: FormControlName;
+  FontSize!: FormControlName;
 
   // Appheader specific properties
   DualColumnView!: string;
@@ -29,55 +37,131 @@ export class BasecomponentTwoComponent implements OnInit {
   Column2Config: string = 'flex-end';
   TriColumnView!: boolean;
 
+  options: Options = {
+    disabled: false,
+  };
+  //////////////////////////////////////////////////////////////////////////
+  // SERVICE BOOLEANS TO SHOW/HIDE SPECIFIC FORMARRAY INPUTS WITH *ngIf's //
+  /////////////////////////////////////////////////////////////////////////
+
   inputEdit() {
     this.es.image = false;
     this.es.description = false;
+    this.es.plainTextEdit = false;
     this.es.input = true;
     this.es.dropdown = false;
     this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  slimEditorEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = true;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
   }
 
   appHeaderEdit() {
     this.es.image = false;
     this.es.description = false;
+    this.es.plainTextEdit = false;
     this.es.input = false;
     this.es.dropdown = false;
     this.es.appHeader = true;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
   }
 
   dropdownEdit() {
     this.es.image = false;
     this.es.description = false;
+    this.es.plainTextEdit = false;
     this.es.input = false;
     this.es.dropdown = true;
     this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
   }
 
   descriptionEdit() {
     this.es.image = false;
     this.es.description = true;
+    this.es.plainTextEdit = false;
     this.es.input = false;
     this.es.dropdown = false;
     this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  plainTextEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = true;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
   }
 
   imageluu() {
     this.es.image = true;
     this.es.description = false;
+    this.es.plainTextEdit = false;
     this.es.input = false;
     this.es.dropdown = false;
     this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.options = {
+      disabled: true,
+    };
   }
 
-  notimageluu() {
+  spacerEdit() {
     this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = true;
+    this.options = {
+      disabled: true,
+    };
   }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // INPUTS AND OUTPUTS TO SPEAK WITH PARENT COMPONENT (EDITOR.COMPONENT.TS) //
+  ////////////////////////////////////////////////////////////////////////////
 
   @Input()
   parent!: FormGroup;
-
-  @Input()
-  COMPONENTS!: string;
 
   @Output()
   textColorChanged = new EventEmitter();
@@ -106,6 +190,10 @@ export class BasecomponentTwoComponent implements OnInit {
   @Output()
   logoChanged = new EventEmitter();
 
+  //////////////////////////////////////////////////////////
+  // GETTERS FOR DIFFERENT FORM ARRAYS, USED IN *ngFor's //
+  /////////////////////////////////////////////////////////
+
   get components(): any {
     return (this.parent.get('finalConfig') as FormArray).controls;
   }
@@ -117,6 +205,7 @@ export class BasecomponentTwoComponent implements OnInit {
   get array(): any {
     return this.parent.get('finalConfig') as FormArray;
   }
+
   constructor(
     private cs: ColorsService,
     private hs: HeadlineService,
@@ -132,6 +221,10 @@ export class BasecomponentTwoComponent implements OnInit {
     this.colorPalettes = this.cs.getAppColors();
     this.icons = this.cs.getAppIcons();
   }
+
+  //////////////////////////////////////////////////////////
+  // REACTIVE FORM EMIT FUNCTIONS FOR SELECTABLE ELEMENTS //
+  /////////////////////////////////////////////////////////
 
   setIcon(icon: string, i: number) {
     const index = this.headers.at(i);
@@ -166,7 +259,6 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
-  // EMIT a new text color of the component to the editor
   setTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
@@ -176,13 +268,111 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
-  // EMIT a new background color of the component to the editor
+  setplainTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      plainText: { TextColor: color },
+    });
+  }
+
+  setSlimeditorTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      slimEditor: { TextColor: color, PlaceholderColor: color },
+    });
+  }
+
+  setDropdownTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      dropDown: { TextColor: color },
+    });
+  }
+
+  setSlimentryTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      slimEntry: { TextColor: color, PlaceholderColor: color },
+    });
+  }
+
   setBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
       BackgroundColor: color,
+    });
+  }
+
+  setPlaintextBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      plainText: { BackgroundColor: color },
+    });
+  }
+
+  setDropdownBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      dropDown: { BackgroundColor: color },
+    });
+  }
+
+  setSlimentryBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      slimEntry: { BackgroundColor: color },
+    });
+  }
+
+  setSlimeditorBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      slimEditor: { BackgroundColor: color },
+    });
+  }
+
+  setInputBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      slimEntry: { InputBackgroundColor: color },
+    });
+  }
+
+  setSlimeditorInputBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      slimEditor: { InputBackgroundColor: color },
+    });
+  }
+
+  setSpacerBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      spacer: { BackgroundColor: color },
     });
   }
 
@@ -222,21 +412,34 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  //////////////////////////////////////////////////////////
+  // EDITABLE UPDATE, CANCEL & SAVE INDIVIDUAL COMPONENT //
+  /////////////////////////////////////////////////////////
+
   update(i: number) {
     const headerIndex = this.headers.at(i);
-    const headerUpdate = headerIndex.getRawValue();
+
+    // TODO: this getRawValue pops an error after each update not in header, research and fix.
+    // const headerUpdate = headerIndex.getRawValue();
 
     const index = this.components.at(i);
     const objUpdate = index.getRawValue();
 
-    console.log('Header', headerUpdate, 'View', objUpdate);
-
-    headerIndex.patchValue({ headerUpdate });
+    // headerIndex.patchValue({ headerUpdate });
     index.patchValue({ objUpdate });
+
+    // Resets the ability to drag components
+    this.options = {
+      disabled: false,
+    };
   }
 
   cancel() {
     console.log('clicked off editable component');
+    // Resets the ability to drag components
+    this.options = {
+      disabled: false,
+    };
   }
 
   saveComponent(i: number) {

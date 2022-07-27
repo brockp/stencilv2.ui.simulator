@@ -1,0 +1,23 @@
+<section class="flex" [ngStyle]="{
+  color: headline.value.TextColor,
+  'justify-content': headline.value.TextAlignment,
+  'text-align': headline.value.TextAlignment,
+  'font-size': headline.value.TextSize + 'px',
+  'font-weight': headline.value.FontWeight,
+  'background-color': headline.value.BackgroundColor,
+  width: headline.value.Width + 'px',
+  'border-radius': headline.value.CornerRadius + 'px',
+  'padding-top': headline.value.Padding.top + 'px',
+  'padding-right': headline.value.Padding.right + 'px',
+  'padding-bottom': headline.value.Padding.bottom + 'px',
+  'padding-left': headline.value.Padding.left + 'px', 
+  'margin-top': headline.value.Margin.top + 'px',
+  'margin-right': headline.value.Margin.right + 'px',
+  'margin-bottom': headline.value.Margin.bottom + 'px',
+  'margin-left': headline.value.Margin.left + 'px' 
+}">
+  <span class="material-symbols-rounded">
+    {{headline.value.Icon}}
+  </span>
+  {{ headline.value.Text }}
+</section>

@@ -1,0 +1,14 @@
+<section class="flex" [ngStyle]="{
+  color: plainText.value.plainText.TextColor,
+  'justify-content': plainText.value.TextAlignment,
+  'text-align': plainText.value.TextAlignment,
+  'font-size': plainText.value.plainText.FontSize + 'px',
+  'font-weight': plainText.value.FontWeight,
+  'background-color': plainText.value.plainText.BackgroundColor,
+  'padding-top': plainText.value.plainText.Padding.top + 'px',
+  'padding-right': plainText.value.plainText.Padding.right + 'px',
+  'padding-bottom': plainText.value.plainText.Padding.bottom + 'px',
+  'padding-left': plainText.value.plainText.Padding.left + 'px' }
+">
+  {{ plainText.value.plainText.Text }}
+</section>
