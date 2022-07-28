@@ -744,6 +744,48 @@
                           formControlName="Text" rows="3" cols="33"></textarea>
                       </section>
 
+                      <!-- Graphic -->
+                      <section class="edit-section" *ngIf="es.image">
+                        <h2 class="edit-section-title">Source:</h2>
+                        <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                          <button (click)="changeGraphic('girl-laying.svg', i)">
+                            <img src="../../../../../assets/girl-laying.svg" />
+                          </button>
+                          <button (click)="changeGraphic('girl-sitting.svg', i)">
+                            <img src="../../../../../assets/girl-sitting.svg" />
+                          </button>
+                          <button (click)="changeGraphic('question.svg', i)">
+                            <img src="../../../../../assets/question.svg" />
+                          </button>
+                          <button (click)="changeGraphic('refer-a-friend.svg', i)">
+                            <img src="../../../../../assets/refer-a-friend.svg" />
+                          </button>
+                          <button (click)="changeGraphic('signup-graphic-one.svg', i)">
+                            <img src="../../../../../assets/signup-graphic-one.svg" />
+                          </button>
+                          <button (click)="changeGraphic('signup-graphic-two.svg', i)">
+                            <img src="../../../../../assets/signup-graphic-two.svg" />
+                          </button>
+                          <button (click)="changeGraphic('sitting-blocks.svg', i)">
+                            <img src="../../../../../assets/sitting-blocks.svg" />
+                          </button>
+                        </section>
+                        <h2 class="edit-section-title">Image Width:</h2>
+                        <div class="flex gap-x-2 justify-between items-center">
+                          <label class="text-white text-noir text-xs font-normal" for="right">
+                            Width:
+                          </label>
+                          <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
+                            type="text" formControlName="ImageWidth" />
+
+                          <label class="text-white text-noir text-xs font-normal" for="right">
+                            Height:
+                          </label>
+                          <input class="form-control w-12 overflow-hidden p-1 hover:cursor-not-allowed"
+                            placeholder="auto" type="text" formControlName="ImageHeight">
+                        </div>
+                      </section>
+
                       <!-- CommandName -->
                       <section *ngIf="es.description || es.image">
                         <h2 class="edit-section-title">Command Name:</h2>
@@ -759,7 +801,7 @@
                       </section>
 
                       <!-- Background Color -->
-                      <ng-container *ngIf="es.description">
+                      <ng-container *ngIf="es.description || es.image">
                         <h2 class="edit-section-title">Background Color:</h2>
                         <section
                           class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
@@ -772,6 +814,8 @@
 
                       <!-- Icon section -->
                       <section *ngIf="es.description" class="edit-section">
+                        <h2 class="edit-section-title">ShowIcon:</h2>
+                        <mat-checkbox class="p-1" formControlName="ShowIcon"></mat-checkbox>
                         <h2 class="edit-section-title">
                           Set Button Icon (Material Icons):
                         </h2>
@@ -788,7 +832,7 @@
                       </section>
 
                       <!-- Padding -->
-                      <ng-container *ngIf="es.description || es.appHeader">
+                      <ng-container *ngIf="es.description || es.appHeader || es.image">
                         <h2 class="edit-section-title">Padding:</h2>
                         <div formGroupName="Padding">
                           <app-padding-control>
@@ -1164,41 +1208,7 @@
                         </div>
                       </section>
 
-                      <!-- Graphic -->
-                      <section class="edit-section" *ngIf="es.image">
-                        <h2 class="edit-section-title">Graphic:</h2>
-                        <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
-                          <button (click)="changeGraphic('girl-laying.svg', i)">
-                            <img src="../../../../../assets/girl-laying.svg" />
-                          </button>
-                          <button (click)="changeGraphic('girl-sitting.svg', i)">
-                            <img src="../../../../../assets/girl-sitting.svg" />
-                          </button>
-                          <button (click)="changeGraphic('question.svg', i)">
-                            <img src="../../../../../assets/question.svg" />
-                          </button>
-                          <button (click)="changeGraphic('refer-a-friend.svg', i)">
-                            <img src="../../../../../assets/refer-a-friend.svg" />
-                          </button>
-                          <button (click)="changeGraphic('signup-graphic-one.svg', i)">
-                            <img src="../../../../../assets/signup-graphic-one.svg" />
-                          </button>
-                          <button (click)="changeGraphic('signup-graphic-two.svg', i)">
-                            <img src="../../../../../assets/signup-graphic-two.svg" />
-                          </button>
-                          <button (click)="changeGraphic('sitting-blocks.svg', i)">
-                            <img src="../../../../../assets/sitting-blocks.svg" />
-                          </button>
-                        </section>
-                        <h2 class="edit-section-title">Image Width:</h2>
-                        <div class="flex gap-x-2 justify-start items-center">
-                          <label class="text-white text-noir text-xs font-normal" for="right">
-                            Width:
-                          </label>
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
-                            type="text" formControlName="ImageWidth" />
-                        </div>
-                      </section>
+
                     </section>
 
                     <!-- Code edit form -->

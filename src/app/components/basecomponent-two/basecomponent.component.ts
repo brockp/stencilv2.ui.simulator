@@ -16,6 +16,8 @@ import { IconButtonService } from '@app/services/icon-button/icon-button.service
 import { ImageService } from '@app/services/sign-up-graphic/image.service';
 import { TextInputService } from '@app/services/text-input/text-input.service';
 import { Options } from 'sortablejs';
+import { SpacerService } from '@app/services/spacer/spacer.service';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-basecomponenttwo',
@@ -214,7 +216,8 @@ export class BasecomponentTwoComponent implements OnInit {
     private ipbs: IconButtonService,
     private ses: TextInputService,
     private ahs: AppHeaderService,
-    public es: EditorService
+    public es: EditorService,
+    private ss: SpacerService
   ) {}
 
   ngOnInit(): void {
@@ -447,12 +450,14 @@ export class BasecomponentTwoComponent implements OnInit {
     const objUpdate = index.getRawValue();
     let h1Obj;
     let h2Obj;
+    let h3Obj;
     let imageObj;
     let primaryButtonObj;
-    let iconButtonObj;
+    let slimEditorObj;
     let slimEntryObj;
     let dropDownObj;
     let appHeaderObj;
+    let spacerObj;
 
     if (objUpdate.component === 'h1') {
       h1Obj = {
@@ -460,8 +465,8 @@ export class BasecomponentTwoComponent implements OnInit {
         component: objUpdate.component,
         configuration_json: {
           Text: objUpdate.Text,
-          TextSize: objUpdate.TextSize,
           TextColor: objUpdate.TextColor,
+          BackgroundColor: objUpdate.BackgroundColor,
           Padding: {
             top: objUpdate.Padding.top,
             right: objUpdate.Padding.right,
@@ -487,8 +492,8 @@ export class BasecomponentTwoComponent implements OnInit {
         component: objUpdate.component,
         configuration_json: {
           Text: objUpdate.Text,
-          TextSize: objUpdate.TextSize,
           TextColor: objUpdate.TextColor,
+          BackgroundColor: objUpdate.BackgroundColor,
           Padding: {
             top: objUpdate.Padding.top,
             right: objUpdate.Padding.right,
@@ -508,21 +513,53 @@ export class BasecomponentTwoComponent implements OnInit {
       this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
     }
 
+    if (objUpdate.component === 'h3') {
+      h3Obj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          Text: objUpdate.Text,
+          TextColor: objUpdate.TextColor,
+          BackgroundColor: objUpdate.BackgroundColor,
+          Padding: {
+            top: objUpdate.Padding.top,
+            right: objUpdate.Padding.right,
+            bottom: objUpdate.Padding.bottom,
+            left: objUpdate.Padding.left,
+          },
+        },
+      };
+
+      let configuration_json = JSON.stringify(h3Obj?.configuration_json);
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New h3: ', newObj);
+      this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
+    }
+
     if (objUpdate.component === 'image') {
       imageObj = {
         id: objUpdate.id + 1,
         component: objUpdate.component,
         configuration_json: {
-          BackgroundColor: objUpdate.BackgroundColor,
-          Width: objUpdate.ImageWidth,
-          Height: objUpdate.Height,
           Source: objUpdate.Source,
-          Margin: {
-            top: objUpdate.Margin.top,
-            right: objUpdate.Margin.right,
-            bottom: objUpdate.Margin.bottom,
-            left: objUpdate.Margin.left,
+          Width: objUpdate.ImageWidth,
+          Height: objUpdate.ImageHeight,
+          ImageWidth: objUpdate.ImageWidth,
+          ImageHeight: objUpdate.ImageHeight,
+          BackgroundColor: objUpdate.BackgroundColor,
+          Padding: {
+            top: objUpdate.Padding.top,
+            right: objUpdate.Padding.right,
+            bottom: objUpdate.Padding.bottom,
+            left: objUpdate.Padding.left,
           },
+          FullBleedHorizontal: null,
+          CommandName: objUpdate.CommandName,
+          CommandParameter: objUpdate.CommandParameter,
         },
       };
 
@@ -541,13 +578,13 @@ export class BasecomponentTwoComponent implements OnInit {
         id: objUpdate.id + 1,
         component: objUpdate.component,
         configuration_json: {
+          Text: objUpdate.Text,
+          CommandName: objUpdate.CommandName,
+          CommandParameter: objUpdate.CommandParameter,
           BackgroundColor: objUpdate.BackgroundColor,
-          Width: objUpdate.Width,
-          Height: objUpdate.Height,
           CornerRadius: objUpdate.CornerRadius,
-          Text: objUpdate.ButtonText,
-          TextColor: objUpdate.ButtonTextColor,
           Icon: objUpdate.Icon,
+          ShowIcon: objUpdate.ShowIcon,
           Padding: {
             top: objUpdate.Padding.top,
             right: objUpdate.Padding.right,
@@ -575,69 +612,27 @@ export class BasecomponentTwoComponent implements OnInit {
       this.ipbs.updateIconButton(i, newObj).subscribe(() => {});
     }
 
-    if (objUpdate.component === 'iconButton') {
-      iconButtonObj = {
-        id: objUpdate.id + 1,
-        component: objUpdate.component,
-        configuration_json: {
-          BackgroundColor: objUpdate.BackgroundColor,
-          Width: objUpdate.Width,
-          Height: objUpdate.Height,
-          CornerRadius: objUpdate.CornerRadius,
-          Text: objUpdate.ButtonText,
-          TextColor: objUpdate.ButtonTextColor,
-          Icon: objUpdate.Icon,
-          Padding: {
-            top: objUpdate.Padding.top,
-            right: objUpdate.Padding.right,
-            bottom: objUpdate.Padding.bottom,
-            left: objUpdate.Padding.left,
-          },
-          Margin: {
-            top: objUpdate.Margin.top,
-            right: objUpdate.Margin.right,
-            bottom: objUpdate.Margin.bottom,
-            left: objUpdate.Margin.left,
-          },
-        },
-      };
-
-      let configuration_json = JSON.stringify(
-        iconButtonObj?.configuration_json
-      );
-      let newObj = {
-        id: objUpdate.id + 1,
-        component: objUpdate.component,
-        configuration_json: configuration_json,
-      };
-      console.log('New icon button: ', newObj);
-      this.ipbs.updateIconButton(i, newObj).subscribe(() => {});
-    }
-
     if (objUpdate.component === 'slimEntry') {
       slimEntryObj = {
         id: objUpdate.id + 1,
         component: objUpdate.component,
         configuration_json: {
-          TextColor: objUpdate.ButtonTextColor,
-          IsRequired: objUpdate.slimEntry.IsRequired,
-          IsPassword: objUpdate.slimEntry.IsPassword,
-          GroupName: objUpdate.slimEntry.GroupName,
-          Borderless: objUpdate.slimEntry.Borderless,
-          FieldName: objUpdate.slimEntry.FieldName,
+          Input: objUpdate.slimEntry.Input,
           Placeholder: objUpdate.slimEntry.Placeholder,
-          Type: objUpdate.slimEntry.Type,
+          IsPassword: objUpdate.slimEntry.IsPassword,
+          Borderless: objUpdate.slimEntry.Borderless,
+          BackgroundColor: objUpdate.slimEntry.BackgroundColor,
+          InputBackgroundColor: objUpdate.slimEntry.InputBackgroundColor,
+          TextColor: objUpdate.ButtonTextColor,
+          PlaceholderColor: objUpdate.slimEntry.PlaceholderColor,
           Padding: {
             top: objUpdate.slimEntry.Padding.top,
             right: objUpdate.slimEntry.Padding.right,
             bottom: objUpdate.slimEntry.Padding.bottom,
             left: objUpdate.slimEntry.Padding.left,
-          },
-          Margin: {
-            top: objUpdate.Margin.top,
-            right: objUpdate.Margin.right,
-            bottom: objUpdate.Margin.bottom,
-            left: objUpdate.Margin.left,
+            HorizontalThickness:
+              objUpdate.Padding.left + objUpdate.Padding.right,
+            VerticalThickness: objUpdate.Padding.top + objUpdate.Padding.bottom,
           },
         },
       };
@@ -649,6 +644,51 @@ export class BasecomponentTwoComponent implements OnInit {
         configuration_json: configuration_json,
       };
       console.log('New slim entry: ', newObj);
+      this.ses.updateSlimEntry(i, newObj).subscribe(() => {});
+    }
+
+    if (objUpdate.component === 'slimEditor') {
+      slimEditorObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          Label: objUpdate.slimEditor.Label,
+          Input: objUpdate.slimEditor.Input,
+          Placeholder: objUpdate.slimEditor.Placeholder,
+          BackgroundColor: objUpdate.slimEditor.BackgroundColor,
+          InputBackgroundColor: objUpdate.slimEditor.InputBackgroundColor,
+          TextColor: objUpdate.slimEditor.TextColor,
+          PlaceholderColor: objUpdate.slimEditor.PlaceholderColor,
+          Margin: {
+            top: objUpdate.slimEditor.Margin.top,
+            right: objUpdate.slimEditor.Margin.right,
+            bottom: objUpdate.slimEditor.Margin.bottom,
+            left: objUpdate.slimEditor.Margin.left,
+            HorizontalThickness: objUpdate.Margin.left + objUpdate.Margin.right,
+            VerticalThickness: objUpdate.Margin.top + objUpdate.Margin.bottom,
+          },
+          Padding: {
+            top: objUpdate.slimEditor.Padding.top,
+            right: objUpdate.slimEditor.Padding.right,
+            bottom: objUpdate.slimEditor.Padding.bottom,
+            left: objUpdate.slimEditor.Padding.left,
+            HorizontalThickness:
+              objUpdate.Padding.left + objUpdate.Padding.right,
+            VerticalThickness: objUpdate.Padding.top + objUpdate.Padding.bottom,
+          },
+        },
+      };
+
+      let configuration_json = JSON.stringify(
+        slimEditorObj?.configuration_json
+      );
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New slim editor: ', newObj);
+      // TODO: Make slim editor service and update call
       this.ses.updateSlimEntry(i, newObj).subscribe(() => {});
     }
 
@@ -713,6 +753,26 @@ export class BasecomponentTwoComponent implements OnInit {
       };
       console.log('New app header: ', newObj);
       this.ahs.updateHeadernConfig(i, newObj).subscribe(() => {});
+    }
+
+    if (objUpdate.component === 'spacer') {
+      spacerObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          Height: objUpdate.spacer.Height,
+          BackgroundColor: objUpdate.spacer.BackgroundColor,
+        },
+      };
+
+      let configuration_json = JSON.stringify(spacerObj?.configuration_json);
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New spacer: ', newObj);
+      this.ss.updateSpacer(i, newObj).subscribe(() => {});
     }
   }
 }

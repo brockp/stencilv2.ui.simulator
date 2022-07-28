@@ -139,8 +139,6 @@ export class EditorComponent implements OnInit {
     this.finalConfig.push(this.es.createSpacer(spacer));
   }
 
-  //////
-
   // Removes the headline from the FormArray
   deleteHeadline(headlineIndex: number) {
     this.finalConfig.removeAt(headlineIndex);
@@ -351,8 +349,8 @@ export class EditorComponent implements OnInit {
             component: value.component,
             configuration_json: {
               Text: value.Text,
-              FontSize: value.TextSize,
               TextColor: value.TextColor,
+              BackgroundColor: value.BackgroundColor,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -363,7 +361,7 @@ export class EditorComponent implements OnInit {
               },
             },
           };
-          console.log('No background: ', h1);
+          console.log('Header h1: ', h1);
           let configuration_json = JSON.stringify(h1?.configuration_json);
           let newObj = {
             library: '',
@@ -383,8 +381,8 @@ export class EditorComponent implements OnInit {
             component: value.component,
             configuration_json: {
               Text: value.Text,
-              FontSize: value.TextSize,
               TextColor: value.TextColor,
+              BackgroundColor: value.BackgroundColor,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -408,16 +406,15 @@ export class EditorComponent implements OnInit {
           return newObj;
         }
 
-        let image;
-        if (value.component === 'image') {
-          image = {
+        let h3;
+        if (value.component === 'h3') {
+          h3 = {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
+              Text: value.Text,
+              TextColor: value.TextColor,
               BackgroundColor: value.BackgroundColor,
-              Width: value.Width,
-              Height: value.Height,
-              Source: value.Source,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -426,6 +423,44 @@ export class EditorComponent implements OnInit {
                 HorizontalThickness: value.Padding.left + value.Padding.right,
                 VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
+            },
+          };
+          console.log('No background: ', h3);
+          let configuration_json = JSON.stringify(h3?.configuration_json);
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
+        let image;
+        if (value.component === 'image') {
+          image = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Source: value.Source,
+              Width: value.ImageWidth,
+              Height: value.ImageHeight,
+              ImageWidth: value.ImageWidth,
+              ImageHeight: value.ImageHeight,
+              BackgroundColor: value.BackgroundColor,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
+              },
+              FullBleedHorizontal: null,
+              CommandName: value.CommandName,
+              CommandParameter: value.CommandParameter,
             },
           };
           let configuration_json = JSON.stringify(image?.configuration_json);
@@ -447,12 +482,13 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              BackgroundColor: value.BackgroundColor,
-              Width: value.Width,
-              Height: value.Height,
-              FontSize: value.TextSize,
-              CornerRadius: value.CornerRadius,
               Text: value.Text,
+              CommandName: value.CommandName,
+              CommandParameter: value.CommandParameter,
+              BackgroundColor: value.BackgroundColor,
+              CornerRadius: value.CornerRadius,
+              Icon: value.Icon,
+              ShowIcon: value.ShowIcon,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -469,8 +505,6 @@ export class EditorComponent implements OnInit {
                 HorizontalThickness: value.Margin.left + value.Margin.right,
                 VerticalThickness: value.Margin.top + value.Margin.bottom,
               },
-              CommandName: value.CommandName,
-              CommandParameter: value.CommandParameter,
             },
           };
           let configuration_json = JSON.stringify(
@@ -493,14 +527,14 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              TextColor: value.ButtonTextColor,
-              IsRequired: value.slimEntry.IsRequired,
-              IsPassword: value.slimEntry.IsPassword,
-              GroupName: value.slimEntry.GroupName,
-              Borderless: value.slimEntry.Borderless,
-              FieldName: value.slimEntry.FieldName,
+              Input: value.slimEntry.Input,
               Placeholder: value.slimEntry.Placeholder,
-              Type: value.slimEntry.Type,
+              IsPassword: value.slimEntry.IsPassword,
+              Borderless: value.slimEntry.Borderless,
+              BackgroundColor: value.slimEntry.BackgroundColor,
+              InputBackgroundColor: value.slimEntry.InputBackgroundColor,
+              TextColor: value.ButtonTextColor,
+              PlaceholderColor: value.slimEntry.PlaceholderColor,
               Padding: {
                 top: value.slimEntry.Padding.top,
                 right: value.slimEntry.Padding.right,
@@ -509,18 +543,55 @@ export class EditorComponent implements OnInit {
                 HorizontalThickness: value.Padding.left + value.Padding.right,
                 VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
-              Margin: {
-                top: value.Margin.top,
-                right: value.Margin.right,
-                bottom: value.Margin.bottom,
-                left: value.Margin.left,
-                HorizontalThickness: value.Margin.left + value.Margin.right,
-                VerticalThickness: value.Margin.top + value.Margin.bottom,
-              },
             },
           };
           let configuration_json = JSON.stringify(
             slimEntry?.configuration_json
+          );
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
+        let slimEditor;
+        if (value.component === 'slimEditor') {
+          slimEditor = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Label: value.slimEditor.Label,
+              Input: value.slimEditor.Input,
+              Placeholder: value.slimEditor.Placeholder,
+              BackgroundColor: value.slimEditor.BackgroundColor,
+              InputBackgroundColor: value.slimEditor.InputBackgroundColor,
+              TextColor: value.slimEditor.TextColor,
+              PlaceholderColor: value.slimEditor.PlaceholderColor,
+              Margin: {
+                top: value.slimEditor.Margin.top,
+                right: value.slimEditor.Margin.right,
+                bottom: value.slimEditor.Margin.bottom,
+                left: value.slimEditor.Margin.left,
+                HorizontalThickness: value.Margin.left + value.Margin.right,
+                VerticalThickness: value.Margin.top + value.Margin.bottom,
+              },
+              Padding: {
+                top: value.slimEditor.Padding.top,
+                right: value.slimEditor.Padding.right,
+                bottom: value.slimEditor.Padding.bottom,
+                left: value.slimEditor.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(
+            slimEditor?.configuration_json
           );
           let newObj = {
             library: '',
@@ -606,6 +677,30 @@ export class EditorComponent implements OnInit {
           let configuration_json = JSON.stringify(
             appHeader?.configuration_json
           );
+
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
+          };
+          return newObj;
+        }
+
+        let spacer;
+        if (value.component === 'spacer') {
+          spacer = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Height: value.spacer.Height,
+              BackgroundColor: value.spacer.BackgroundColor,
+            },
+          };
+          console.log('New Spacer: ', spacer);
+          let configuration_json = JSON.stringify(spacer?.configuration_json);
 
           let newObj = {
             library: '',

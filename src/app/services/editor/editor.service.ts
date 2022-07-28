@@ -32,7 +32,7 @@ export class EditorService {
     private toasty: HotToastService
   ) {}
 
-  public createBaseComponent(headline: any): any {
+  public createBaseComponent(image: any): any {
     return this.fb.group({
       id: '',
       component: 'image',
@@ -52,6 +52,7 @@ export class EditorService {
       Height: '',
       Source: 'refer-a-friend.svg',
       Icon: '',
+      ShowIcon: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -176,6 +177,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -301,6 +303,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -426,6 +429,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '9999',
       Padding: this.fb.group({
         top: 10,
@@ -531,7 +535,7 @@ export class EditorService {
     });
   }
 
-  public createDynamicInput(input: any): any {
+  public createDynamicInput(slimEntry: any): any {
     return this.fb.group({
       id: 1,
       component: 'slimEntry',
@@ -551,6 +555,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -656,7 +661,7 @@ export class EditorService {
     });
   }
 
-  public createSlimEditor(input: any): any {
+  public createSlimEditor(slimEditor: any): any {
     return this.fb.group({
       id: 1,
       component: 'slimEditor',
@@ -676,6 +681,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -800,6 +806,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -926,6 +933,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -1051,6 +1059,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
+      ShowIcon: '',
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
