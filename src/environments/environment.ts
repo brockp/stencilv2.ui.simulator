@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  imgHost: 'http://localhost:4200/assets/',
+  imgHost: '../assets/',
 };
 
 /*

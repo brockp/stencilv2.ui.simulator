@@ -5,7 +5,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { API_ENDPOINT, HTTP_HEADERS, H1 } from '@app/config/constants';
+import { API_ENDPOINT, HTTP_HEADERS, H1, H2, H3 } from '@app/config/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +46,39 @@ export class HeadlineService {
       .post<any>(this.apiURL + H1 + id, item)
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Saved Component to api' + H1 + id, {
+    this.toasty.show('Saved h1' + H1 + id, {
+      theme: 'snackbar',
+      icon: '🤘',
+      position: 'bottom-center',
+    });
+
+    return payload;
+  }
+
+  updateHeadlinTwoConfig(id: number, headline: any): any {
+    const secret = { secret: 'SuziesPrivateEyes' };
+    const item = JSON.stringify(headline);
+    const payload = this.http
+      .post<any>(this.apiURL + H2 + id, item)
+      .pipe(catchError(this.errorHandler));
+
+    this.toasty.show('Saved h2' + H2 + id, {
+      theme: 'snackbar',
+      icon: '🤘',
+      position: 'bottom-center',
+    });
+
+    return payload;
+  }
+
+  updateHeadlineThreeConfig(id: number, headline: any): any {
+    const secret = { secret: 'SuziesPrivateEyes' };
+    const item = JSON.stringify(headline);
+    const payload = this.http
+      .post<any>(this.apiURL + H3 + id, item)
+      .pipe(catchError(this.errorHandler));
+
+    this.toasty.show('Saved h3' + H3 + id, {
       theme: 'snackbar',
       icon: '🤘',
       position: 'bottom-center',

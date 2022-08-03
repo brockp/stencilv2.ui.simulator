@@ -55,6 +55,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -69,6 +70,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = true;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -83,6 +85,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = true;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -97,6 +100,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -111,6 +115,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -125,6 +130,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -139,6 +145,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
+    this.es.header = false;
     this.options = {
       disabled: true,
     };
@@ -153,6 +160,22 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.appHeader = false;
     this.es.slimEditorEdit = false;
     this.es.spacer = true;
+    this.es.header = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  headerEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = true;
     this.options = {
       disabled: true,
     };
@@ -263,6 +286,15 @@ export class BasecomponentTwoComponent implements OnInit {
   }
 
   setTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      TextColor: color,
+    });
+  }
+
+  setHeaderTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
@@ -510,7 +542,7 @@ export class BasecomponentTwoComponent implements OnInit {
         configuration_json: configuration_json,
       };
       console.log('New h2: ', newObj);
-      this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
+      this.hs.updateHeadlinTwoConfig(i, newObj).subscribe(() => {});
     }
 
     if (objUpdate.component === 'h3') {
@@ -537,7 +569,7 @@ export class BasecomponentTwoComponent implements OnInit {
         configuration_json: configuration_json,
       };
       console.log('New h3: ', newObj);
-      this.ds.updateDescriptionConfig(i, newObj).subscribe(() => {});
+      this.hs.updateHeadlineThreeConfig(i, newObj).subscribe(() => {});
     }
 
     if (objUpdate.component === 'image') {

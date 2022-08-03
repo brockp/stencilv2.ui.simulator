@@ -1,2 +1,3 @@
-<div [ngStyle]="{'background-color': spacer.value.spacer.BackgroundColor, height: spacer.value.spacer.Height + 'px'}">
+<div *ngIf="spacer.value.spacer.display"
+  [ngStyle]="{'background-color': spacer.value.spacer.BackgroundColor, height: spacer.value.spacer.Height + 'px'}">
   &nbsp;</div>

@@ -46,6 +46,8 @@ export class EditorComponent implements OnInit {
     }),
     baseComponentSelector: this.es.createBaseComponent({}),
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
+    headlineTwoSelector: this.es.createHeadlineTwo({}),
+    headlineThreeSelector: this.es.createHeadlineThree({}),
     primaryButtonSelector: this.es.createDynamicButton({}),
     inputSelector: this.es.createDynamicInput({}),
     slimEditorSelector: this.es.createSlimEditor({}),
@@ -113,6 +115,14 @@ export class EditorComponent implements OnInit {
 
   addHeadline(headline: any): any {
     this.finalConfig.push(this.es.createDynamicHeadline(headline));
+  }
+
+  addHeadlineTwo(headline: any): any {
+    this.finalConfig.push(this.es.createHeadlineTwo(headline));
+  }
+
+  addHeadlineThree(headline: any): any {
+    this.finalConfig.push(this.es.createHeadlineThree(headline));
   }
 
   addPrimaryButton(button: any): any {

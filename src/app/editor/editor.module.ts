@@ -40,6 +40,8 @@ import { DropdownSelectorComponent } from '@app/components/component-selectors/d
 import { AppheaderSelectorComponent } from '@app/components/component-selectors/appheader-selector/appheader-selector.component';
 import { SlimEditorSelectorComponent } from '@app/components/component-selectors/slim-editor-selector/slim-editor-selector.component';
 import { SpacerSelectorComponent } from '@app/components/component-selectors/spacer-selector/spacer-selector.component';
+import { HeadlineTwoSelectorComponent } from '@app/components/component-selectors/headline-two-selector/headline-two-selector.component';
+import { HeadlineThreeSelectorComponent } from '@app/components/component-selectors/headline-three-selector/headline-three-selector.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { SpacerSelectorComponent } from '@app/components/component-selectors/spa
     AppheaderSelectorComponent,
     SlimEditorSelectorComponent,
     SpacerSelectorComponent,
+    HeadlineTwoSelectorComponent,
+    HeadlineThreeSelectorComponent,
     HeadlineComponent,
     PlaintextComponent,
     SlimentryComponent,

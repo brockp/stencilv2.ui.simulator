@@ -25,6 +25,13 @@
             <app-headline-selector [parent]="form" [components]="components" (baseAdded)="addHeadline($event)">
             </app-headline-selector>
 
+            <app-headline-two-selector [parent]="form" [components]="components" (baseAdded)="addHeadlineTwo($event)">
+            </app-headline-two-selector>
+
+            <app-headline-three-selector [parent]="form" [components]="components"
+              (baseAdded)="addHeadlineThree($event)">
+            </app-headline-three-selector>
+
             <app-button-selector [parent]="form" [components]="components" (baseAdded)="addPrimaryButton($event)">
             </app-button-selector>
 
