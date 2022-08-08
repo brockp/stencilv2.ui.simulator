@@ -1,0 +1,19 @@
+<section class="flex" [ngStyle]="{
+  color: expandingText.value.TextColor,
+  'justify-content': expandingText.value.TextAlignment,
+  'text-align': expandingText.value.TextAlignment,
+  'font-size': '32px',
+  'font-weight': 700
+}">
+  {{ expandingText.value.expandingText.HeaderText }}
+</section>
+
+<section class="flex" [ngStyle]="{
+  color: expandingText.value.TextColor,
+  'justify-content': expandingText.value.TextAlignment,
+  'text-align': expandingText.value.TextAlignment,
+  'font-size': '16px',
+  'font-weight': 500 }
+">
+  {{ expandingText.value.expandingText.DetailText }}
+</section>

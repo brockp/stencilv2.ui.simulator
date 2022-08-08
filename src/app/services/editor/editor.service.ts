@@ -26,6 +26,7 @@ export class EditorService {
   public slimEditorEdit = false;
   public spacer = false;
   public plainTextEdit = false;
+  public expandingTextEdit = false;
 
   constructor(
     public fb: FormBuilder,
@@ -68,6 +69,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -195,6 +200,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: 'I am a plainText description...',
         TextColor: '#ffffff',
@@ -322,6 +331,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -449,6 +462,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -576,6 +593,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -703,6 +724,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -830,6 +855,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -957,6 +986,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -1077,6 +1110,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       Margin: this.fb.group({
         top: 0,
         right: 0,
@@ -1211,6 +1248,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -1338,6 +1379,10 @@ export class EditorService {
       }),
       CommandName: '',
       CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
       plainText: this.fb.group({
         Text: '',
         TextColor: '',
@@ -1429,12 +1474,144 @@ export class EditorService {
     });
   }
 
+  public createExpandingText(expandingText: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'expandingText',
+      Text: '',
+      TextAlignment: '',
+      ButtonText: '',
+      TextSize: '',
+      ButtonTextSize: '',
+      TextColor: '',
+      FontWeight: '',
+      ButtonTextColor: '',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      ImageWidth: '',
+      ImageHeight: '',
+      FullBleedHorizontal: false,
+      Source: 'blank.png',
+      Icon: '',
+      ShowIcon: '',
+      CornerRadius: '',
+      Padding: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      Margin: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      CommandName: '',
+      CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: 'HeaderText',
+        DetailText: 'Detail texty text',
+      }),
+      plainText: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        FontSize: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      spacer: this.fb.group({
+        display: false,
+        Height: '50',
+        BackgroundColor: '#900',
+      }),
+      slimEditor: this.fb.group({
+        display: false,
+        Label: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+        IsPassword: '',
+        Borderless: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: false,
+        GroupName: '',
+        Borderless: '',
+        Label: '',
+        SelectedItem: '',
+        OptionOne: '',
+        OptionTwo: '',
+        TextColor: '',
+        BackgroundColor: '',
+        DropdownCancelText: '',
+        ButtonBackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      appHeader: this.fb.group({
+        display: true,
+        Column1Config: this.fb.group({
+          HorizontalOptions: 'Start',
+        }),
+        Column2Config: this.fb.group({
+          HorizontalOptions: 'End',
+        }),
+        leftIcon: 'chevron_left',
+        rightIcon: 'chevron_right',
+        logo: 'crowdtap-logo-white.svg',
+      }),
+    });
+  }
+
   // Submit full configuration information
   sendConfig(
     headerConfig: any,
-    image: any,
+    viewConfig: any,
     visualConfig: any,
-    supress: boolean
+    supress: boolean,
+    configName: string
   ): Observable<any> {
     const body = {
       ScreenStorageKey: null,
@@ -1451,7 +1628,7 @@ export class EditorService {
       InvalidatedUTC: null,
       ScreenNavigationData: null,
       VisualConfig: visualConfig,
-      ViewConfigs: image,
+      ViewConfigs: viewConfig,
       HeaderConfigs: headerConfig,
       FooterConfigs: [],
       BeforeShowCommands: [],
@@ -1514,7 +1691,7 @@ export class EditorService {
 
     const call = this.http
       .post<any>(
-        this.apiURL + FINAL + 'test',
+        this.apiURL + FINAL + configName,
         JSON.stringify(body),
         this.httpOptions
       )

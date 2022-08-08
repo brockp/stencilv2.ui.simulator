@@ -56,6 +56,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -71,6 +72,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = true;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -86,6 +88,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -101,6 +104,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -116,6 +120,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -131,6 +136,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -146,6 +152,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -161,6 +168,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = true;
     this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };
@@ -176,6 +184,23 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = true;
+    this.es.expandingTextEdit = true;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  expandingTextEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = true;
     this.options = {
       disabled: true,
     };

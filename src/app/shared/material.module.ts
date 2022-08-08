@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     ClipboardModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   exports: [
     MatSidenavModule,
@@ -46,6 +48,7 @@ import { MatSelectModule } from '@angular/material/select';
     ClipboardModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}

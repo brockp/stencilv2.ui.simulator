@@ -28,6 +28,7 @@ import { SlimentryComponent } from '@app/components/slimentry/slimentry.componen
 import { SlimeditorComponent } from '@app/components/slimeditor/slimeditor.component';
 import { DropdownComponent } from '@app/components/dropdown/dropdown.component';
 import { SpacerComponent } from '@app/components/spacer/spacer.component';
+import { ExpandingTextComponent } from '@app/components/expanding-text/expanding-text.component';
 
 // Selectors
 import { BaseSelectorTwoComponent } from '@app/components/component-selectors/description-selector/base-selector.component';
@@ -42,6 +43,7 @@ import { SlimEditorSelectorComponent } from '@app/components/component-selectors
 import { SpacerSelectorComponent } from '@app/components/component-selectors/spacer-selector/spacer-selector.component';
 import { HeadlineTwoSelectorComponent } from '@app/components/component-selectors/headline-two-selector/headline-two-selector.component';
 import { HeadlineThreeSelectorComponent } from '@app/components/component-selectors/headline-three-selector/headline-three-selector.component';
+import { ExpandingTextSelectorComponent } from '@app/components/component-selectors/expanding-text-selector/expanding-text-selector.component';
 
 @NgModule({
   declarations: [
@@ -60,12 +62,14 @@ import { HeadlineThreeSelectorComponent } from '@app/components/component-select
     SpacerSelectorComponent,
     HeadlineTwoSelectorComponent,
     HeadlineThreeSelectorComponent,
+    ExpandingTextSelectorComponent,
     HeadlineComponent,
     PlaintextComponent,
     SlimentryComponent,
     SlimeditorComponent,
     DropdownComponent,
     SpacerComponent,
+    ExpandingTextComponent,
   ],
   imports: [
     CommonModule,

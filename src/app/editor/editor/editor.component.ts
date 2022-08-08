@@ -44,6 +44,7 @@ export class EditorComponent implements OnInit {
         left: 0,
       }),
     }),
+    compositionName: '',
     baseComponentSelector: this.es.createBaseComponent({}),
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
     headlineTwoSelector: this.es.createHeadlineTwo({}),
@@ -54,6 +55,7 @@ export class EditorComponent implements OnInit {
     spacerSelector: this.es.createSpacer({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
+    expandingTextSelector: this.es.createExpandingText({}),
     headerConfig: this.fb.array([]),
     finalConfig: this.fb.array([]),
   });
@@ -70,6 +72,10 @@ export class EditorComponent implements OnInit {
     public ess: EditSidebarService,
     private cs: ColorsService
   ) {}
+
+  setiPhone11(): void {
+    this.vps.setiPhone11();
+  }
 
   ngOnInit(): void {
     this.colorPalettes = this.cs.getAppColors();
@@ -147,6 +153,10 @@ export class EditorComponent implements OnInit {
 
   addSpacer(spacer: any): any {
     this.finalConfig.push(this.es.createSpacer(spacer));
+  }
+
+  addExpandingText(expandingText: any): any {
+    this.finalConfig.push(this.es.createExpandingText(expandingText));
   }
 
   // Removes the headline from the FormArray
@@ -295,8 +305,12 @@ export class EditorComponent implements OnInit {
   // FINAL submit of full data set to Stencil
   ////////////////////////////////////////////////////
   onSubmit(event: any): void {
+    // Visaul Config form data
     let visualConfig = this.form.get('visualConfig')!.value;
+    let name = this.form.get('compositionName')!.value;
 
+    ////////////////////////////////////////////////////
+    // Set up headerConfig final data set
     const h = this.form.get('headerConfig')!.value;
     const yepHeader = this.es.headerArray.concat(h);
 
@@ -347,6 +361,12 @@ export class EditorComponent implements OnInit {
       });
     };
 
+    // New variable taking in the updated mapped array values
+    let awesomeHeader = newHeaderArray(yepHeader);
+    ////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////
+    // Set up finalConfig data set
     const f = this.form.get('finalConfig')!.value;
     const yep = this.es.finalArray.concat(f);
 
@@ -725,13 +745,15 @@ export class EditorComponent implements OnInit {
       });
     };
 
+    // New variable taking in the updated mapped array values
     let awesome = newArray(yep);
-    let awesomeHeader = newHeaderArray(yepHeader);
-    console.log('HeaderConfig: ', awesomeHeader, 'ViewConfig: : ', awesome);
+    ////////////////////////////////////////////////////
 
+    // Final varables to be input into the service call below
     let final = awesome;
     let finalHeader = awesomeHeader;
 
+    // Debug purposes only
     console.log(
       'Visual Config: ',
       visualConfig,
@@ -741,8 +763,9 @@ export class EditorComponent implements OnInit {
       final
     );
 
+    // Service call to update the composition configurations
     this.es
-      .sendConfig(finalHeader, final, visualConfig, true)
+      .sendConfig(finalHeader, final, visualConfig, true, name)
       .subscribe(() => {});
   }
 

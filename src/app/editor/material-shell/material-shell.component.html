@@ -1,10 +1,30 @@
 <ng-content select="[crowdtapComponents]"></ng-content>
 <mat-sidenav-container class="main-content-container dark">
 
-
   <!-- Main material sidenav -->
   <mat-sidenav class="main-sidenav" opened="true" mode="side" #snav>
-    <div class="bg-mat-toolbar h-14 pt-4"><img class="ml-2 w-2/3" src="../../../assets/stencil-logo.svg" /></div>
+    <div class="bg-mat-toolbar h-14 pt-4 pl-4">
+      <div class="flex justify-center items-center gap-x-12">
+        <span (click)="setiPhone11()" class="viewport-icon">
+          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
+            tippy="iPhone Viewport">
+            <mat-icon class="text-lg">apple</mat-icon>
+          </button>
+        </span>
+        <span (click)="setAndroid()" class="viewport-icon">
+          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
+            tippy="Android Viewport">
+            <mat-icon class="text-lg">android</mat-icon>
+          </button>
+        </span>
+        <span (click)="desktopViewPort()" class="viewport-icon">
+          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
+            tippy="Desktop Viewport">
+            <mat-icon class="text-lg">computer</mat-icon>
+          </button>
+        </span>
+      </div>
+    </div>
     <mat-nav-list>
 
       <div class="py-5"></div>
@@ -29,6 +49,8 @@
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
 
+      <ng-content select="[visualConfigButton]"></ng-content>
+
       <button class="element-button border-t border-t-gray-700 pt-4">
         <div class="flex justify-start items-center gap-x-2" tippy="Coming Soon">
           <div class="w-10 h-10 rounded-md bg-mat-toolbar flex justify-center items-center">
@@ -38,51 +60,27 @@
         </div>
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
+
     </mat-nav-list>
   </mat-sidenav>
 
-
-
-
-
+  <!-- Main material content shell -->
   <mat-sidenav-content>
     <mat-toolbar>
-      <!-- Menu icon + logo -->
-      <div>
-        <button mat-icon-button aria-label="Menu icon" (click)="snav.toggle()" tippy="Open Menu">
-          <mat-icon>menu_open</mat-icon>
-        </button>
-      </div>
+
+      <section>&nbsp;</section>
 
       <!-- Viewport choices -->
-      <div class="flex justify-center items-center gap-x-12">
-        <span (click)="setiPhone11()" class="viewport-icon">
-          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
-            tippy="iPhone Viewport">
-            <mat-icon class="text-lg">apple</mat-icon>
-          </button>
-        </span>
-        <span (click)="setAndroid()" class="viewport-icon">
-          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
-            tippy="Android Viewport">
-            <mat-icon class="text-lg">android</mat-icon>
-          </button>
-        </span>
-        <span (click)="desktopViewPort()" class="viewport-icon">
-          <button class="py-1 px-2 bg-gray-700 text-ct-dark text-xs font-noir rounded-lg shadow focus:outline-none"
-            tippy="Desktop Viewport">
-            <mat-icon class="text-lg">computer</mat-icon>
-          </button>
-        </span>
-      </div>
+      <section>
+        <ng-content select="[nameConfig]"></ng-content>
+      </section>
+
 
       <!-- Visual Config + Submit Button -->
       <section>
         <ng-content select="[visualConfig]"></ng-content>
       </section>
     </mat-toolbar>
-    <!-- ng-conent for phone screen and visualConfig edit sidebars (found in editor.component.html)-->
-
 
     <ng-content select="[visualConfigEdit]"></ng-content>
     <ng-content select="[phoneScreen]"></ng-content>
