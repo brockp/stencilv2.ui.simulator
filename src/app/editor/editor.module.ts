@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { EditorRoutingModule } from './editor-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -44,6 +45,7 @@ import { SpacerSelectorComponent } from '@app/components/component-selectors/spa
 import { HeadlineTwoSelectorComponent } from '@app/components/component-selectors/headline-two-selector/headline-two-selector.component';
 import { HeadlineThreeSelectorComponent } from '@app/components/component-selectors/headline-three-selector/headline-three-selector.component';
 import { ExpandingTextSelectorComponent } from '@app/components/component-selectors/expanding-text-selector/expanding-text-selector.component';
+import { LoadConfigDialogComponent } from './load-config-dialog/load-config-dialog.component';
 
 @NgModule({
   declarations: [
@@ -70,12 +72,14 @@ import { ExpandingTextSelectorComponent } from '@app/components/component-select
     DropdownComponent,
     SpacerComponent,
     ExpandingTextComponent,
+    LoadConfigDialogComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     EditorRoutingModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
     EditableModule,
     SharedModule,

@@ -1,0 +1,51 @@
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+  <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+
+      <div
+        class="relative bg-slate-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+        <div class="bg-slate-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="flex justify-start items-center gap-2">
+            <img src="../../../assets/developer-coffee-cup.png" class="w-40" alt="coffee cup">
+            <div>
+              <h3 class="text-xl font-bold leading-6 text-white" id="modal-title">Welcome to the UI simulator!
+              </h3>
+              <p class="text-sm text-gray-400 sm:mt-2">The UI simulator support Stencil v2's data-drien UI
+                configurations of
+                component and composition libraries.</p>
+            </div>
+          </div>
+
+          <div class="border-b border-gray-600">
+            <h4 class="text-md font-bold leading-6 text-white">Select a path below to begin:</h4>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-2 items-start justify-between sm:gap-4 p-4 mt-2">
+
+            <div (click)="onCancel()"
+              class="flex flex-col justify-center items-center text-center bg-gray-900 rounded-md h-full border-dashed border-gray-400 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-emerald-300 duration-300 text-white hover:text-gray-900 hover:cursor-pointer py-8">
+              <h4 class="text-md leading-6">New Composition</h4>
+              <p class="text-xs sm:mt-2">Create a new composition canvas and let your
+                creative beast
+                loose!</p>
+            </div>
+
+            <div class="text-center py-8">
+              <h4 class="text-md leading-6 text-white">Load Composition</h4>
+              <!-- <p class="text-xs text-white sm:mt-2">Enter the name of your saved composition to load it
+                from the API and edit away!</p> -->
+              <input class="form-control w-full overflow-hidden p-2 my-2 text-sm" placeholder="Composition Name"
+                type="text" [(ngModel)]="this.compName" />
+              <button type="button" (click)="onSubmit()"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-300 text-base font-medium text-gray-900 font-bold sm:w-auto sm:text-sm">Load
+                Config</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

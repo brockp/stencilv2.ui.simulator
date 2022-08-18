@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ViewportService } from '@app/services/viewport/viewport.service';
 import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
@@ -10,6 +11,8 @@ import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.serv
 import { Colors } from '@app/services/colors/colors.interface';
 import { Subscription } from 'rxjs';
 import { ColorsService } from '@app/services/colors/colors.service';
+import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
+import { LoadConfigDialogComponent } from '../load-config-dialog/load-config-dialog.component';
 
 @Component({
   selector: 'app-editor',
@@ -29,8 +32,8 @@ export class EditorComponent implements OnInit {
 
   form = this.fb.group({
     visualConfig: this.fb.group({
-      BackgroundColor: '',
-      BackgroundImage: '',
+      BackgroundColor: null,
+      BackgroundImage: null,
       Margin: this.fb.group({
         top: 0,
         right: 0,
@@ -47,6 +50,7 @@ export class EditorComponent implements OnInit {
     compositionName: '',
     baseComponentSelector: this.es.createBaseComponent({}),
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
+    loadHeadlineSelector: this.es.loadDynamicHeadline({}),
     headlineTwoSelector: this.es.createHeadlineTwo({}),
     headlineThreeSelector: this.es.createHeadlineThree({}),
     primaryButtonSelector: this.es.createDynamicButton({}),
@@ -70,15 +74,153 @@ export class EditorComponent implements OnInit {
     public es: EditorService,
     private fb: FormBuilder,
     public ess: EditSidebarService,
-    private cs: ColorsService
+    private cs: ColorsService,
+    private dialog: MatDialog
   ) {}
+
+  openModal() {
+    const dialogRef = this.dialog.open(LoadConfigDialogComponent, {
+      // data: { name: this.name },
+      disableClose: false,
+    });
+    dialogRef.afterClosed().subscribe((submit) => {
+      if (submit) {
+        this.compName = submit;
+        this.form.get('compositionName')!.setValue(this.compName);
+        console.log(submit);
+        this.gitIt(submit);
+        this.es.isHidden = true;
+      } else {
+      }
+    });
+  }
 
   setiPhone11(): void {
     this.vps.setiPhone11();
   }
 
+  luu: any[] = [];
+  zero: any;
+  one: any;
+  two: any;
+  compComponent: any;
+  compName!: string;
+
+  loadConfig(name: string) {
+    this.compName = name;
+  }
+
+  gitIt(name: string) {
+    this.es.getCompositionConfig(name).subscribe((data) => {
+      this.luu = JSON.parse(JSON.stringify(data.ViewConfigs));
+
+      this.luu.filter((element: any) => {
+        // console.log(element.configuration_json);
+
+        if (element.component === 'h1') {
+          const index = this.luu.indexOf(element);
+          this.form.get('loadHeadlineSelector')!.value;
+          this.finalConfig.push(
+            this.es.loadDynamicHeadline(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'h2') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadHeadlineTwo(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'h3') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadHeadlineThree(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'image') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadBaseComponent(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'primaryButton') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadDynamicButton(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'plainText') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadPlaintext(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'slimEntry') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadSlimentry(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'slimEditor') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadSlimEditor(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'dropdown') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadDynamicDropdown(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'spacer') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadSpacer(JSON.parse(this.luu[index].configuration_json))
+          );
+        }
+
+        if (element.component === 'expandingText') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadExpandingText(
+              JSON.parse(this.luu[index].configuration_json)
+            )
+          );
+        }
+      });
+    });
+  }
+
   ngOnInit(): void {
     this.colorPalettes = this.cs.getAppColors();
+    this.openModal();
   }
 
   ngAfterViewInit(): void {}
@@ -367,8 +509,10 @@ export class EditorComponent implements OnInit {
 
     ////////////////////////////////////////////////////
     // Set up finalConfig data set
-    const f = this.form.get('finalConfig')!.value;
-    const yep = this.es.finalArray.concat(f);
+    let f = this.form.get('finalConfig')!.value;
+    console.log('finalConfig: ', f);
+    let yep = this.es.finalArray.concat(f);
+    console.log('yep: ', yep);
 
     let newArray = (values: any) => {
       return values.map((value: any) => {
@@ -408,7 +552,7 @@ export class EditorComponent implements OnInit {
         if (value.component === 'h2') {
           h2 = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h2',
             configuration_json: {
               Text: value.Text,
               TextColor: value.TextColor,
@@ -457,6 +601,41 @@ export class EditorComponent implements OnInit {
           };
           console.log('No background: ', h3);
           let configuration_json = JSON.stringify(h3?.configuration_json);
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
+        let plainText;
+        if (value.component === 'plainText') {
+          plainText = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.Text,
+              TextColor: value.TextColor,
+              FontSize: value.TextSize,
+              BackgroundColor: value.BackgroundColor,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+                HorizontalThickness: value.Padding.left + value.Padding.right,
+                VerticalThickness: value.Padding.top + value.Padding.bottom,
+              },
+            },
+          };
+          console.log('plainText component: ', plainText);
+          let configuration_json = JSON.stringify(
+            plainText?.configuration_json
+          );
           let newObj = {
             library: '',
             id: value.id + 1,

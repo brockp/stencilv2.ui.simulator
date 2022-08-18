@@ -13,7 +13,6 @@
         <li class="relative">
           <!-- Component Selectors Menu-->
           <section components-menu>
-
             <!-- ADD SELECTORS HERE -->
             <app-image-selector [parent]="form" [components]="components" (baseAdded)="addBaseComponent($event)">
             </app-image-selector>
@@ -59,11 +58,10 @@
       </ul>
     </div>
   </div>
+
   <!-- Main material sidenav -->
 
   <app-material-shell>
-
-
     <!-- Name Config -->
     <div nameConfig class="flex justify-center items-center gap-x-2 pl-2">
       <label for="compositionName">

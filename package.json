@@ -7,7 +7,6 @@
     "build": "ng build",
     "build:stats": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/stencil.ui.simulator/stats.json",
-    "json:server": "json-server --watch db.json",
     "gzip": "gzipper compress ./dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -30,7 +29,6 @@
     "@ngneat/overview": "^3.0.4",
     "@ngneat/tailwind": "^7.0.3",
     "animate.css": "^4.1.1",
-    "json-server": "^0.17.0",
     "keen-slider": "^6.6.4",
     "ngx-sortablejs": "^11.1.0",
     "rxjs": "~7.4.0",
