@@ -667,7 +667,7 @@ export class EditorComponent implements OnInit {
                 HorizontalThickness: value.Padding.left + value.Padding.right,
                 VerticalThickness: value.Padding.top + value.Padding.bottom,
               },
-              FullBleedHorizontal: null,
+              FullBleedHorizontal: false,
               CommandName: value.CommandName,
               CommandParameter: value.CommandParameter,
             },

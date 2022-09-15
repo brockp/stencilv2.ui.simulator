@@ -73,11 +73,11 @@
 }
 
 .edit-section {
-  @apply my-5;
+  @apply my-5 py-2;
 }
 
 .edit-section-title {
-  @apply text-xs font-normal font-noir border-t pt-2 border-gray-700 mb-2;
+  @apply text-xs font-normal font-noir border-t pt-2 border-gray-900 mb-2 text-gray-500;
 }
 
 .icon-selection {

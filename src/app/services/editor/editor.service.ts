@@ -49,14 +49,14 @@ export class EditorService {
       FontWeight: '',
       ButtonTextColor: '',
       BackgroundColor: '',
-      Width: null,
-      ImageWidth: '85',
-      ImageHeight: null,
+      Width: 85,
+      ImageWidth: 85,
+      ImageHeight: 0,
       FullBleedHorizontal: false,
-      Height: null,
+      Height: 0,
       Source: 'refer-a-friend.svg',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -186,7 +186,7 @@ export class EditorService {
       Height: image.ImageHeight,
       Source: image.Source,
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       Padding: this.fb.group({
         top: image.Padding.top,
         right: image.Padding.right,
@@ -319,7 +319,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -450,7 +450,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: plainText.Padding.top,
@@ -584,7 +584,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -715,7 +715,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: headline.top,
@@ -849,7 +849,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -980,7 +980,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: headline.top,
@@ -1114,7 +1114,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -1245,7 +1245,7 @@ export class EditorService {
       Height: '',
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: headline.Padding.top,
@@ -1379,7 +1379,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '9999',
       Padding: this.fb.group({
         top: 10,
@@ -1510,7 +1510,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: button.Icon,
-      ShowIcon: button.ShowIcon,
+      ShowIcon: false,
       CornerRadius: '9999',
       Padding: this.fb.group({
         top: button.Padding.top,
@@ -1644,7 +1644,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -1775,7 +1775,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -1909,7 +1909,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2039,7 +2039,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2172,7 +2172,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2304,7 +2304,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2439,7 +2439,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2573,7 +2573,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2704,7 +2704,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2838,7 +2838,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
@@ -2969,7 +2969,7 @@ export class EditorService {
       FullBleedHorizontal: false,
       Source: 'blank.png',
       Icon: '',
-      ShowIcon: '',
+      ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
         top: 0,

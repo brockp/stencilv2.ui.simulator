@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormControlName,
-  FormGroup,
-} from '@angular/forms';
+import { FormArray, FormControlName, FormGroup } from '@angular/forms';
 import { Colors } from '@app/services/colors/colors.interface';
 import { ColorsService } from '@app/services/colors/colors.service';
 import { EditorService } from '@app/services/editor/editor.service';
@@ -17,7 +12,6 @@ import { ImageService } from '@app/services/sign-up-graphic/image.service';
 import { TextInputService } from '@app/services/text-input/text-input.service';
 import { Options } from 'sortablejs';
 import { SpacerService } from '@app/services/spacer/spacer.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-basecomponenttwo',
