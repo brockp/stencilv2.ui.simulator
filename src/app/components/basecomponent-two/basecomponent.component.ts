@@ -496,6 +496,12 @@ export class BasecomponentTwoComponent implements OnInit {
     };
   }
 
+  // Removes the headline from the FormArray
+  removeComponent(i: number) {
+    this.array.removeAt(i);
+    console.log(this.array);
+  }
+
   saveComponent(i: number) {
     const index = this.components.at(i);
     const objUpdate = index.getRawValue();

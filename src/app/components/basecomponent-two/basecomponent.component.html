@@ -608,6 +608,7 @@
   <div formArrayName="finalConfig" [sortablejs]="array" [sortablejsOptions]="options">
     <div *ngFor="let base of components; let i = index">
       <div>
+
         <editable (save)="update(i)" (cancel)="cancel()">
           <section *ngIf="base">
             <div [formGroupName]="i">
@@ -615,7 +616,15 @@
                 <!-- Actual component -->
                 <ng-template viewMode>
                   <!-- Non-image component -->
-                  <section>
+                  <section class="component-hover">
+                    <!-- Delete component button -->
+                    <div class="relative">
+                      <mat-icon class="delete-component" (click)="removeComponent(i)">
+                        delete_forever
+                      </mat-icon>
+                    </div>
+                    <!-- Delete component button -->
+
                     <!-- Headline component -->
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
                     <!-- Headline component -->
@@ -657,10 +666,14 @@
                 <ng-template editMode>
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
                   <!-- ////////////////////////////// -->
-                  <section>
+                  <section class="component-edit-mode">
                     <!-- Headline component -->
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
                     <!-- Headline component -->
+
+                    <!-- Expanding Text component -->
+                    <app-expanding-text (click)="expandingTextEdit()" [expandingText]="base"></app-expanding-text>
+                    <!-- Expanding Text component -->
 
                     <!-- plainText component -->
                     <app-plaintext (click)="plainTextEdit()" [plainText]="base"></app-plaintext>
