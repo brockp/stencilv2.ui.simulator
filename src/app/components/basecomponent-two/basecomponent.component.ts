@@ -27,12 +27,6 @@ export class BasecomponentTwoComponent implements OnInit {
   Text!: FormControlName;
   FontSize!: FormControlName;
 
-  // Appheader specific properties
-  DualColumnView!: string;
-  Column1Config: string = 'flex-start';
-  Column2Config: string = 'flex-end';
-  TriColumnView!: boolean;
-
   options: Options = {
     disabled: false,
   };
@@ -51,6 +45,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -67,6 +62,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -83,6 +79,24 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  headerTitleBarEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = true;
     this.options = {
       disabled: true,
     };
@@ -99,6 +113,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -115,6 +130,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -131,6 +147,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -147,6 +164,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -163,6 +181,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = true;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -179,6 +198,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = true;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -195,6 +215,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.spacer = false;
     this.es.header = false;
     this.es.expandingTextEdit = true;
+    this.es.headerTitleBarEdit = false;
     this.options = {
       disabled: true,
     };
@@ -242,12 +263,16 @@ export class BasecomponentTwoComponent implements OnInit {
     return (this.parent.get('finalConfig') as FormArray).controls;
   }
 
+  get array(): any {
+    return this.parent.get('finalConfig') as FormArray;
+  }
+
   get headers(): any {
     return (this.parent.get('headerConfig') as FormArray).controls;
   }
 
-  get array(): any {
-    return this.parent.get('finalConfig') as FormArray;
+  get headerArray(): any {
+    return this.parent.get('headerConfig') as FormArray;
   }
 
   constructor(
@@ -282,6 +307,17 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setHeaderTitleBarIcon(icon: string, i: number) {
+    const index = this.headers.at(i);
+    this.leftIconChanged.emit(index);
+    this.leftIconChanged.emit(icon);
+    index.patchValue({
+      headerTitleBar: {
+        LeftIcon: icon,
+      },
+    });
+  }
+
   setRightIcon(icon: string, i: number) {
     const index = this.headers.at(i);
     this.rightIconChanged.emit(index);
@@ -289,6 +325,17 @@ export class BasecomponentTwoComponent implements OnInit {
     index.patchValue({
       appHeader: {
         rightIcon: icon,
+      },
+    });
+  }
+
+  setHeaderTitleBarRightIcon(icon: string, i: number) {
+    const index = this.headers.at(i);
+    this.rightIconChanged.emit(index);
+    this.rightIconChanged.emit(icon);
+    index.patchValue({
+      headerTitleBar: {
+        RightIcon: icon,
       },
     });
   }
@@ -358,6 +405,15 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setHeaderTitleBarTextColor(color: any, i: number) {
+    const index = this.headers.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      headerTitleBar: { TextColor: color },
+    });
+  }
+
   setBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
@@ -365,6 +421,26 @@ export class BasecomponentTwoComponent implements OnInit {
     index.patchValue({
       BackgroundColor: color,
     });
+  }
+
+  setAppheaderBackgroundColor(color: any, i: number) {
+    const index = this.headers.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      appHeader: { BackgroundColor: color },
+    });
+    console.log(this.headers);
+  }
+
+  setHeaderTitleBarBackgroundColor(color: any, i: number) {
+    const index = this.headers.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      headerTitleBar: { BackgroundColor: color },
+    });
+    console.log(this.headers);
   }
 
   setPlaintextBackgroundColor(color: any, i: number) {
@@ -478,8 +554,9 @@ export class BasecomponentTwoComponent implements OnInit {
 
     const index = this.components.at(i);
     const objUpdate = index.getRawValue();
+    const headerObjUpdate = index.getRawValue();
 
-    // headerIndex.patchValue({ headerUpdate });
+    headerIndex.patchValue({ headerObjUpdate });
     index.patchValue({ objUpdate });
 
     // Resets the ability to drag components
@@ -500,6 +577,11 @@ export class BasecomponentTwoComponent implements OnInit {
   removeComponent(i: number) {
     this.array.removeAt(i);
     console.log(this.array);
+  }
+
+  removeHeaderComponent(i: number) {
+    this.headerArray.removeAt(i);
+    console.log(this.headerArray);
   }
 
   saveComponent(i: number) {
@@ -790,6 +872,7 @@ export class BasecomponentTwoComponent implements OnInit {
         id: objUpdate.id + 1,
         component: objUpdate.component,
         configuration_json: {
+          BackgroundColor: objUpdate.appHeader.BackgroundColor,
           leftIcon: objUpdate.appHeader.leftIcon,
           rightIcon: objUpdate.appHeader.rightIcon,
           logo: objUpdate.appHeader.logo,

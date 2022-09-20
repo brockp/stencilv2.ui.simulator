@@ -5,12 +5,9 @@
       style="z-index: 9999;">
       <ul class="relative">
         <li class="relative">
-          <a class="flex items-center text-sm py-4 pl-2 mb-6 h-12 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-red-400 transition duration-300 ease-in-out"
-            href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark" (click)="close()">
-            <mat-icon>close</mat-icon>&nbsp;Close Library
-          </a>
+          <h1 class="text-white font-noir text-xl py-4 tracking-normal">Base Components</h1>
         </li>
-        <li class="relative">
+        <li class="relative overflow-auto">
           <!-- Component Selectors Menu-->
           <section components-menu>
             <!-- ADD SELECTORS HERE -->
@@ -46,16 +43,29 @@
             <app-dropdown-selector [parent]="form" [components]="components" (baseAdded)="addDropdown($event)">
             </app-dropdown-selector>
 
-            <app-appheader-selector [parent]="form" [components]="components" (baseAdded)="addAppHeader($event)">
-            </app-appheader-selector>
-
             <app-spacer-selector [parent]="form" [components]="components" (baseAdded)="addSpacer($event)">
             </app-spacer-selector>
 
             <hr size="1" />
+
+            <h1 class="text-white font-noir text-xl py-4 tracking-normal">Curated Components</h1>
+
+            <app-appheader-selector [parent]="form" [components]="components" (baseAdded)="addAppHeader($event)">
+            </app-appheader-selector>
+
+            <app-header-title-bar-selector [parent]="form" [components]="components"
+              (baseAdded)="addHeaderTitleBar($event)">
+            </app-header-title-bar-selector>
           </section>
         </li>
+
       </ul>
+      <div class="absolute bottom-0 left-0 w-60">
+        <a class="flex justify-center items-center text-sm py-4 h-12 overflow-hidden text-white text-ellipsis whitespace-nowrap bg-red-500 hover:text-gray-900 hover:bg-red-600 transition duration-300 ease-in-out"
+          href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark" (click)="close()">
+          <mat-icon>delete_forever</mat-icon>&nbsp;Reset Composition
+        </a>
+      </div>
     </div>
   </div>
 
@@ -96,11 +106,14 @@
     <section class="mt-4 mr-20" phoneScreen>
       <div [ngClass]="viewPortClassSwitch()" class="viewport-canvas">
         <div class="viewport-inner-canvas drop-container basic-layout" [ngStyle]="visualConfigStyleObject()">
+          <app-basecomponenttwo [parent]="form">
+            <div class="flex justify-start flex-col border-red-300 border-b-2">
+              <ng-content select="[headerConfig]"></ng-content>
+            </div>
+            <section>
 
-          <div class="flex justify-start flex-col border-red-300 border-b-2">
-
-            <app-basecomponenttwo [parent]="form"></app-basecomponenttwo>
-          </div>
+            </section>
+          </app-basecomponenttwo>
           <!-- ADD CHILD COMPONENT HERE THAT WILL GET ADDED TO THE FORMARRAY -->
 
         </div>

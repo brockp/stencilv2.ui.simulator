@@ -11,9 +11,10 @@
     'padding-left':
     dropdown.value.dropDown.Padding.left + 'px'
 }">
-  <mat-label [ngStyle]="{color: dropdown.value.dropDown.TextColor}">{{dropdown.value.dropDown.Label}}
+  <mat-label class="font-quicksand" [ngStyle]="{color: dropdown.value.dropDown.TextColor}">
+    {{dropdown.value.dropDown.Label}}
   </mat-label>
-  <mat-select [required]="dropdown.value.dropDown.IsRequired">
+  <mat-select [required]="dropdown.value.dropDown.IsRequired" class="font-quicksand">
     <mat-option [ngStyle]="{color: dropdown.value.dropDown.TextColor}" [value]="dropdown.value.dropDown.OptionOne">
       {{dropdown.value.dropDown.OptionOne}}
     </mat-option>

@@ -1,0 +1,33 @@
+<section *ngIf="appHeader.value.appHeader.display" [ngStyle]="{
+display: 'grid',
+height: appHeader.value.Height + 'px',
+'align-items': 'center',
+'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
+'background-color': appHeader.value.appHeader.BackgroundColor,
+'padding-top': appHeader.value.Padding.top + 'px',
+'padding-right': appHeader.value.Padding.right + 'px',
+'padding-bottom': appHeader.value.Padding.bottom + 'px',
+'padding-left': appHeader.value.Padding.left + 'px',
+'margin-top': appHeader.value.Margin.top + 'px',
+'margin-right': appHeader.value.Margin.right + 'px',
+'margin-bottom': appHeader.value.Margin.bottom + 'px',
+'margin-left': appHeader.value.Margin.left + 'px',
+'box-shadow': '0px 3.34825px 11.1021px rgba(0, 0, 0, 0.7)'
+}">
+
+  <div [ngStyle]="{display: 'flex',
+'align-items': 'center',
+'justify-content': this.Column1Config}">
+    <mat-icon>{{ appHeader.value.appHeader.leftIcon }}</mat-icon>
+  </div>
+
+  <div>
+    <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + appHeader.value.appHeader.logo" alt="Logo" />
+  </div>
+
+  <div [ngStyle]="{display: 'flex',
+'align-items': 'center',
+'justify-content': this.Column2Config}">
+    <mat-icon>{{ appHeader.value.appHeader.rightIcon }}</mat-icon>
+  </div>
+</section>

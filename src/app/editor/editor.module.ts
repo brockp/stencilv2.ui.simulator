@@ -21,6 +21,7 @@ import { MaterialModule } from '@app/shared/material.module';
 import { EditorComponent } from '@app/editor/editor/editor.component';
 import { MaterialShellComponent } from '@app/editor/material-shell/material-shell.component';
 import { BasecomponentTwoComponent } from '@app/components/basecomponent-two/basecomponent.component';
+import { LoadConfigDialogComponent } from './load-config-dialog/load-config-dialog.component';
 
 // Components
 import { HeadlineComponent } from '@app/components/headline/headline.component';
@@ -30,6 +31,8 @@ import { SlimeditorComponent } from '@app/components/slimeditor/slimeditor.compo
 import { DropdownComponent } from '@app/components/dropdown/dropdown.component';
 import { SpacerComponent } from '@app/components/spacer/spacer.component';
 import { ExpandingTextComponent } from '@app/components/expanding-text/expanding-text.component';
+import { AppHeaderComponent } from '@app/components/app-header/app-header.component';
+import { HeaderTitleBarComponent } from '@app/components/header-title-bar/header-title-bar.component';
 
 // Selectors
 import { BaseSelectorTwoComponent } from '@app/components/component-selectors/description-selector/base-selector.component';
@@ -45,7 +48,7 @@ import { SpacerSelectorComponent } from '@app/components/component-selectors/spa
 import { HeadlineTwoSelectorComponent } from '@app/components/component-selectors/headline-two-selector/headline-two-selector.component';
 import { HeadlineThreeSelectorComponent } from '@app/components/component-selectors/headline-three-selector/headline-three-selector.component';
 import { ExpandingTextSelectorComponent } from '@app/components/component-selectors/expanding-text-selector/expanding-text-selector.component';
-import { LoadConfigDialogComponent } from './load-config-dialog/load-config-dialog.component';
+import { HeaderTitleBarSelectorComponent } from '@app/components/component-selectors/header-title-bar-selector/header-title-bar-selector.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { LoadConfigDialogComponent } from './load-config-dialog/load-config-dial
     HeadlineTwoSelectorComponent,
     HeadlineThreeSelectorComponent,
     ExpandingTextSelectorComponent,
+    HeaderTitleBarSelectorComponent,
     HeadlineComponent,
     PlaintextComponent,
     SlimentryComponent,
@@ -72,6 +76,8 @@ import { LoadConfigDialogComponent } from './load-config-dialog/load-config-dial
     DropdownComponent,
     SpacerComponent,
     ExpandingTextComponent,
+    AppHeaderComponent,
+    HeaderTitleBarComponent,
     LoadConfigDialogComponent,
   ],
   imports: [

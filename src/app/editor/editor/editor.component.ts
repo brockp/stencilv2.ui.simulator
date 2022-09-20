@@ -11,7 +11,6 @@ import { EditSidebarService } from '@app/services/edit-sidebar/edit-sidebar.serv
 import { Colors } from '@app/services/colors/colors.interface';
 import { Subscription } from 'rxjs';
 import { ColorsService } from '@app/services/colors/colors.service';
-import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 import { LoadConfigDialogComponent } from '../load-config-dialog/load-config-dialog.component';
 
 @Component({
@@ -59,6 +58,7 @@ export class EditorComponent implements OnInit {
     spacerSelector: this.es.createSpacer({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
+    headerTitleBarSelector: this.es.createHeaderTitleBar({}),
     expandingTextSelector: this.es.createExpandingText({}),
     headerConfig: this.fb.array([]),
     finalConfig: this.fb.array([]),
@@ -100,6 +100,7 @@ export class EditorComponent implements OnInit {
   }
 
   luu: any[] = [];
+  headerLuu: any[] = [];
   zero: any;
   one: any;
   two: any;
@@ -113,6 +114,27 @@ export class EditorComponent implements OnInit {
   gitIt(name: string) {
     this.es.getCompositionConfig(name).subscribe((data) => {
       this.luu = JSON.parse(JSON.stringify(data.ViewConfigs));
+      this.headerLuu = JSON.parse(JSON.stringify(data.HeaderConfigs));
+
+      this.headerLuu.filter((element: any) => {
+        if (element.component === 'appHeader') {
+          const index = this.headerLuu.indexOf(element);
+          this.headerConfig.push(
+            this.es.loadAppHeader(
+              JSON.parse(this.headerLuu[index].configuration_json)
+            )
+          );
+        }
+
+        if (element.component === 'headerTitleBar') {
+          const index = this.headerLuu.indexOf(element);
+          this.headerConfig.push(
+            this.es.loadHeaderTitleBar(
+              JSON.parse(this.headerLuu[index].configuration_json)
+            )
+          );
+        }
+      });
 
       this.luu.filter((element: any) => {
         // console.log(element.configuration_json);
@@ -293,6 +315,10 @@ export class EditorComponent implements OnInit {
     this.headerConfig.push(this.es.createAppHeader(appHeader));
   }
 
+  addHeaderTitleBar(headerTitleBar: any): any {
+    this.headerConfig.push(this.es.createHeaderTitleBar(headerTitleBar));
+  }
+
   addSpacer(spacer: any): any {
     this.finalConfig.push(this.es.createSpacer(spacer));
   }
@@ -464,6 +490,7 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
+              BackgroundColor: value.appHeader.BackgroundColor,
               Padding: {
                 top: value.Padding.top,
                 right: value.Padding.right,
@@ -480,7 +507,7 @@ export class EditorComponent implements OnInit {
                 HorizontalOptions:
                   value.appHeader.Column2Config.HorizontalOptions,
               },
-              leftIcon: value.appHeader.LeftIcon,
+              leftIcon: value.appHeader.leftIcon,
               logo: value.appHeader.logo,
               rightIcon: value.appHeader.rightIcon,
             },
@@ -488,6 +515,39 @@ export class EditorComponent implements OnInit {
           console.log('app Header: ', appHeader);
           let configuration_json = JSON.stringify(
             appHeader?.configuration_json
+          );
+
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
+          };
+          return newObj;
+        }
+
+        let headerTitleBar;
+        if (value.component === 'headerTitleBar') {
+          headerTitleBar = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              TextColor: value.headerTitleBar.TextColor,
+              BackgroundColor: value.headerTitleBar.BackgroundColor,
+              LeftIcon: value.headerTitleBar.LeftIcon,
+              RightIcon: value.headerTitleBar.RightIcon,
+              Title: value.headerTitleBar.Title,
+              RightCommandName: value.headerTitleBar.RightCommandName,
+              RightCommandParameter: value.headerTitleBar.RightCommandParameter,
+              LeftCommandName: value.headerTitleBar.LeftCommandName,
+              LeftCommandParameter: value.headerTitleBar.LeftCommandParameter,
+            },
+          };
+          console.log('headerTitleBar: ', headerTitleBar);
+          let configuration_json = JSON.stringify(
+            headerTitleBar?.configuration_json
           );
 
           let newObj = {
@@ -851,49 +911,6 @@ export class EditorComponent implements OnInit {
             configuration_json: configuration_json,
             sections: null,
             encapsulated_views: null,
-          };
-          return newObj;
-        }
-
-        let appHeader;
-        if (value.component === 'appHeader') {
-          appHeader = {
-            id: value.id + 1,
-            component: value.component,
-            configuration_json: {
-              Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
-              },
-              Column1Config: {
-                HorizontalOptions:
-                  value.appHeader.Column1Config.HorizontalOptions,
-              },
-              Column2Config: {
-                HorizontalOptions:
-                  value.appHeader.Column2Config.HorizontalOptions,
-              },
-              leftIcon: value.appHeader.LeftIcon,
-              logo: value.appHeader.logo,
-              rightIcon: value.appHeader.rightIcon,
-            },
-          };
-          console.log('app Header: ', appHeader);
-          let configuration_json = JSON.stringify(
-            appHeader?.configuration_json
-          );
-
-          let newObj = {
-            library: '',
-            id: value.id + 1,
-            component: value.component,
-            configuration_json: configuration_json,
-            encapsulated_views: null,
-            sections: null,
           };
           return newObj;
         }
