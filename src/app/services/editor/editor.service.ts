@@ -28,6 +28,7 @@ export class EditorService {
   public plainTextEdit = false;
   public expandingTextEdit = false;
   public headerTitleBarEdit = false;
+  public primaryButtonEdit = false;
 
   constructor(
     public fb: FormBuilder,
@@ -183,6 +184,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -330,6 +351,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -485,6 +526,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -633,6 +694,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -788,6 +869,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -936,6 +1037,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -1091,6 +1212,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -1239,6 +1380,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -1394,6 +1555,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -1544,307 +1725,24 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
-    });
-  }
-  /////////////////////////////////////////////////
-
-  // Get & Load primaryButton Component
-  /////////////////////////////////////////////////
-  public createDynamicButton(button: any): any {
-    return this.fb.group({
-      id: 1,
-      component: 'primaryButton',
-      Text: 'Login',
-      ButtonText: '',
-      TextSize: '16',
-      TextAlignment: 'center',
-      ButtonTextSize: '',
-      TextColor: '#ffffff',
-      FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: null,
-      Height: null,
-      ImageWidth: '',
-      ImageHeight: '',
-      FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '9999',
-      Padding: this.fb.group({
-        top: 10,
-        right: 20,
-        bottom: 10,
-        left: 20,
-      }),
-      Margin: this.fb.group({
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-      }),
-      CommandName: '',
-      CommandParameter: '',
-      expandingText: this.fb.group({
-        HeaderText: '',
-        DetailText: '',
-      }),
-      plainText: this.fb.group({
+      primaryButton: this.fb.group({
         Text: '',
-        TextColor: '',
+        CommandName: '',
+        CommandParameter: '',
         BackgroundColor: '',
-        FontSize: '',
+        Icon: '',
+        ShowIcon: false,
         Padding: this.fb.group({
           top: 0,
           right: 0,
           bottom: 0,
           left: 0,
         }),
-      }),
-      spacer: this.fb.group({
-        display: false,
-        Height: '',
-        BackgroundColor: '',
-      }),
-      slimEditor: this.fb.group({
-        display: false,
-        Label: '',
-        Input: '',
-        Placeholder: '',
-        BackgroundColor: '',
-        InputBackgroundColor: '',
-        TextColor: '',
-        PlaceholderColor: '',
         Margin: this.fb.group({
           top: 0,
           right: 0,
           bottom: 0,
           left: 0,
-        }),
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      slimEntry: this.fb.group({
-        display: false,
-        IsPassword: '',
-        Borderless: '',
-        Input: '',
-        Placeholder: '',
-        BackgroundColor: '',
-        InputBackgroundColor: '',
-        TextColor: '',
-        PlaceholderColor: '',
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      dropDown: this.fb.group({
-        display: false,
-        IsRequired: false,
-        GroupName: '',
-        Borderless: '',
-        Label: '',
-        SelectedItem: '',
-        OptionOne: '',
-        OptionTwo: '',
-        TextColor: '',
-        BackgroundColor: '',
-        DropdownCancelText: '',
-        ButtonBackgroundColor: '',
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      appHeader: this.fb.group({
-        display: false,
-        BackgroundColor: '',
-        Column1Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        Column2Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        leftIcon: '',
-        rightIcon: '',
-        logo: 'blank.png',
-      }),
-      headerTitleBar: this.fb.group({
-        display: false,
-        TextColor: '',
-        BackgroundColor: '',
-        LeftIcon: '',
-        RightIcon: '',
-        Title: '',
-        RightCommandName: '',
-        RightCommandParameter: '',
-        LeftCommandName: '',
-        LeftCommandParameter: '',
-        Column1Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        Column2Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-      }),
-    });
-  }
-
-  public loadDynamicButton(button: any): any {
-    return this.fb.group({
-      id: 1,
-      component: 'primaryButton',
-      Text: button.Text,
-      ButtonText: '',
-      TextSize: '16',
-      TextAlignment: 'center',
-      ButtonTextSize: '',
-      TextColor: '#ffffff',
-      FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: button.BackgroundColor,
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
-      FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: button.Icon,
-      ShowIcon: false,
-      CornerRadius: '9999',
-      Padding: this.fb.group({
-        top: button.Padding.top,
-        right: button.Padding.right,
-        bottom: button.Padding.bottom,
-        left: button.Padding.left,
-      }),
-      Margin: this.fb.group({
-        top: button.Margin.top,
-        right: button.Margin.right,
-        bottom: button.Margin.bottom,
-        left: button.Margin.left,
-      }),
-      CommandName: button.CommandName,
-      CommandParameter: button.CommandParameter,
-      expandingText: this.fb.group({
-        HeaderText: '',
-        DetailText: '',
-      }),
-      plainText: this.fb.group({
-        Text: '',
-        TextColor: '',
-        BackgroundColor: '',
-        FontSize: '',
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      spacer: this.fb.group({
-        display: false,
-        Height: '',
-        BackgroundColor: '',
-      }),
-      slimEditor: this.fb.group({
-        display: false,
-        Label: '',
-        Input: '',
-        Placeholder: '',
-        BackgroundColor: '',
-        InputBackgroundColor: '',
-        TextColor: '',
-        PlaceholderColor: '',
-        Margin: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      slimEntry: this.fb.group({
-        display: false,
-        IsPassword: '',
-        Borderless: '',
-        Input: '',
-        Placeholder: '',
-        BackgroundColor: '',
-        InputBackgroundColor: '',
-        TextColor: '',
-        PlaceholderColor: '',
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      dropDown: this.fb.group({
-        display: false,
-        IsRequired: false,
-        GroupName: '',
-        Borderless: '',
-        Label: '',
-        SelectedItem: '',
-        OptionOne: '',
-        OptionTwo: '',
-        TextColor: '',
-        BackgroundColor: '',
-        DropdownCancelText: '',
-        ButtonBackgroundColor: '',
-        Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }),
-      }),
-      appHeader: this.fb.group({
-        display: false,
-        BackgroundColor: '',
-        Column1Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        Column2Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        leftIcon: '',
-        rightIcon: '',
-        logo: 'blank.png',
-      }),
-      headerTitleBar: this.fb.group({
-        display: false,
-        TextColor: '',
-        BackgroundColor: '',
-        LeftIcon: '',
-        RightIcon: '',
-        Title: '',
-        RightCommandName: '',
-        RightCommandParameter: '',
-        LeftCommandName: '',
-        LeftCommandParameter: '',
-        Column1Config: this.fb.group({
-          HorizontalOptions: '',
-        }),
-        Column2Config: this.fb.group({
-          HorizontalOptions: '',
         }),
       }),
     });
@@ -2000,6 +1898,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -2148,6 +2066,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -2302,6 +2240,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -2449,6 +2407,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -2605,6 +2583,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -2754,6 +2752,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -2909,6 +2927,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -3057,6 +3095,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -3212,6 +3270,26 @@ export class EditorService {
           HorizontalOptions: 'End',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -3360,6 +3438,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: 'End',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -3514,6 +3612,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -3661,6 +3779,26 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
         }),
       }),
     });
@@ -3815,6 +3953,26 @@ export class EditorService {
           HorizontalOptions: '',
         }),
       }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
     });
   }
 
@@ -3962,6 +4120,367 @@ export class EditorService {
         }),
         Column2Config: this.fb.group({
           HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: '',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+    });
+  }
+  /////////////////////////////////////////////////
+
+  // Get & Load expandingText Component
+  /////////////////////////////////////////////////
+  public createPrimaryButton(primaryButton: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'primaryButton',
+      Text: '',
+      TextAlignment: '',
+      ButtonText: '',
+      TextSize: '',
+      ButtonTextSize: '',
+      TextColor: '',
+      FontWeight: '',
+      ButtonTextColor: '',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      ImageWidth: '',
+      ImageHeight: '',
+      FullBleedHorizontal: false,
+      Source: 'blank.png',
+      Icon: '',
+      ShowIcon: false,
+      CornerRadius: 50,
+      Padding: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      Margin: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      CommandName: '',
+      CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
+      plainText: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        FontSize: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      spacer: this.fb.group({
+        display: false,
+        Height: '50',
+        BackgroundColor: '#900',
+      }),
+      slimEditor: this.fb.group({
+        display: false,
+        Label: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+        IsPassword: '',
+        Borderless: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: false,
+        GroupName: '',
+        Borderless: '',
+        Label: '',
+        SelectedItem: '',
+        OptionOne: '',
+        OptionTwo: '',
+        TextColor: '',
+        BackgroundColor: '',
+        DropdownCancelText: '',
+        ButtonBackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      appHeader: this.fb.group({
+        display: true,
+        Column1Config: this.fb.group({
+          HorizontalOptions: 'Start',
+        }),
+        Column2Config: this.fb.group({
+          HorizontalOptions: 'End',
+        }),
+        leftIcon: 'chevron_left',
+        rightIcon: 'chevron_right',
+        logo: 'crowdtap-logo-white.svg',
+      }),
+      headerTitleBar: this.fb.group({
+        display: false,
+        TextColor: '',
+        BackgroundColor: '',
+        LeftIcon: '',
+        RightIcon: '',
+        Title: '',
+        RightCommandName: '',
+        RightCommandParameter: '',
+        LeftCommandName: '',
+        LeftCommandParameter: '',
+        Column1Config: this.fb.group({
+          HorizontalOptions: '',
+        }),
+        Column2Config: this.fb.group({
+          HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: 'Primary Button Text',
+        CommandName: '',
+        CommandParameter: '',
+        BackgroundColor: '#900',
+        Icon: '',
+        ShowIcon: false,
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+    });
+  }
+
+  public loadPrimaryButton(primaryButton: any): any {
+    return this.fb.group({
+      id: 1,
+      component: 'primaryButton',
+      Text: '',
+      TextAlignment: '',
+      ButtonText: '',
+      TextSize: '',
+      ButtonTextSize: '',
+      TextColor: '',
+      FontWeight: '',
+      ButtonTextColor: '',
+      BackgroundColor: '',
+      Width: '',
+      Height: '',
+      ImageWidth: '',
+      ImageHeight: '',
+      FullBleedHorizontal: false,
+      Source: 'blank.png',
+      Icon: '',
+      ShowIcon: false,
+      CornerRadius: '',
+      Padding: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      Margin: this.fb.group({
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      }),
+      CommandName: '',
+      CommandParameter: '',
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
+      }),
+      plainText: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        FontSize: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      spacer: this.fb.group({
+        display: false,
+        Height: '50',
+        BackgroundColor: '#900',
+      }),
+      slimEditor: this.fb.group({
+        display: false,
+        Label: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Margin: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      slimEntry: this.fb.group({
+        display: false,
+        IsPassword: '',
+        Borderless: '',
+        Input: '',
+        Placeholder: '',
+        BackgroundColor: '',
+        InputBackgroundColor: '',
+        TextColor: '',
+        PlaceholderColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      dropDown: this.fb.group({
+        display: false,
+        IsRequired: false,
+        GroupName: '',
+        Borderless: '',
+        Label: '',
+        SelectedItem: '',
+        OptionOne: '',
+        OptionTwo: '',
+        TextColor: '',
+        BackgroundColor: '',
+        DropdownCancelText: '',
+        ButtonBackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      appHeader: this.fb.group({
+        display: true,
+        Column1Config: this.fb.group({
+          HorizontalOptions: 'Start',
+        }),
+        Column2Config: this.fb.group({
+          HorizontalOptions: 'End',
+        }),
+        leftIcon: 'chevron_left',
+        rightIcon: 'chevron_right',
+        logo: 'crowdtap-logo-white.svg',
+      }),
+      headerTitleBar: this.fb.group({
+        display: false,
+        TextColor: '',
+        BackgroundColor: '',
+        LeftIcon: '',
+        RightIcon: '',
+        Title: '',
+        RightCommandName: '',
+        RightCommandParameter: '',
+        LeftCommandName: '',
+        LeftCommandParameter: '',
+        Column1Config: this.fb.group({
+          HorizontalOptions: '',
+        }),
+        Column2Config: this.fb.group({
+          HorizontalOptions: '',
+        }),
+      }),
+      primaryButton: this.fb.group({
+        Text: primaryButton.Text,
+        CommandName: primaryButton.CommandName,
+        CommandParameter: primaryButton.CommandParameter,
+        BackgroundColor: primaryButton.BackgroundColor,
+        Icon: primaryButton.Icon,
+        ShowIcon: primaryButton.ShowIcon,
+        Padding: this.fb.group({
+          top: primaryButton.Padding.top,
+          right: primaryButton.Padding.right,
+          bottom: primaryButton.Padding.bottom,
+          left: primaryButton.Padding.left,
+        }),
+        Margin: this.fb.group({
+          top: primaryButton.Margin.top,
+          right: primaryButton.Margin.right,
+          bottom: primaryButton.Margin.bottom,
+          left: primaryButton.Margin.left,
         }),
       }),
     });

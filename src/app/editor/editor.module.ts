@@ -33,6 +33,7 @@ import { SpacerComponent } from '@app/components/spacer/spacer.component';
 import { ExpandingTextComponent } from '@app/components/expanding-text/expanding-text.component';
 import { AppHeaderComponent } from '@app/components/app-header/app-header.component';
 import { HeaderTitleBarComponent } from '@app/components/header-title-bar/header-title-bar.component';
+import { PrimaryButtonComponent } from '@app/components/primary-button/primary-button.component';
 
 // Selectors
 import { BaseSelectorTwoComponent } from '@app/components/component-selectors/description-selector/base-selector.component';
@@ -78,6 +79,7 @@ import { HeaderTitleBarSelectorComponent } from '@app/components/component-selec
     ExpandingTextComponent,
     AppHeaderComponent,
     HeaderTitleBarComponent,
+    PrimaryButtonComponent,
     LoadConfigDialogComponent,
   ],
   imports: [

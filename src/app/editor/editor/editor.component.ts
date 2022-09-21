@@ -52,7 +52,7 @@ export class EditorComponent implements OnInit {
     loadHeadlineSelector: this.es.loadDynamicHeadline({}),
     headlineTwoSelector: this.es.createHeadlineTwo({}),
     headlineThreeSelector: this.es.createHeadlineThree({}),
-    primaryButtonSelector: this.es.createDynamicButton({}),
+    primaryButtonSelector: this.es.createPrimaryButton({}),
     inputSelector: this.es.createDynamicInput({}),
     slimEditorSelector: this.es.createSlimEditor({}),
     spacerSelector: this.es.createSpacer({}),
@@ -179,7 +179,7 @@ export class EditorComponent implements OnInit {
         if (element.component === 'primaryButton') {
           const index = this.luu.indexOf(element);
           this.finalConfig.push(
-            this.es.loadDynamicButton(
+            this.es.loadPrimaryButton(
               JSON.parse(this.luu[index].configuration_json)
             )
           );
@@ -296,7 +296,7 @@ export class EditorComponent implements OnInit {
   }
 
   addPrimaryButton(button: any): any {
-    this.finalConfig.push(this.es.createDynamicButton(button));
+    this.finalConfig.push(this.es.createPrimaryButton(button));
   }
 
   addSlimEntry(input: any): any {
@@ -325,6 +325,7 @@ export class EditorComponent implements OnInit {
 
   addExpandingText(expandingText: any): any {
     this.finalConfig.push(this.es.createExpandingText(expandingText));
+    console.log(this.finalConfig);
   }
 
   // Removes the headline from the FormArray
@@ -751,28 +752,36 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Text: value.Text,
-              CommandName: value.CommandName,
-              CommandParameter: value.CommandParameter,
-              BackgroundColor: value.BackgroundColor,
-              CornerRadius: value.CornerRadius,
-              Icon: value.Icon,
-              ShowIcon: value.ShowIcon,
+              Text: value.primaryButton.Text,
+              CommandName: value.primaryButton.CommandName,
+              CommandParameter: value.primaryButton.CommandParameter,
+              BackgroundColor: value.primaryButton.BackgroundColor,
+              CornerRadius: value.primaryButton.CornerRadius,
+              Icon: value.primaryButton.Icon,
+              ShowIcon: value.primaryButton.ShowIcon,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.primaryButton.Padding.top,
+                right: value.primaryButton.Padding.right,
+                bottom: value.primaryButton.Padding.bottom,
+                left: value.primaryButton.Padding.left,
+                HorizontalThickness:
+                  value.primaryButton.Padding.left +
+                  value.primaryButton.Padding.right,
+                VerticalThickness:
+                  value.primaryButton.Padding.top +
+                  value.primaryButton.Padding.bottom,
               },
               Margin: {
-                top: value.Margin.top,
-                right: value.Margin.right,
-                bottom: value.Margin.bottom,
-                left: value.Margin.left,
-                HorizontalThickness: value.Margin.left + value.Margin.right,
-                VerticalThickness: value.Margin.top + value.Margin.bottom,
+                top: value.primaryButton.Margin.top,
+                right: value.primaryButton.Margin.right,
+                bottom: value.primaryButton.Margin.bottom,
+                left: value.primaryButton.Margin.left,
+                HorizontalThickness:
+                  value.primaryButton.Margin.left +
+                  value.primaryButton.Margin.right,
+                VerticalThickness:
+                  value.primaryButton.Margin.top +
+                  value.primaryButton.Margin.bottom,
               },
             },
           };

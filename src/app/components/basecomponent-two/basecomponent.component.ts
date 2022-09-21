@@ -44,8 +44,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -61,8 +62,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = true;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -78,8 +80,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -97,6 +100,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.header = false;
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = true;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -112,8 +116,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -129,8 +134,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -146,8 +152,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -163,8 +170,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -180,8 +188,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = true;
     this.es.header = false;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -197,8 +206,9 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.slimEditorEdit = false;
     this.es.spacer = false;
     this.es.header = true;
-    this.es.expandingTextEdit = true;
+    this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
     this.options = {
       disabled: true,
     };
@@ -216,6 +226,25 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.header = false;
     this.es.expandingTextEdit = true;
     this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  primaryButtonEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = true;
     this.options = {
       disabled: true,
     };
@@ -423,6 +452,16 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setPrimaryButtonBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      primaryButton: { BackgroundColor: color },
+    });
+    console.log(this.components);
+  }
+
   setAppheaderBackgroundColor(color: any, i: number) {
     const index = this.headers.at(i);
     this.backgroundColorChanged.emit(index);
@@ -538,7 +577,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.iconChanged.emit(index);
     this.iconChanged.emit(icon);
     index.patchValue({
-      Icon: icon,
+      primaryButton: { Icon: icon },
     });
   }
 
@@ -547,17 +586,22 @@ export class BasecomponentTwoComponent implements OnInit {
   /////////////////////////////////////////////////////////
 
   update(i: number) {
-    const headerIndex = this.headers.at(i);
-
-    // TODO: this getRawValue pops an error after each update not in header, research and fix.
-    // const headerUpdate = headerIndex.getRawValue();
-
     const index = this.components.at(i);
     const objUpdate = index.getRawValue();
-    const headerObjUpdate = index.getRawValue();
 
-    headerIndex.patchValue({ headerObjUpdate });
     index.patchValue({ objUpdate });
+
+    // Resets the ability to drag components
+    this.options = {
+      disabled: false,
+    };
+  }
+
+  updateHeaderConfig(i: number) {
+    const headerIndex = this.headers.at(i);
+    const headerUpdate = headerIndex.getRawValue();
+
+    headerIndex.patchValue({ headerUpdate });
 
     // Resets the ability to drag components
     this.options = {
