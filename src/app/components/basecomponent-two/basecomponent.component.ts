@@ -29,6 +29,7 @@ export class BasecomponentTwoComponent implements OnInit {
 
   options: Options = {
     disabled: false,
+    revertOnSpill: true,
   };
   //////////////////////////////////////////////////////////////////////////
   // SERVICE BOOLEANS TO SHOW/HIDE SPECIFIC FORMARRAY INPUTS WITH *ngIf's //

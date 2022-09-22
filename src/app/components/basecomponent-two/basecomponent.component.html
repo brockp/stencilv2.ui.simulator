@@ -365,15 +365,9 @@
               <div>
                 <!-- Actual component -->
                 <ng-template viewMode>
-                  <!-- Non-image component -->
+
                   <section class="component-hover">
-                    <!-- Delete component button -->
-                    <div class="relative">
-                      <mat-icon class="delete-component" (click)="removeComponent(i)">
-                        delete_forever
-                      </mat-icon>
-                    </div>
-                    <!-- Delete component button -->
+
 
                     <!-- Headline component -->
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
@@ -421,6 +415,12 @@
                   <!-- EDITABLE PREVIEW OF COMPONENTS -->
                   <!-- ////////////////////////////// -->
                   <section class="component-edit-mode">
+                    <!-- Delete component button -->
+                    <div class="relative flex justify-end items-end mr-1 mt-1">
+                      <mat-icon (click)="removeComponent(i)">delete_forever
+                      </mat-icon>
+                    </div>
+                    <!-- Delete component button -->
                     <!-- Headline component -->
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
                     <!-- Headline component -->
