@@ -82,6 +82,7 @@
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
+                              <button (click)="setIcon('', i)">None</button>
                             </section>
                             <h2 class="edit-section-title">Right Icon:</h2>
                             <section
@@ -92,6 +93,7 @@
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
+                              <button (click)="setRightIcon('', i)">None</button>
                             </section>
                           </section>
                         </section>
@@ -131,6 +133,7 @@
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
+                              <button (click)="setHeaderTitleBarIcon('', i)">None</button>
                             </section>
 
                             <h2 class="edit-section-title">Left Command Name:</h2>
@@ -150,6 +153,7 @@
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
+                              <button (click)="setHeaderTitleBarRightIcon('', i)">None</button>
                             </section>
 
                             <h2 class="edit-section-title">Right Command Name:</h2>
@@ -501,7 +505,7 @@
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
-
+                              <button (click)="changeIcon('', i)">None</button>
                             </section>
                           </section>
 

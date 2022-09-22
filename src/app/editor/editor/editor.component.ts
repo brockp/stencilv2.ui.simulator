@@ -947,6 +947,32 @@ export class EditorComponent implements OnInit {
           };
           return newObj;
         }
+
+        let expandingText;
+        if (value.component === 'expandingText') {
+          expandingText = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              HeaderText: value.expandingText.HeaderText,
+              DetailText: value.expandingText.DetailText,
+            },
+          };
+          console.log('New expandingText: ', expandingText);
+          let configuration_json = JSON.stringify(
+            expandingText?.configuration_json
+          );
+
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
+          };
+          return newObj;
+        }
       });
     };
 
