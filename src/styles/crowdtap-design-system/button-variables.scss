@@ -14,13 +14,3 @@ $button-focus-border-color: #1e6fdb;
 $button-filled-small-height: 40;
 $button-filled-medium-height: 48;
 $button-filled-large-height: 56;
-
-.crowdtap-primary-button {
-  border-radius: $button-default-border-radius;
-  font-weight: $button-default-font-weight;
-  font-size: $button-default-font-size;
-  line-height: $button-default-line-height;
-  height: $button-filled-medium-height;
-  width: fit-content;
-  @apply flex justify-center items-center font-quicksand;
-}

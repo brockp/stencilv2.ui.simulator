@@ -2803,10 +2803,10 @@ export class EditorService {
       ShowIcon: false,
       CornerRadius: '',
       Padding: this.fb.group({
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
+        top: 16,
+        right: 16,
+        bottom: 16,
+        left: 16,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -2898,7 +2898,7 @@ export class EditorService {
       }),
       appHeader: this.fb.group({
         display: true,
-        BackgroundColor: '',
+        BackgroundColor: '#24232B',
         Column1Config: this.fb.group({
           HorizontalOptions: 'Start',
         }),
@@ -3255,7 +3255,7 @@ export class EditorService {
       headerTitleBar: this.fb.group({
         display: true,
         TextColor: '',
-        BackgroundColor: '',
+        BackgroundColor: '#24232B',
         LeftIcon: 'chevron_left',
         RightIcon: 'chevron_right',
         Title: 'Default',
@@ -4169,7 +4169,7 @@ export class EditorService {
       Source: 'blank.png',
       Icon: '',
       ShowIcon: false,
-      CornerRadius: 50,
+      CornerRadius: 100,
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -4298,14 +4298,14 @@ export class EditorService {
         Text: 'Primary Button Text',
         CommandName: '',
         CommandParameter: '',
-        BackgroundColor: '#900',
+        BackgroundColor: '#3589F9',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
+          top: 16,
+          right: 32,
+          bottom: 16,
+          left: 32,
         }),
         Margin: this.fb.group({
           top: 0,
@@ -4338,7 +4338,7 @@ export class EditorService {
       Source: 'blank.png',
       Icon: '',
       ShowIcon: false,
-      CornerRadius: '',
+      CornerRadius: 100,
       Padding: this.fb.group({
         top: 0,
         right: 0,

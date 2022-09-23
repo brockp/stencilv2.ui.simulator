@@ -2,7 +2,7 @@
 display: 'grid',
 height: appHeader.value.Height + 'px',
 'align-items': 'center',
-'grid-template-columns': 'repeat(3, minmax(0, 1fr))',
+'grid-template-columns': 'repeat(2, minmax(0, 1fr))',
 'background-color': appHeader.value.appHeader.BackgroundColor,
 'padding-top': appHeader.value.Padding.top + 'px',
 'padding-right': appHeader.value.Padding.right + 'px',
@@ -18,16 +18,12 @@ height: appHeader.value.Height + 'px',
   <div [ngStyle]="{display: 'flex',
 'align-items': 'center',
 'justify-content': this.Column1Config}">
-    <mat-icon>{{ appHeader.value.appHeader.leftIcon }}</mat-icon>
-  </div>
-
-  <div>
-    <img class="w-full h-8" *ngIf="imgHost" [src]="imgHost + appHeader.value.appHeader.logo" alt="Logo" />
+    <img class="h-8" *ngIf="imgHost" [src]="imgHost + appHeader.value.appHeader.logo" alt="Logo" />
   </div>
 
   <div [ngStyle]="{display: 'flex',
 'align-items': 'center',
 'justify-content': this.Column2Config}">
-    <mat-icon>{{ appHeader.value.appHeader.rightIcon }}</mat-icon>
+    <img src="../../../assets/0.svg">
   </div>
 </section>

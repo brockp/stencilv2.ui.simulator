@@ -39,6 +39,12 @@ export class ColorsService {
         textColor: 'text-white',
       },
       {
+        name: 'CT-PRIMARY',
+        color: '#24232B',
+        class: 'bg-ct-primary',
+        textColor: 'text-white',
+      },
+      {
         name: 'P. BLACK',
         color: '#1A152E',
         class: 'bg-purpleblack',
