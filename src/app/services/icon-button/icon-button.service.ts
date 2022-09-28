@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { HotToastService } from '@ngneat/hot-toast';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -15,11 +15,7 @@ export class IconButtonService {
   private apiURL = API_ENDPOINT;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
 
-  constructor(
-    private httpClient: HttpClient,
-    private toasty: HotToastService,
-    private clipboard: Clipboard
-  ) {}
+  constructor(private httpClient: HttpClient, private clipboard: Clipboard) {}
 
   getIconButton(id: number): Observable<any> {
     return this.httpClient
@@ -42,11 +38,11 @@ export class IconButtonService {
       )
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Icon Button Updated!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Icon Button Updated!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return call;
   }
@@ -72,10 +68,10 @@ export class IconButtonService {
   copy(object: any) {
     this.clipboard.copy(JSON.stringify(object));
 
-    this.toasty.show('JSON Copied!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('JSON Copied!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
   }
 }

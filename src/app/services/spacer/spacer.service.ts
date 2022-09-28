@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { HotToastService } from '@ngneat/hot-toast';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -14,11 +14,7 @@ export class SpacerService {
   private apiURL = API_ENDPOINT;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
 
-  constructor(
-    private httpClient: HttpClient,
-    private clipboard: Clipboard,
-    private toasty: HotToastService
-  ) {}
+  constructor(private httpClient: HttpClient, private clipboard: Clipboard) {}
 
   getSpacer(id: number | undefined): Observable<any> {
     return this.httpClient
@@ -41,11 +37,11 @@ export class SpacerService {
       )
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Spacer Updated!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Spacer Updated!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return call;
   }
@@ -71,10 +67,10 @@ export class SpacerService {
   copy(object: any) {
     this.clipboard.copy(JSON.stringify(object));
 
-    this.toasty.show('JSON Copied!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('JSON Copied!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
   }
 }

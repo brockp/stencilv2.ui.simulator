@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HotToastService } from '@ngneat/hot-toast';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -16,7 +16,6 @@ export class EditorService {
   public finalArray: any[] = [];
   public headerArray: any[] = [];
   public isHidden!: boolean;
-  public iconButton = false;
   public image = false;
   public header = false;
   public description = false;
@@ -29,36 +28,23 @@ export class EditorService {
   public expandingTextEdit = false;
   public headerTitleBarEdit = false;
   public primaryButtonEdit = false;
+  public headlineTwoEdit = false;
+  public headlineThreeEdit = false;
 
-  constructor(
-    public fb: FormBuilder,
-    private http: HttpClient,
-    private toasty: HotToastService
-  ) {}
+  constructor(public fb: FormBuilder, private http: HttpClient) {}
 
   // Get & Load image Component
   /////////////////////////////////////////////////
-  public createBaseComponent(image: any): any {
+  public createBaseComponent(image: any): FormGroup {
     return this.fb.group({
       id: '',
       component: 'image',
       Text: '',
       TextSize: '32',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
       TextColor: '#62b4ff',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: 85,
-      ImageWidth: 85,
-      ImageHeight: 0,
       FullBleedHorizontal: false,
-      Height: 0,
-      Source: 'refer-a-friend.svg',
-      Icon: '',
-      ShowIcon: false,
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -71,8 +57,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'question.svg',
+        Width: 100,
+        Height: 0,
+        ImageWidth: 100,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -207,32 +240,20 @@ export class EditorService {
     });
   }
 
-  public loadBaseComponent(image: any): any {
+  public loadBaseComponent(image: any): FormGroup {
     return this.fb.group({
       id: '',
       component: 'image',
-      Text: '',
       TextSize: '32',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
       TextColor: '#62b4ff',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: image.BackgroundColor,
-      Width: image.ImageWidth,
-      ImageWidth: image.ImageWidth,
-      ImageHeight: image.ImageHeight,
       FullBleedHorizontal: false,
-      Height: image.ImageHeight,
-      Source: image.Source,
-      Icon: '',
-      ShowIcon: false,
       Padding: this.fb.group({
-        top: image.Padding.top,
-        right: image.Padding.right,
-        bottom: image.Padding.bottom,
-        left: image.Padding.left,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -240,8 +261,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: image.Source,
+        Width: image.ImageWidth,
+        Height: image.ImageHeight,
+        ImageWidth: image.ImageWidth,
+        ImageHeight: image.ImageHeight,
+        BackgroundColor: image.BackgroundColor,
+        Padding: this.fb.group({
+          top: image.Padding.top,
+          right: image.Padding.right,
+          bottom: image.Padding.bottom,
+          left: image.Padding.left,
+        }),
+        CommandName: image.CommandName,
+        CommandParameter: image.CommandParameter,
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -379,28 +447,15 @@ export class EditorService {
 
   // Get & Load plainText Component
   /////////////////////////////////////////////////
-  public createBaseComponentTwo(plainText: any): any {
+  public createBaseComponentTwo(plainText: any): FormGroup {
     return this.fb.group({
       id: '',
       component: 'plainText',
-      Text: '',
       TextSize: '16',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
       TextColor: '#62b4ff',
       FontWeight: '500',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -413,8 +468,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -549,33 +651,20 @@ export class EditorService {
     });
   }
 
-  public loadPlaintext(plainText: any): any {
+  public loadPlaintext(plainText: any): FormGroup {
     return this.fb.group({
       id: '',
       component: 'plainText',
-      Text: '',
       TextSize: plainText.FontSize,
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
       TextColor: plainText.TextColor,
       FontWeight: '500',
-      ButtonTextColor: '',
-      BackgroundColor: plainText.BackgroundColor,
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
-        top: plainText.Padding.top,
-        right: plainText.Padding.right,
-        bottom: plainText.Padding.bottom,
-        left: plainText.Padding.left,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -583,8 +672,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -722,28 +858,15 @@ export class EditorService {
 
   // Get & Load h1 Component
   /////////////////////////////////////////////////
-  public createDynamicHeadline(headline: any): any {
+  public createDynamicHeadline(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h1',
-      Text: 'Headline',
       TextSize: '32',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
-      TextColor: '#62b4ff',
+      TextColor: '',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -756,8 +879,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: 'Headline One',
+        TextColor: '#ffffff',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -892,33 +1062,20 @@ export class EditorService {
     });
   }
 
-  public loadDynamicHeadline(headline: any): any {
+  public loadDynamicHeadline(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h1',
-      Text: headline.Text,
       TextSize: '32',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
-      TextColor: headline.TextColor,
+      TextColor: '',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: headline.BackgroundColor,
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
-        top: headline.top,
-        right: headline.right,
-        bottom: headline.bottom,
-        left: headline.left,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -926,8 +1083,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: headline.Text,
+        TextColor: headline.TextColor,
+        BackgroundColor: headline.BackgroundColor,
+        Padding: this.fb.group({
+          top: headline.top,
+          right: headline.right,
+          bottom: headline.bottom,
+          left: headline.left,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1065,28 +1269,15 @@ export class EditorService {
 
   // Get & Load h2 Component
   /////////////////////////////////////////////////
-  public createHeadlineTwo(headline: any): any {
+  public createHeadlineTwo(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h2',
-      Text: 'Headline h2',
       TextSize: '28',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
       TextColor: '#62b4ff',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -1099,8 +1290,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: 'Headline Two',
+        TextColor: '#ffffff',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1235,33 +1473,20 @@ export class EditorService {
     });
   }
 
-  public loadHeadlineTwo(headline: any): any {
+  public loadHeadlineTwo(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h2',
-      Text: headline.Text,
       TextSize: '28',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
-      TextColor: headline.TextColor,
+      TextColor: '',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: headline.BackgroundColor,
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
-        top: headline.top,
-        right: headline.right,
-        bottom: headline.bottom,
-        left: headline.left,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -1269,8 +1494,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: headline.Text,
+        TextColor: headline.TextColor,
+        BackgroundColor: headline.BackgroundColor,
+        Padding: this.fb.group({
+          top: headline.top,
+          right: headline.right,
+          bottom: headline.bottom,
+          left: headline.left,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1408,28 +1680,15 @@ export class EditorService {
 
   // Get & Load h3 Component
   /////////////////////////////////////////////////
-  public createHeadlineThree(headline: any): any {
+  public createHeadlineThree(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h3',
-      Text: 'Headline h3',
       TextSize: '20',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
-      TextColor: '#62b4ff',
+      TextColor: '',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -1442,8 +1701,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: 'Headline Three',
+        TextColor: '#ffffff',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1578,33 +1884,20 @@ export class EditorService {
     });
   }
 
-  public loadHeadlineThree(headline: any): any {
+  public loadHeadlineThree(headline: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'h3',
-      Text: headline.Text,
       TextSize: '20',
       TextAlignment: 'start',
-      ButtonTextSize: '',
-      ButtonText: '',
-      TextColor: headline.TextColor,
+      TextColor: '',
       FontWeight: '700',
-      ButtonTextColor: '',
-      BackgroundColor: headline.BackgroundColor,
-      Width: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Height: '',
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
-        top: headline.Padding.top,
-        right: headline.Padding.right,
-        bottom: headline.Padding.bottom,
-        left: headline.Padding.left,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -1612,8 +1905,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: headline.Text,
+        TextColor: headline.TextColor,
+        BackgroundColor: headline.BackgroundColor,
+        Padding: this.fb.group({
+          top: headline.top,
+          right: headline.right,
+          bottom: headline.bottom,
+          left: headline.left,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1751,28 +2091,15 @@ export class EditorService {
 
   // Get & Load slimEntry Component
   /////////////////////////////////////////////////
-  public createDynamicInput(slimEntry: any): any {
+  public createDynamicInput(slimEntry: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'slimEntry',
-      Text: '',
       TextAlignment: 'start',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -1785,8 +2112,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -1921,28 +2295,15 @@ export class EditorService {
     });
   }
 
-  public loadSlimentry(slimEntry: any): any {
+  public loadSlimentry(slimEntry: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'slimEntry',
-      Text: '',
       TextAlignment: 'start',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -1955,8 +2316,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -2094,28 +2502,15 @@ export class EditorService {
 
   // Get & Load slimEditor Component
   /////////////////////////////////////////////////
-  public createSlimEditor(slimEditor: any): any {
+  public createSlimEditor(slimEditor: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'slimEditor',
-      Text: '',
       TextAlignment: 'start',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -2128,8 +2523,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -2263,28 +2705,15 @@ export class EditorService {
     });
   }
 
-  public loadSlimEditor(slimEditor: any): any {
+  public loadSlimEditor(slimEditor: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'slimEditor',
-      Text: '',
       TextAlignment: 'start',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -2297,8 +2726,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -2435,45 +2911,79 @@ export class EditorService {
 
   // Get & Load dropDown Component
   /////////////////////////////////////////////////
-  public createDynamicDropdown(dropdown: any): any {
+  public createDynamicDropdown(dropdown: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'dropdown',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
-      expandingText: this.fb.group({
-        HeaderText: '',
-        DetailText: '',
-      }),
       Margin: this.fb.group({
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
+      }),
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
+      expandingText: this.fb.group({
+        HeaderText: '',
+        DetailText: '',
       }),
       plainText: this.fb.group({
         Text: '',
@@ -2606,28 +3116,15 @@ export class EditorService {
     });
   }
 
-  public loadDynamicDropdown(dropdown: any): any {
+  public loadDynamicDropdown(dropdown: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'dropdown',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -2640,8 +3137,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -2780,33 +3324,20 @@ export class EditorService {
 
   // Get & Load appHeader Component
   /////////////////////////////////////////////////
-  public createAppHeader(header: any): any {
+  public createAppHeader(header: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'appHeader',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '72',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
-        top: 16,
-        right: 16,
-        bottom: 16,
-        left: 16,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       }),
       Margin: this.fb.group({
         top: 0,
@@ -2814,8 +3345,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -2950,28 +3528,15 @@ export class EditorService {
     });
   }
 
-  public loadAppHeader(header: any): any {
+  public loadAppHeader(header: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'appHeader',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '72',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -2984,8 +3549,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -3123,28 +3735,15 @@ export class EditorService {
 
   // Get & Load headerTitleBar Component
   /////////////////////////////////////////////////
-  public createHeaderTitleBar(header: any): any {
+  public createHeaderTitleBar(header: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'headerTitleBar',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '72',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -3157,8 +3756,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -3293,28 +3939,15 @@ export class EditorService {
     });
   }
 
-  public loadHeaderTitleBar(header: any): any {
+  public loadHeaderTitleBar(header: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'headerTitleBar',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '72',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -3327,8 +3960,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -3466,28 +4146,15 @@ export class EditorService {
 
   // Get & Load spacer Component
   /////////////////////////////////////////////////
-  public createSpacer(spacer: any): any {
+  public createSpacer(spacer: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'spacer',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -3500,8 +4167,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -3635,28 +4349,15 @@ export class EditorService {
     });
   }
 
-  public loadSpacer(spacer: any): any {
+  public loadSpacer(spacer: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'spacer',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -3669,8 +4370,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -3807,28 +4555,15 @@ export class EditorService {
 
   // Get & Load expandingText Component
   /////////////////////////////////////////////////
-  public createExpandingText(expandingText: any): any {
+  public createExpandingText(expandingText: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'expandingText',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -3841,8 +4576,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: 'HeaderText',
         DetailText: 'Detail texty text',
@@ -3976,28 +4758,15 @@ export class EditorService {
     });
   }
 
-  public loadExpandingText(expandingText: any): any {
+  public loadExpandingText(expandingText: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'expandingText',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: '',
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -4010,8 +4779,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: expandingText.HeaderText,
         DetailText: expandingText.DetailText,
@@ -4148,28 +4964,15 @@ export class EditorService {
 
   // Get & Load expandingText Component
   /////////////////////////////////////////////////
-  public createPrimaryButton(primaryButton: any): any {
+  public createPrimaryButton(primaryButton: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'primaryButton',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: 100,
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -4182,8 +4985,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -4317,28 +5167,15 @@ export class EditorService {
     });
   }
 
-  public loadPrimaryButton(primaryButton: any): any {
+  public loadPrimaryButton(primaryButton: any): FormGroup {
     return this.fb.group({
       id: 1,
       component: 'primaryButton',
-      Text: '',
       TextAlignment: '',
-      ButtonText: '',
       TextSize: '',
-      ButtonTextSize: '',
       TextColor: '',
       FontWeight: '',
-      ButtonTextColor: '',
-      BackgroundColor: '',
-      Width: '',
-      Height: '',
-      ImageWidth: '',
-      ImageHeight: '',
       FullBleedHorizontal: false,
-      Source: 'blank.png',
-      Icon: '',
-      ShowIcon: false,
-      CornerRadius: 100,
       Padding: this.fb.group({
         top: 0,
         right: 0,
@@ -4351,8 +5188,55 @@ export class EditorService {
         bottom: 0,
         left: 0,
       }),
-      CommandName: '',
-      CommandParameter: '',
+      h1: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h2: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      h3: this.fb.group({
+        Text: '',
+        TextColor: '',
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+      }),
+      graphic: this.fb.group({
+        Source: 'blank.png',
+        Width: 0,
+        Height: 0,
+        ImageWidth: 0,
+        ImageHeight: 0,
+        BackgroundColor: '',
+        Padding: this.fb.group({
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }),
+        CommandName: '',
+        CommandParameter: '',
+      }),
       expandingText: this.fb.group({
         HeaderText: '',
         DetailText: '',
@@ -4589,11 +5473,11 @@ export class EditorService {
       )
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Compostion ' + configName + ' Published!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Compostion ' + configName + ' Published!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return call;
   }

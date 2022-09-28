@@ -24,9 +24,6 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "@ngneat/edit-in-place": "^1.6.1",
-    "@ngneat/helipopper": "^5.1.4",
-    "@ngneat/hot-toast": "^4.1.0",
-    "@ngneat/overview": "^3.0.4",
     "@ngneat/tailwind": "^7.0.3",
     "animate.css": "^4.1.1",
     "keen-slider": "^6.6.4",
@@ -38,7 +35,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.1.4",
+    "@angular-devkit/build-angular": "^13.3.9",
     "@angular/cli": "~13.1.4",
     "@angular/compiler-cli": "~13.1.0",
     "@tailwindcss/forms": "^0.5.0",

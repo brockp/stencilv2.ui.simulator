@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VersionButtonComponent } from './version-button.component';
+import { GraphicComponent } from './graphic.component';
 
-describe('VersionButtonComponent', () => {
-  let component: VersionButtonComponent;
-  let fixture: ComponentFixture<VersionButtonComponent>;
+describe('GraphicComponent', () => {
+  let component: GraphicComponent;
+  let fixture: ComponentFixture<GraphicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VersionButtonComponent ]
+      declarations: [ GraphicComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VersionButtonComponent);
+    fixture = TestBed.createComponent(GraphicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

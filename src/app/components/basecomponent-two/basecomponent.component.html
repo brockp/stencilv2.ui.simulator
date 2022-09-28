@@ -58,7 +58,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setAppheaderBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setAppheaderBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
                             <h2 class="edit-section-title">Logo:</h2>
@@ -77,8 +77,7 @@
                             <section
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let icon of icons">
-                                <button class="color-button" class="mat-icon-edit-view" (click)="setIcon(icon.name, i)"
-                                  [tippy]="icon.name">
+                                <button class="color-button" class="mat-icon-edit-view" (click)="setIcon(icon.name, i)">
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
@@ -89,7 +88,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let icon of icons">
                                 <button class="color-button" class="mat-icon-edit-view"
-                                  (click)="setRightIcon(icon.name, i)" [tippy]="icon.name">
+                                  (click)="setRightIcon(icon.name, i)">
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
@@ -110,7 +109,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setHeaderTitleBarTextColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setHeaderTitleBarTextColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -119,8 +118,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setHeaderTitleBarBackgroundColor(color.color, i)"
-                                  [tippy]="color.name"></button>
+                                  (click)="setHeaderTitleBarBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -129,7 +127,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let icon of icons">
                                 <button class="color-button" class="mat-icon-edit-view"
-                                  (click)="setHeaderTitleBarIcon(icon.name, i)" [tippy]="icon.name">
+                                  (click)="setHeaderTitleBarIcon(icon.name, i)">
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
@@ -149,7 +147,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let icon of icons">
                                 <button class="color-button" class="mat-icon-edit-view"
-                                  (click)="setHeaderTitleBarRightIcon(icon.name, i)" [tippy]="icon.name">
+                                  (click)="setHeaderTitleBarRightIcon(icon.name, i)">
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
@@ -369,9 +367,17 @@
                   <section class="component-hover">
 
 
-                    <!-- Headline component -->
+                    <!-- H1 component -->
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
-                    <!-- Headline component -->
+                    <!-- H1 component -->
+
+                    <!-- H2 component -->
+                    <app-headline-two (click)="headerTwoEdit()" [headline]="base"></app-headline-two>
+                    <!-- H2 component -->
+
+                    <!-- H3 component -->
+                    <app-headline-three (click)="headerThreeEdit()" [headline]="base"></app-headline-three>
+                    <!-- H3 component -->
 
                     <!-- Expanding Text component -->
                     <app-expanding-text (click)="expandingTextEdit()" [expandingText]="base"></app-expanding-text>
@@ -382,8 +388,7 @@
                     <!-- plainText component -->
 
                     <!-- Image component -->
-                    <img (click)="imageluu()" class="mx-auto" [src]="imgHost + base.value.Source"
-                      [ngStyle]="{width: base.value.ImageWidth + '%'}" alt="Graphic" />
+                    <app-graphic (click)="imageEdit()" [graphic]="base"></app-graphic>
                     <!-- Image component -->
 
                     <!-- Slimentry component -->
@@ -427,6 +432,14 @@
                     <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
                     <!-- Headline component -->
 
+                    <!-- H2 component -->
+                    <app-headline-two (click)="headerTwoEdit()" [headline]="base"></app-headline-two>
+                    <!-- H2 component -->
+
+                    <!-- H3 component -->
+                    <app-headline-three (click)="headerThreeEdit()" [headline]="base"></app-headline-three>
+                    <!-- H3 component -->
+
                     <!-- Expanding Text component -->
                     <app-expanding-text (click)="expandingTextEdit()" [expandingText]="base"></app-expanding-text>
                     <!-- Expanding Text component -->
@@ -436,8 +449,7 @@
                     <!-- plainText component -->
 
                     <!-- Image component -->
-                    <img (click)="imageluu()" class="mx-auto" [src]="imgHost + base.value.Source"
-                      [ngStyle]="{width: base.value.ImageWidth + '%'}" alt="Graphic" />
+                    <app-graphic (click)="imageEdit()" [graphic]="base"></app-graphic>
                     <!-- Image component -->
 
                     <!-- Slimentry component -->
@@ -488,7 +500,7 @@
                             class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                             <div *ngFor="let color of colorPalettes">
                               <button class="color-button" [class]="[color.class, color.textColor]"
-                                (click)="setPrimaryButtonBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                (click)="setPrimaryButtonBackgroundColor(color.color, i)"></button>
                             </div>
                           </section>
 
@@ -503,7 +515,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let icon of icons">
                                 <button class="color-button" class="mat-icon-edit-view"
-                                  (click)="changeIcon(icon.name, i)" [tippy]="icon.name">
+                                  (click)="changeIcon(icon.name, i)">
                                   <mat-icon>{{icon.name}}</mat-icon>
                                 </button>
                               </div>
@@ -556,7 +568,7 @@
                             class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                             <div *ngFor="let color of colorPalettes">
                               <button class="color-button" [class]="[color.class, color.textColor]"
-                                (click)="setPlaintextBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                (click)="setPlaintextBackgroundColor(color.color, i)"></button>
                             </div>
                           </section>
 
@@ -565,7 +577,7 @@
                             class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                             <div *ngFor="let color of colorPalettes">
                               <button class="color-button" [class]="[color.class, color.textColor]"
-                                (click)="setplainTextColor(color.color, i)" [tippy]="color.name"></button>
+                                (click)="setplainTextColor(color.color, i)"></button>
                             </div>
                           </section>
 
@@ -588,84 +600,206 @@
                         </section>
                       </section>
 
-                      <!-- H1 Text -->
-                      <section *ngIf="es.header || es.description">
-                        <h2 class="edit-section-title">Text:</h2>
-                        <textarea class="textarea-control" placeholder="Set initial value" type="text"
-                          formControlName="Text" rows="3" cols="33"></textarea>
+                      <!-- H1 -->
+                      <section *ngIf="es.header">
+                        <section formGroupName="h1">
+                          <h2 class="edit-section-title">Text:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="Text" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Text Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH1TextColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Background Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH1BackgroundColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Padding:</h2>
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </section>
+
+                      <!-- H2 -->
+                      <section *ngIf="es.headlineTwoEdit">
+                        <section formGroupName="h2">
+                          <h2 class="edit-section-title">Text:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="Text" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Text Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH2TextColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Background Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH2BackgroundColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Padding:</h2>
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
+                      </section>
+
+                      <!-- H3 -->
+                      <section *ngIf="es.headlineThreeEdit">
+                        <section formGroupName="h3">
+                          <h2 class="edit-section-title">Text:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="Text" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Text Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH3TextColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Background Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setH3BackgroundColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Padding:</h2>
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+                        </section>
                       </section>
 
                       <!-- Graphic -->
                       <section class="edit-section" *ngIf="es.image">
-                        <h2 class="edit-section-title">Image Width:</h2>
-                        <div class="flex gap-x-2 justify-between items-center">
-                          <label class="text-white text-noir text-xs font-normal" for="right">
-                            Width:
-                          </label>
-                          <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
-                            type="text" formControlName="ImageWidth" />
+                        <section formGroupName="graphic">
+                          <h2 class="edit-section-title">Image Width:</h2>
+                          <div class="flex gap-x-2 justify-between items-center">
+                            <label class="text-white text-noir text-xs font-normal" for="right">
+                              Width:
+                            </label>
+                            <input class="form-control w-12 overflow-hidden p-1" placeholder="Set initial value"
+                              type="text" formControlName="ImageWidth" />
+                            <label class="text-white text-noir text-xs font-normal" for="right">
+                              Height:
+                            </label>
+                            <input class="form-control w-12 overflow-hidden p-1 hover:cursor-not-allowed"
+                              placeholder="auto" type="text" formControlName="ImageHeight">
+                          </div>
 
-                          <label class="text-white text-noir text-xs font-normal" for="right">
-                            Height:
-                          </label>
-                          <input class="form-control w-12 overflow-hidden p-1 hover:cursor-not-allowed"
-                            placeholder="auto" type="text" formControlName="ImageHeight">
-                        </div>
+                          <h2 class="edit-section-title">Source:</h2>
+                          <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                            <button (click)="changeGraphic('girl-laying.svg', i)">
+                              <img src="../../../../../assets/girl-laying.svg" />
+                            </button>
+                            <button (click)="changeGraphic('girl-sitting.svg', i)">
+                              <img src="../../../../../assets/girl-sitting.svg" />
+                            </button>
+                            <button (click)="changeGraphic('question.svg', i)">
+                              <img src="../../../../../assets/question.svg" />
+                            </button>
+                            <button (click)="changeGraphic('refer-a-friend.svg', i)">
+                              <img src="../../../../../assets/refer-a-friend.svg" />
+                            </button>
+                            <button (click)="changeGraphic('signup-graphic-one.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-one.svg" />
+                            </button>
+                            <button (click)="changeGraphic('signup-graphic-two.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-two.svg" />
+                            </button>
+                            <button (click)="changeGraphic('sitting-blocks.svg', i)">
+                              <img src="../../../../../assets/sitting-blocks.svg" />
+                            </button>
+                          </section>
 
-                        <h2 class="edit-section-title">Source:</h2>
-                        <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
-                          <button (click)="changeGraphic('girl-laying.svg', i)">
-                            <img src="../../../../../assets/girl-laying.svg" />
-                          </button>
-                          <button (click)="changeGraphic('girl-sitting.svg', i)">
-                            <img src="../../../../../assets/girl-sitting.svg" />
-                          </button>
-                          <button (click)="changeGraphic('question.svg', i)">
-                            <img src="../../../../../assets/question.svg" />
-                          </button>
-                          <button (click)="changeGraphic('refer-a-friend.svg', i)">
-                            <img src="../../../../../assets/refer-a-friend.svg" />
-                          </button>
-                          <button (click)="changeGraphic('signup-graphic-one.svg', i)">
-                            <img src="../../../../../assets/signup-graphic-one.svg" />
-                          </button>
-                          <button (click)="changeGraphic('signup-graphic-two.svg', i)">
-                            <img src="../../../../../assets/signup-graphic-two.svg" />
-                          </button>
-                          <button (click)="changeGraphic('sitting-blocks.svg', i)">
-                            <img src="../../../../../assets/sitting-blocks.svg" />
-                          </button>
+                          <h2 class="edit-section-title">Background Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setImageBackgroundColor(color.color, i)"></button>
+                            </div>
+                          </section>
+
+                          <h2 class="edit-section-title">Padding:</h2>
+                          <div formGroupName="Padding">
+                            <app-padding-control>
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="top" paddingTop />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="right" paddingRight />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="bottom" paddingBottom />
+                              <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
+                                formControlName="left" paddingLeft />
+                            </app-padding-control>
+                          </div>
+
+                          <h2 class="edit-section-title">Command Name:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="CommandName" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Command Parameter:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="CommandParameter" rows="3" cols="33"></textarea>
                         </section>
                       </section>
-
-                      <!-- Text Color -->
-                      <section *ngIf="es.header">
-                        <h2 class="edit-section-title">Text Color:</h2>
-                        <section
-                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
-                          <div *ngFor="let color of colorPalettes">
-                            <button class="color-button" [class]="[color.class, color.textColor]"
-                              (click)="setHeaderTextColor(color.color, i)" [tippy]="color.name"></button>
-                          </div>
-                        </section>
-                      </section>
-
-                      <!-- Background Color -->
-                      <ng-container *ngIf="es.header || es.description || es.image">
-                        <h2 class="edit-section-title">Background Color:</h2>
-                        <section
-                          class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
-                          <div *ngFor="let color of colorPalettes">
-                            <button class="color-button" [class]="[color.class, color.textColor]"
-                              (click)="setBackgroundColor(color.color, i)" [tippy]="color.name"></button>
-                          </div>
-                        </section>
-                      </ng-container>
-
-
 
                       <!-- Padding -->
-                      <ng-container *ngIf="es.header || es.description || es.appHeader || es.image">
+                      <ng-container *ngIf="es.description || es.appHeader">
                         <h2 class="edit-section-title">Padding:</h2>
                         <div formGroupName="Padding">
                           <app-padding-control>
@@ -682,14 +816,14 @@
                       </ng-container>
 
                       <!-- CommandName -->
-                      <section *ngIf="es.description || es.image">
+                      <section *ngIf="es.description">
                         <h2 class="edit-section-title">Command Name:</h2>
                         <textarea class="textarea-control" placeholder="Set initial value" type="text"
                           formControlName="CommandName" rows="3" cols="33"></textarea>
                       </section>
 
                       <!-- CommandParameter -->
-                      <section *ngIf="es.description || es.image">
+                      <section *ngIf="es.description">
                         <h2 class="edit-section-title">Command Parameters:</h2>
                         <textarea class="textarea-control" placeholder="Set initial value" type="text"
                           formControlName="CommandParameter" rows="3" cols="33"></textarea>
@@ -783,7 +917,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setSlimentryBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setSlimentryBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -792,7 +926,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setInputBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setInputBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -801,7 +935,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setSlimentryTextColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setSlimentryTextColor(color.color, i)"></button>
                               </div>
                             </section>
                           </ng-container>
@@ -830,7 +964,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setSlimeditorBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setSlimeditorBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -839,8 +973,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setSlimeditorInputBackgroundColor(color.color, i)"
-                                  [tippy]="color.name"></button>
+                                  (click)="setSlimeditorInputBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -849,7 +982,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setSlimeditorTextColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setSlimeditorTextColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -926,7 +1059,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setDropdownTextColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setDropdownTextColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -935,7 +1068,7 @@
                               class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                               <div *ngFor="let color of colorPalettes">
                                 <button class="color-button" [class]="[color.class, color.textColor]"
-                                  (click)="setDropdownBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                  (click)="setDropdownBackgroundColor(color.color, i)"></button>
                               </div>
                             </section>
 
@@ -954,7 +1087,7 @@
                             class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
                             <div *ngFor="let color of colorPalettes">
                               <button class="color-button" [class]="[color.class, color.textColor]"
-                                (click)="setSpacerBackgroundColor(color.color, i)" [tippy]="color.name"></button>
+                                (click)="setSpacerBackgroundColor(color.color, i)"></button>
                             </div>
                           </section>
                         </div>
@@ -1105,49 +1238,9 @@
                             placeholder="set initial value"
                             formControlName="TextColor"
                           />
-                        </section>
+                        </section>           
 
-                        <section *ngIf="es.description || es.input || es.appHeader" formGroupName="Padding">
-                          <pre>Padding: </pre>
-                          <section>
-                            <label for="top">top: </label>
-                            <input
-                              class="code-form-control"
-                              type="text"
-                              placeholder="set initial value"
-                              formControlName="top"
-                            />
-                          </section>
-                          <section>
-                            <label for="right">right: </label>
-                            <input
-                              class="code-form-control"
-                              type="text"
-                              placeholder="set initial value"
-                              formControlName="right"
-                            />
-                          </section>
-                          <section>
-                            <label for="bottom">bottom: </label>
-                            <input
-                              class="code-form-control"
-                              type="text"
-                              placeholder="set initial value"
-                              formControlName="bottom"
-                            />
-                          </section>
-                          <section>
-                            <label for="left">left: </label>
-                            <input
-                              class="code-form-control"
-                              type="text"
-                              placeholder="set initial value"
-                              formControlName="left"
-                            />
-                          </section>
-                        </section>
-
-                        <section *ngIf="es.description || es.input || es.image" formGroupName="Margin">
+                        <section *ngIf="es.description || es.input" formGroupName="Margin">
                           <pre>Margin: </pre>
                           <section>
                             <label for="top">top: </label>
@@ -1167,15 +1260,27 @@
                           </section>
                         </section>
 
-                        <section *ngIf="es.image">
-                          <label for="icon">Graphic: </label>
-                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="Source" />
+                        <!-- Padding -->
+                        <section *ngIf="es.description || es.input || es.appHeader || es.image" formGroupName="Padding">
+                          <pre>Padding: </pre>
+                          <section>
+                            <label for="top">top: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="top" />
+                          </section>
+                          <section>
+                            <label for="right">right: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="right" />
+                          </section>
+                          <section>
+                            <label for="bottom">bottom: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="bottom" />
+                          </section>
+                          <section>
+                            <label for="left">left: </label>
+                            <input class="code-form-control" type="text" placeholder="set initial value" formControlName="left" />
+                          </section>
                         </section>
-
-                        <section *ngIf="es.image">
-                          <label for="icon">Width: </label>
-                          <input class="code-form-control" type="text" placeholder="set initial value" formControlName="ImageWidth" />
-                        </section>
+                        
 
                         <section *ngIf="es.description">
                           <label for="icon">BackgroundColor: </label>

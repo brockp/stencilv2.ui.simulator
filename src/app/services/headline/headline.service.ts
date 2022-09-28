@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { HotToastService } from '@ngneat/hot-toast';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class HeadlineService {
 
   constructor(
     private http: HttpClient,
-    private toasty: HotToastService,
+
     private clipboard: Clipboard
   ) {}
 
@@ -46,11 +46,11 @@ export class HeadlineService {
       .post<any>(this.apiURL + H1 + id, item)
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Saved h1' + H1 + id, {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Saved h1' + H1 + id, {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return payload;
   }
@@ -62,11 +62,11 @@ export class HeadlineService {
       .post<any>(this.apiURL + H2 + id, item)
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Saved h2' + H2 + id, {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Saved h2' + H2 + id, {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return payload;
   }
@@ -78,11 +78,11 @@ export class HeadlineService {
       .post<any>(this.apiURL + H3 + id, item)
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Saved h3' + H3 + id, {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Saved h3' + H3 + id, {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
 
     return payload;
   }
@@ -108,10 +108,10 @@ export class HeadlineService {
   copy(object: any) {
     this.clipboard.copy(JSON.stringify(object));
 
-    this.toasty.show('JSON Copied!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('JSON Copied!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
   }
 }

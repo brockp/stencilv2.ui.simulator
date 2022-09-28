@@ -111,10 +111,11 @@ export class EditorComponent implements OnInit {
     this.compName = name;
   }
 
-  gitIt(name: string) {
+  gitIt(name: string): void {
     this.es.getCompositionConfig(name).subscribe((data) => {
       this.luu = JSON.parse(JSON.stringify(data.ViewConfigs));
       this.headerLuu = JSON.parse(JSON.stringify(data.HeaderConfigs));
+      console.log(this.headerLuu);
 
       this.headerLuu.filter((element: any) => {
         if (element.component === 'appHeader') {
@@ -243,16 +244,6 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {
     this.colorPalettes = this.cs.getAppColors();
     this.openModal();
-  }
-
-  ngAfterViewInit(): void {}
-
-  iconButtonLuu() {
-    this.es.iconButton = true;
-  }
-
-  notIconButtonLuu() {
-    this.es.iconButton = false;
   }
 
   close(): void {

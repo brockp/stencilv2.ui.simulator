@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CopyButtonComponent } from './copy-button.component';
+import { HeadlineThreeComponent } from './headline-three.component';
 
-describe('CopyButtonComponent', () => {
-  let component: CopyButtonComponent;
-  let fixture: ComponentFixture<CopyButtonComponent>;
+describe('HeadlineThreeComponent', () => {
+  let component: HeadlineThreeComponent;
+  let fixture: ComponentFixture<HeadlineThreeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CopyButtonComponent ]
+      declarations: [ HeadlineThreeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CopyButtonComponent);
+    fixture = TestBed.createComponent(HeadlineThreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { HotToastService } from '@ngneat/hot-toast';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -15,11 +15,7 @@ export class DescriptionService {
   private id!: number;
   httpOptions = { headers: new HttpHeaders(HTTP_HEADERS) };
 
-  constructor(
-    private http: HttpClient,
-    private toasty: HotToastService,
-    private clipboard: Clipboard
-  ) {}
+  constructor(private http: HttpClient, private clipboard: Clipboard) {}
 
   getDescriptioneConfig(id: number): Observable<any> {
     return this.http
@@ -42,11 +38,11 @@ export class DescriptionService {
       )
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Description Updated!', {
-      theme: 'snackbar',
-      icon: '😎',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Description Updated!', {
+    //   theme: 'snackbar',
+    //   icon: '😎',
+    //   position: 'bottom-center',
+    // });
 
     return call;
   }
@@ -60,11 +56,11 @@ export class DescriptionService {
       )
       .pipe(catchError(this.errorHandler));
 
-    this.toasty.show('Description Created!', {
-      theme: 'snackbar',
-      icon: '😎',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('Description Created!', {
+    //   theme: 'snackbar',
+    //   icon: '😎',
+    //   position: 'bottom-center',
+    // });
 
     return call;
   }
@@ -96,10 +92,10 @@ export class DescriptionService {
   copy(object: any) {
     this.clipboard.copy(JSON.stringify(object));
 
-    this.toasty.show('JSON Copied!', {
-      theme: 'snackbar',
-      icon: '🤘',
-      position: 'bottom-center',
-    });
+    // this.toasty.show('JSON Copied!', {
+    //   theme: 'snackbar',
+    //   icon: '🤘',
+    //   position: 'bottom-center',
+    // });
   }
 }

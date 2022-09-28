@@ -158,7 +158,7 @@
             <section class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
               <div *ngFor="let color of colorPalettes">
                 <button class="color-button" [class]="[color.class, color.textColor]"
-                  (click)="changeVisaulConfigBgColor(color.color)" [tippy]="color.name"></button>
+                  (click)="changeVisaulConfigBgColor(color.color)"></button>
               </div>
             </section>
           </section>

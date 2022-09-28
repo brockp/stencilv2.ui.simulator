@@ -48,6 +48,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -66,6 +68,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -84,6 +88,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -102,6 +108,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = true;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -120,6 +128,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -138,6 +148,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -156,12 +168,14 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
   }
 
-  imageluu() {
+  imageEdit() {
     this.es.image = true;
     this.es.description = false;
     this.es.plainTextEdit = false;
@@ -174,6 +188,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -192,6 +208,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -210,6 +228,48 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  headerTwoEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = true;
+    this.es.headlineThreeEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  headerThreeEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = true;
     this.options = {
       disabled: true,
     };
@@ -228,6 +288,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = true;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -246,6 +308,8 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.expandingTextEdit = false;
     this.es.headerTitleBarEdit = false;
     this.es.primaryButtonEdit = true;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
     this.options = {
       disabled: true,
     };
@@ -399,6 +463,33 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setH1TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      h1: { TextColor: color },
+    });
+  }
+
+  setH2TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      h2: { TextColor: color },
+    });
+  }
+
+  setH3TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      h3: { TextColor: color },
+    });
+  }
+
   setplainTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
@@ -453,12 +544,49 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setH1BackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      h1: { BackgroundColor: color },
+    });
+  }
+
+  setH2BackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      h2: { BackgroundColor: color },
+    });
+  }
+
+  setH3BackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      h3: { BackgroundColor: color },
+    });
+  }
+
   setPrimaryButtonBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
       primaryButton: { BackgroundColor: color },
+    });
+    console.log(this.components);
+  }
+
+  setImageBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      graphic: { BackgroundColor: color },
     });
     console.log(this.components);
   }
@@ -560,7 +688,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.imageChanged.emit(index);
     this.imageChanged.emit(source);
     index.patchValue({
-      Source: source,
+      graphic: { Source: source },
     });
   }
 
