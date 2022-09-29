@@ -18,7 +18,7 @@ height: appHeader.value.Height + 'px',
   <div [ngStyle]="{display: 'flex',
 'align-items': 'center',
 'justify-content': this.Column1Config}">
-    <img class="h-8" *ngIf="imgHost" [src]="imgHost + appHeader.value.appHeader.logo" alt="Logo" />
+    <img class="h-8" *ngIf="imgHost" [attr.src]="imgHost + appHeader.value.appHeader.logo" alt="Logo" />
   </div>
 
   <div [ngStyle]="{display: 'flex',

@@ -32,7 +32,7 @@ export class EditorComponent implements OnInit {
   form = this.fb.group({
     visualConfig: this.fb.group({
       BackgroundColor: null,
-      BackgroundImage: null,
+      BackgroundImage: 'blank.png',
       Margin: this.fb.group({
         top: 0,
         right: 0,
