@@ -1,0 +1,31 @@
+<section *ngIf="headerWithIcon.value.headerWithIcon.display" [ngStyle]="{
+display: 'flex',
+height: headerWithIcon.value.Height + 'px',
+'align-items': 'center',
+'justify-content': 'center',
+'gap': '10px',
+'font-size': headerWithIcon.value.headerWithIcon.FontSize + 'px',
+'background-color': headerWithIcon.value.headerWithIcon.BackgroundColor,
+'color': headerWithIcon.value.headerWithIcon.TextColor,
+'padding-top': headerWithIcon.value.Padding.top + 'px',
+'padding-right': headerWithIcon.value.Padding.right + 'px',
+'padding-bottom': headerWithIcon.value.Padding.bottom + 'px',
+'padding-left': headerWithIcon.value.Padding.left + 'px',
+'margin-top': headerWithIcon.value.Margin.top + 'px',
+'margin-right': headerWithIcon.value.Margin.right + 'px',
+'margin-bottom': headerWithIcon.value.Margin.bottom + 'px',
+'margin-left': headerWithIcon.value.Margin.left + 'px',
+'box-shadow': '0px 3.34825px 11.1021px rgba(0, 0, 0, 0.7)'
+}">
+
+  <div [ngStyle]="{display: 'flex',
+'align-items': 'center',
+'justify-content': this.Column1Config}">
+    <mat-icon>{{ headerWithIcon.value.headerWithIcon.Icon }}</mat-icon>
+  </div>
+
+  <div class="flex justify-center items-center">
+    <h1>{{ headerWithIcon.value.headerWithIcon.Text }}</h1>
+  </div>
+
+</section>

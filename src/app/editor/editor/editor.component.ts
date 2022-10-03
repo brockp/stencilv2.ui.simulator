@@ -59,6 +59,7 @@ export class EditorComponent implements OnInit {
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
     headerTitleBarSelector: this.es.createHeaderTitleBar({}),
+    headerWithIconSelector: this.es.createHeaderWithIcon({}),
     expandingTextSelector: this.es.createExpandingText({}),
     headerConfig: this.fb.array([]),
     finalConfig: this.fb.array([]),
@@ -310,6 +311,10 @@ export class EditorComponent implements OnInit {
     this.headerConfig.push(this.es.createHeaderTitleBar(headerTitleBar));
   }
 
+  addHeaderWIcon(headerWIcon: any): any {
+    this.headerConfig.push(this.es.createHeaderWithIcon(headerWIcon));
+  }
+
   addSpacer(spacer: any): any {
     this.finalConfig.push(this.es.createSpacer(spacer));
   }
@@ -540,6 +545,44 @@ export class EditorComponent implements OnInit {
           console.log('headerTitleBar: ', headerTitleBar);
           let configuration_json = JSON.stringify(
             headerTitleBar?.configuration_json
+          );
+
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            encapsulated_views: null,
+            sections: null,
+          };
+          return newObj;
+        }
+
+        let headerWithIcon;
+        if (value.component === 'headerWithIcon') {
+          headerWithIcon = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              TextColor: value.headerWithIcon.TextColor,
+              BackgroundColor: value.headerWithIcon.BackgroundColor,
+              Icon: value.headerWithIcon.Icon,
+              ShowIcon: value.headerWithIcon.ShowIcon,
+              Text: value.headerWithIcon.Text,
+              FontSize: value.headerWithIcon.FontSize,
+              Padding: {
+                top: value.Padding.top,
+                right: value.Padding.right,
+                bottom: value.Padding.bottom,
+                left: value.Padding.left,
+              },
+              HorizontalThickness: value.Padding.left + value.Padding.right,
+              VerticalThickness: value.Padding.top + value.Padding.bottom,
+            },
+          };
+          console.log('headerWithIcon: ', headerWithIcon);
+          let configuration_json = JSON.stringify(
+            headerWithIcon?.configuration_json
           );
 
           let newObj = {

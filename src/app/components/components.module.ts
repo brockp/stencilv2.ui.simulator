@@ -17,6 +17,7 @@ import { PrimaryButtonComponent } from '@app/components/primary-button/primary-b
 import { GraphicComponent } from '@app/components/graphic/graphic.component';
 import { HeadlineTwoComponent } from '@app/components/headline-two/headline-two.component';
 import { HeadlineThreeComponent } from '@app/components/headline-three/headline-three.component';
+import { HeaderWIconComponent } from './header-w-icon/header-w-icon.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HeadlineThreeComponent } from '@app/components/headline-three/headline-
     GraphicComponent,
     HeadlineTwoComponent,
     HeadlineThreeComponent,
+    HeaderWIconComponent,
   ],
   imports: [CommonModule, MaterialModule],
   exports: [
@@ -49,6 +51,7 @@ import { HeadlineThreeComponent } from '@app/components/headline-three/headline-
     GraphicComponent,
     HeadlineTwoComponent,
     HeadlineThreeComponent,
+    HeaderWIconComponent,
   ],
 })
 export class ComponentsModule {}

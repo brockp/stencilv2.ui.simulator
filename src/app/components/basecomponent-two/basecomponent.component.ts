@@ -50,6 +50,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -70,6 +71,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -90,6 +92,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -110,6 +113,28 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  headerWithIconEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = true;
     this.options = {
       disabled: true,
     };
@@ -130,6 +155,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -150,6 +176,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -170,6 +197,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -190,6 +218,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -210,6 +239,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -230,6 +260,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -250,6 +281,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = true;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -270,6 +302,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = true;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -290,6 +323,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = false;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -310,6 +344,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.primaryButtonEdit = true;
     this.es.headlineTwoEdit = false;
     this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
     this.options = {
       disabled: true,
     };
@@ -408,6 +443,18 @@ export class BasecomponentTwoComponent implements OnInit {
     index.patchValue({
       headerTitleBar: {
         LeftIcon: icon,
+      },
+    });
+  }
+
+  setHeaderWithIconIcon(icon: string, i: number) {
+    const index = this.headers.at(i);
+    this.leftIconChanged.emit(index);
+    this.leftIconChanged.emit(icon);
+    index.patchValue({
+      headerWithIcon: {
+        Icon: icon,
+        ShowIcon: true,
       },
     });
   }
@@ -535,6 +582,15 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setHeaderWithIconTextColor(color: any, i: number) {
+    const index = this.headers.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      headerWithIcon: { TextColor: color },
+    });
+  }
+
   setBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
@@ -607,6 +663,16 @@ export class BasecomponentTwoComponent implements OnInit {
     this.backgroundColorChanged.emit(color);
     index.patchValue({
       headerTitleBar: { BackgroundColor: color },
+    });
+    console.log(this.headers);
+  }
+
+  setHeaderWithIconBackgroundColor(color: any, i: number) {
+    const index = this.headers.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      headerWithIcon: { BackgroundColor: color },
     });
     console.log(this.headers);
   }
@@ -770,6 +836,7 @@ export class BasecomponentTwoComponent implements OnInit {
     let dropDownObj;
     let appHeaderObj;
     let spacerObj;
+    let headerWithIconObj;
 
     if (objUpdate.component === 'h1') {
       h1Obj = {
@@ -1085,6 +1152,38 @@ export class BasecomponentTwoComponent implements OnInit {
         configuration_json: configuration_json,
       };
       console.log('New spacer: ', newObj);
+      this.ss.updateSpacer(i, newObj).subscribe(() => {});
+    }
+
+    if (objUpdate.component === 'headerWithIcon') {
+      headerWithIconObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: {
+          Text: objUpdate.headerWithIcon.Text,
+          TextColor: objUpdate.headerWithIcon.TextColor,
+          BackgroundColor: objUpdate.headerWithIcon.BackgroundColor,
+          Icon: objUpdate.headerWithIcon.Icon,
+          ShowIcon: objUpdate.headerWithIcon.ShowIcon,
+          FontSize: objUpdate.headerWithIcon.FontSize,
+          Padding: {
+            top: objUpdate.Padding.top,
+            right: objUpdate.Padding.right,
+            bottom: objUpdate.Padding.bottom,
+            left: objUpdate.Padding.left,
+          },
+        },
+      };
+
+      let configuration_json = JSON.stringify(
+        headerWithIconObj?.configuration_json
+      );
+      let newObj = {
+        id: objUpdate.id + 1,
+        component: objUpdate.component,
+        configuration_json: configuration_json,
+      };
+      console.log('New headerWithIcon: ', newObj);
       this.ss.updateSpacer(i, newObj).subscribe(() => {});
     }
   }

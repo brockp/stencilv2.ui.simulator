@@ -19,6 +19,7 @@ import { HeadlineThreeSelectorComponent } from '@app/components/component-select
 import { ExpandingTextSelectorComponent } from '@app/components/component-selectors/expanding-text-selector/expanding-text-selector.component';
 import { HeaderTitleBarSelectorComponent } from '@app/components/component-selectors/header-title-bar-selector/header-title-bar-selector.component';
 import { MaterialModule } from '@app/shared/material.module';
+import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headline-w-icon-selector.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MaterialModule } from '@app/shared/material.module';
     HeadlineThreeSelectorComponent,
     ExpandingTextSelectorComponent,
     HeaderTitleBarSelectorComponent,
+    HeadlineWIconSelectorComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   exports: [
@@ -53,6 +55,7 @@ import { MaterialModule } from '@app/shared/material.module';
     HeadlineThreeSelectorComponent,
     ExpandingTextSelectorComponent,
     HeaderTitleBarSelectorComponent,
+    HeadlineWIconSelectorComponent,
   ],
 })
 export class ComponentSelectorsModule {}
