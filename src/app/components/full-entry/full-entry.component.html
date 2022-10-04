@@ -1,0 +1,23 @@
+<mat-form-field *ngIf="fullEntry.value.fullEntry.display" class="w-full font-quicksand"
+  [appearance]="fullEntry.value.fullEntry.Borderless" [ngStyle]="{
+'background-color': fullEntry.value.fullEntry.BackgroundColor,
+'padding-top':
+fullEntry.value.fullEntry.Padding.top + 'px',
+'padding-right':
+fullEntry.value.fullEntry.Padding.right + 'px',
+'padding-bottom':
+fullEntry.value.fullEntry.Padding.bottom + 'px',
+'padding-left':
+fullEntry.value.fullEntry.Padding.left + 'px'
+}">
+
+  <mat-label class="text-white font-quicksand" [ngStyle]="{'color': fullEntry.value.fullEntry.TextColor}">
+    {{ fullEntry.value.fullEntry.Label }}
+  </mat-label>
+
+  <input [type]="fullEntry.value.fullEntry.IsPassword" matInput [placeholder]="fullEntry.value.fullEntry.Placeholder"
+    [ngStyle]="{
+color: fullEntry.value.fullEntry.TextColor,
+'background-color': fullEntry.value.fullEntry.InputBackgroundColor
+}" />
+</mat-form-field>

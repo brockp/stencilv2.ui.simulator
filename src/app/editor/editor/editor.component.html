@@ -40,6 +40,9 @@
               (slimEditorAdded)="addSlimEditor($event)">
             </app-slim-editor-selector>
 
+            <app-full-entry-selector [parent]="form" [components]="components" (baseAdded)="addFullEntry($event)">
+            </app-full-entry-selector>
+
             <app-dropdown-selector [parent]="form" [components]="components" (baseAdded)="addDropdown($event)">
             </app-dropdown-selector>
 

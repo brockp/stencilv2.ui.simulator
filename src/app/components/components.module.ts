@@ -18,6 +18,7 @@ import { GraphicComponent } from '@app/components/graphic/graphic.component';
 import { HeadlineTwoComponent } from '@app/components/headline-two/headline-two.component';
 import { HeadlineThreeComponent } from '@app/components/headline-three/headline-three.component';
 import { HeaderWIconComponent } from './header-w-icon/header-w-icon.component';
+import { FullEntryComponent } from './full-entry/full-entry.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeaderWIconComponent } from './header-w-icon/header-w-icon.component';
     HeadlineTwoComponent,
     HeadlineThreeComponent,
     HeaderWIconComponent,
+    FullEntryComponent,
   ],
   imports: [CommonModule, MaterialModule],
   exports: [
@@ -52,6 +54,7 @@ import { HeaderWIconComponent } from './header-w-icon/header-w-icon.component';
     HeadlineTwoComponent,
     HeadlineThreeComponent,
     HeaderWIconComponent,
+    FullEntryComponent,
   ],
 })
 export class ComponentsModule {}

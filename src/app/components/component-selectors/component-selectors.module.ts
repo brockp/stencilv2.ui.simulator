@@ -20,6 +20,7 @@ import { ExpandingTextSelectorComponent } from '@app/components/component-select
 import { HeaderTitleBarSelectorComponent } from '@app/components/component-selectors/header-title-bar-selector/header-title-bar-selector.component';
 import { MaterialModule } from '@app/shared/material.module';
 import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headline-w-icon-selector.component';
+import { FullEntrySelectorComponent } from './full-entry-selector/full-entry-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headl
     ExpandingTextSelectorComponent,
     HeaderTitleBarSelectorComponent,
     HeadlineWIconSelectorComponent,
+    FullEntrySelectorComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   exports: [
@@ -56,6 +58,7 @@ import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headl
     ExpandingTextSelectorComponent,
     HeaderTitleBarSelectorComponent,
     HeadlineWIconSelectorComponent,
+    FullEntrySelectorComponent,
   ],
 })
 export class ComponentSelectorsModule {}

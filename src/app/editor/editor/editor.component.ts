@@ -55,6 +55,7 @@ export class EditorComponent implements OnInit {
     primaryButtonSelector: this.es.createPrimaryButton({}),
     inputSelector: this.es.createDynamicInput({}),
     slimEditorSelector: this.es.createSlimEditor({}),
+    fullEntrySelector: this.es.createFullEntry({}),
     spacerSelector: this.es.createSpacer({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
@@ -297,6 +298,10 @@ export class EditorComponent implements OnInit {
 
   addSlimEditor(input: any): any {
     this.finalConfig.push(this.es.createSlimEditor(input));
+  }
+
+  addFullEntry(input: any): any {
+    this.finalConfig.push(this.es.createFullEntry(input));
   }
 
   addDropdown(dropdown: any): any {
@@ -904,6 +909,47 @@ export class EditorComponent implements OnInit {
           };
           let configuration_json = JSON.stringify(
             slimEditor?.configuration_json
+          );
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            sections: null,
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
+        let fullEntry;
+        if (value.component === 'fullEntry') {
+          fullEntry = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Label: value.fullEntry.Label,
+              Input: value.fullEntry.Input,
+              Placeholder: value.fullEntry.Placeholder,
+              IsPassword: value.fullEntry.IsPassword,
+              Borderless: value.fullEntry.Borderless,
+              BackgroundColor: value.fullEntry.BackgroundColor,
+              InputBackgroundColor: value.fullEntry.InputBackgroundColor,
+              TextColor: value.fullEntry.TextColor,
+              PlaceholderColor: value.fullEntry.PlaceholderColor,
+              Padding: {
+                top: value.fullEntry.Padding.top,
+                right: value.fullEntry.Padding.right,
+                bottom: value.fullEntry.Padding.bottom,
+                left: value.fullEntry.Padding.left,
+                HorizontalThickness:
+                  value.fullEntry.Padding.left + value.fullEntry.Padding.right,
+                VerticalThickness:
+                  value.fullEntry.Padding.top + value.fullEntry.Padding.bottom,
+              },
+            },
+          };
+          let configuration_json = JSON.stringify(
+            fullEntry?.configuration_json
           );
           let newObj = {
             library: '',
