@@ -369,17 +369,32 @@ export class EditorComponent implements OnInit {
     this.form.controls['visualConfig']
       .get(['Padding', 'left'])!
       .valueChanges.subscribe((val) => {
-        this.paddingTop =
-          this.form.controls['visualConfig'].get(['Padding', 'top'])!.value +
+        this.paddingLeft =
+          this.form.controls['visualConfig'].get(['Padding', 'left'])!.value +
           'px';
+      });
+
+    this.form.controls['visualConfig']
+      .get(['Padding', 'right'])!
+      .valueChanges.subscribe((val) => {
         this.paddingRight =
           this.form.controls['visualConfig'].get(['Padding', 'right'])!.value +
           'px';
+      });
+
+    this.form.controls['visualConfig']
+      .get(['Padding', 'top'])!
+      .valueChanges.subscribe((val) => {
+        this.paddingTop =
+          this.form.controls['visualConfig'].get(['Padding', 'top'])!.value +
+          'px';
+      });
+
+    this.form.controls['visualConfig']
+      .get(['Padding', 'bottom'])!
+      .valueChanges.subscribe((val) => {
         this.paddingBottom =
           this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value +
-          'px';
-        this.paddingLeft =
-          this.form.controls['visualConfig'].get(['Padding', 'left'])!.value +
           'px';
       });
   }
