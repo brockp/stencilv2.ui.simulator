@@ -21,6 +21,7 @@ import { HeaderTitleBarSelectorComponent } from '@app/components/component-selec
 import { MaterialModule } from '@app/shared/material.module';
 import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headline-w-icon-selector.component';
 import { FullEntrySelectorComponent } from './full-entry-selector/full-entry-selector.component';
+import { FullEditorSelectorComponent } from './full-editor-selector/full-editor-selector.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FullEntrySelectorComponent } from './full-entry-selector/full-entry-sel
     HeaderTitleBarSelectorComponent,
     HeadlineWIconSelectorComponent,
     FullEntrySelectorComponent,
+    FullEditorSelectorComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   exports: [
@@ -59,6 +61,7 @@ import { FullEntrySelectorComponent } from './full-entry-selector/full-entry-sel
     HeaderTitleBarSelectorComponent,
     HeadlineWIconSelectorComponent,
     FullEntrySelectorComponent,
+    FullEditorSelectorComponent,
   ],
 })
 export class ComponentSelectorsModule {}

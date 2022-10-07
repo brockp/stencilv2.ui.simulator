@@ -52,6 +52,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -74,6 +75,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -96,6 +98,30 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = true;
+    this.es.fullEditorEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  fullEditorEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
+    this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = true;
     this.options = {
       disabled: true,
     };
@@ -118,6 +144,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -140,6 +167,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -162,6 +190,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = true;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -184,6 +213,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -206,6 +236,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -228,6 +259,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -250,6 +282,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -272,6 +305,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -294,6 +328,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -316,6 +351,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -338,6 +374,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = true;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -360,6 +397,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -382,6 +420,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headlineThreeEdit = false;
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
     this.options = {
       disabled: true,
     };
@@ -601,6 +640,15 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setFullEditorTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      fullEditor: { TextColor: color, PlaceholderColor: color },
+    });
+  }
+
   setDropdownTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
@@ -768,6 +816,15 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setFullEditorBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      fullEditor: { BackgroundColor: color },
+    });
+  }
+
   setInputBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
@@ -792,6 +849,15 @@ export class BasecomponentTwoComponent implements OnInit {
     this.backgroundColorChanged.emit(color);
     index.patchValue({
       fullEntry: { InputBackgroundColor: color },
+    });
+  }
+
+  setFullEditorInputBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      fullEditor: { InputBackgroundColor: color },
     });
   }
 

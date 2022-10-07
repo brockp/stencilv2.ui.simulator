@@ -12,6 +12,7 @@ import { Colors } from '@app/services/colors/colors.interface';
 import { Subscription } from 'rxjs';
 import { ColorsService } from '@app/services/colors/colors.service';
 import { LoadConfigDialogComponent } from '../load-config-dialog/load-config-dialog.component';
+import { Options } from 'sortablejs';
 
 @Component({
   selector: 'app-editor',
@@ -24,6 +25,11 @@ export class EditorComponent implements OnInit {
   colorPalettes!: Colors[];
   components: any[] = [];
   component!: any;
+
+  options: Options = {
+    disabled: false,
+    revertOnSpill: true,
+  };
 
   ////////////////////////////////////////////////////
   // PARENT form for entire editor
@@ -56,6 +62,7 @@ export class EditorComponent implements OnInit {
     inputSelector: this.es.createDynamicInput({}),
     slimEditorSelector: this.es.createSlimEditor({}),
     fullEntrySelector: this.es.createFullEntry({}),
+    fullEditorSelector: this.es.createFullEditor({}),
     spacerSelector: this.es.createSpacer({}),
     dropdownSelector: this.es.createDynamicDropdown({}),
     appHeaderSelector: this.es.createAppHeader({}),
@@ -246,6 +253,7 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {
     this.colorPalettes = this.cs.getAppColors();
     this.openModal();
+    this.onChanges();
   }
 
   close(): void {
@@ -304,6 +312,10 @@ export class EditorComponent implements OnInit {
     this.finalConfig.push(this.es.createFullEntry(input));
   }
 
+  addFullEditor(input: any): any {
+    this.finalConfig.push(this.es.createFullEditor(input));
+  }
+
   addDropdown(dropdown: any): any {
     this.finalConfig.push(this.es.createDynamicDropdown(dropdown));
   }
@@ -353,6 +365,25 @@ export class EditorComponent implements OnInit {
     };
   }
 
+  onChanges(): void {
+    this.form.controls['visualConfig']
+      .get(['Padding', 'left'])!
+      .valueChanges.subscribe((val) => {
+        this.paddingTop =
+          this.form.controls['visualConfig'].get(['Padding', 'top'])!.value +
+          'px';
+        this.paddingRight =
+          this.form.controls['visualConfig'].get(['Padding', 'right'])!.value +
+          'px';
+        this.paddingBottom =
+          this.form.controls['visualConfig'].get(['Padding', 'bottom'])!.value +
+          'px';
+        this.paddingLeft =
+          this.form.controls['visualConfig'].get(['Padding', 'left'])!.value +
+          'px';
+      });
+  }
+
   visualConfigStyleObject() {
     return {
       'background-color': this.bgColor,
@@ -391,6 +422,14 @@ export class EditorComponent implements OnInit {
 
   edit(): void {
     this.visualConfigSidebar = true;
+  }
+
+  cancel() {
+    console.log('clicked off editable component');
+    // Resets the ability to drag components
+    this.options = {
+      disabled: false,
+    };
   }
 
   closeSidebar() {
@@ -475,6 +514,30 @@ export class EditorComponent implements OnInit {
   // FINAL submit of full data set to Stencil
   ////////////////////////////////////////////////////
   onSubmit(event: any): void {
+    this.form.controls['visualConfig'].patchValue({
+      BackgroundColor:
+        this.form.controls['visualConfig'].get('BackgroundColor')!.value,
+      BackgroundImage:
+        this.form.controls['visualConfig'].get('BackgroundImage')!.value,
+      Margin: {
+        top: this.form.controls['visualConfig'].get(['Margin', 'top'])!.value,
+        right: this.form.controls['visualConfig'].get(['Margin', 'right'])!
+          .value,
+        bottom: this.form.controls['visualConfig'].get(['Margin', 'bottom'])!
+          .value,
+        left: this.form.controls['visualConfig'].get(['Margin', 'left'])!.value,
+      },
+      Padding: {
+        top: this.form.controls['visualConfig'].get(['Padding', 'top'])!.value,
+        right: this.form.controls['visualConfig'].get(['Padding', 'right'])!
+          .value,
+        bottom: this.form.controls['visualConfig'].get(['Padding', 'bottom'])!
+          .value,
+        left: this.form.controls['visualConfig'].get(['Padding', 'left'])!
+          .value,
+      },
+    });
+
     // Visaul Config form data
     let visualConfig = this.form.get('visualConfig')!.value;
     let name = this.form.get('compositionName')!.value;
@@ -483,7 +546,6 @@ export class EditorComponent implements OnInit {
     // Set up headerConfig final data set
     const h = this.form.get('headerConfig')!.value;
     const yepHeader = this.es.headerArray.concat(h);
-
     let newHeaderArray = (values: any) => {
       return values.map((value: any) => {
         let appHeader;
@@ -602,18 +664,12 @@ export class EditorComponent implements OnInit {
         }
       });
     };
-
     // New variable taking in the updated mapped array values
     let awesomeHeader = newHeaderArray(yepHeader);
-    ////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////
     // Set up finalConfig data set
     let f = this.form.get('finalConfig')!.value;
-    console.log('finalConfig: ', f);
     let yep = this.es.finalArray.concat(f);
-    console.log('yep: ', yep);
-
     let newArray = (values: any) => {
       return values.map((value: any) => {
         let h1;
@@ -1055,10 +1111,10 @@ export class EditorComponent implements OnInit {
         }
       });
     };
-
     // New variable taking in the updated mapped array values
     let awesome = newArray(yep);
-    ////////////////////////////////////////////////////
+    ////////////////////////////
+    ////////////////////////
 
     // Final varables to be input into the service call below
     let final = awesome;

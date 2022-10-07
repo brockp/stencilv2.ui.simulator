@@ -1,0 +1,30 @@
+<mat-form-field *ngIf="fullEditor.value.fullEditor.display" class="w-full font-quicksand"
+  [appearance]="fullEditor.value.fullEditor.Borderless" [ngStyle]="{
+'background-color': fullEditor.value.fullEditor.BackgroundColor,
+'padding-top':
+fullEditor.value.fullEditor.Padding.top + 'px',
+'padding-right':
+fullEditor.value.fullEditor.Padding.right + 'px',
+'padding-bottom':
+fullEditor.value.fullEditor.Padding.bottom + 'px',
+'padding-left':
+fullEditor.value.fullEditor.Padding.left + 'px',
+'margin-top':
+fullEditor.value.fullEditor.Margin.top + 'px',
+'margin-right':
+fullEditor.value.fullEditor.Margin.right + 'px',
+'margin-bottom':
+fullEditor.value.fullEditor.Margin.bottom + 'px',
+'margin-left':
+fullEditor.value.fullEditor.Margin.left + 'px'
+}">
+
+  <mat-label class="text-white font-quicksand" [ngStyle]="{'color': fullEditor.value.fullEditor.TextColor}">
+    {{ fullEditor.value.fullEditor.Label }}
+  </mat-label>
+
+  <input matInput [placeholder]="fullEditor.value.fullEditor.Placeholder" [ngStyle]="{
+color: fullEditor.value.fullEditor.TextColor,
+'background-color': fullEditor.value.fullEditor.InputBackgroundColor
+}" />
+</mat-form-field>

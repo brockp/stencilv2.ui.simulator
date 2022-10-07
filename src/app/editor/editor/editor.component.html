@@ -1,7 +1,8 @@
 <main [formGroup]="form" (ngSubmit)="onSubmit($event)">
   <!-- Main material sidenav -->
   <div *ngIf="es.isHidden" crowdTapComponents>
-    <div class="w-60 h-full shadow-md bg-gray-900 px-1 absolute animate__animated animate__fadeInLeft animate__faster"
+    <div
+      class="w-60 h-full shadow-md bg-gray-900 px-1 absolute animate__animated animate__fadeInLeft animate__faster overflow-y-auto overflow-x-hidden"
       style="z-index: 9999;">
       <ul class="relative">
         <li class="relative">
@@ -43,6 +44,9 @@
             <app-full-entry-selector [parent]="form" [components]="components" (baseAdded)="addFullEntry($event)">
             </app-full-entry-selector>
 
+            <app-full-editor-selector [parent]="form" [components]="components" (baseAdded)="addFullEditor($event)">
+            </app-full-editor-selector>
+
             <app-dropdown-selector [parent]="form" [components]="components" (baseAdded)="addDropdown($event)">
             </app-dropdown-selector>
 
@@ -66,7 +70,7 @@
         </li>
 
       </ul>
-      <div class="absolute bottom-0 left-0 w-60">
+      <div class="bottom-0 left-0 w-60">
         <a class="flex justify-center items-center text-sm py-4 h-12 overflow-hidden text-white text-ellipsis whitespace-nowrap bg-red-500 hover:text-gray-900 hover:bg-red-600 transition duration-300 ease-in-out"
           href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark" (click)="close()">
           <mat-icon>delete_forever</mat-icon>&nbsp;Reset Composition
@@ -92,11 +96,9 @@
 
     <!-- Visal Config and Screen Submit -->
     <div visualConfig class="flex justify-start items-center gap-x-2">
-      <div>
-        <div (click)="edit()"
-          class="w-10 h-10 rounded-md bg-mat-toolbar flex justify-center items-center hover:cursor-pointer">
-          <mat-icon>tune</mat-icon>
-        </div>
+      <div (click)="edit()"
+        class="w-10 h-10 rounded-md bg-mat-toolbar flex justify-center items-center hover:cursor-pointer">
+        <mat-icon>tune</mat-icon>
       </div>
 
       <div>
@@ -125,6 +127,8 @@
       </div>
     </section>
 
+
+
     <!-- Edit sidebar for VisualConfig ONLY -->
     <app-editor-sidebar visualConfigEdit *ngIf="visualConfigSidebar">
       <!-- Edit form VisualConfig -->
@@ -138,7 +142,6 @@
                 <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
                   formControlName="top" />
               </div>
-
               <section class="flex justify-around">
                 <div class="flex justify-start items-center gap-x-2">
                   <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
@@ -150,14 +153,12 @@
                     formControlName="right" />
                 </div>
               </section>
-
               <div class="flex justify-around items-center">
                 <input class="form-control w-12 overflow-hidden p-1" placeholder="0" type="number"
                   formControlName="bottom" />
               </div>
             </div>
           </section>
-
           <!-- Background Color -->
           <section class="edit-section">
             <h2 class="edit-section-title">Screen Background Color:</h2>
@@ -168,7 +169,6 @@
               </div>
             </section>
           </section>
-
           <!-- Background Image -->
           <section class="edit-section">
             <h2 class="edit-section-title">Background Image:</h2>
@@ -198,118 +198,105 @@
           </section>
         </div>
       </div>
-
       <div edit-config-code formGroupName="visualConfig">
         <!-- Code edit form -->
         <code class="code-box" edit-config-code>
-          <section>
-            <label for="icon" class="text-white">BackgroundColor: </label>
-            <input
-              class="code-form-control"
-              type="text"
-              formControlName="BackgroundColor"
-            />
-          </section>
-
-          <section>
-            <label for="icon" class="text-white">BackgroundImage: </label>
-            <input
-              class="code-form-control"
-              type="text"
-              formControlName="BackgroundImage"
-            />
-          </section>
-
-          <section formGroupName="Padding">
-            <pre class="text-white">Padding </pre>
-
-            <section>
-              <label for="top" class="text-white">top: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="top"
-              />
-            </section>
-
-            <section>
-              <label for="right" class="text-white">right: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="right"
-              />
-            </section>
-
-            <section>
-              <label for="bottom" class="text-white">bottom: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="bottom"
-              />
-            </section>
-
-            <section>
-              <label for="left" class="text-white">left: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="left"
-              />
-            </section>
-          </section>
-
-          <section formGroupName="Margin">
-            <pre class="text-white">Margin </pre>
-
-            <section>
-              <label for="top" class="text-white">top: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="top"
-              />
-            </section>
-
-            <section>
-              <label for="right" class="text-white">right: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="right"
-              />
-            </section>
-
-            <section>
-              <label for="bottom" class="text-white">bottom: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="bottom"
-              />
-            </section>
-
-            <section>
-              <label for="left" class="text-white">left: </label>
-              <input
-                class="code-form-control"
-                type="text"
-                placeholder="set initial value"
-                formControlName="left"
-              />
-            </section>
-          </section>
-        </code>
+              <section>
+                <label for="icon" class="text-white">BackgroundColor: </label>
+                <input
+                  class="code-form-control"
+                  type="text"
+                  formControlName="BackgroundColor"
+                />
+              </section>
+              <section>
+                <label for="icon" class="text-white">BackgroundImage: </label>
+                <input
+                  class="code-form-control"
+                  type="text"
+                  formControlName="BackgroundImage"
+                />
+              </section>
+              <section formGroupName="Padding">
+                <pre class="text-white">Padding </pre>
+                <section>
+                  <label for="top" class="text-white">top: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="top"
+                  />
+                </section>
+                <section>
+                  <label for="right" class="text-white">right: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="right"
+                  />
+                </section>
+                <section>
+                  <label for="bottom" class="text-white">bottom: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="bottom"
+                  />
+                </section>
+                <section>
+                  <label for="left" class="text-white">left: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="left"
+                  />
+                </section>
+              </section>
+              <section formGroupName="Margin">
+                <pre class="text-white">Margin </pre>
+                <section>
+                  <label for="top" class="text-white">top: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="top"
+                  />
+                </section>
+                <section>
+                  <label for="right" class="text-white">right: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="right"
+                  />
+                </section>
+                <section>
+                  <label for="bottom" class="text-white">bottom: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="bottom"
+                  />
+                </section>
+                <section>
+                  <label for="left" class="text-white">left: </label>
+                  <input
+                    class="code-form-control"
+                    type="text"
+                    placeholder="set initial value"
+                    formControlName="left"
+                  />
+                </section>
+              </section>
+            </code>
       </div>
-
       <!-- Save component version -->
       <div class="form-submit-wrapper z-50" save-component>
         <section class="form-submit-section">
