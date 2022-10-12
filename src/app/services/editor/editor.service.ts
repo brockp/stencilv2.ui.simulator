@@ -8609,7 +8609,7 @@ export class EditorService {
   ): Observable<any> {
     const body = {
       ScreenStorageKey: null,
-      ScreenName: null,
+      ScreenName: configName,
       ScreenParameter: null,
       SuppressPersist: supress,
       AutomaticDownload: false,
