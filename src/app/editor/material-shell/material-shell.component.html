@@ -1,7 +1,9 @@
 <ng-content select="[crowdtapComponents]"></ng-content>
 <ng-content select="[loadConfigurations]"></ng-content>
-<mat-sidenav-container class="main-content-container dark">
 
+
+
+<mat-sidenav-container class="main-content-container dark">
   <!-- Main material sidenav -->
   <mat-sidenav class="main-sidenav" opened="true" mode="side" #snav>
     <div class="bg-mat-toolbar h-14 pt-3 pl-4">
@@ -63,21 +65,19 @@
 
   <!-- Main material content shell -->
   <mat-sidenav-content>
+
     <mat-toolbar>
-
       <section>&nbsp;</section>
-
       <!-- Viewport choices -->
       <section>
         <ng-content select="[nameConfig]"></ng-content>
       </section>
-
-
       <!-- Visual Config + Submit Button -->
       <section>
         <ng-content select="[visualConfig]"></ng-content>
       </section>
     </mat-toolbar>
+
 
     <ng-content select="[visualConfigEdit]"></ng-content>
     <ng-content select="[phoneScreen]"></ng-content>

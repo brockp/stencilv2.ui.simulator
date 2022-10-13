@@ -1,6 +1,6 @@
-<main [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<main [formGroup]="form" class="app-height" (ngSubmit)="onSubmit($event)">
   <!-- Main material sidenav -->
-  <div *ngIf="es.isHidden" crowdTapComponents>
+  <section *ngIf="es.isHidden" crowdTapComponents>
     <div
       class="w-60 h-full shadow-md bg-gray-900 px-1 absolute animate__animated animate__fadeInLeft animate__faster overflow-y-auto overflow-x-hidden"
       style="z-index: 9999;">
@@ -77,13 +77,13 @@
         </a>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Main material sidenav -->
 
   <app-material-shell>
     <!-- Name Config -->
-    <div nameConfig class="flex justify-center items-center gap-x-2 pl-2">
+    <section nameConfig class="flex justify-center items-center gap-x-2 pl-2">
       <label for="compositionName">
         <div class="w-6 h-6 justify-center items-center">
           <mat-icon>badge</mat-icon>
@@ -91,11 +91,11 @@
       </label>
       <input class="text-gray-300 bg-gray-900 rounded-md font-noir font-normal p-2 w-full overflow-hidden text-sm"
         placeholder="Composition Name" type="text" formControlName="compositionName" />
-    </div>
+    </section>
     <!-- Name Config -->
 
     <!-- Visal Config and Screen Submit -->
-    <div visualConfig class="flex justify-start items-center gap-x-2">
+    <section visualConfig class="flex justify-start items-center gap-x-2">
       <div (click)="edit()"
         class="w-10 h-10 rounded-md bg-mat-toolbar flex justify-center items-center hover:cursor-pointer">
         <mat-icon>tune</mat-icon>
@@ -108,12 +108,12 @@
           Publish
         </button>
       </div>
-    </div>
+    </section>
 
     <!-- Phone screen -->
-    <section class="mt-4 mr-20" phoneScreen>
+    <section phoneScreen>
       <div [ngClass]="viewPortClassSwitch()" class="viewport-canvas">
-        <div class="viewport-inner-canvas drop-container basic-layout" [ngStyle]="visualConfigStyleObject()">
+        <div class="viewport-inner-canvas basic-layout" [ngStyle]="visualConfigStyleObject()">
           <app-basecomponenttwo [parent]="form">
             <div class="flex justify-start flex-col border-red-300 border-b-2">
               <ng-content select="[headerConfig]"></ng-content>
@@ -126,8 +126,6 @@
         </div>
       </div>
     </section>
-
-
 
     <!-- Edit sidebar for VisualConfig ONLY -->
     <app-editor-sidebar visualConfigEdit *ngIf="visualConfigSidebar">

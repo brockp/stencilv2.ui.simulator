@@ -3,7 +3,6 @@ import { FormArray, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ViewportService } from '@app/services/viewport/viewport.service';
-import { LayoutOptionsService } from '@app/services/layout-options/layout-options.service';
 import { EditorService } from '@app/services/editor/editor.service';
 
 import { environment } from 'src/environments/environment';
@@ -79,7 +78,6 @@ export class EditorComponent implements OnInit {
 
   constructor(
     public vps: ViewportService,
-    public los: LayoutOptionsService,
     public es: EditorService,
     private fb: FormBuilder,
     public ess: EditSidebarService,
