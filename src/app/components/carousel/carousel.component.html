@@ -1,4 +1,4 @@
-<div class="carousel">
+<div class="carousel" *ngIf="carousel.value.carousel.display">
   <section>
     <drag-scroll class="h-full" [scrollbar-hidden]="hideScrollbar" (reachesLeftBound)="leftBoundStat($event)"
       (indexChanged)="onIndexChanged($event)" #nav>

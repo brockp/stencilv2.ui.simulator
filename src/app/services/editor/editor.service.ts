@@ -304,7 +304,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -679,7 +680,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -1057,7 +1059,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -1432,7 +1435,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -1810,7 +1814,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -2185,7 +2190,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -2563,7 +2569,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -2938,7 +2945,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -3316,7 +3324,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -3691,7 +3700,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -4069,7 +4079,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -4444,7 +4455,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -4821,7 +4833,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -5195,7 +5208,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -5572,7 +5586,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -5946,7 +5961,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -6325,7 +6341,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -6701,7 +6718,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -7079,7 +7097,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -7454,7 +7473,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -7832,7 +7852,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -8207,7 +8228,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -8585,7 +8607,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -8960,7 +8983,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -9337,7 +9361,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -9711,7 +9736,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -10088,7 +10114,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -10462,7 +10489,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -10839,7 +10867,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -11213,7 +11242,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -11591,6 +11621,7 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
+        display: true,
         InteractionGroup: 'onboard_carousel',
         BackgroundColor: '',
         BackgroundImage: '',
@@ -11968,6 +11999,7 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
+        display: true,
         InteractionGroup: carousel.InteractionGroup,
         BackgroundColor: carousel.BackgroundColor,
         BackgroundImage: carousel.backgroundImage,
@@ -12270,7 +12302,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
@@ -12644,7 +12677,8 @@ export class EditorService {
         }),
       }),
       carousel: this.fb.group({
-        InteractionGroup: '',
+        display: false,
+InteractionGroup: '',
         BackgroundColor: '',
         BackgroundImage: '',
         Position: 0,
