@@ -558,6 +558,243 @@
                 <!-- Base edit form -->
                 <section edit-form>
 
+                  <!-- Carousel -->
+                  <section *ngIf="es.carouselEdit">
+                    <section formGroupName="carousel">
+                      <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="text-white">
+                              General Settings
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <h2 class="edit-section-title">Interaction Group:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="InteractionGroup" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Position:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="Position" rows="3" cols="33"></textarea>
+
+                          <div class="flex justify-evenly items-center w-full">
+                            <div>
+                              <h2 class="edit-section-title">Loop:</h2>
+                              <mat-checkbox class="p-1" formControlName="Loop"></mat-checkbox>
+                            </div>
+
+                            <div>
+                              <h2 class="edit-section-title">Bounce Enabled?:</h2>
+                              <mat-checkbox class="p-1" formControlName="BounceEnabled"></mat-checkbox>
+                            </div>
+                          </div>
+
+                          <h2 class="edit-section-title">Over Move Name:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="OverMoveCommandName" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Over Move Parameter:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="OverMoveCommandParameter" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Under Move Name:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="UnderMoveCommandName" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Under Move Parameter:</h2>
+                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                            formControlName="UnderMoveCommandParameter" rows="3" cols="33"></textarea>
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel hideToggle formGroupName="sectionOne">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="text-white">
+                              Section One
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <h2 class="edit-section-title">Source:</h2>
+                          <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                            <button (click)="changeSectionOneGraphic('girl-laying.svg', i)">
+                              <img src="../../../../../assets/girl-laying.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('girl-sitting.svg', i)">
+                              <img src="../../../../../assets/girl-sitting.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('question.svg', i)">
+                              <img src="../../../../../assets/question.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('refer-a-friend.svg', i)">
+                              <img src="../../../../../assets/refer-a-friend.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('signup-graphic-one.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-one.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('signup-graphic-two.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-two.svg" />
+                            </button>
+                            <button (click)="changeSectionOneGraphic('sitting-blocks.svg', i)">
+                              <img src="../../../../../assets/sitting-blocks.svg" />
+                            </button>
+                          </section>
+
+                          <div formGroupName="h1">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionOneTextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+
+                          <div formGroupName="h2">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionOneH2TextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel hideToggle formGroupName="sectionTwo">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="text-white">
+                              Section Two
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <h2 class="edit-section-title">Source:</h2>
+                          <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                            <button (click)="changeSectionTwoGraphic('girl-laying.svg', i)">
+                              <img src="../../../../../assets/girl-laying.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('girl-sitting.svg', i)">
+                              <img src="../../../../../assets/girl-sitting.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('question.svg', i)">
+                              <img src="../../../../../assets/question.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('refer-a-friend.svg', i)">
+                              <img src="../../../../../assets/refer-a-friend.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('signup-graphic-one.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-one.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('signup-graphic-two.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-two.svg" />
+                            </button>
+                            <button (click)="changeSectionTwoGraphic('sitting-blocks.svg', i)">
+                              <img src="../../../../../assets/sitting-blocks.svg" />
+                            </button>
+                          </section>
+
+                          <div formGroupName="h1">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionTwoTextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+
+                          <div formGroupName="h2">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionTwoH2TextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel hideToggle formGroupName="sectionThree">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="text-white">
+                              Section Three
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <h2 class="edit-section-title">Source:</h2>
+                          <section class="flex flext-start justify-between items-center gap-3 flex-wrap image-gallery">
+                            <button (click)="changeSectionThreeGraphic('girl-laying.svg', i)">
+                              <img src="../../../../../assets/girl-laying.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('girl-sitting.svg', i)">
+                              <img src="../../../../../assets/girl-sitting.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('question.svg', i)">
+                              <img src="../../../../../assets/question.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('refer-a-friend.svg', i)">
+                              <img src="../../../../../assets/refer-a-friend.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('signup-graphic-one.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-one.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('signup-graphic-two.svg', i)">
+                              <img src="../../../../../assets/signup-graphic-two.svg" />
+                            </button>
+                            <button (click)="changeSectionThreeGraphic('sitting-blocks.svg', i)">
+                              <img src="../../../../../assets/sitting-blocks.svg" />
+                            </button>
+                          </section>
+
+                          <div formGroupName="h1">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionThreeTextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+
+                          <div formGroupName="h2">
+                            <h2 class="edit-section-title">Headline:</h2>
+                            <textarea class="textarea-control" placeholder="Set initial value" type="text"
+                              formControlName="Text" rows="3" cols="33"></textarea>
+
+                            <h2 class="edit-section-title">Text Color:</h2>
+                            <section
+                              class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                              <div *ngFor="let color of colorPalettes">
+                                <button class="color-button" [class]="[color.class, color.textColor]"
+                                  (click)="setSectionThreeH2TextColor(color.color, i)"></button>
+                              </div>
+                            </section>
+                          </div>
+                        </mat-expansion-panel>
+
+                      </mat-accordion>
+                    </section>
+                  </section>
+
                   <!-- primaryButton -->
                   <section *ngIf="es.primaryButtonEdit">
                     <section formGroupName="primaryButton">
@@ -676,8 +913,6 @@
 
                     </section>
                   </section>
-
-
 
                   <!-- H1 -->
                   <section *ngIf="es.header">

@@ -8,6 +8,12 @@
 @import "variables";
 @import "crowdtap-design-system/button-variables";
 
+.drag-scroll-wrapper,
+.drag-scroll-container {
+  @apply w-full;
+  height: 90% !important;
+}
+
 .description-font {
   @apply text-base;
 }

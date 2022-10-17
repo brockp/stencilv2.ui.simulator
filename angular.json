@@ -110,6 +110,5 @@
         }
       }
     }
-  },
-  "defaultProject": "stencil.ui.simulator"
+  }
 }

@@ -691,6 +691,363 @@ export class EditorComponent implements OnInit {
     let yep = this.es.finalArray.concat(f);
     let newArray = (values: any) => {
       return values.map((value: any) => {
+        let carousel;
+
+        let sectionOneImage;
+        let sectionOneHeadline;
+        let sectionOneDescription;
+
+        let sectionTwoImage;
+        let sectionTwoHeadline;
+        let sectionTwoDescription;
+
+        let sectionThreeImage;
+        let sectionThreeHeadline;
+        let sectionThreeDescription;
+        if (value.component === 'carousel') {
+          carousel = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              InteractionGroup: value.carousel.InteractionGroup,
+              BackgroundColor: value.carousel.BackgroundColor,
+              BackgroundImage: value.carousel.BackgroundImage,
+              Positon: value.carousel.Positon,
+              Loop: value.carousel.Loop,
+              BounceEnabled: value.carousel.BounceEnabled,
+              OverMoveCommandName: value.carousel.OverMoveCommandName,
+              OverMoveCommandParameter: value.carousel.OverMoveCommandParameter,
+              UnderMoveCommandName: value.carousel.UnderMoveCommandName,
+              UnderMoveCommandParameter:
+                value.carousel.UnderMoveCommandParameter,
+              Padding: {
+                top: value.carousel.Padding.top,
+                right: value.carousel.Padding.right,
+                bottom: value.carousel.Padding.bottom,
+                left: value.carousel.Padding.left,
+                HorizontalThickness:
+                  value.carousel.Padding.left + value.carousel.Padding.right,
+                VerticalThickness:
+                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+              },
+              Margin: {
+                top: value.carousel.Margin.top,
+                right: value.carousel.Margin.right,
+                bottom: value.carousel.Margin.bottom,
+                left: value.carousel.Margin.left,
+                HorizontalThickness:
+                  value.carousel.Margin.left + value.carousel.Margin.right,
+                VerticalThickness:
+                  value.carousel.Margin.top + value.carousel.Margin.bottom,
+              },
+            },
+          };
+
+          sectionOneImage = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Source: value.carousel.sectionOne.Source,
+              Width: 100,
+              Height: 0,
+              ImageWidth: 100,
+              ImageHeight: 0,
+              BackgroundColor: '#00ffff',
+              CommandName: '',
+              CommandParameter: '',
+              Padding: {
+                top: value.carousel.Padding.top,
+                right: value.carousel.Padding.right,
+                bottom: value.carousel.Padding.bottom,
+                left: value.carousel.Padding.left,
+                HorizontalThickness:
+                  value.carousel.Padding.left + value.carousel.Padding.right,
+                VerticalThickness:
+                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+              },
+              FullBleedHorizontal: false,
+            },
+          };
+          sectionOneHeadline = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionOne.h1.Text,
+              TextColor: value.carousel.sectionOne.h1.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionOne.h1.Padding.top,
+                right: value.carousel.sectionOne.h1.Padding.right,
+                bottom: value.carousel.sectionOne.h1.Padding.bottom,
+                left: value.carousel.sectionOne.h1.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionOne.h1.Padding.left +
+                  value.carousel.sectionOne.h1.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionOne.h1.Padding.top +
+                  value.carousel.sectionOne.h1.Padding.bottom,
+              },
+            },
+          };
+          sectionOneDescription = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionOne.h2.Text,
+              TextColor: value.carousel.sectionOne.h2.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionOne.h2.Padding.top,
+                right: value.carousel.sectionOne.h2.Padding.right,
+                bottom: value.carousel.sectionOne.h2.Padding.bottom,
+                left: value.carousel.sectionOne.h2.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionOne.h2.Padding.left +
+                  value.carousel.sectionOne.h2.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionOne.h2.Padding.top +
+                  value.carousel.sectionOne.h2.Padding.bottom,
+              },
+            },
+          };
+
+          sectionTwoImage = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Source: value.carousel.sectionTwo.Source,
+              Width: 100,
+              Height: 0,
+              ImageWidth: 100,
+              ImageHeight: 0,
+              BackgroundColor: '#00ffff',
+              CommandName: '',
+              CommandParameter: '',
+              Padding: {
+                top: value.carousel.Padding.top,
+                right: value.carousel.Padding.right,
+                bottom: value.carousel.Padding.bottom,
+                left: value.carousel.Padding.left,
+                HorizontalThickness:
+                  value.carousel.Padding.left + value.carousel.Padding.right,
+                VerticalThickness:
+                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+              },
+              FullBleedHorizontal: false,
+            },
+          };
+          sectionTwoHeadline = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionTwo.h1.Text,
+              TextColor: value.carousel.sectionTwo.h1.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionTwo.h1.Padding.top,
+                right: value.carousel.sectionTwo.h1.Padding.right,
+                bottom: value.carousel.sectionTwo.h1.Padding.bottom,
+                left: value.carousel.sectionTwo.h1.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionTwo.h1.Padding.left +
+                  value.carousel.sectionTwo.h1.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionTwo.h1.Padding.top +
+                  value.carousel.sectionTwo.h1.Padding.bottom,
+              },
+            },
+          };
+          sectionTwoDescription = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionTwo.h2.Text,
+              TextColor: value.carousel.sectionTwo.h2.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionTwo.h2.Padding.top,
+                right: value.carousel.sectionTwo.h2.Padding.right,
+                bottom: value.carousel.sectionTwo.h2.Padding.bottom,
+                left: value.carousel.sectionTwo.h2.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionTwo.h2.Padding.left +
+                  value.carousel.sectionTwo.h2.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionTwo.h2.Padding.top +
+                  value.carousel.sectionTwo.h2.Padding.bottom,
+              },
+            },
+          };
+
+          sectionThreeImage = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Source: value.carousel.sectionThree.Source,
+              Width: 100,
+              Height: 0,
+              ImageWidth: 100,
+              ImageHeight: 0,
+              BackgroundColor: '#00ffff',
+              CommandName: '',
+              CommandParameter: '',
+              Padding: {
+                top: value.carousel.Padding.top,
+                right: value.carousel.Padding.right,
+                bottom: value.carousel.Padding.bottom,
+                left: value.carousel.Padding.left,
+                HorizontalThickness:
+                  value.carousel.Padding.left + value.carousel.Padding.right,
+                VerticalThickness:
+                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+              },
+              FullBleedHorizontal: false,
+            },
+          };
+          sectionThreeHeadline = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionThree.h1.Text,
+              TextColor: value.carousel.sectionThree.h1.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionThree.h1.Padding.top,
+                right: value.carousel.sectionThree.h1.Padding.right,
+                bottom: value.carousel.sectionThree.h1.Padding.bottom,
+                left: value.carousel.sectionThree.h1.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionThree.h1.Padding.left +
+                  value.carousel.sectionThree.h1.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionThree.h1.Padding.top +
+                  value.carousel.sectionThree.h1.Padding.bottom,
+              },
+            },
+          };
+          sectionThreeDescription = {
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: {
+              Text: value.carousel.sectionThree.h2.Text,
+              TextColor: value.carousel.sectionThree.h2.TextColor,
+              BackgroundColor: '#00ffff',
+              Padding: {
+                top: value.carousel.sectionThree.h2.Padding.top,
+                right: value.carousel.sectionThree.h2.Padding.right,
+                bottom: value.carousel.sectionThree.h2.Padding.bottom,
+                left: value.carousel.sectionThree.h2.Padding.left,
+                HorizontalThickness:
+                  value.carousel.sectionThree.h2.Padding.left +
+                  value.carousel.sectionThree.h2.Padding.right,
+                VerticalThickness:
+                  value.carousel.sectionThree.h2.Padding.top +
+                  value.carousel.sectionThree.h2.Padding.bottom,
+              },
+            },
+          };
+
+          console.log('Carousel: ', carousel);
+          let configuration_json = JSON.stringify(carousel?.configuration_json);
+
+          let sectionOneConfig = JSON.stringify(
+            sectionOneImage?.configuration_json
+          );
+          let sectionOneHeadlineConfig = JSON.stringify(
+            sectionOneHeadline?.configuration_json
+          );
+          let sectionOneDescriptionConfig = JSON.stringify(
+            sectionOneDescription?.configuration_json
+          );
+
+          let sectionTwoConfig = JSON.stringify(
+            sectionTwoImage?.configuration_json
+          );
+          let sectionTwoHeadlineConfig = JSON.stringify(
+            sectionTwoHeadline?.configuration_json
+          );
+          let sectionTwoDescriptionConfig = JSON.stringify(
+            sectionTwoDescription?.configuration_json
+          );
+
+          let sectionThreeConfig = JSON.stringify(
+            sectionThreeImage?.configuration_json
+          );
+          let sectionThreeHeadlineConfig = JSON.stringify(
+            sectionThreeHeadline?.configuration_json
+          );
+          let sectionThreeDescriptionConfig = JSON.stringify(
+            sectionThreeDescription?.configuration_json
+          );
+          let newObj = {
+            library: '',
+            id: value.id + 1,
+            component: value.component,
+            configuration_json: configuration_json,
+            sections: [
+              {
+                ViewConfigs: [
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionOneConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionOneHeadlineConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionOneDescriptionConfig,
+                  },
+                ],
+              },
+              {
+                ViewConfigs: [
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionTwoConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionTwoHeadlineConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionTwoDescriptionConfig,
+                  },
+                ],
+              },
+              {
+                ViewConfigs: [
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionThreeConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionThreeHeadlineConfig,
+                  },
+                  {
+                    id: value.id + 1,
+                    component: value.component,
+                    configuration_json: sectionThreeDescriptionConfig,
+                  },
+                ],
+              },
+            ],
+            encapsulated_views: null,
+          };
+          return newObj;
+        }
+
         let h1;
         if (value.component === 'h1') {
           h1 = {

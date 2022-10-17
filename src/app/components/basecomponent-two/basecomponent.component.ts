@@ -663,6 +663,60 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
+  setSectionOneTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionOne: { h1: { TextColor: color } } },
+    });
+  }
+
+  setSectionOneH2TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionOne: { h2: { TextColor: color } } },
+    });
+  }
+
+  setSectionTwoTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionTwo: { h1: { TextColor: color } } },
+    });
+  }
+
+  setSectionTwoH2TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionOne: { h2: { TextColor: color } } },
+    });
+  }
+
+  setSectionThreeTextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionThree: { h1: { TextColor: color } } },
+    });
+  }
+
+  setSectionThreeH2TextColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.textColorChanged.emit(index);
+    this.textColorChanged.emit(color);
+    index.patchValue({
+      carousel: { sectionThree: { h2: { TextColor: color } } },
+    });
+  }
+
   setSlimeditorTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
@@ -926,6 +980,33 @@ export class BasecomponentTwoComponent implements OnInit {
     this.imageChanged.emit(source);
     index.patchValue({
       graphic: { Source: source },
+    });
+  }
+
+  changeSectionOneGraphic(source: any, i: number): void {
+    const index = this.components.at(i);
+    this.imageChanged.emit(index);
+    this.imageChanged.emit(source);
+    index.patchValue({
+      carousel: { sectionOne: { Source: source } },
+    });
+  }
+
+  changeSectionTwoGraphic(source: any, i: number): void {
+    const index = this.components.at(i);
+    this.imageChanged.emit(index);
+    this.imageChanged.emit(source);
+    index.patchValue({
+      carousel: { sectionTwo: { Source: source } },
+    });
+  }
+
+  changeSectionThreeGraphic(source: any, i: number): void {
+    const index = this.components.at(i);
+    this.imageChanged.emit(index);
+    this.imageChanged.emit(source);
+    index.patchValue({
+      carousel: { sectionThree: { Source: source } },
     });
   }
 

@@ -11623,6 +11623,7 @@ export class EditorService {
         sectionOne: this.fb.group({
           display: true,
           Source: 'question.svg',
+          Text: 'Hello 1',
           h1: this.fb.group({
             Text: 'Headline A',
             TextColor: '',
@@ -11649,6 +11650,7 @@ export class EditorService {
         sectionTwo: this.fb.group({
           display: true,
           Source: 'question.svg',
+          Text: 'Hello 2',
           h1: this.fb.group({
             Text: 'Headline Slide Two',
             TextColor: '',
@@ -11675,6 +11677,7 @@ export class EditorService {
         sectionThree: this.fb.group({
           display: true,
           Source: 'question.svg',
+          Text: 'Hello 3',
           h1: this.fb.group({
             Text: 'Headline Slide Three',
             TextColor: '',
@@ -12770,7 +12773,7 @@ export class EditorService {
     viewConfig: any,
     visualConfig: any,
     supress: boolean,
-    configName: string
+    configName: any
   ): Observable<any> {
     const body = {
       ScreenStorageKey: null,

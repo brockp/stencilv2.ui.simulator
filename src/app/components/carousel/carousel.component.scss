@@ -1,5 +1,7 @@
 drag-scroll {
-  @apply w-full h-full;
+  width: 390px !important;
+  @apply h-full;
+
   img {
     @apply w-full h-full;
   }
@@ -11,8 +13,8 @@ drag-scroll {
     flex: 1;
   }
   .footer-controls {
-    @apply h-14 absolute bottom-4;
-    width: 27%;
+    @apply absolute bottom-16;
+    width: calc(100% - 66%);
     overflow: hidden;
     padding-left: 1%;
     padding-right: 1%;
