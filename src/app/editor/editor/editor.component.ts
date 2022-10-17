@@ -54,7 +54,6 @@ export class EditorComponent implements OnInit {
     compositionName: '',
     baseComponentSelector: this.es.createBaseComponent({}),
     baseComponentTwoSelector: this.es.createBaseComponentTwo({}),
-    loadHeadlineSelector: this.es.loadDynamicHeadline({}),
     headlineTwoSelector: this.es.createHeadlineTwo({}),
     headlineThreeSelector: this.es.createHeadlineThree({}),
     primaryButtonSelector: this.es.createPrimaryButton({}),
@@ -150,7 +149,6 @@ export class EditorComponent implements OnInit {
 
         if (element.component === 'h1') {
           const index = this.luu.indexOf(element);
-          this.form.get('loadHeadlineSelector')!.value;
           this.finalConfig.push(
             this.es.loadDynamicHeadline(
               JSON.parse(this.luu[index].configuration_json)
@@ -1122,22 +1120,22 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Text: value.h2.Text,
-              TextColor: value.h2.TextColor,
-              BackgroundColor: value.h2.BackgroundColor,
+              Text: value.h3.Text,
+              TextColor: value.h3.TextColor,
+              BackgroundColor: value.h3.BackgroundColor,
               Padding: {
-                top: value.h2.Padding.top,
-                right: value.h2.Padding.right,
-                bottom: value.h2.Padding.bottom,
-                left: value.h2.Padding.left,
+                top: value.h3.Padding.top,
+                right: value.h3.Padding.right,
+                bottom: value.h3.Padding.bottom,
+                left: value.h3.Padding.left,
                 HorizontalThickness:
-                  value.h2.Padding.left + value.h2.Padding.right,
+                  value.h3.Padding.left + value.h3.Padding.right,
                 VerticalThickness:
-                  value.h2.Padding.top + value.h2.Padding.bottom,
+                  value.h3.Padding.top + value.h3.Padding.bottom,
               },
             },
           };
-          console.log('No background: ', h3);
+          console.log('Header 3: ', h3);
           let configuration_json = JSON.stringify(h3?.configuration_json);
           let newObj = {
             library: '',
