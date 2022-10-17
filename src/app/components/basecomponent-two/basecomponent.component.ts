@@ -53,6 +53,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -76,6 +77,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -99,6 +101,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = true;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -122,6 +125,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = true;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -145,6 +149,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -168,6 +173,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -191,6 +197,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = true;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -214,6 +221,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -237,6 +245,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -260,6 +269,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -283,6 +293,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -306,6 +317,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -329,6 +341,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -352,6 +365,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -375,6 +389,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -398,6 +413,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
     this.options = {
       disabled: true,
     };
@@ -421,6 +437,31 @@ export class BasecomponentTwoComponent implements OnInit {
     this.es.headerWithIconEdit = false;
     this.es.fullEntryEdit = false;
     this.es.fullEditorEdit = false;
+    this.es.carouselEdit = false;
+    this.options = {
+      disabled: true,
+    };
+  }
+
+  carouselEdit() {
+    this.es.image = false;
+    this.es.description = false;
+    this.es.plainTextEdit = false;
+    this.es.input = false;
+    this.es.dropdown = false;
+    this.es.appHeader = false;
+    this.es.slimEditorEdit = false;
+    this.es.spacer = false;
+    this.es.header = false;
+    this.es.expandingTextEdit = false;
+    this.es.headerTitleBarEdit = false;
+    this.es.primaryButtonEdit = false;
+    this.es.headlineTwoEdit = false;
+    this.es.headlineThreeEdit = false;
+    this.es.headerWithIconEdit = false;
+    this.es.fullEntryEdit = false;
+    this.es.fullEditorEdit = false;
+    this.es.carouselEdit = true;
     this.options = {
       disabled: true,
     };

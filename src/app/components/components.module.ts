@@ -17,9 +17,12 @@ import { PrimaryButtonComponent } from '@app/components/primary-button/primary-b
 import { GraphicComponent } from '@app/components/graphic/graphic.component';
 import { HeadlineTwoComponent } from '@app/components/headline-two/headline-two.component';
 import { HeadlineThreeComponent } from '@app/components/headline-three/headline-three.component';
-import { HeaderWIconComponent } from './header-w-icon/header-w-icon.component';
-import { FullEntryComponent } from './full-entry/full-entry.component';
-import { FullEditorComponent } from './full-editor/full-editor.component';
+import { HeaderWIconComponent } from '@app/components/header-w-icon/header-w-icon.component';
+import { FullEntryComponent } from '@app/components/full-entry/full-entry.component';
+import { FullEditorComponent } from '@app/components/full-editor/full-editor.component';
+import { CarouselComponent } from '@app/components/carousel/carousel.component';
+
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,9 @@ import { FullEditorComponent } from './full-editor/full-editor.component';
     HeaderWIconComponent,
     FullEntryComponent,
     FullEditorComponent,
+    CarouselComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, DragScrollModule],
   exports: [
     HeadlineComponent,
     PlaintextComponent,
@@ -58,6 +62,7 @@ import { FullEditorComponent } from './full-editor/full-editor.component';
     HeaderWIconComponent,
     FullEntryComponent,
     FullEditorComponent,
+    CarouselComponent,
   ],
 })
 export class ComponentsModule {}

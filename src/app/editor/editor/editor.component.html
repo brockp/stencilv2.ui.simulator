@@ -57,6 +57,9 @@
 
             <h1 class="text-white font-noir text-xl py-4 tracking-normal">Curated Components</h1>
 
+            <app-carousel-selector [parent]="form" [components]="components" (baseAdded)="addCarousel($event)">
+            </app-carousel-selector>
+
             <app-appheader-selector [parent]="form" [components]="components" (baseAdded)="addAppHeader($event)">
             </app-appheader-selector>
 

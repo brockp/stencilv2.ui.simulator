@@ -22,6 +22,7 @@ import { MaterialModule } from '@app/shared/material.module';
 import { HeadlineWIconSelectorComponent } from './headline-w-icon-selector/headline-w-icon-selector.component';
 import { FullEntrySelectorComponent } from './full-entry-selector/full-entry-selector.component';
 import { FullEditorSelectorComponent } from './full-editor-selector/full-editor-selector.component';
+import { CarouselSelectorComponent } from './carousel-selector/carousel-selector.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FullEditorSelectorComponent } from './full-editor-selector/full-editor-
     HeadlineWIconSelectorComponent,
     FullEntrySelectorComponent,
     FullEditorSelectorComponent,
+    CarouselSelectorComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   exports: [
@@ -62,6 +64,7 @@ import { FullEditorSelectorComponent } from './full-editor-selector/full-editor-
     HeadlineWIconSelectorComponent,
     FullEntrySelectorComponent,
     FullEditorSelectorComponent,
+    CarouselSelectorComponent,
   ],
 })
 export class ComponentSelectorsModule {}

@@ -68,6 +68,7 @@ export class EditorComponent implements OnInit {
     headerTitleBarSelector: this.es.createHeaderTitleBar({}),
     headerWithIconSelector: this.es.createHeaderWithIcon({}),
     expandingTextSelector: this.es.createExpandingText({}),
+    carouselSelector: this.es.createCarousel({}),
     headerConfig: this.fb.array([]),
     finalConfig: this.fb.array([]),
   });
@@ -336,6 +337,11 @@ export class EditorComponent implements OnInit {
 
   addExpandingText(expandingText: any): any {
     this.finalConfig.push(this.es.createExpandingText(expandingText));
+    console.log(this.finalConfig);
+  }
+
+  addCarousel(carousel: any): any {
+    this.finalConfig.push(this.es.createCarousel(carousel));
     console.log(this.finalConfig);
   }
 

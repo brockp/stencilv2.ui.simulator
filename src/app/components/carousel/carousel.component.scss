@@ -1,0 +1,34 @@
+drag-scroll {
+  @apply w-full h-full;
+  img {
+    @apply w-full h-full;
+  }
+}
+
+.carousel {
+  @apply flex flex-col;
+  drag-scroll {
+    flex: 1;
+  }
+  .footer-controls {
+    @apply h-14 absolute bottom-4;
+    width: 27%;
+    overflow: hidden;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+
+.footer-grid {
+  @apply w-full;
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+}
+
+.active-dot {
+  @apply rounded-full w-2.5 h-2.5 bg-gray-400;
+}
+
+.inactive-dot {
+  @apply rounded-full w-2 h-2 bg-gray-500;
+}
