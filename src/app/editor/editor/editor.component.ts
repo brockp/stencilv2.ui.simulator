@@ -691,16 +691,18 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Text: value.Text,
-              TextColor: value.TextColor,
-              BackgroundColor: value.BackgroundColor,
+              Text: value.h1.Text,
+              TextColor: value.h1.TextColor,
+              BackgroundColor: value.h1BackgroundColor,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.h1.Padding.top,
+                right: value.h1.Padding.right,
+                bottom: value.h1.Padding.bottom,
+                left: value.h1.Padding.left,
+                HorizontalThickness:
+                  value.h1.Padding.left + value.h1.Padding.right,
+                VerticalThickness:
+                  value.h1.Padding.top + value.h1.Padding.bottom,
               },
             },
           };
@@ -723,16 +725,18 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: 'h2',
             configuration_json: {
-              Text: value.Text,
-              TextColor: value.TextColor,
-              BackgroundColor: value.BackgroundColor,
+              Text: value.h2.Text,
+              TextColor: value.h2.TextColor,
+              BackgroundColor: value.h2.BackgroundColor,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.h2.Padding.top,
+                right: value.h2.Padding.right,
+                bottom: value.h2.Padding.bottom,
+                left: value.h2.Padding.left,
+                HorizontalThickness:
+                  value.h2.Padding.left + value.h2.Padding.right,
+                VerticalThickness:
+                  value.h2.Padding.top + value.h2.Padding.bottom,
               },
             },
           };
@@ -755,16 +759,18 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Text: value.Text,
-              TextColor: value.TextColor,
-              BackgroundColor: value.BackgroundColor,
+              Text: value.h2.Text,
+              TextColor: value.h2.TextColor,
+              BackgroundColor: value.h2.BackgroundColor,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.h2.Padding.top,
+                right: value.h2.Padding.right,
+                bottom: value.h2.Padding.bottom,
+                left: value.h2.Padding.left,
+                HorizontalThickness:
+                  value.h2.Padding.left + value.h2.Padding.right,
+                VerticalThickness:
+                  value.h2.Padding.top + value.h2.Padding.bottom,
               },
             },
           };
@@ -787,17 +793,19 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Text: value.Text,
-              TextColor: value.TextColor,
-              FontSize: value.TextSize,
-              BackgroundColor: value.BackgroundColor,
+              Text: value.plainText.Text,
+              TextColor: value.plainText.TextColor,
+              FontSize: value.plainText.TextSize,
+              BackgroundColor: value.plainText.BackgroundColor,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.plainText.Padding.top,
+                right: value.plainText.Padding.right,
+                bottom: value.plainText.Padding.bottom,
+                left: value.plainText.Padding.left,
+                HorizontalThickness:
+                  value.plainText.Padding.left + value.plainText.Padding.right,
+                VerticalThickness:
+                  value.plainText.Padding.top + value.plainText.Padding.bottom,
               },
             },
           };
@@ -822,23 +830,25 @@ export class EditorComponent implements OnInit {
             id: value.id + 1,
             component: value.component,
             configuration_json: {
-              Source: value.Source,
-              Width: value.ImageWidth,
-              Height: value.ImageHeight,
-              ImageWidth: value.ImageWidth,
-              ImageHeight: value.ImageHeight,
-              BackgroundColor: value.BackgroundColor,
+              Source: value.graphic.Source,
+              Width: value.graphic.ImageWidth,
+              Height: value.graphic.ImageHeight,
+              ImageWidth: value.graphic.ImageWidth,
+              ImageHeight: value.graphic.ImageHeight,
+              BackgroundColor: value.graphic.BackgroundColor,
               Padding: {
-                top: value.Padding.top,
-                right: value.Padding.right,
-                bottom: value.Padding.bottom,
-                left: value.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                top: value.graphic.Padding.top,
+                right: value.graphic.Padding.right,
+                bottom: value.graphic.Padding.bottom,
+                left: value.graphic.Padding.left,
+                HorizontalThickness:
+                  value.graphic.Padding.left + value.graphic.Padding.right,
+                VerticalThickness:
+                  value.graphic.Padding.top + value.graphic.Padding.bottom,
               },
               FullBleedHorizontal: false,
-              CommandName: value.CommandName,
-              CommandParameter: value.CommandParameter,
+              CommandName: value.graphic.CommandName,
+              CommandParameter: value.graphic.CommandParameter,
             },
           };
           let configuration_json = JSON.stringify(image?.configuration_json);

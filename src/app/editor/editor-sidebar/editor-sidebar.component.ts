@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EditSidebarService } from '../../services/edit-sidebar/edit-sidebar.service';
 
 @Component({

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@app/shared/material.module';
 
@@ -15,7 +17,7 @@ import { PaddingControlComponent } from './padding-control/padding-control.compo
     EditorSidebarComponent,
     PaddingControlComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
     SaveButtonComponent,
     CancelButtonComponent,
