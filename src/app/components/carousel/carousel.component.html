@@ -8,13 +8,25 @@
         <section class="text-center my-4">
           <div class="headline-grid">
             <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
-
+              color: carousel.value.carousel.sectionOne.h1.TextColor,
+              'background-color': carousel.value.carousel.sectionOne.h1.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionOne.h1.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionOne.h1.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionOne.h1.Padding.left,
+              'padding-right': carousel.value.carousel.sectionOne.h1.Padding.right
             }">
               {{ carousel.value.carousel.sectionOne.h1.Text }}
             </h1>
           </div>
           <div class="description-grid">
-            <h2 class="my-2 text-base font-bold" [ngStyle]="{}">
+            <h2 class="my-2 text-base font-bold" [ngStyle]="{
+              color: carousel.value.carousel.sectionOne.h2.TextColor,
+              'background-color': carousel.value.carousel.sectionOne.h2.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionOne.h2.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionOne.h2.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionOne.h2.Padding.left,
+              'padding-right': carousel.value.carousel.sectionOne.h2.Padding.right
+            }">
               {{ carousel.value.carousel.sectionOne.h2.Text }}
             </h2>
           </div>
@@ -26,12 +38,26 @@
         <img *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionTwo.Source" />
         <section class="text-center my-4">
           <div class="headline-grid">
-            <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{}">
+            <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
+              color: carousel.value.carousel.sectionTwo.h1.TextColor,
+              'background-color': carousel.value.carousel.sectionTwo.h1.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionTwo.h1.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionTwo.h1.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionTwo.h1.Padding.left,
+              'padding-right': carousel.value.carousel.sectionTwo.h1.Padding.right
+            }">
               {{ carousel.value.carousel.sectionTwo.h1.Text }}
             </h1>
           </div>
           <div class="description-grid">
-            <h2 class="my-2 text-base font-bold" [ngStyle]="{}">
+            <h2 class="my-2 text-base font-bold" [ngStyle]="{
+              color: carousel.value.carousel.sectionTwo.h2.TextColor,
+              'background-color': carousel.value.carousel.sectionTwo.h2.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionTwo.h2.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionTwo.h2.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionTwo.h2.Padding.left,
+              'padding-right': carousel.value.carousel.sectionTwo.h2.Padding.right
+            }">
               {{ carousel.value.carousel.sectionTwo.h2.Text }}
             </h2>
           </div>
@@ -43,34 +69,50 @@
         <img *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionThree.Source" />
         <section class="text-center my-4">
           <div class="headline-grid">
-            <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{}">
+            <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
+              color: carousel.value.carousel.sectionThree.h1.TextColor,
+              'background-color': carousel.value.carousel.sectionThree.h1.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionThree.h1.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionThree.h1.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionThree.h1.Padding.left,
+              'padding-right': carousel.value.carousel.sectionThree.h1.Padding.right
+            }">
               {{ carousel.value.carousel.sectionThree.h1.Text }}
             </h1>
           </div>
           <div class="description-grid">
-            <h2 class="my-2 text-base font-bold" [ngStyle]="{}">
+            <h2 class="my-2 text-base font-bold" [ngStyle]="{
+              color: carousel.value.carousel.sectionThree.h2.TextColor,
+              'background-color': carousel.value.carousel.sectionThree.h2.BackgroundColor,
+              'padding-top': carousel.value.carousel.sectionThree.h2.Padding.top,
+              'padding-bottom': carousel.value.carousel.sectionThree.h2.Padding.bottom,
+              'padding-left': carousel.value.carousel.sectionThree.h2.Padding.left,
+              'padding-right': carousel.value.carousel.sectionThree.h2.Padding.right
+            }">
               {{ carousel.value.carousel.sectionThree.h2.Text }}
             </h2>
           </div>
         </section>
       </section>
     </drag-scroll>
+
+    <!-- Footer Nav -->
+    <div class="absolute bottom-16 flex justify-between items-center w-96">
+      <section class="footer-grid">
+        <button (click)="moveLeft()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <div class="flex justify-center items-center gap-x-2">
+          <div class="active-dot"></div>
+          <div class="active-dot"></div>
+          <div class="active-dot"></div>
+        </div>
+        <button (click)="moveRight()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </section>
+    </div>
   </section>
 
-  <!-- Footer Nav -->
-  <div class="absolute bottom-16 flex justify-between items-center w-96">
-    <section class="footer-grid">
-      <button (click)="moveLeft()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
-        <mat-icon>arrow_back_ios</mat-icon>
-      </button>
-      <div class="flex justify-center items-center gap-x-2">
-        <div class="active-dot"></div>
-        <div class="active-dot"></div>
-        <div class="active-dot"></div>
-      </div>
-      <button (click)="moveRight()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
-        <mat-icon>arrow_forward_ios</mat-icon>
-      </button>
-    </section>
-  </div>
+
 </div>

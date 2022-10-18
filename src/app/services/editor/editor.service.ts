@@ -34,9 +34,6 @@ export class EditorService {
   public fullEntryEdit = false;
   public fullEditorEdit = false;
   public carouselEdit = false;
-
-  constructor(public fb: FormBuilder, private http: HttpClient) {}
-
   editStatus = {
     image: false,
     header: false,
@@ -58,8 +55,10 @@ export class EditorService {
     carouselEdit: false,
   };
 
-  openEditable(day: any) {
-    switch (day) {
+  constructor(public fb: FormBuilder, private http: HttpClient) {}
+
+  openEditable(component: string) {
+    switch (component) {
       case 'spacer':
         this.spacer = true;
         this.image = false;
