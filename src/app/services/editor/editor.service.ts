@@ -12135,10 +12135,21 @@ export class EditorService {
     });
   }
 
-  public loadCaroursel(carousel: any): FormGroup {
+  public loadCaroursel(
+    carousel: any,
+    sectionOneImage: any,
+    sectionOneHeadline: any,
+    sectionOneDescription: any,
+    sectionTwoImage: any,
+    sectionTwoHeadline: any,
+    sectionTwoDescription: any,
+    sectionThreeImage: any,
+    sectionThreeHeadline: any,
+    sectionThreeDescription: any
+  ): FormGroup {
     return this.fb.group({
       id: 1,
-      component: 'primaryButton',
+      component: 'carousel',
       TextAlignment: '',
       TextSize: '',
       TextColor: '',
@@ -12423,13 +12434,85 @@ export class EditorService {
           left: carousel.left,
         }),
         sectionOne: this.fb.group({
-          display: carousel.sectionOne.display,
+          display: true,
+          Source: sectionOneImage.Source,
+          Text: sectionOneHeadline.Text,
+          h1: this.fb.group({
+            Text: sectionOneHeadline.Text,
+            TextColor: sectionOneHeadline.TextColor,
+            BackgroundColor: sectionOneHeadline.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionOneHeadline.top,
+              right: sectionOneHeadline.right,
+              bottom: sectionOneHeadline.bottom,
+              left: sectionOneHeadline.left,
+            }),
+          }),
+          h2: this.fb.group({
+            Text: sectionOneDescription.Text,
+            TextColor: sectionOneDescription.TextColor,
+            BackgroundColor: sectionOneDescription.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionOneDescription.top,
+              right: sectionOneDescription.right,
+              bottom: sectionOneDescription.bottom,
+              left: sectionOneDescription.left,
+            }),
+          }),
         }),
         sectionTwo: this.fb.group({
-          display: carousel.sectionTwo.display,
+          display: true,
+          Source: sectionTwoImage.Source,
+          Text: sectionTwoHeadline.Text,
+          h1: this.fb.group({
+            Text: sectionTwoHeadline.Text,
+            TextColor: sectionTwoHeadline.TextColor,
+            BackgroundColor: sectionTwoHeadline.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionTwoHeadline.top,
+              right: sectionTwoHeadline.right,
+              bottom: sectionTwoHeadline.bottom,
+              left: sectionTwoHeadline.left,
+            }),
+          }),
+          h2: this.fb.group({
+            Text: sectionTwoDescription.Text,
+            TextColor: sectionTwoDescription.TextColor,
+            BackgroundColor: sectionTwoDescription.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionTwoDescription.top,
+              right: sectionTwoDescription.right,
+              bottom: sectionTwoDescription.bottom,
+              left: sectionTwoDescription.left,
+            }),
+          }),
         }),
         sectionThree: this.fb.group({
-          display: carousel.sectionThree.display,
+          display: true,
+          Source: sectionThreeImage.Source,
+          Text: sectionThreeHeadline.Text,
+          h1: this.fb.group({
+            Text: sectionThreeHeadline.Text,
+            TextColor: sectionThreeHeadline.TextColor,
+            BackgroundColor: sectionThreeHeadline.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionThreeHeadline.top,
+              right: sectionThreeHeadline.right,
+              bottom: sectionThreeHeadline.bottom,
+              left: sectionThreeHeadline.left,
+            }),
+          }),
+          h2: this.fb.group({
+            Text: sectionThreeDescription.Text,
+            TextColor: sectionThreeDescription.TextColor,
+            BackgroundColor: sectionThreeDescription.BackgroundColor,
+            Padding: this.fb.group({
+              top: sectionThreeDescription.top,
+              right: sectionThreeDescription.right,
+              bottom: sectionThreeDescription.bottom,
+              left: sectionThreeDescription.left,
+            }),
+          }),
         }),
       }),
     });

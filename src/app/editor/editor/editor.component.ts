@@ -147,6 +147,42 @@ export class EditorComponent implements OnInit {
       this.luu.filter((element: any) => {
         // console.log(element.configuration_json);
 
+        if (element.component === 'carousel') {
+          const index = this.luu.indexOf(element);
+          this.finalConfig.push(
+            this.es.loadCaroursel(
+              JSON.parse(this.luu[index].configuration_json),
+              JSON.parse(
+                this.luu[index].sections[0].ViewConfigs[0].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[0].ViewConfigs[1].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[0].ViewConfigs[2].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[1].ViewConfigs[0].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[1].ViewConfigs[1].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[1].ViewConfigs[2].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[2].ViewConfigs[0].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[2].ViewConfigs[1].configuration_json
+              ),
+              JSON.parse(
+                this.luu[index].sections[2].ViewConfigs[2].configuration_json
+              )
+            )
+          );
+        }
+
         if (element.component === 'h1') {
           const index = this.luu.indexOf(element);
           this.finalConfig.push(
@@ -772,7 +808,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionOne.h1.Text,
               TextColor: value.carousel.sectionOne.h1.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionOne.h1.Padding.top,
                 right: value.carousel.sectionOne.h1.Padding.right,
@@ -793,7 +829,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionOne.h2.Text,
               TextColor: value.carousel.sectionOne.h2.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionOne.h2.Padding.top,
                 right: value.carousel.sectionOne.h2.Padding.right,
@@ -818,7 +854,7 @@ export class EditorComponent implements OnInit {
               Height: 0,
               ImageWidth: 100,
               ImageHeight: 0,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               CommandName: '',
               CommandParameter: '',
               Padding: {
@@ -840,7 +876,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionTwo.h1.Text,
               TextColor: value.carousel.sectionTwo.h1.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionTwo.h1.Padding.top,
                 right: value.carousel.sectionTwo.h1.Padding.right,
@@ -861,7 +897,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionTwo.h2.Text,
               TextColor: value.carousel.sectionTwo.h2.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionTwo.h2.Padding.top,
                 right: value.carousel.sectionTwo.h2.Padding.right,
@@ -886,7 +922,7 @@ export class EditorComponent implements OnInit {
               Height: 0,
               ImageWidth: 100,
               ImageHeight: 0,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               CommandName: '',
               CommandParameter: '',
               Padding: {
@@ -908,7 +944,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionThree.h1.Text,
               TextColor: value.carousel.sectionThree.h1.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionThree.h1.Padding.top,
                 right: value.carousel.sectionThree.h1.Padding.right,
@@ -929,7 +965,7 @@ export class EditorComponent implements OnInit {
             configuration_json: {
               Text: value.carousel.sectionThree.h2.Text,
               TextColor: value.carousel.sectionThree.h2.TextColor,
-              BackgroundColor: '#00ffff',
+              BackgroundColor: '',
               Padding: {
                 top: value.carousel.sectionThree.h2.Padding.top,
                 right: value.carousel.sectionThree.h2.Padding.right,
