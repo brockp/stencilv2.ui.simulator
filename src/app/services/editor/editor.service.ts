@@ -288,6 +288,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -664,6 +665,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -1043,6 +1045,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -1419,6 +1422,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -1798,6 +1802,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -2174,6 +2179,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -2553,6 +2559,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -2929,6 +2936,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -3308,6 +3316,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -3684,6 +3693,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -4063,6 +4073,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -4439,6 +4450,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -4817,6 +4829,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -5192,6 +5205,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -5570,6 +5584,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -5945,6 +5960,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -6325,6 +6341,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -6702,6 +6719,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -7081,6 +7099,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -7457,6 +7476,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -7836,6 +7856,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -8212,6 +8233,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -8591,6 +8613,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -8967,6 +8990,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -9345,6 +9369,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -9720,6 +9745,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -10098,6 +10124,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -10473,6 +10500,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -10850,7 +10878,8 @@ export class EditorService {
         Text: 'Primary Button Text',
         CommandName: '',
         CommandParameter: '',
-        BackgroundColor: '#3589F9',
+        BackgroundColor: '',
+        UIButtonBackgroundColor: '#3589F9',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -11226,6 +11255,7 @@ export class EditorService {
         CommandName: primaryButton.CommandName,
         CommandParameter: primaryButton.CommandParameter,
         BackgroundColor: primaryButton.BackgroundColor,
+        UIButtonBackgroundColor: primaryButton.UIButtonBackgroundColor,
         Icon: primaryButton.Icon,
         ShowIcon: primaryButton.ShowIcon,
         Padding: this.fb.group({
@@ -11605,6 +11635,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -11983,6 +12014,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -12286,6 +12318,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({
@@ -12661,6 +12694,7 @@ export class EditorService {
         CommandName: '',
         CommandParameter: '',
         BackgroundColor: '',
+        UIButtonBackgroundColor: '',
         Icon: '',
         ShowIcon: false,
         Padding: this.fb.group({

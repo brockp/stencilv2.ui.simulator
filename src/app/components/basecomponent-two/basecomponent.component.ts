@@ -826,6 +826,16 @@ export class BasecomponentTwoComponent implements OnInit {
     console.log(this.components);
   }
 
+  setPrimaryButtonUIButtonBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      primaryButton: { UIButtonBackgroundColor: color },
+    });
+    console.log(this.components);
+  }
+
   setImageBackgroundColor(color: any, i: number) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);

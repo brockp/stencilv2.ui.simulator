@@ -1,20 +1,22 @@
-<section class="crowdtap-primary-button" [ngStyle]="{
-  color: primaryButton.value.TextColor,
-  'justify-content': primaryButton.value.TextAlignment,
-  'text-align': primaryButton.value.TextAlignment,
-  'background-color': primaryButton.value.primaryButton.BackgroundColor,
-  width: primaryButton.value.Width + 'px',
-  'padding-top': primaryButton.value.primaryButton.Padding.top + 'px',
-  'padding-right': primaryButton.value.primaryButton.Padding.right + 'px',
-  'padding-bottom': primaryButton.value.primaryButton.Padding.bottom + 'px',
-  'padding-left': primaryButton.value.primaryButton.Padding.left + 'px', 
-  'margin-top': primaryButton.value.primaryButton.Margin.top + 'px',
-  'margin-right': primaryButton.value.primaryButton.Margin.right + 'px',
-  'margin-bottom': primaryButton.value.primaryButton.Margin.bottom + 'px',
-  'margin-left': primaryButton.value.primaryButton.Margin.left + 'px' 
-}">
-  <span class="material-symbols-rounded">
-    {{primaryButton.value.primaryButton.Icon}}
-  </span>
-  {{ primaryButton.value.primaryButton.Text }}
+<section [ngStyle]="{'background-color': primaryButton.value.primaryButton.BackgroundColor}">
+  <section class="crowdtap-primary-button" [ngStyle]="{
+    color: primaryButton.value.TextColor,
+    'justify-content': primaryButton.value.TextAlignment,
+    'text-align': primaryButton.value.TextAlignment,
+    'background-color': primaryButton.value.primaryButton.UIButtonBackgroundColor,
+    width: primaryButton.value.Width + 'px',
+    'padding-top': primaryButton.value.primaryButton.Padding.top + 'px',
+    'padding-right': primaryButton.value.primaryButton.Padding.right + 'px',
+    'padding-bottom': primaryButton.value.primaryButton.Padding.bottom + 'px',
+    'padding-left': primaryButton.value.primaryButton.Padding.left + 'px',
+    'margin-top': primaryButton.value.primaryButton.Margin.top + 'px',
+    'margin-right': primaryButton.value.primaryButton.Margin.right + 'px',
+    'margin-bottom': primaryButton.value.primaryButton.Margin.bottom + 'px',
+    'margin-left': primaryButton.value.primaryButton.Margin.left + 'px'
+  }">
+    <span class="material-symbols-rounded">
+      {{primaryButton.value.primaryButton.Icon}}
+    </span>
+    {{ primaryButton.value.primaryButton.Text }}
+  </section>
 </section>

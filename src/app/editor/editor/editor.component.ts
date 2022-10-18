@@ -1235,6 +1235,8 @@ export class EditorComponent implements OnInit {
               CommandName: value.primaryButton.CommandName,
               CommandParameter: value.primaryButton.CommandParameter,
               BackgroundColor: value.primaryButton.BackgroundColor,
+              UIButtonBackgroundColor:
+                value.primaryButton.UIButtonBackgroundColor,
               CornerRadius: value.primaryButton.CornerRadius,
               Icon: value.primaryButton.Icon,
               ShowIcon: value.primaryButton.ShowIcon,
