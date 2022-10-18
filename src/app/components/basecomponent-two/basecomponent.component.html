@@ -20,15 +20,16 @@
                 <!-- Delete component button -->
 
                 <!-- Appheader component -->
-                <app-header (click)="appHeaderEdit()" [appHeader]="base"></app-header>
+                <app-header (click)="openEdit('appHeader')" [appHeader]="base"></app-header>
                 <!-- Appheader component -->
 
                 <!-- headerTitleBar component -->
-                <app-header-title-bar (click)="headerTitleBarEdit()" [headerTitleBar]="base"></app-header-title-bar>
+                <app-header-title-bar (click)="openEdit('headerTitleBar')" [headerTitleBar]="base">
+                </app-header-title-bar>
                 <!-- headerTitleBar component -->
 
                 <!-- headerWithIcon component -->
-                <app-header-w-icon (click)="headerWithIconEdit()" [headerWithIcon]="base"></app-header-w-icon>
+                <app-header-w-icon (click)="openEdit('headerWithIcon')" [headerWithIcon]="base"></app-header-w-icon>
                 <!-- headerWithIcon component -->
               </section>
             </ng-template>
@@ -37,15 +38,15 @@
               <!-- EDITABLE PREVIEW OF COMPONENTS -->
               <section class="component-edit-mode">
                 <!-- Appheader component -->
-                <app-header (click)="appHeaderEdit()" [appHeader]="base"></app-header>
+                <app-header [appHeader]="base"></app-header>
                 <!-- Appheader component -->
 
                 <!-- headerTitleBar component -->
-                <app-header-title-bar (click)="headerTitleBarEdit()" [headerTitleBar]="base"></app-header-title-bar>
+                <app-header-title-bar [headerTitleBar]="base"></app-header-title-bar>
                 <!-- headerTitleBar component -->
 
                 <!-- headerWithIcon component -->
-                <app-header-w-icon (click)="headerWithIconEdit()" [headerWithIcon]="base"></app-header-w-icon>
+                <app-header-w-icon [headerWithIcon]="base"></app-header-w-icon>
                 <!-- headerWithIcon component -->
               </section>
               <!-- EDITABLE PREVIEW OF COMPONENTS -->
@@ -425,61 +426,62 @@
             <ng-template viewMode>
               <section class="component-hover">
                 <!-- H1 component -->
-                <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
+                <app-headline (click)="openEdit('headerEdit')" [headline]="base"></app-headline>
                 <!-- H1 component -->
 
                 <!-- H2 component -->
-                <app-headline-two (click)="headerTwoEdit()" [headline]="base"></app-headline-two>
+                <app-headline-two (click)="openEdit('headerTwoEdit')" [headline]="base"></app-headline-two>
                 <!-- H2 component -->
 
                 <!-- H3 component -->
-                <app-headline-three (click)="headerThreeEdit()" [headline]="base"></app-headline-three>
+                <app-headline-three (click)="openEdit('headerThreeEdit')" [headline]="base"></app-headline-three>
                 <!-- H3 component -->
 
                 <!-- Expanding Text component -->
-                <app-expanding-text (click)="expandingTextEdit()" [expandingText]="base"></app-expanding-text>
+                <app-expanding-text (click)="openEdit('expandingTextEdit')" [expandingText]="base"></app-expanding-text>
                 <!-- Expanding Text component -->
 
                 <!-- plainText component -->
-                <app-plaintext (click)="plainTextEdit()" [plainText]="base"></app-plaintext>
+                <app-plaintext (click)="openEdit('plainTextEdit')" [plainText]="base"></app-plaintext>
                 <!-- plainText component -->
 
                 <!-- Image component -->
-                <app-graphic (click)="imageEdit()" [graphic]="base"></app-graphic>
+                <app-graphic (click)="openEdit('imageEdit')" [graphic]="base"></app-graphic>
                 <!-- Image component -->
 
                 <!-- Slimentry component -->
-                <app-slimentry (click)="inputEdit()" [slimEntry]="base"></app-slimentry>
+                <app-slimentry (click)="openEdit('slimEntry')" [slimEntry]="base"></app-slimentry>
                 <!-- Slimentry component -->
 
                 <!-- Slimeditor component -->
-                <app-slimeditor (click)="slimEditorEdit()" [slimEditor]="base"></app-slimeditor>
+                <app-slimeditor (click)="openEdit('slimEditor')" [slimEditor]="base"></app-slimeditor>
                 <!-- Slimeditor component -->
 
                 <!-- fullEntry component -->
-                <app-full-entry (click)="fullEntryEdit()" [fullEntry]="base"></app-full-entry>
+                <app-full-entry (click)="openEdit('fullEntry')" [fullEntry]="base"></app-full-entry>
                 <!-- fullEntry component -->
 
                 <!-- fullEditor component -->
-                <app-full-editor (click)="fullEditorEdit()" [fullEditor]="base"></app-full-editor>
+                <app-full-editor (click)="openEdit('fullEditor')" [fullEditor]="base"></app-full-editor>
                 <!-- fullEditor component -->
 
                 <!-- Dropdown component -->
-                <app-dropdown (click)="dropdownEdit()" [dropdown]="base"></app-dropdown>
+                <app-dropdown (click)="openEdit('dropDownEdit')" [dropdown]="base"></app-dropdown>
                 <!-- Drowpdown component -->
 
                 <!-- Spacer component -->
-                <app-spacer (click)="spacerEdit()" [spacer]="base"></app-spacer>
+                <app-spacer (click)="openEdit('spacer')" [spacer]="base"></app-spacer>
                 <!-- Spacer component -->
 
                 <!-- Primary button component -->
                 <div class="flex justify-center items-center">
-                  <app-primary-button (click)="primaryButtonEdit()" [primaryButton]="base"></app-primary-button>
+                  <app-primary-button (click)="openEdit('primaryButtonEdit')" [primaryButton]="base">
+                  </app-primary-button>
                 </div>
                 <!-- Primary button component -->
 
                 <!-- Carousel component-->
-                <app-carousel (click)="carouselEdit()" [carousel]="base"></app-carousel>
+                <app-carousel (click)="openEdit('carouselEdit')" [carousel]="base"></app-carousel>
                 <!-- Carousel component -->
               </section>
             </ng-template>
@@ -495,61 +497,61 @@
                 </div>
                 <!-- Delete component button -->
                 <!-- Headline component -->
-                <app-headline (click)="headerEdit()" [headline]="base"></app-headline>
+                <app-headline [headline]="base"></app-headline>
                 <!-- Headline component -->
 
                 <!-- H2 component -->
-                <app-headline-two (click)="headerTwoEdit()" [headline]="base"></app-headline-two>
+                <app-headline-two [headline]="base"></app-headline-two>
                 <!-- H2 component -->
 
                 <!-- H3 component -->
-                <app-headline-three (click)="headerThreeEdit()" [headline]="base"></app-headline-three>
+                <app-headline-three [headline]="base"></app-headline-three>
                 <!-- H3 component -->
 
                 <!-- Expanding Text component -->
-                <app-expanding-text (click)="expandingTextEdit()" [expandingText]="base"></app-expanding-text>
+                <app-expanding-text [expandingText]="base"></app-expanding-text>
                 <!-- Expanding Text component -->
 
                 <!-- plainText component -->
-                <app-plaintext (click)="plainTextEdit()" [plainText]="base"></app-plaintext>
+                <app-plaintext [plainText]="base"></app-plaintext>
                 <!-- plainText component -->
 
                 <!-- Image component -->
-                <app-graphic (click)="imageEdit()" [graphic]="base"></app-graphic>
+                <app-graphic [graphic]="base"></app-graphic>
                 <!-- Image component -->
 
                 <!-- Slimentry component -->
-                <app-slimentry (click)="inputEdit()" [slimEntry]="base"></app-slimentry>
+                <app-slimentry [slimEntry]="base"></app-slimentry>
                 <!-- Slimentry component -->
 
                 <!-- Slimeditor component -->
-                <app-slimeditor (click)="slimEditorEdit()" [slimEditor]="base"></app-slimeditor>
+                <app-slimeditor [slimEditor]="base"></app-slimeditor>
                 <!-- Slimeditor component -->
 
                 <!-- fullEntry component -->
-                <app-full-entry (click)="fullEntryEdit()" [fullEntry]="base"></app-full-entry>
+                <app-full-entry [fullEntry]="base"></app-full-entry>
                 <!-- fullEntry component -->
 
                 <!-- fullEditor component -->
-                <app-full-editor (click)="fullEditorEdit()" [fullEditor]="base"></app-full-editor>
+                <app-full-editor [fullEditor]="base"></app-full-editor>
                 <!-- fullEditor component -->
 
                 <!-- Dropdown component -->
-                <app-dropdown (click)="dropdownEdit()" [dropdown]="base"></app-dropdown>
+                <app-dropdown [dropdown]="base"></app-dropdown>
                 <!-- Drowpdown component -->
 
                 <!-- Spacer component -->
-                <app-spacer (click)="spacerEdit()" [spacer]="base"></app-spacer>
+                <app-spacer [spacer]="base"></app-spacer>
                 <!-- Spacer component -->
 
                 <!-- Primary button component -->
                 <div class="flex justify-center items-center">
-                  <app-primary-button (click)="primaryButtonEdit()" [primaryButton]="base"></app-primary-button>
+                  <app-primary-button [primaryButton]="base"></app-primary-button>
                 </div>
                 <!-- Primary button component -->
 
                 <!-- Carousel component-->
-                <app-carousel (click)="carouselEdit()" [carousel]="base"></app-carousel>
+                <app-carousel [carousel]="base"></app-carousel>
                 <!-- Carousel component -->
               </section>
               <!-- ////////////////////////////// -->

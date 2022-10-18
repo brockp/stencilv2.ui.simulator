@@ -37,6 +37,375 @@ export class EditorService {
 
   constructor(public fb: FormBuilder, private http: HttpClient) {}
 
+  editStatus = {
+    image: false,
+    header: false,
+    description: false,
+    input: false,
+    dropdown: false,
+    appHeader: false,
+    slimEditorEdit: false,
+    spacer: false,
+    plainTextEdit: false,
+    expandingTextEdit: false,
+    headerTitleBarEdit: false,
+    primaryButtonEdit: false,
+    headlineTwoEdit: false,
+    headlineThreeEdit: false,
+    headerWithIconEdit: false,
+    fullEntryEdit: false,
+    fullEditorEdit: false,
+    carouselEdit: false,
+  };
+
+  openEditable(day: any) {
+    switch (day) {
+      case 'spacer':
+        this.spacer = true;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'slimEntry':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = true;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'slimEditor':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = true;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'fullEntry':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = true;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'fullEditor':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = true;
+        this.carouselEdit = false;
+        break;
+      case 'appHeader':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = true;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'headerTitleBar':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = true;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'headerWithIcon':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = true;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'dropDownEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = true;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'plainTextEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = true;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'imageEdit':
+        this.spacer = false;
+        this.image = true;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'headerEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = true;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'headerTwoEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = true;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'headerThreeEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = true;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'expandingTextEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = true;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'primaryButtonEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = true;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = false;
+        break;
+      case 'carouselEdit':
+        this.spacer = false;
+        this.image = false;
+        this.header = false;
+        this.description = false;
+        this.input = false;
+        this.dropdown = false;
+        this.appHeader = false;
+        this.slimEditorEdit = false;
+        this.plainTextEdit = false;
+        this.expandingTextEdit = false;
+        this.headerTitleBarEdit = false;
+        this.primaryButtonEdit = false;
+        this.headlineTwoEdit = false;
+        this.headlineThreeEdit = false;
+        this.headerWithIconEdit = false;
+        this.fullEntryEdit = false;
+        this.fullEditorEdit = false;
+        this.carouselEdit = true;
+        break;
+      default:
+        this.editStatus;
+        break;
+    }
+  }
+
   // Get & Load image Component
   /////////////////////////////////////////////////
   public createBaseComponent(image: any): FormGroup {
