@@ -270,7 +270,7 @@ export class BasecomponentTwoComponent implements OnInit {
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      carousel: { sectionOne: { h2: { TextColor: color } } },
+      carousel: { sectionTwo: { h2: { TextColor: color } } },
     });
   }
 

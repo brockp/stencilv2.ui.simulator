@@ -49,7 +49,7 @@
 }
 
 .mat-expansion-panel {
-  @apply bg-gray-800 text-white font-noir text-base font-normal;
+  @apply bg-transparent text-white font-noir text-base font-normal border-b border-gray-800 my-5;
   box-shadow: none !important;
   .mat-expansion-panel-header {
     padding: 0px 8px !important;

@@ -743,7 +743,7 @@ export class EditorComponent implements OnInit {
 
           sectionOneImage = {
             id: value.id + 1,
-            component: value.component,
+            component: 'image',
             configuration_json: {
               Source: value.carousel.sectionOne.Source,
               Width: 100,
@@ -768,7 +768,7 @@ export class EditorComponent implements OnInit {
           };
           sectionOneHeadline = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h1',
             configuration_json: {
               Text: value.carousel.sectionOne.h1.Text,
               TextColor: value.carousel.sectionOne.h1.TextColor,
@@ -789,7 +789,7 @@ export class EditorComponent implements OnInit {
           };
           sectionOneDescription = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h2',
             configuration_json: {
               Text: value.carousel.sectionOne.h2.Text,
               TextColor: value.carousel.sectionOne.h2.TextColor,
@@ -811,7 +811,7 @@ export class EditorComponent implements OnInit {
 
           sectionTwoImage = {
             id: value.id + 1,
-            component: value.component,
+            component: 'image',
             configuration_json: {
               Source: value.carousel.sectionTwo.Source,
               Width: 100,
@@ -836,7 +836,7 @@ export class EditorComponent implements OnInit {
           };
           sectionTwoHeadline = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h1',
             configuration_json: {
               Text: value.carousel.sectionTwo.h1.Text,
               TextColor: value.carousel.sectionTwo.h1.TextColor,
@@ -857,7 +857,7 @@ export class EditorComponent implements OnInit {
           };
           sectionTwoDescription = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h2',
             configuration_json: {
               Text: value.carousel.sectionTwo.h2.Text,
               TextColor: value.carousel.sectionTwo.h2.TextColor,
@@ -879,7 +879,7 @@ export class EditorComponent implements OnInit {
 
           sectionThreeImage = {
             id: value.id + 1,
-            component: value.component,
+            component: 'image',
             configuration_json: {
               Source: value.carousel.sectionThree.Source,
               Width: 100,
@@ -904,7 +904,7 @@ export class EditorComponent implements OnInit {
           };
           sectionThreeHeadline = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h1',
             configuration_json: {
               Text: value.carousel.sectionThree.h1.Text,
               TextColor: value.carousel.sectionThree.h1.TextColor,
@@ -925,7 +925,7 @@ export class EditorComponent implements OnInit {
           };
           sectionThreeDescription = {
             id: value.id + 1,
-            component: value.component,
+            component: 'h2',
             configuration_json: {
               Text: value.carousel.sectionThree.h2.Text,
               TextColor: value.carousel.sectionThree.h2.TextColor,
@@ -987,17 +987,17 @@ export class EditorComponent implements OnInit {
                 ViewConfigs: [
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'image',
                     configuration_json: sectionOneConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h1',
                     configuration_json: sectionOneHeadlineConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h2',
                     configuration_json: sectionOneDescriptionConfig,
                   },
                 ],
@@ -1006,17 +1006,17 @@ export class EditorComponent implements OnInit {
                 ViewConfigs: [
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'image',
                     configuration_json: sectionTwoConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h1',
                     configuration_json: sectionTwoHeadlineConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h2',
                     configuration_json: sectionTwoDescriptionConfig,
                   },
                 ],
@@ -1025,17 +1025,17 @@ export class EditorComponent implements OnInit {
                 ViewConfigs: [
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'image',
                     configuration_json: sectionThreeConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h1',
                     configuration_json: sectionThreeHeadlineConfig,
                   },
                   {
                     id: value.id + 1,
-                    component: value.component,
+                    component: 'h2',
                     configuration_json: sectionThreeDescriptionConfig,
                   },
                 ],
