@@ -577,10 +577,10 @@
                             formControlName="InteractionGroup" rows="3" cols="33"></textarea>
 
                           <h2 class="edit-section-title">Position:</h2>
-                          <textarea class="textarea-control" placeholder="Set initial value" type="text"
-                            formControlName="Position" rows="3" cols="33"></textarea>
+                          <input class="form-control" placeholder="Set initial value" type="number"
+                            formControlName="Position" rows="3" cols="33">
 
-                          <div class="flex justify-evenly items-center w-full">
+                          <div class="flex justify-between items-center w-full">
                             <div>
                               <h2 class="edit-section-title">Loop:</h2>
                               <mat-checkbox class="p-1" formControlName="Loop"></mat-checkbox>
@@ -607,6 +607,15 @@
                           <h2 class="edit-section-title">Under Move Parameter:</h2>
                           <textarea class="textarea-control" placeholder="Set initial value" type="text"
                             formControlName="UnderMoveCommandParameter" rows="3" cols="33"></textarea>
+
+                          <h2 class="edit-section-title">Background Color:</h2>
+                          <section
+                            class="flex flex-wrap justify-start items-center max-h-40 overflow-y-auto overflow-x-hidden">
+                            <div *ngFor="let color of colorPalettes">
+                              <button class="color-button" [class]="[color.class, color.textColor]"
+                                (click)="setCarouselBackgroundColor(color.color, i)"></button>
+                            </div>
+                          </section>
                         </mat-expansion-panel>
 
                         <mat-expansion-panel hideToggle formGroupName="sectionOne">

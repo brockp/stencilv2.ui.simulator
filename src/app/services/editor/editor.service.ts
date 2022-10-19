@@ -684,13 +684,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -1061,13 +1061,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -1441,13 +1441,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -1818,13 +1818,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -2198,13 +2198,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -2575,13 +2575,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -2955,13 +2955,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -3332,13 +3332,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -3712,13 +3712,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -4089,13 +4089,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -4469,13 +4469,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -4846,13 +4846,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -5225,13 +5225,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -5601,13 +5601,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -5980,13 +5980,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -6356,13 +6356,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -6737,13 +6737,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -7115,13 +7115,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -7495,13 +7495,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -7872,13 +7872,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -8252,13 +8252,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -8629,13 +8629,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -9009,13 +9009,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -9386,13 +9386,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -9765,13 +9765,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -10141,13 +10141,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -10520,13 +10520,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -10896,13 +10896,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -11275,13 +11275,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -11651,13 +11651,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -12031,13 +12031,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
-          LeftNav: '',
+          LeftNav: 'SKIP',
           LeftNavInitialCommand: '',
-          LeftNavAlt: '',
-          RightNav: '',
-        },
+          LeftNavAlt: 'PREV',
+          RightNav: 'NEXT',
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -12421,6 +12421,13 @@ export class EditorService {
         OverMoveCommandParameter: carousel.OverMoveCommandParameter,
         UnderMoveCommandName: carousel.UnderMoveCommandName,
         UnderMoveCommandParameter: carousel.UnderMoveCommandParameter,
+        Nav: this.fb.group({
+          Version: '',
+          LeftNav: 'SKIP',
+          LeftNavInitialCommand: '',
+          LeftNavAlt: 'PREV',
+          RightNav: 'NEXT',
+        }),
         Margin: this.fb.group({
           top: carousel.top,
           right: carousel.right,
@@ -12797,13 +12804,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,
@@ -13173,13 +13180,13 @@ export class EditorService {
         OverMoveCommandParameter: '',
         UnderMoveCommandName: '',
         UnderMoveCommandParameter: '',
-        Nav: {
+        Nav: this.fb.group({
           Version: '',
           LeftNav: '',
           LeftNavInitialCommand: '',
           LeftNavAlt: '',
           RightNav: '',
-        },
+        }),
         Margin: this.fb.group({
           top: 0,
           right: 0,

@@ -746,7 +746,7 @@ export class EditorComponent implements OnInit {
               InteractionGroup: value.carousel.InteractionGroup,
               BackgroundColor: value.carousel.BackgroundColor,
               BackgroundImage: value.carousel.BackgroundImage,
-              Positon: value.carousel.Positon,
+              Position: value.carousel.Position,
               Loop: value.carousel.Loop,
               BounceEnabled: value.carousel.BounceEnabled,
               OverMoveCommandName: value.carousel.OverMoveCommandName,
@@ -755,24 +755,26 @@ export class EditorComponent implements OnInit {
               UnderMoveCommandParameter:
                 value.carousel.UnderMoveCommandParameter,
               Padding: {
-                top: value.carousel.Padding.top,
-                right: value.carousel.Padding.right,
-                bottom: value.carousel.Padding.bottom,
-                left: value.carousel.Padding.left,
+                top: value.carousel.Padding.top || 0,
+                right: value.carousel.Padding.right || 0,
+                bottom: value.carousel.Padding.bottom || 0,
+                left: value.carousel.Padding.left || 0,
                 HorizontalThickness:
-                  value.carousel.Padding.left + value.carousel.Padding.right,
+                  value.carousel.Padding.left + value.carousel.Padding.right ||
+                  0,
                 VerticalThickness:
-                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+                  value.carousel.Padding.top + value.carousel.Padding.bottom ||
+                  0,
               },
               Margin: {
-                top: value.carousel.Margin.top,
-                right: value.carousel.Margin.right,
-                bottom: value.carousel.Margin.bottom,
-                left: value.carousel.Margin.left,
+                top: value.carousel.Margin.top || 0,
+                right: value.carousel.Margin.right || 0,
+                bottom: value.carousel.Margin.bottom || 0,
+                left: value.carousel.Margin.left || 0,
                 HorizontalThickness:
-                  value.carousel.Margin.left + value.carousel.Margin.right,
+                  value.carousel.Margin.left + value.carousel.Margin.right || 0,
                 VerticalThickness:
-                  value.carousel.Margin.top + value.carousel.Margin.bottom,
+                  value.carousel.Margin.top + value.carousel.Margin.bottom || 0,
               },
             },
           };
@@ -790,14 +792,16 @@ export class EditorComponent implements OnInit {
               CommandName: '',
               CommandParameter: '',
               Padding: {
-                top: value.carousel.Padding.top,
-                right: value.carousel.Padding.right,
-                bottom: value.carousel.Padding.bottom,
-                left: value.carousel.Padding.left,
+                top: value.carousel.Padding.top || 0,
+                right: value.carousel.Padding.right || 0,
+                bottom: value.carousel.Padding.bottom || 0,
+                left: value.carousel.Padding.left || 0,
                 HorizontalThickness:
-                  value.carousel.Padding.left + value.carousel.Padding.right,
+                  value.carousel.Padding.left + value.carousel.Padding.right ||
+                  0,
                 VerticalThickness:
-                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+                  value.carousel.Padding.top + value.carousel.Padding.bottom ||
+                  0,
               },
               FullBleedHorizontal: false,
             },
@@ -810,16 +814,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionOne.h1.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionOne.h1.Padding.top,
-                right: value.carousel.sectionOne.h1.Padding.right,
-                bottom: value.carousel.sectionOne.h1.Padding.bottom,
-                left: value.carousel.sectionOne.h1.Padding.left,
+                top: value.carousel.sectionOne.h1.Padding.top || 0,
+                right: value.carousel.sectionOne.h1.Padding.right || 0,
+                bottom: value.carousel.sectionOne.h1.Padding.bottom || 0,
+                left: value.carousel.sectionOne.h1.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionOne.h1.Padding.left +
-                  value.carousel.sectionOne.h1.Padding.right,
+                    value.carousel.sectionOne.h1.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionOne.h1.Padding.top +
-                  value.carousel.sectionOne.h1.Padding.bottom,
+                    value.carousel.sectionOne.h1.Padding.bottom || 0,
               },
             },
           };
@@ -831,16 +835,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionOne.h2.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionOne.h2.Padding.top,
-                right: value.carousel.sectionOne.h2.Padding.right,
-                bottom: value.carousel.sectionOne.h2.Padding.bottom,
-                left: value.carousel.sectionOne.h2.Padding.left,
+                top: value.carousel.sectionOne.h2.Padding.top || 0,
+                right: value.carousel.sectionOne.h2.Padding.right || 0,
+                bottom: value.carousel.sectionOne.h2.Padding.bottom || 0,
+                left: value.carousel.sectionOne.h2.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionOne.h2.Padding.left +
-                  value.carousel.sectionOne.h2.Padding.right,
+                    value.carousel.sectionOne.h2.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionOne.h2.Padding.top +
-                  value.carousel.sectionOne.h2.Padding.bottom,
+                    value.carousel.sectionOne.h2.Padding.bottom || 0,
               },
             },
           };
@@ -858,14 +862,16 @@ export class EditorComponent implements OnInit {
               CommandName: '',
               CommandParameter: '',
               Padding: {
-                top: value.carousel.Padding.top,
-                right: value.carousel.Padding.right,
-                bottom: value.carousel.Padding.bottom,
-                left: value.carousel.Padding.left,
+                top: value.carousel.Padding.top || 0,
+                right: value.carousel.Padding.right || 0,
+                bottom: value.carousel.Padding.bottom || 0,
+                left: value.carousel.Padding.left || 0,
                 HorizontalThickness:
-                  value.carousel.Padding.left + value.carousel.Padding.right,
+                  value.carousel.Padding.left + value.carousel.Padding.right ||
+                  0,
                 VerticalThickness:
-                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+                  value.carousel.Padding.top + value.carousel.Padding.bottom ||
+                  0,
               },
               FullBleedHorizontal: false,
             },
@@ -878,16 +884,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionTwo.h1.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionTwo.h1.Padding.top,
-                right: value.carousel.sectionTwo.h1.Padding.right,
-                bottom: value.carousel.sectionTwo.h1.Padding.bottom,
-                left: value.carousel.sectionTwo.h1.Padding.left,
+                top: value.carousel.sectionTwo.h1.Padding.top || 0,
+                right: value.carousel.sectionTwo.h1.Padding.right || 0,
+                bottom: value.carousel.sectionTwo.h1.Padding.bottom || 0,
+                left: value.carousel.sectionTwo.h1.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionTwo.h1.Padding.left +
-                  value.carousel.sectionTwo.h1.Padding.right,
+                    value.carousel.sectionTwo.h1.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionTwo.h1.Padding.top +
-                  value.carousel.sectionTwo.h1.Padding.bottom,
+                    value.carousel.sectionTwo.h1.Padding.bottom || 0,
               },
             },
           };
@@ -899,16 +905,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionTwo.h2.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionTwo.h2.Padding.top,
-                right: value.carousel.sectionTwo.h2.Padding.right,
-                bottom: value.carousel.sectionTwo.h2.Padding.bottom,
-                left: value.carousel.sectionTwo.h2.Padding.left,
+                top: value.carousel.sectionTwo.h2.Padding.top || 0,
+                right: value.carousel.sectionTwo.h2.Padding.right || 0,
+                bottom: value.carousel.sectionTwo.h2.Padding.bottom || 0,
+                left: value.carousel.sectionTwo.h2.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionTwo.h2.Padding.left +
-                  value.carousel.sectionTwo.h2.Padding.right,
+                    value.carousel.sectionTwo.h2.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionTwo.h2.Padding.top +
-                  value.carousel.sectionTwo.h2.Padding.bottom,
+                    value.carousel.sectionTwo.h2.Padding.bottom || 0,
               },
             },
           };
@@ -926,14 +932,16 @@ export class EditorComponent implements OnInit {
               CommandName: '',
               CommandParameter: '',
               Padding: {
-                top: value.carousel.Padding.top,
-                right: value.carousel.Padding.right,
-                bottom: value.carousel.Padding.bottom,
-                left: value.carousel.Padding.left,
+                top: value.carousel.Padding.top || 0,
+                right: value.carousel.Padding.right || 0,
+                bottom: value.carousel.Padding.bottom || 0,
+                left: value.carousel.Padding.left || 0,
                 HorizontalThickness:
-                  value.carousel.Padding.left + value.carousel.Padding.right,
+                  value.carousel.Padding.left + value.carousel.Padding.right ||
+                  0,
                 VerticalThickness:
-                  value.carousel.Padding.top + value.carousel.Padding.bottom,
+                  value.carousel.Padding.top + value.carousel.Padding.bottom ||
+                  0,
               },
               FullBleedHorizontal: false,
             },
@@ -946,16 +954,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionThree.h1.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionThree.h1.Padding.top,
-                right: value.carousel.sectionThree.h1.Padding.right,
-                bottom: value.carousel.sectionThree.h1.Padding.bottom,
-                left: value.carousel.sectionThree.h1.Padding.left,
+                top: value.carousel.sectionThree.h1.Padding.top || 0,
+                right: value.carousel.sectionThree.h1.Padding.right || 0,
+                bottom: value.carousel.sectionThree.h1.Padding.bottom || 0,
+                left: value.carousel.sectionThree.h1.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionThree.h1.Padding.left +
-                  value.carousel.sectionThree.h1.Padding.right,
+                    value.carousel.sectionThree.h1.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionThree.h1.Padding.top +
-                  value.carousel.sectionThree.h1.Padding.bottom,
+                    value.carousel.sectionThree.h1.Padding.bottom || 0,
               },
             },
           };
@@ -967,16 +975,16 @@ export class EditorComponent implements OnInit {
               TextColor: value.carousel.sectionThree.h2.TextColor,
               BackgroundColor: '',
               Padding: {
-                top: value.carousel.sectionThree.h2.Padding.top,
-                right: value.carousel.sectionThree.h2.Padding.right,
-                bottom: value.carousel.sectionThree.h2.Padding.bottom,
-                left: value.carousel.sectionThree.h2.Padding.left,
+                top: value.carousel.sectionThree.h2.Padding.top || 0,
+                right: value.carousel.sectionThree.h2.Padding.right || 0,
+                bottom: value.carousel.sectionThree.h2.Padding.bottom || 0,
+                left: value.carousel.sectionThree.h2.Padding.left || 0,
                 HorizontalThickness:
                   value.carousel.sectionThree.h2.Padding.left +
-                  value.carousel.sectionThree.h2.Padding.right,
+                    value.carousel.sectionThree.h2.Padding.right || 0,
                 VerticalThickness:
                   value.carousel.sectionThree.h2.Padding.top +
-                  value.carousel.sectionThree.h2.Padding.bottom,
+                    value.carousel.sectionThree.h2.Padding.bottom || 0,
               },
             },
           };

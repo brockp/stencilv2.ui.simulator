@@ -1,9 +1,12 @@
 drag-scroll {
-  width: 390px !important;
   @apply h-full;
 
   img {
     @apply w-full h-full;
+  }
+
+  drag-scroll-item {
+    @apply px-20;
   }
 }
 
@@ -16,9 +19,13 @@ drag-scroll {
     @apply absolute bottom-16;
     width: calc(100% - 66%);
     overflow: hidden;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
+}
+
+.carousel-height {
+  height: 100vh !important;
 }
 
 .footer-grid {
@@ -28,7 +35,7 @@ drag-scroll {
 }
 
 .active-dot {
-  @apply rounded-full w-2.5 h-2.5 bg-gray-400;
+  @apply rounded-full w-2 h-2 bg-gray-400;
 }
 
 .inactive-dot {

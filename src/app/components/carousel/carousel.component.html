@@ -1,10 +1,13 @@
-<div class="carousel" *ngIf="carousel.value.carousel.display">
+<div class="carousel" *ngIf="carousel.value.carousel.display"
+  [ngStyle]="{'background-color': carousel.value.carousel.BackgroundColor}">
   <section>
-    <drag-scroll class="h-full" [scrollbar-hidden]="hideScrollbar" (reachesLeftBound)="leftBoundStat($event)"
+    <drag-scroll class="carousel-height" [scrollbar-hidden]="hideScrollbar" (reachesLeftBound)="leftBoundStat($event)"
       (indexChanged)="onIndexChanged($event)" #nav>
       <!-- Section One -->
       <section class="w-full mx-auto" drag-scroll-item>
-        <img *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionOne.Source" />
+        <div class="flex justify-center items-center">
+          <img class="max-h-96" *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionOne.Source" />
+        </div>
         <section class="text-center my-4">
           <div class="headline-grid">
             <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
@@ -34,8 +37,8 @@
       </section>
 
       <!-- Section Two -->
-      <section class="w-full" drag-scroll-item>
-        <img *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionTwo.Source" />
+      <section class="w-full mx-auto" drag-scroll-item>
+        <img class="max-h-96" *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionTwo.Source" />
         <section class="text-center my-4">
           <div class="headline-grid">
             <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
@@ -65,8 +68,8 @@
       </section>
 
       <!-- Section Three -->
-      <section class="w-full" drag-scroll-item>
-        <img *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionThree.Source" />
+      <section class="w-full mx-auto" drag-scroll-item>
+        <img class="max-h-96" *ngIf="imgHost" [src]="imgHost + carousel.value.carousel.sectionThree.Source" />
         <section class="text-center my-4">
           <div class="headline-grid">
             <h1 class="text-2xl font-bold tracking-wide leading-10" *ngIf="carousel" [ngStyle]="{
@@ -81,7 +84,7 @@
             </h1>
           </div>
           <div class="description-grid">
-            <h2 class="my-2 text-base font-bold" [ngStyle]="{
+            <h2 class="my-2 text-base font-bold inline break-words" [ngStyle]="{
               color: carousel.value.carousel.sectionThree.h2.TextColor,
               'background-color': carousel.value.carousel.sectionThree.h2.BackgroundColor,
               'padding-top': carousel.value.carousel.sectionThree.h2.Padding.top,
@@ -97,22 +100,20 @@
     </drag-scroll>
 
     <!-- Footer Nav -->
-    <div class="absolute bottom-16 flex justify-between items-center w-96">
+    <div class="absolute bottom-16 flex justify-between items-center w-96 px-8 py-4">
       <section class="footer-grid">
-        <button (click)="moveLeft()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
-          <mat-icon>arrow_back_ios</mat-icon>
+        <button (click)="moveLeft()" class="font-quicksand text-xs font-normal hover:cursor-pointer text-white">
+          {{carousel.value.carousel.Nav.LeftNav}}
         </button>
         <div class="flex justify-center items-center gap-x-2">
           <div class="active-dot"></div>
           <div class="active-dot"></div>
           <div class="active-dot"></div>
         </div>
-        <button (click)="moveRight()" class="font-quicksand text-xs font-semibold hover:cursor-pointer">
-          <mat-icon>arrow_forward_ios</mat-icon>
+        <button (click)="moveRight()" class="font-quicksand text-xs font-normal hover:cursor-pointer">
+          {{carousel.value.carousel.Nav.RightNav}}
         </button>
       </section>
     </div>
   </section>
-
-
 </div>

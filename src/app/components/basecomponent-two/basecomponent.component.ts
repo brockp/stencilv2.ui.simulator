@@ -398,7 +398,15 @@ export class BasecomponentTwoComponent implements OnInit {
     index.patchValue({
       primaryButton: { BackgroundColor: color },
     });
-    console.log(this.components);
+  }
+
+  setCarouselBackgroundColor(color: any, i: number) {
+    const index = this.components.at(i);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
+    index.patchValue({
+      carousel: { BackgroundColor: color },
+    });
   }
 
   setPrimaryButtonUIButtonBackgroundColor(color: any, i: number) {

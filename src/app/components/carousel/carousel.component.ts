@@ -28,13 +28,10 @@ export class CarouselComponent implements OnInit {
     this.index = idx;
     console.log('current index: ' + idx);
 
-    if (idx === 0) {
-      this.carousel.value.carousel.Nav.LeftNav =
-        this.carousel.value.carousel.Nav.LeftNav = 0; // this.carouselForm.get(['Nav', 'LeftNav'])!.value;
-    }
     if (idx !== 0) {
-      this.carousel.value.carousel.Nav.LeftNav =
-        this.carousel.value.carousel.Nav.LeftNav = 1; // this.carouselForm.get(['Nav', 'LeftNavAlt'])!.value;
+      this.carousel.value.carousel.Nav.LeftNav = 'PREV';
+    } else {
+      this.carousel.value.carousel.Nav.LeftNav = 'SKIP';
     }
   }
 
