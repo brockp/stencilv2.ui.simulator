@@ -1336,15 +1336,17 @@ export class EditorComponent implements OnInit {
               Borderless: value.slimEntry.Borderless,
               BackgroundColor: value.slimEntry.BackgroundColor,
               InputBackgroundColor: value.slimEntry.InputBackgroundColor,
-              TextColor: value.ButtonTextColor,
-              PlaceholderColor: value.slimEntry.PlaceholderColor,
+              TextColor: value.slimEntry.TextColor,
+              PlaceholderColor: value.slimEntry.TextColor,
               Padding: {
                 top: value.slimEntry.Padding.top,
                 right: value.slimEntry.Padding.right,
                 bottom: value.slimEntry.Padding.bottom,
                 left: value.slimEntry.Padding.left,
-                HorizontalThickness: value.Padding.left + value.Padding.right,
-                VerticalThickness: value.Padding.top + value.Padding.bottom,
+                HorizontalThickness:
+                  value.slimEntry.Padding.left + value.slimEntry.Padding.right,
+                VerticalThickness:
+                  value.slimEntry.Padding.top + value.slimEntry.Padding.bottom,
               },
             },
           };
@@ -1374,7 +1376,7 @@ export class EditorComponent implements OnInit {
               BackgroundColor: value.slimEditor.BackgroundColor,
               InputBackgroundColor: value.slimEditor.InputBackgroundColor,
               TextColor: value.slimEditor.TextColor,
-              PlaceholderColor: value.slimEditor.PlaceholderColor,
+              PlaceholderColor: value.slimEditor.TextColor,
               Margin: {
                 top: value.slimEditor.Margin.top,
                 right: value.slimEditor.Margin.right,
@@ -1421,7 +1423,7 @@ export class EditorComponent implements OnInit {
               BackgroundColor: value.fullEntry.BackgroundColor,
               InputBackgroundColor: value.fullEntry.InputBackgroundColor,
               TextColor: value.fullEntry.TextColor,
-              PlaceholderColor: value.fullEntry.PlaceholderColor,
+              PlaceholderColor: value.fullEntry.TextColor,
               Padding: {
                 top: value.fullEntry.Padding.top,
                 right: value.fullEntry.Padding.right,

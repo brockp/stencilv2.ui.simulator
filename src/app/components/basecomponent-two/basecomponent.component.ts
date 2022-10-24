@@ -117,24 +117,13 @@ export class BasecomponentTwoComponent implements OnInit {
   // REACTIVE FORM EMIT FUNCTIONS FOR SELECTABLE ELEMENTS //
   /////////////////////////////////////////////////////////
 
-  setIcon(icon: string, i: number) {
+  setIcon(icon: string, i: number, formGroup: string) {
     const index = this.headers.at(i);
     this.leftIconChanged.emit(index);
     this.leftIconChanged.emit(icon);
     index.patchValue({
-      appHeader: {
+      [formGroup]: {
         leftIcon: icon,
-      },
-    });
-  }
-
-  setHeaderTitleBarIcon(icon: string, i: number) {
-    const index = this.headers.at(i);
-    this.leftIconChanged.emit(index);
-    this.leftIconChanged.emit(icon);
-    index.patchValue({
-      headerTitleBar: {
-        LeftIcon: icon,
       },
     });
   }
@@ -184,228 +173,46 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
-  setTextColor(color: any, i: number) {
+  setTextColor(color: string, i: number, formGroup: string) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      [formGroup]: { TextColor: color },
     });
   }
 
-  setHeaderTextColor(color: any, i: number) {
+  setSectionTextColor(
+    color: any,
+    i: number,
+    formGroup: string,
+    section: string,
+    formControl: string
+  ) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
-      TextColor: color,
+      [formGroup]: { [section]: { [formControl]: { TextColor: color } } },
     });
   }
 
-  setH1TextColor(color: any, i: number) {
+  setBackgroundColor(color: any, i: number, formGroup: string) {
     const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
+    this.backgroundColorChanged.emit(index);
+    this.backgroundColorChanged.emit(color);
     index.patchValue({
-      h1: { TextColor: color },
+      [formGroup]: { BackgroundColor: color },
     });
   }
 
-  setH2TextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      h2: { TextColor: color },
-    });
-  }
-
-  setH3TextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      h3: { TextColor: color },
-    });
-  }
-
-  setplainTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      plainText: { TextColor: color },
-    });
-  }
-
-  setSectionOneTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionOne: { h1: { TextColor: color } } },
-    });
-  }
-
-  setSectionOneH2TextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionOne: { h2: { TextColor: color } } },
-    });
-  }
-
-  setSectionTwoTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionTwo: { h1: { TextColor: color } } },
-    });
-  }
-
-  setSectionTwoH2TextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionTwo: { h2: { TextColor: color } } },
-    });
-  }
-
-  setSectionThreeTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionThree: { h1: { TextColor: color } } },
-    });
-  }
-
-  setSectionThreeH2TextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      carousel: { sectionThree: { h2: { TextColor: color } } },
-    });
-  }
-
-  setSlimeditorTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      slimEditor: { TextColor: color, PlaceholderColor: color },
-    });
-  }
-
-  setFullEntryTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      fullEntry: { TextColor: color, PlaceholderColor: color },
-    });
-  }
-
+  // TODO: Add Full editor to submit function
   setFullEditorTextColor(color: any, i: number) {
     const index = this.components.at(i);
     this.textColorChanged.emit(index);
     this.textColorChanged.emit(color);
     index.patchValue({
       fullEditor: { TextColor: color, PlaceholderColor: color },
-    });
-  }
-
-  setDropdownTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      dropDown: { TextColor: color },
-    });
-  }
-
-  setSlimentryTextColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      slimEntry: { TextColor: color, PlaceholderColor: color },
-    });
-  }
-
-  setHeaderTitleBarTextColor(color: any, i: number) {
-    const index = this.headers.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      headerTitleBar: { TextColor: color },
-    });
-  }
-
-  setHeaderWithIconTextColor(color: any, i: number) {
-    const index = this.headers.at(i);
-    this.textColorChanged.emit(index);
-    this.textColorChanged.emit(color);
-    index.patchValue({
-      headerWithIcon: { TextColor: color },
-    });
-  }
-
-  setBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      BackgroundColor: color,
-    });
-  }
-
-  setH1BackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      h1: { BackgroundColor: color },
-    });
-  }
-
-  setH2BackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      h2: { BackgroundColor: color },
-    });
-  }
-
-  setH3BackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      h3: { BackgroundColor: color },
-    });
-  }
-
-  setPrimaryButtonBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      primaryButton: { BackgroundColor: color },
-    });
-  }
-
-  setCarouselBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      carousel: { BackgroundColor: color },
     });
   }
 
@@ -419,151 +226,12 @@ export class BasecomponentTwoComponent implements OnInit {
     console.log(this.components);
   }
 
-  setImageBackgroundColor(color: any, i: number) {
+  setInputBackgroundColor(color: any, i: number, formGroup: string) {
     const index = this.components.at(i);
     this.backgroundColorChanged.emit(index);
     this.backgroundColorChanged.emit(color);
     index.patchValue({
-      graphic: { BackgroundColor: color },
-    });
-    console.log(this.components);
-  }
-
-  setAppheaderBackgroundColor(color: any, i: number) {
-    const index = this.headers.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      appHeader: { BackgroundColor: color },
-    });
-    console.log(this.headers);
-  }
-
-  setHeaderTitleBarBackgroundColor(color: any, i: number) {
-    const index = this.headers.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      headerTitleBar: { BackgroundColor: color },
-    });
-    console.log(this.headers);
-  }
-
-  setHeaderWithIconBackgroundColor(color: any, i: number) {
-    const index = this.headers.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      headerWithIcon: { BackgroundColor: color },
-    });
-    console.log(this.headers);
-  }
-
-  setPlaintextBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      plainText: { BackgroundColor: color },
-    });
-  }
-
-  setDropdownBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      dropDown: { BackgroundColor: color },
-    });
-  }
-
-  setSlimentryBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      slimEntry: { BackgroundColor: color },
-    });
-  }
-
-  setSlimeditorBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      slimEditor: { BackgroundColor: color },
-    });
-  }
-
-  setFullEntryBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      fullEntry: { BackgroundColor: color },
-    });
-  }
-
-  setFullEditorBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      fullEditor: { BackgroundColor: color },
-    });
-  }
-
-  setInputBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      slimEntry: { InputBackgroundColor: color },
-    });
-  }
-
-  setSlimeditorInputBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      slimEditor: { InputBackgroundColor: color },
-    });
-  }
-
-  setFullEntryInputBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      fullEntry: { InputBackgroundColor: color },
-    });
-  }
-
-  setFullEditorInputBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      fullEditor: { InputBackgroundColor: color },
-    });
-  }
-
-  setSpacerBackgroundColor(color: any, i: number) {
-    const index = this.components.at(i);
-    this.backgroundColorChanged.emit(index);
-    this.backgroundColorChanged.emit(color);
-    index.patchValue({
-      spacer: { BackgroundColor: color },
-    });
-  }
-
-  setTextAlignment(alignment: any, i: number) {
-    const index = this.components.at(i);
-    this.textAlignmentChanged.emit(index);
-    this.textAlignmentChanged.emit(alignment);
-    index.patchValue({
-      TextAlignment: alignment,
+      [formGroup]: { InputBackgroundColor: color },
     });
   }
 
@@ -576,30 +244,17 @@ export class BasecomponentTwoComponent implements OnInit {
     });
   }
 
-  changeSectionOneGraphic(source: any, i: number): void {
+  changeSectionGraphic(
+    source: any,
+    i: number,
+    formGroup: string,
+    section: string
+  ): void {
     const index = this.components.at(i);
     this.imageChanged.emit(index);
     this.imageChanged.emit(source);
     index.patchValue({
-      carousel: { sectionOne: { Source: source } },
-    });
-  }
-
-  changeSectionTwoGraphic(source: any, i: number): void {
-    const index = this.components.at(i);
-    this.imageChanged.emit(index);
-    this.imageChanged.emit(source);
-    index.patchValue({
-      carousel: { sectionTwo: { Source: source } },
-    });
-  }
-
-  changeSectionThreeGraphic(source: any, i: number): void {
-    const index = this.components.at(i);
-    this.imageChanged.emit(index);
-    this.imageChanged.emit(source);
-    index.patchValue({
-      carousel: { sectionThree: { Source: source } },
+      [formGroup]: { [section]: { Source: source } },
     });
   }
 
